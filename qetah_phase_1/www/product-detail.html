@@ -1,0 +1,412 @@
+{% extends "templates/primary.html" %}
+
+{% block title %} QETAH | Product Detail  {% endblock %}
+
+{% block content %}
+  <div class="content-area" :class="{'shifted-content': isStatic}">
+    <div class="container detailed-product">
+      <div class="row row-col-2">
+        <div class="col product-image-area">
+          <div class="images">
+            <div class="product-image-group">
+              <img src="./assets/images/p-details-1.webp" alt="" class="img" data-target="img1" />
+              <img src="./assets/images/p-details-1.webp" alt="" class="img" data-target="img1" />
+              <img src="./assets/images/p-detail-2.webp" alt="" class="img" data-target="img2" />
+              <img src="./assets/images/p-detail-2.webp" alt="" class="img" data-target="img2" />
+              <img src="./assets/images/p-detail-3.webp" alt="" class="img" data-target="img3" />
+              <img src="./assets/images/p-detail-3.webp" alt="" class="img" data-target="img3" />
+            </div>
+            <div class="product-image">
+              <img id="img1" src="./assets/images/p-detial-big.webp" alt="" class="img main-img" />
+              <img id="img2" src="./assets/images/big2.webp" alt="" class="img main-img" style="display:none;" />
+              <img id="img3" src="./assets/images/big3.webp" alt="" class="img main-img" style="display:none;" />
+            </div>
+          </div>
+        </div>
+        <div class="col product-content-area">
+          <div class="product-detail-content">
+            <div class="product-head">
+              <p>Lorem ipsum dolor sit.</p>
+              <h1>Mcq's Alxender Bell</h1>
+            </div>
+            <div class="product-body">
+              <div class="content-body">
+                <h2 class="price-head">
+                  $ 644 <span class="hori">|</span>
+                  <div class="badge badge-danger badge-pill">Mall</div>
+                </h2>
+                <div class="content">
+                  <p class="text-ellipsis text-ellipsis-3">
+                    text trancate  loremThis component truncates text with an ellipsis (...)
+                    when it exceeds the width of its container, useful for displaying long text in a limited space.Lorem ipsum dolor 
+                    sit amet, consectetur adipiscing elit. Quisque ut risus sit amet nisl suscipit condimentum.Lorem ipsum 
+                    dolor sit amet, consectetur adipiscing elit. Quisque ut risus sit amet nisl suscipit condimentum.
+                    </p>
+                </div>
+                <div class="sizes">
+                  <button class="btn btn-light btn-sm">sm</button>
+                  <button class="btn btn-light btn-sm">lg</button>
+                  <button class="btn btn-light btn-sm active">md</button>
+                  <button class="btn btn-light btn-sm">xl</button>
+                  <button class="btn btn-light btn-sm">xxl</button>
+                </div>
+                <div class="icon">
+                  <i class="bx bx-cart"></i>
+                  <p>Lorem ipsum dolor sit.</p>
+                </div>
+              </div>
+            </div>
+            <div class="product-foot">
+              <div class="btn-group">
+                <button class="btn btn-secondary btn-lg btn-icon">
+                  <i class="bx bx-cart icon-pre"></i>Add To Cart
+                </button>
+                <button class="btn btn-light btn-lg btn-icon">
+                  <i class="bx bx-heart icon-pre"></i>Save To Wishlist
+                </button>
+              </div>
+              <div class="icon-group">
+                <button class="btn btn-light btn-circle btn-sm">
+                  <i class="bx bxl-facebook"></i>
+                </button>
+                <button class="btn btn-light btn-circle btn-sm">
+                  <i class="bx bxl-instagram"></i>
+                </button>
+                <button class="btn btn-light btn-circle btn-sm">
+                  <i class="bx bxl-twitter"></i>
+                </button>
+                <button class="btn btn-light btn-circle btn-sm">
+                  <i class="bx bxl-whatsapp"></i>
+                </button>
+                <button class="btn btn-light btn-circle btn-sm">
+                  <i class="bx bxl-gmail"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product-details-content">
+        <p>
+          Business is the activity of making one's living or making money by
+          producing or buying and selling products (<strong
+            >goods and services</strong
+          >).Simply put, it is "any activity or enterprise entered into for
+          profit. It does not mean it is a company, a corporation,
+          partnership, or have any such formal organization, but it can range
+          from a street peddler to General Motors."[5] The term is also often
+          used colloquially (<strong
+            >but not by lawyers or public officials</strong
+          >) to refer to a company, but this article will not deal with that
+          sense of the word.
+        </p>
+        <p>
+          Anyone carrying on an activity that earns them a profit is doing
+          <u>business or running a business</u>, and perhaps this is why there
+          is a misconception that business and company is the same thing.<br />
+          A business name structure does not separate the business entity from
+          the owner, which means that the owner of the business is responsible
+          and liable for all debts incurred by the business. If the business
+          acquires debts[,] the creditor or creditors can go after your
+          personal possessions. A business structure does not allow for
+          corporate tax rates. The proprietor is personally taxed on all
+          income from the business.
+        </p>
+        <p>
+          A company on the other hand, is a separate legal entity and provides
+          for limited liability as well as corporate tax rates. A company
+          structure is more complicated and expensive to set up, but offers
+          more protection and benefits for the owner.
+        </p>
+        <blockquote>
+          <p>
+            Weighing in at a whopping 3310g and measuring 38cm in length, the
+            Sigma 500mm f/4 DG OS HSM Sports is an incredibly big and heavy
+            lens indeed, although that does include the non-removable tripod
+            collar.
+          </p>
+          <h5>Jack Daniel's</h5>
+        </blockquote>
+        <p>
+          Corporation: The owners of a corporation have limited liability and
+          the business has a separate legal personality from its owners.
+          Corporations can be either government-owned or privately owned. They
+          can organize either for profit or as nonprofit organizations. A
+          privately owned, for-profit corporation is owned by its
+          shareholders, who elect a board of directors to direct the
+          corporation and hire its managerial staff. A privately owned,
+          for-profit corporation can be either privately held by a small group
+          of individuals, or publicly held, with publicly traded shares listed
+          on a stock exchange.
+        </p>
+        <h3>A privately owned</h3>
+        <ul>
+          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
+          <li>
+            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </li>
+          <li>Faucibus turpis in eu mi bibendum neque.</li>
+          <li>Neque aliquam vestibulum morbi blandit cursus.</li>
+          <li>Enim nulla aliquet porttitor lacus.</li>
+        </ul>
+        <p>
+          Cooperative: Often referred to as a "co-op", a cooperative is a
+          limited-liability business that can organize as for-profit or
+          not-for-profit. A cooperative differs from a corporation in that it
+          has members, not shareholders, and they share decision-making
+          authority. Cooperatives are typically classified as either consumer
+          cooperatives or worker cooperatives. Cooperatives are fundamental to
+          the ideology of economic democracy.
+        </p>
+      </div>
+    </div>
+    <div class="container products">
+        <h1 class="text-start">Related Product</h1>
+        <!-- Slider main container -->
+        <div class="swiper product-slider">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                    <div class="products">
+                        <div class="badge badge-primary badge-pill">HOT</div>
+                        <div class="card product-card">
+                            <a href="./products.html">
+                            <div class="card-head">
+                                <img class="card-image" src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg">
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Nike Space-X Shoes</div>
+                                <div class="card-desc text-ellipsis text-ellipsis-2">
+                                       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti est harum ipsa, officiis quidem quia impedit at nobis sunt, asperiores rerum accusamus reiciendis eum voluptatem debitis, illum ipsum incidunt consequatur.cipit condimentum.Lorem ipsum 
+                                        dolor sit amet, consectetur adipiscing elit. Quisque ut risus sit amet nisl suscipit condimentum. 
+                                </div>
+                                <div class="card-subtitle"><del>USD 1500</del></div>
+                                <div class="card-title">USD 1000</div>
+                                <div class="card-rating">
+                                    <i class="bx bxs-star"></i>
+                                    <span>4.9</span>(12.3k) Sold
+                                </div>
+                            </div>
+                        </a>
+                            <div class="card-foot">
+                                <button class="btn btn-light btn-icon btn-pill"><i class="bx bx-cart icon-pre"></i> Buy Now </button>  
+                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="products">
+                        <div class="badge badge-primary badge-pill">HOT</div>
+                        <div class="card product-card">
+                            <a href="./products.html">
+                            <div class="card-head">
+                                <img class="card-image" src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg">
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Nike Space-X Shoes</div>
+                                <div class="card-desc text-ellipsis text-ellipsis-2">
+                                       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti est harum ipsa, officiis quidem quia impedit at nobis sunt, asperiores rerum accusamus reiciendis eum voluptatem debitis, illum ipsum incidunt consequatur.cipit condimentum.Lorem ipsum 
+                                        dolor sit amet, consectetur adipiscing elit. Quisque ut risus sit amet nisl suscipit condimentum. 
+                                </div>
+                                <div class="card-subtitle"><del>USD 1500</del></div>
+                                <div class="card-title">USD 1000</div>
+                                <div class="card-rating">
+                                    <i class="bx bxs-star"></i>
+                                    <span>4.9</span>(12.3k) Sold
+                                </div>
+                            </div>
+                        </a>
+                            <div class="card-foot">
+                                <button class="btn btn-light btn-icon btn-pill"><i class="bx bx-cart icon-pre"></i> Buy Now </button>  
+                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="products">
+                        <div class="badge badge-primary badge-pill">HOT</div>
+                        <div class="card product-card">
+                            <a href="./products.html">
+                            <div class="card-head">
+                                <img class="card-image" src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg">
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Nike Space-X Shoes</div>
+                                <div class="card-desc text-ellipsis text-ellipsis-2">
+                                       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti est harum ipsa, officiis quidem quia impedit at nobis sunt, asperiores rerum accusamus reiciendis eum voluptatem debitis, illum ipsum incidunt consequatur.cipit condimentum.Lorem ipsum 
+                                        dolor sit amet, consectetur adipiscing elit. Quisque ut risus sit amet nisl suscipit condimentum. 
+                                </div>
+                                <div class="card-subtitle"><del>USD 1500</del></div>
+                                <div class="card-title">USD 1000</div>
+                                <div class="card-rating">
+                                    <i class="bx bxs-star"></i>
+                                    <span>4.9</span>(12.3k) Sold
+                                </div>
+                            </div>
+                        </a>
+                            <div class="card-foot">
+                                <button class="btn btn-light btn-icon btn-pill"><i class="bx bx-cart icon-pre"></i> Buy Now </button>  
+                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="products">
+                        <div class="badge badge-primary badge-pill">HOT</div>
+                        <div class="card product-card">
+                            <a href="./products.html">
+                            <div class="card-head">
+                                <img class="card-image" src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg">
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Nike Space-X Shoes</div>
+                                <div class="card-desc text-ellipsis text-ellipsis-2">
+                                       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti est harum ipsa, officiis quidem quia impedit at nobis sunt, asperiores rerum accusamus reiciendis eum voluptatem debitis, illum ipsum incidunt consequatur.cipit condimentum.Lorem ipsum 
+                                        dolor sit amet, consectetur adipiscing elit. Quisque ut risus sit amet nisl suscipit condimentum. 
+                                </div>
+                                <div class="card-subtitle"><del>USD 1500</del></div>
+                                <div class="card-title">USD 1000</div>
+                                <div class="card-rating">
+                                    <i class="bx bxs-star"></i>
+                                    <span>4.9</span>(12.3k) Sold
+                                </div>
+                            </div>
+                        </a>
+                            <div class="card-foot">
+                                <button class="btn btn-light btn-icon btn-pill"><i class="bx bx-cart icon-pre"></i> Buy Now </button>  
+                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="products">
+                        <div class="badge badge-primary badge-pill">HOT</div>
+                        <div class="card product-card">
+                            <a href="./products.html">
+                            <div class="card-head">
+                                <img class="card-image" src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg">
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Nike Space-X Shoes</div>
+                                <div class="card-desc text-ellipsis text-ellipsis-2">
+                                       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti est harum ipsa, officiis quidem quia impedit at nobis sunt, asperiores rerum accusamus reiciendis eum voluptatem debitis, illum ipsum incidunt consequatur.cipit condimentum.Lorem ipsum 
+                                        dolor sit amet, consectetur adipiscing elit. Quisque ut risus sit amet nisl suscipit condimentum. 
+                                </div>
+                                <div class="card-subtitle"><del>USD 1500</del></div>
+                                <div class="card-title">USD 1000</div>
+                                <div class="card-rating">
+                                    <i class="bx bxs-star"></i>
+                                    <span>4.9</span>(12.3k) Sold
+                                </div>
+                            </div>
+                        </a>
+                            <div class="card-foot">
+                                <button class="btn btn-light btn-icon btn-pill"><i class="bx bx-cart icon-pre"></i> Buy Now </button>  
+                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="slide-next btn btn-secondary btn-sm bx bx-right-arrow-alt"></button>
+            <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
+        </div>
+    </div>
+    <div class="container customer-reviews">
+        <div class="badge badge-o-dark badge-pill">Reviews</div>
+        <h1 class="text-center" data-aos="fade-up" data-aos-anchor-placement="center-center">What Our Customers Say</h1>
+        <div class="border text-center"></div>
+        <div class="slide-container text-center">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide review-content">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora fuga architecto fugit placeat laudantium beatae repellat distinctio labore culpa perspiciatis excepturi, incidunt sed quasi blanditiis nobis iste in sequi tempore.</p>
+                    <h2 class="fw-bold reviewer-name">Hassan</h2>
+                    <i class="company-name">Example Company Name</i>
+                </div>
+                <div class="swiper-slide review-content">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora fuga architecto fugit placeat laudantium beatae repellat distinctio labore culpa perspiciatis excepturi, incidunt sed quasi blanditiis nobis iste in sequi tempore.</p>
+                    <h2 class="fw-bold reviewer-name">Abdul</h2>
+                    <i class="company-name">Example Company Name</i>
+                </div>
+                <div class="swiper-slide review-content">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora fuga architecto fugit placeat laudantium beatae repellat distinctio labore culpa perspiciatis excepturi, incidunt sed quasi blanditiis nobis iste in sequi tempore.</p>
+                    <h2 class="fw-bold reviewer-name">Ahmad</h2>
+                    <i class="company-name">Example Company Name</i>
+                </div>
+            </div>
+             <!-- Navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+    
+
+  {% endblock %}
+  
+
+
+
+  {% block scripts %} 
+
+
+
+<!-- product -->
+<script>
+  const thumbnails = document.querySelectorAll('.product-image-group .img');
+  const largeImages = document.querySelectorAll('.product-image .main-img');
+
+  thumbnails.forEach((thumbnail) => {
+    thumbnail.addEventListener('click', function () {
+      // Hide all large images
+      largeImages.forEach((img) => {
+        img.style.display = 'none';
+      });
+
+      // Show the large image that matches the clicked thumbnail's data-target
+      const targetId = this.getAttribute('data-target');
+      const targetImage = document.getElementById(targetId);
+      if (targetImage) {
+        targetImage.style.display = 'block';
+      }
+    });
+  });
+</script>
+<!-- sizes -->
+<script>
+  const sizeButtons = document.querySelectorAll('.sizes .btn');
+
+  sizeButtons.forEach((button) => {
+    button.addEventListener('click', function () {
+      // Remove the 'active' class from all buttons
+      sizeButtons.forEach((btn) => btn.classList.remove('active'));
+
+      // Add the 'active' class to the clicked button
+      this.classList.add('active');
+    });
+  });
+</script>
+ <!-- header-fixed
+ <script>
+  let lastScrollTop = 0;
+  const header = document.getElementById("header");
+
+  window.addEventListener("scroll", function() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop < lastScrollTop) {
+          // Scroll up - show header
+          header.style.transform = "translateY(0)";
+      } else {
+          // Scroll down - hide header
+          header.style.transform = "translateY(-100%)";
+      }
+
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+  });
+</script> -->
+{% endblock %}

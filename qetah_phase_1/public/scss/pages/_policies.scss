@@ -1,0 +1,156 @@
+/* privacy policy */
+
+.main-content {
+    display: flex;
+    align-items: flex-start;
+    margin: 20px auto;
+    position: w;
+  }
+  
+  .privacy-sidebar {
+    width: 600px;
+    padding: 20px;
+    padding-top: 0;
+  }
+  
+  .privacy-card {
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  
+  .privacy-card h2 {
+    margin-bottom: 15px;
+    font-size: 30px;
+    font-weight: 600;
+  }
+  
+  .privacy-card ul {
+    list-style: none;
+  }
+  
+  .privacy-card ul li {
+    margin-bottom: 10px;
+    font-size: 17px;
+  }
+  
+  .privacy-card ul li a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .privacy-card ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  .policy-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: var(--body);
+    /* border: 1px solid #ccc; */
+    border-radius: 10px;
+    margin-left: 20px;
+    width: 100%;
+  }
+  
+  .policy-content h2 {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--primary);
+    
+  }
+  
+  .policy-content p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  .policy-content a {
+    color: var(--primary);
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .policy-content a:hover {
+    text-decoration: underline;
+  }
+  
+  /* terms and conditon */
+  .terms-condition p.description {
+    margin-bottom: 1.2em;
+    color: #555;
+    font-size: 16px;
+  }
+  
+  .terms-condition h2.heading {
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #444;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 8px;
+  }
+  
+  .terms-condition a.link {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 1px dashed var(--text);
+  }
+  .terms-condition a.link:hover {
+    text-decoration: none;
+  }
+  
+  .terms-condition ul.list {
+    list-style-type: disc;
+    margin-left: 40px;
+    color: #666;
+    font-size: 16px;
+  }
+  
+  .terms-condition ul.list li {
+    margin-bottom: 10px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .terms-condition main.content {
+      margin: 20px;
+      padding: 15px;
+    }
+  
+    .terms-condition h2.heading {
+      font-size: 20px;
+    }
+  
+    .terms-condition p.description {
+      font-size: 14px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .terms-condition main.content {
+      margin: 15px;
+      padding: 10px;
+    }
+  
+    .terms-condition h2.heading {
+      font-size: 18px;
+    }
+  
+    .terms-condition p.description {
+      font-size: 13px;
+    }
+  
+    .terms-condition ul.list {
+      margin-left: 20px;
+}
+  }
+  

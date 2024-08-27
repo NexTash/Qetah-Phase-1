@@ -1,0 +1,750 @@
+ <!-- Student Header -->
+    <header id="header" class="nxt-header program-header">
+      <div
+        class="navbar-brand program-header-navbar"
+        :class="{'shifted-navbar': isStatic}"
+      >
+        <a href="#" class="sm-logo">
+          <img
+            src="/assets/qetah_phase_1/images/black-qetah-removebg-preview.png"
+            class="sm-img"
+            alt="Responsive Logo"
+            width="150px"
+          />
+        </a>
+      </div>
+      <div class="navbar-brand-lt">
+        <button
+        class="navbar-toggler d-xl-none navbarDropToggler"
+        type="button"
+        data-target="#mobileMenu"
+        aria-controls="mobileMenu"
+        style="display: none"
+      ></button>
+        <button
+          class="sidebar-toggler d-xl-none navbarDropToggler"
+          id="toggleButton"
+          type="button"
+          data-target="#mobileMenu"
+          aria-controls="sidebarMenu"
+        >
+        <i class='bx bxs-grid'></i>
+      </button>
+        <div class="icon-dropdown" x-data="{ open: false }"  @click.away="open = false">
+          <i class='bx bx-globe' @click="open = !open"></i>
+          <ul class="dropdown-menu" :class="{ 'show': open }">
+            <li><img src="/assets/qetah_phase_1/images/eng.png" style="width: 50px;height: 25px;" alt=""><a href="#">ENG</a></li>
+            <li><img src="/assets/qetah_phase_1/images/ara.webp" style="width: 50px;height: 25px;" alt=""><a href="#">ARA</a></li>
+          </ul>
+        </div>
+        <nav class="no-collapse">
+          <ul>
+           <div class="main-crospo">
+            <li class="nav-drop-wrap res-link">
+              <a
+                class="nav-icon-link has-ripple drop-indicator navDropToggler"
+                href="javascript:void(0)"
+              >
+                <span class="badge badge-secondary badge-pill noti-badge"
+                  >55</span
+                >
+                <div x-data="{ isOpenRight: false }">
+                  <i class="bx bx-heart" @click="isOpenRight = true"></i>
+                  <div
+                    class="offcanvas offcanvas-right"
+                    :class="{ 'open': isOpenRight }"
+                  >
+                    <div class="offcanvas-header">
+                      Add to Wishlist
+                      <button
+                        class="btn-close"
+                        @click="isOpenRight = false"
+                      ></button>
+                    </div>
+                    <div class="offcanvas-body">
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="offcanvas-foot">
+                      <button class="btn btn-remove">Delete</button>
+                      <button class="btn btn-cart">Add to cart</button>
+                    </div>
+                  </div>
+                  <div
+                    class="overlay"
+                    :class="{ 'show': isOpenRight }"
+                    @click="isOpenRight = false"
+                  ></div>
+                </div>
+              </a>
+            </li>
+            <li class="nav-drop-wrap res-link">
+              <a
+                class="nav-icon-link has-ripple drop-indicator navDropToggler"
+                href="javascript:void(0)"
+              >
+                <span class="badge badge-secondary badge-pill noti-badge"
+                  >99</span
+                >
+                <div x-data="{ isOpenRight: false }">
+                  <i class="bx bx-cart-alt" @click="isOpenRight = true"></i>
+                  <div
+                    class="offcanvas offcanvas-right"
+                    :class="{ 'open': isOpenRight }"
+                  >
+                    <div class="offcanvas-header">
+                      Add to Cart
+                      <button
+                        class="btn-close"
+                        @click="isOpenRight = false"
+                      ></button>
+                    </div>
+                    <div class="offcanvas-body">
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="items d-flex">
+                        <div class="check-item">
+                          <label class="check check-secondary"
+                            ><input type="checkbox"
+                          /></label>
+                        </div>
+                        <img
+                          src="/assets/qetah_phase_1/images/nike-product.jpg"
+                          alt=""
+                          class="offcanvas-image"
+                        />
+                        <div class="text">
+                          <p class="offcanvas-title">Nike Air Space X</p>
+                          <div class="quantity-counter">
+                            <p class="price">$523.00</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="offcanvas-foot">
+                      <button class="btn btn-remove">Delete</button>
+                      <button class="btn btn-cart">Checkout</button>
+                    </div>
+                  </div>
+                  <div
+                    class="overlay"
+                    :class="{ 'show': isOpenRight }"
+                    @click="isOpenRight = false"
+                  ></div>
+                </div>
+              </a>
+            </li>
+            <li class="nav-drop-wrap nav-drop-user" title="Account">
+              <a
+                class="has-ripple drop-indicator navDropToggler"
+                href="javascript:void(0)"
+              >
+                <div class="img-no-pp">
+                  <img src="/assets/qetah_phase_1/images/avatar-user.png" alt="User" />
+                </div>
+              </a>
+            </li>
+           </div>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- Student Header -->

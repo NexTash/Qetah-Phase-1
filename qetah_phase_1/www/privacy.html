@@ -1,0 +1,182 @@
+{% extends "templates/primary.html" %}
+
+{% block title %} QETAH | Privacy {% endblock %}
+
+{% block content %}
+    <div class="content-area" :class="{'shifted-content': isStatic}">
+        <!-- CONTENT -->
+    <main class="container terms-condition content">
+        <h1 class="heading">Privacy Policy</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./index.html" class="breadcrumb-link">Home</a></li>
+            <li class="breadcrumb-item active">Privacy Policy</li>
+        </ol>  
+        <h2 class="heading dotted-square">Our Privacy Policy</h2>
+        <p class="description">
+            If you have additional questions or require more information about
+            our Privacy Policy, do not hesitate to contact us.
+        </p>
+        <p class="description">
+            This Privacy Policy applies only to our online activities and is
+            valid for visitors to our website with regards to the information
+            that they shared and/or collect in Smart Solution. This policy is not
+            applicable to any information collected offline or via channels
+            other than this website. Our Privacy Policy was created with the
+            help of the Free Privacy Policy Generator.
+        </p>
+    
+        <h2 class="heading dotted-square">Consent</h2>
+        <p class="description">
+            By using our website, you hereby consent to our Privacy Policy and
+            agree to its terms.
+        </p>
+        <h2 class="heading dotted-square">Information we collect</h2>
+        <p class="description">
+            The personal information that you are asked to provide, and the
+            reasons why you are asked to provide it, will be made clear to you
+            at the point we ask you to provide your personal information.
+        </p>
+        <p class="description">
+            If you contact us directly, we may receive additional information
+            about you such as your name, email address, phone number, the
+            contents of the message and/or attachments you may send us, and any
+            other information you may choose to provide.
+        </p>
+        <p class="description">
+            When you register for an Account, we may ask for your contact
+            information, including items such as name, company name, address,
+            email address, and telephone number.
+        </p>
+        <h2 class="heading dotted-square">Log Files</h2>
+        <p class="description">
+            Smart Solution follows a standard procedure of using log files. These files
+            log visitors when they visit websites. All hosting companies do this
+            and a part of hosting services' analytics. The information collected
+            by log files include internet protocol (IP) addresses, browser type,
+            Internet Service Provider (ISP), date and time stamp, referring/exit
+            pages, and possibly the number of clicks. These are not linked to
+            any information that is personally identifiable. The purpose of the
+            information is for analyzing trends, administering the site,
+            tracking users' movement on the website, and gathering demographic
+            information.
+        </p>
+        <h2 class="heading dotted-square">Cookies and Web Beacons</h2>
+        <p class="description">
+            Like any other website, Smart Solution uses 'cookies'. These cookies are
+            used to store information including visitors' preferences, and the
+            pages on the website that the visitor accessed or visited. The
+            information is used to optimize the users' experience by customizing
+            our web page content based on visitors' browser type and/or other
+            information.
+        </p>
+    
+        <h2 class="heading dotted-square">Third Party Privacy Policies</h2>
+        <p class="description">
+            Smart Solution's Privacy Policy does not apply to other advertisers or
+            websites. Thus, we are advising you to consult the respective
+            Privacy Policies of these third-party ad servers for more detailed
+            information. It may include their practices and instructions about
+            how to opt-out of certain options.
+        </p>
+        <p class="description">
+            You can choose to disable cookies through your individual browser
+            options. To know more detailed information about cookie management
+            with specific web browsers, it can be found at the browsers'
+            respective websites.
+        </p>
+    
+        <p class="description">
+            CCPA Privacy Rights (Do Not Sell My Personal Information)
+        </p>
+        <p class="description">
+            Under the CCPA, among other rights, California consumers have the
+            right to:
+        </p>
+        <ul class="list">
+            <li>
+                Request that a business that collects a consumer's personal data
+                disclose the categories and specific pieces of personal data that
+                a business has collected about consumers.
+            </li>
+            <li>
+                Request that a business delete any personal data about the
+                consumer that a business has collected.
+            </li>
+            <li>
+                Request that a business that sells a consumer's personal data, not
+                sell the consumer's personal data.
+            </li>
+            <li>
+                If you make a request, we have one month to respond to you. If you
+                would like to exercise any of these rights, please contact us.
+            </li>
+        </ul>
+        <h2 class="heading dotted-square">GDPR Data Protection Rights</h2>
+        <p class="description">
+            We would like to make sure you are fully aware of all of your data
+            protection rights. Every user is entitled to the following:
+        </p>
+        <ul class="list">
+            <li>
+                The right to access – You have the right to request copies of your
+                personal data. We may charge you a small fee for this service.
+            </li>
+            <li>
+                The right to rectification – You have the right to request that we
+                correct any information you believe is inaccurate. You also have
+                the right to request that we complete the information you believe
+                is incomplete.
+            </li>
+            <li>
+                The right to erasure – You have the right to request that we erase
+                your personal data, under certain conditions.
+            </li>
+            <li>
+                The right to restrict processing – You have the right to request
+                that we restrict the processing of your personal data, under
+                certain conditions.
+            </li>
+            <li>
+                The right to object to processing – You have the right to object
+                to our processing of your personal data, under certain conditions.
+            </li>
+            <li>
+                The right to data portability – You have the right to request that
+                we transfer the data that we have collected to another
+                organization, or directly to you, under certain conditions.
+            </li>
+            <li>
+                If you make a request, we have one month to respond to you. If you
+                would like to exercise any of these rights, please contact us.
+            </li>
+        </ul>
+    </main>
+      <!-- CONTENT -->
+  
+
+        {% endblock %}
+
+       <!-- header-fixed -->
+
+{% block scripts %} 
+
+  <script>
+    let lastScrollTop = 0;
+    const header = document.getElementById("header");
+
+    window.addEventListener("scroll", function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop < lastScrollTop) {
+            // Scroll up - show header
+            header.style.transform = "translateY(0)";
+        } else {
+            // Scroll down - hide header
+            header.style.transform = "translateY(-100%)";
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+    });
+</script>
+{% endblock %}
+    

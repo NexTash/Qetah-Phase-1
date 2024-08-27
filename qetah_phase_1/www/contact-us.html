@@ -1,0 +1,52 @@
+{% extends "templates/primary.html" %}
+
+{% block title %} QETAH | Contact Us  {% endblock %}
+
+{% block content %}
+   <div class="content-area contact-section" :class="{'shifted-content': isStatic}">   
+        <div class="contact-us" style="background-image:url('/assets/qetah_phase_1/images/bg-swirl-1.webp');background-repeat: no-repeat;background-size: cover;">
+            <div class="information" >
+                <h1 class="fw-bold">Contact Us</h1>
+                <p class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque ratione, maiores dolore odit, amet dolorem omnis, molestiae fuga nesciunt dicta blanditiis tempora error delectus ad. Deserunt dolore itaque nesciunt mollitia!</p>
+                <div class="container info">
+                    <div class="offices">
+                        <h3>Offices</h3>
+                        <p class="desc">Akshya Nagar 1st Block 1st Cross, Rammurthy nagar, Bangalore-560016</p>
+                        <p class="desc">Akshya Nagar 1st Block 10th Cross, Rammurthy nagar, Bangalore-560016</p>
+                    </div>
+                    <div class="email">        
+                        <h3>Email</h3>
+                        <p class="desc">info@gmail.com</p>
+                        <p class="desc">qetah@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="form" >
+                <form action="">
+                    <h1>Get in Touch</h1>
+                    <p class="desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    <div class="field  field-dark">
+                        <input type="text" class="field-text" placeholder="Full Name*"/>
+                      </div>
+                      <div class="field field-dark">
+                        <input type="email" class="field-text" placeholder="Email*" />
+                      </div>
+                      <div class="field field-dark">
+                        <input type="text" class="field-text" placeholder="Phone No" />
+                      </div>
+                      <div class="field field-dark">
+                        <textarea class="field-textarea" rows="4" placeholder="Messsage*" ></textarea>
+                      </div>
+                      <div class="submit"> 
+                        <label class="check check-dark" ><input type="checkbox" />Checkout our <a href="/terms-and-conditions"> Terms and Conditions </a> and <a href="/privacy-policy">Privacy Policy</a>.</label>                      
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary">Submit</button>
+                      </div>
+                </form>
+            </div>
+        </div>
+      
+      {% endblock %}
+   
+ <!-- header-fixed

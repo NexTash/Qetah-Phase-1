@@ -1,0 +1,173 @@
+{% extends "templates/primary.html" %}
+
+{% block title %}  QETAH | Checkout  {% endblock %}
+
+{% block content %}
+
+    <div class="content-area" :class="{'shifted-content': isStatic}">
+        <div class="container checkout">
+            <form action="" class="information">
+                <h5>Delivery Information</h5>
+                <div class="grp">
+                    <div class="form-field">
+                        <label class="field-label">Full Name</label>
+                        <div class="field field-dark">
+                          <input type="text" class="field-text" placeholder="Enter your first and last name" />
+                        </div>
+                      </div>
+                      <div class="form-field">
+                        <label class="field-label">Province</label>
+                        <div class="field field-dark">
+                          <select name="" id="" class="field-select">
+                            <option value="">Please choose your province</option>
+                            <option value="Option">Option</option>
+                            <option value="Option">Option</option>
+                          </select>
+                        </div>
+                      </div>
+                </div>
+                <div class="grp">
+                    <div class="form-field">
+                        <label class="field-label">Phone Number</label>
+                        <div class="field field-dark">
+                          <input type="text" class="field-text" placeholder="Please enter your phone number" />
+                        </div>
+                      </div>
+                      <div class="form-field">
+                          <label class="field-label">City</label>
+                          <div class="field field-dark">
+                            <select name="" id="" class="field-select">
+                              <option value="">Please choose your city</option>
+                              <option value="Option">Option</option>
+                              <option value="Option">Option</option>
+                            </select>
+                          </div>
+                        </div>
+                </div>
+                <div class="grp">
+                  <div class="form-field">
+                    <label class="field-label">Address</label>
+                    <div class="field field-dark">
+                      <input type="text" class="field-text" placeholder="Enter your Address" />
+                    </div>
+                  </div>
+                  <div class="form-field">
+                    <label class="field-label">Area</label>
+                    <div class="field field-dark">
+                      <select name="" id="" class="field-select">
+                        <option value="">Please choose your area</option>
+                        <option value="Option">Option</option>
+                        <option value="Option">Option</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-secondary btn-checkout">Save</button>
+            </form>
+            <form action="" class="payment">
+<h5>Promotion</h5>
+<div class="grp">
+  <div class="form-field">
+    <div class="field field-dark">
+      <input type="text" class="field-text" placeholder="Enter Code" />
+    </div>
+  </div>
+  <button class="btn btn-secondary btn-apply">Apply</button>
+</div>
+<h5>Order Summary</h5>
+<div class="order-info">
+  <div class="order-detail">
+    <div class="item">items Total (1 items)</div>
+    <div class="price">USD. 1000</div>
+  </div>
+  <div class="order-detail">
+    <div class="item">Delivery Fee</div>
+    <div class="price">USD. 125</div>
+  </div>
+  <div class="order-detail">
+    <div class="item">Delivery Discount</div>
+    <div class="price">USD. -125</div>
+  </div>
+  <hr>
+  <div class="total">
+    <div class="sum">Total:</div>
+    <div class="price">USD. 1000</div>
+  </div>
+  <div class="taxes">Taxes included, where applicable</div>
+  <button class="btn btn-dark btn-block">Proceed to Pay</button>
+</div>
+            </form>
+        </div>
+        <div class="container checkout-items">
+          <div class="card card-webinar cart-product-card">
+            <div class="card-head">
+              <span>Pakage 1 of 1</span>
+              <p>Fullfilled by <b>QETAH</b> </p>
+            </div>
+            <hr />
+            <div class="cart-card">
+              <div class="card-head">
+                <div class="cart-conent">
+                  <img
+                    src="/assets/qetah_phase_1/images/nike-product.jpg"
+                    alt="Product Image"
+                    class="image"
+                  />
+                  <div class="card-desc">
+                    <p class="text-ellipsis text-ellipsis-2">
+                      text trancate loremThis component truncates text with an
+                      ellipsis (...) when it exceeds the width of its
+                      container, useful for displaying long text in a limited
+                      space.Lorem ipsum dolor sit amet, consectetur adipiscing
+                      elit. Quisque ut risus sit amet nisl suscipit
+                      condimentum.Lorem ipsum dolor sit amet, consectetur
+                      adipiscing elit. Quisque ut risus sit amet nisl suscipit
+                      condimentum.
+                    </p>
+                    <span>No Brand, Color Family:White</span>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="prices">
+                  <p class="price">Rs. 799</p>
+                  <p class="discount"><s>Rs. 200</s></p>
+                  <div class="icon-group">
+                    <span class="wishlist"><i class="bx bx-trash"></i></span>
+                  </div>
+                </div>
+              </div>
+              <div class="card-foot">
+                <div class="qty">
+                  <span>Qty:</span>
+                  <span>1</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+    {% endblock %}
+  
+   
+  <!-- header-fixed
+  <script>
+    let lastScrollTop = 0;
+    const header = document.getElementById("header");
+
+    window.addEventListener("scroll", function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop < lastScrollTop) {
+            // Scroll up - show header
+            header.style.transform = "translateY(0)";
+        } else {
+            // Scroll down - hide header
+            header.style.transform = "translateY(-100%)";
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+    });
+</script> -->
+
+

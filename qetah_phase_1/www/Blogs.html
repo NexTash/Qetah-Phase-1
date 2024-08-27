@@ -1,0 +1,47 @@
+{% extends "templates/primary.html" %}
+
+{% block title %}  QETAH | Blogs {% endblock %}
+
+{% block content %}
+ <div class="content-area" :class="{'shifted-content': isStatic}">
+      <main class="container boxed blogs">
+        <h1 class="heading">{{_("Blogs")}}</h1>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/index" class="breadcrumb-link">{{_("Home")}}</a></li>
+          <li class="breadcrumb-item active">{{_("Blogs")}}</li>
+        </ol>
+        <section class="row">
+            {% for blog in blogs %}
+
+          <div class="col blog-section">
+            <article
+              class="card card-blog"
+              data-aos-duration="1000"
+              data-aos="fade-up"
+              data-aos-once="true"
+              data-aos-easing="ease-in-out"
+            >
+              <a class="card-image image-zoom" href="/blog-details?id={{blog.name}}">
+                <img src="{{ blog.meta_image }}" class="image" loading="lazy" alt="" />
+              </a>
+              <div class="card-body">
+                <span class="card-badge">{{ blog.title }}</span>
+                <h3 class="card-title">
+                  <a href="/blog-details?id={{blog.name}}"
+                    >{{blog.blog_intro}}</a
+                  >
+                </h3>
+                <p class="card-subtitle">{{ blog.published_on }}</p>
+              </div>
+            </article>
+          </div>
+              {% endfor %}
+
+        </section>
+        <section class="pagination load-more">
+          <button class="btn btn-secondary btn-pill">{{_("Load More")}}</button>
+        </section>
+      </main>
+    
+      {% endblock %}
+     <!-- header-fixed
