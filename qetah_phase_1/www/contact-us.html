@@ -26,27 +26,56 @@
                     <h1>Get in Touch</h1>
                     <p class="desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
                     <div class="field  field-dark">
-                        <input type="text" class="field-text" placeholder="Full Name*"/>
+                        <input type="text" class="field-text" id="fullname" placeholder="Full Name*"/>
                       </div>
                       <div class="field field-dark">
-                        <input type="email" class="field-text" placeholder="Email*" />
+                        <input type="email" class="field-text" id="email" placeholder="Email*" />
                       </div>
                       <div class="field field-dark">
-                        <input type="text" class="field-text" placeholder="Phone No" />
+                        <input type="text" id="phone" class="field-text" placeholder="Phone No" />
                       </div>
                       <div class="field field-dark">
-                        <textarea class="field-textarea" rows="4" placeholder="Messsage*" ></textarea>
+                        <textarea class="field-textarea" rows="4" id="message" placeholder="Messsage*" ></textarea>
                       </div>
                       <div class="submit"> 
                         <label class="check check-dark" ><input type="checkbox" />Checkout our <a href="/terms-and-conditions"> Terms and Conditions </a> and <a href="/privacy-policy">Privacy Policy</a>.</label>                      
                         <br>
                         <br>
-                        <button class="btn btn-secondary">Submit</button>
+                        <button class="btn btn-secondary" onclick="contact_info()">Submit</button>
                       </div>
                 </form>
             </div>
         </div>
       
       {% endblock %}
+
+        <script>
+    function contact_info() {
+  
+      var fullname = document.getElementById("fullname").value;
+      var email = document.getElementById("email").value;
+      var phone = document.getElementById("phone").value;
+      var message = document.getElementById("message").value;
+  
+      frappe.call({
+        method: 'qetah_phase_1.events.contact-us.contacts',
+        args: {
+          firstname: firstname,
+          email: email,
+          phone: phone,
+          message: message,
+        },
+        callback(r) {
+          console.log(r.message)
+          document.getElementById("messages").innerHTML = r.message;
+  
+          document.getElementById("firstname").value = ""
+          document.getElementById("email").value = ""
+          document.getElementById("phone").value = ""
+          document.getElementById("message").value = ""
+        }
+      });
+    }
+  </script>
    
  <!-- header-fixed

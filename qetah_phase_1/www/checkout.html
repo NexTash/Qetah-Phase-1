@@ -12,13 +12,13 @@
                     <div class="form-field">
                         <label class="field-label">Full Name</label>
                         <div class="field field-dark">
-                          <input type="text" class="field-text" placeholder="Enter your first and last name" />
+                          <input type="text" class="field-text" id="fullname" placeholder="Enter your first and last name" />
                         </div>
                       </div>
                       <div class="form-field">
-                        <label class="field-label">Province</label>
+                        <label class="field-label" >Province</label>
                         <div class="field field-dark">
-                          <select name="" id="" class="field-select">
+                          <select name="" id="province" class="field-select">
                             <option value="">Please choose your province</option>
                             <option value="Option">Option</option>
                             <option value="Option">Option</option>
@@ -28,15 +28,15 @@
                 </div>
                 <div class="grp">
                     <div class="form-field">
-                        <label class="field-label">Phone Number</label>
+                        <label class="field-label" >Phone Number</label>
                         <div class="field field-dark">
-                          <input type="text" class="field-text" placeholder="Please enter your phone number" />
+                          <input type="text" class="field-text" id="phone" placeholder="Please enter your phone number" />
                         </div>
                       </div>
                       <div class="form-field">
                           <label class="field-label">City</label>
                           <div class="field field-dark">
-                            <select name="" id="" class="field-select">
+                            <select name="" id="city" class="field-select">
                               <option value="">Please choose your city</option>
                               <option value="Option">Option</option>
                               <option value="Option">Option</option>
@@ -48,13 +48,13 @@
                   <div class="form-field">
                     <label class="field-label">Address</label>
                     <div class="field field-dark">
-                      <input type="text" class="field-text" placeholder="Enter your Address" />
+                      <input type="text" class="field-text" id="address"  placeholder="Enter your Address" />
                     </div>
                   </div>
                   <div class="form-field">
                     <label class="field-label">Area</label>
                     <div class="field field-dark">
-                      <select name="" id="" class="field-select">
+                      <select name="" id="area" class="field-select">
                         <option value="">Please choose your area</option>
                         <option value="Option">Option</option>
                         <option value="Option">Option</option>
@@ -62,17 +62,17 @@
                     </div>
                   </div>
                 </div>
-                <button class="btn btn-secondary btn-checkout">Save</button>
+                <button class="btn btn-secondary btn-checkout" onclick="save()">Save</button>
             </form>
             <form action="" class="payment">
 <h5>Promotion</h5>
 <div class="grp">
   <div class="form-field">
     <div class="field field-dark">
-      <input type="text" class="field-text" placeholder="Enter Code" />
+      <input type="text" class="field-text" placeholder="Enter Code" id="code"/>
     </div>
   </div>
-  <button class="btn btn-secondary btn-apply">Apply</button>
+  <button class="btn btn-secondary btn-apply" onclick="save()">Apply</button>
 </div>
 <h5>Order Summary</h5>
 <div class="order-info">
@@ -148,7 +148,48 @@
         </div>
     
     {% endblock %}
+    <script>
+    function save() {
   
+      let fullname = document.getElementById("fullname").value;
+      let province = document.getElementById("province").value;
+      let city = document.getElementById("city").value;
+      let area = document.getElementById("area").value;
+      let phone = document.getElementById("phone").value;
+      let email = document.getElementById("email").value;
+      let address = document.getElementById("address").value;
+      let code = document.getElementById("code").value;
+  
+      frappe.call({
+        method: 'qetah_phase_1.events.checkout.checks',
+        args: {
+            fullname : fullname,
+            email: email,
+            province :province,
+            city : city,
+            area : area,
+            phone : phone,
+            email :email ,
+            address : address,
+            code : code,
+        },
+        callback(r) {
+          console.log(r.message)
+          document.getElementById("messages").innerHTML = r.message
+          document.getElementById("email").value = ""
+          document.getElementById("fullname").value = ""
+          document.getElementById("province").value = ""
+          document.getElementById("city").value = ""
+          document.getElementById("area").value = ""
+          document.getElementById("phone").value = ""
+          document.getElementById("email").value = ""
+          document.getElementById("subject").value = ""
+          document.getElementById("address").value = ""
+          document.getElementById("code").value = ""
+        }
+      });
+    }
+  </script>
    
   <!-- header-fixed
   <script>

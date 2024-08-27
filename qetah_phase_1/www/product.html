@@ -18,13 +18,16 @@
                     <hr>
                     <div class="range-slider">
                         <span class="rangeValues"></span>
-                        <input value="1000" min="1000" max="50000" step="500" type="range">
-                        <input value="50000" min="1000" max="50000" step="500" type="range">
+                        <input value="1000" min="1000" max="50000" step="500" 
+                        id="price-range-max" name="price"
+                        type="range">
+                        <input value="50000" min="1000" max="50000" step="500" 
+                        id="price-range-min" name="price"type="range">
                     </div>
                     <h5 class="mt-3">By Rating</h5>
                     <hr>
                     <div class="field-rating">
-                        <input type="radio" id="star5" name="rating" value="5">
+                        <input type="radio" id="star5" id="get_ratings"name="rating" value="5">
                         <label for="star5" title="5 stars"></label>
                         <input type="radio" id="star4" name="rating" value="4">
                         <label for="star4" title="4 stars"></label>
@@ -1235,5 +1238,73 @@ function initializeSliders(className) {
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
     });
 </script> -->
+
+<script>
+    
+    $("#search_job_btn").on("click", () => {
+        let txt = $("#search_freelancer_text").val()
+        document.location.href = document.location.origin + document.location.pathname + "?q=" + txt
+    })
+
+    $("#search_freelancer_text").on("keydown", (e) => {
+        if (e.which == 13) {
+            let txt = $("#search_freelancer_text").val()
+            document.location.href = document.location.origin + document.location.pathname + "?q=" + txt
+        }
+    })
+    $("#get_price").on("click", () => {
+        let min_price = document.getElementById("price-range-min").value
+        let max_price = document.getElementById("price-range-max").value
+        document.location.href = document.location.origin + document.location.pathname + "?min_price=" + min_price + "&max_price=" + max_price
+    })
+    $("#clear_price").on("click", () => {
+        document.location.href = document.location.href = document.location.origin + document.location.pathname
+    })
+    $("#order_by").on("click", () => {
+        var radios = document.getElementsByName('sort');
+
+        var selected_order = "";
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+                selected_order = radios[i].value;
+                break;
+            }
+        }
+        if(selected_order) {
+            document.location.href = document.location.href = document.location.origin + document.location.pathname + "?order_by=" + selected_order
+        }
+    })
+    $("#clear_order").on("click", () => {
+        document.location.href = document.location.href = document.location.origin + document.location.pathname
+    })
+  
+    
+    $("#clear_all_filters").on("click", () => {
+        document.location.href = document.location.href = document.location.origin + document.location.pathname
+    })
+    
+    $("#get_categories").on("click", () => {
+        var checkedValues = [];
+        var checkboxes = document.getElementsByClassName("category-checkbox");
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                checkedValues.push(checkboxes[i].value);
+            }
+        }
+        document.location.href = document.location.href = document.location.origin + document.location.pathname + "?category=" + checkedValues        
+    })
+     
+    $("#get_ratings").on("click", () => {
+    let txt = $("input[name='ratings']:checked").val();
+    document.location.href = document.location.origin + document.location.pathname + "?q=&ratings=" + txt;
+    });
+
+
+    $("#clear_ratings").on("click", () => {
+    $("input[name='ratings']").prop("checked", false);
+    document.location.href = document.location.origin + document.location.pathname;
+    });
+
+</script>
 
 {% endblock %}
