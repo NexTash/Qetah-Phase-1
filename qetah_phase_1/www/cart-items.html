@@ -4,309 +4,159 @@
 
 {% block content %}
 <!-- Student Header -->
-    <div class="content-area" :class="{'shifted-content': isStatic}">
-    <div class="container cart">
-      <div class="row row-col-2">
-        <div class="col">
-          <div class="cart-product">
-            <div class="card card-webinar">
-              <div class="card-head select-items">
-                <span>
-                  <label class="check check-secondary"
-                    ><input type="checkbox" /> Select All (7 item(s))</label
-                  >
-                </span>
-                <button class="btn btn-light btn-icon">
-                  <i class="bx bx-trash icon-pre"></i> Delet
-                </button>
-              </div>
-            </div>
-            <div class="card card-webinar cart-product-card">
-              <div class="card-head">
-                <span>
-                  <label class="check check-secondary"
-                    ><input type="checkbox" /> Accessory HUB(Lahore)</label
-                  >
-                </span>
-              </div>
-              <hr />
-              <div class="cart-card">
-                <div class="card-head">
-                  <div class="checkbox">
-                    <label class="check check-secondary"
-                      ><input type="checkbox"
-                    /></label>
-                  </div>
-                  <div class="cart-conent">
-                    <img
-                      src="./assets/images/nike-product.jpg"
-                      alt="Product Image"
-                      class="image"
-                    />
-                    <div class="card-desc">
-                      <p class="text-ellipsis text-ellipsis-2">
-                        text trancate loremThis component truncates text with an
-                        ellipsis (...) when it exceeds the width of its
-                        container, useful for displaying long text in a limited
-                        space.Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. Quisque ut risus sit amet nisl suscipit
-                        condimentum.Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit. Quisque ut risus sit amet nisl suscipit
-                        condimentum.
-                      </p>
-                      <span>No Brand, Color Family:White</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <div class="prices">
-                    <p class="price">Rs. 799</p>
-                    <p class="discount"><s>Rs. 200</s></p>
-                    <div class="icon-group">
-                      <span class="wishlist"><i class="bx bx-heart"></i></span>
-                      <span class="wishlist"><i class="bx bx-trash"></i></span>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-foot">
-                  <div class="quantity-counter">
-                    <div class="counter">
-                      <button
-                        class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
-                      ></button>
-                      <input
-                        class="counter-value value"
-                        type="number"
-                        value="0"
-                      />
-                      <button
-                        class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
-                      ></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+<div class="content-area" :class="{'shifted-content': isStatic}">
+  <div class="container cart">
+    <div class="row row-col-2">
+      <div class="col">
+        <div class="cart-product">
+          <div class="card card-webinar">
+            <div class="card-head select-items">
+              <span>
+                <label class="check check-secondary"><input type="checkbox" /> Select All (7 item(s))</label>
+              </span>
+              <button class="btn btn-light btn-icon">
+                <i class="bx bx-trash icon-pre"></i> Delete
+              </button>
             </div>
           </div>
-          <div class="cart-product">
-            <div class="card card-webinar cart-product-card">
-              <div class="card-head">
-                <span>
-                  <label class="check check-secondary"
-                    ><input type="checkbox" /> Accessory HUB(Lahore)</label
-                  >
-                </span>
-              </div>
-              <hr />
-              <div class="cart-card">
-                <div class="card-head">
-                  <div class="checkbox">
-                    <label class="check check-secondary"
-                      ><input type="checkbox"
-                    /></label>
-                  </div>
-                  <div class="cart-conent">
-                    <img
-                      src="./assets/images/nike-product.jpg"
-                      alt="Product Image"
-                      class="image"
-                    />
-                    <div class="card-desc">
-                      <p class="text-ellipsis text-ellipsis-2">
-                        text trancate loremThis component truncates text with an
-                        ellipsis (...) when it exceeds the width of its
-                        container, useful for displaying long text in a limited
-                        space.Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. Quisque ut risus sit amet nisl suscipit
-                        condimentum.Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit. Quisque ut risus sit amet nisl suscipit
-                        condimentum.
-                      </p>
-                      <span>No Brand, Color Family:White</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <div class="prices">
-                    <p class="price">Rs. 799</p>
-                    <p class="discount"><s>Rs. 200</s></p>
-                    <div class="icon-group">
-                      <span class="wishlist"><i class="bx bx-heart"></i></span>
-                      <span class="wishlist"><i class="bx bx-trash"></i></span>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-foot">
-                  <div class="quantity-counter">
-                    <div class="counter">
-                      <button
-                        class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
-                      ></button>
-                      <input
-                        class="counter-value value"
-                        type="number"
-                        value="0"
-                      />
-                      <button
-                        class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
-                      ></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="cart-product">
-            <div class="card card-webinar cart-product-card">
-              <div class="card-head">
-                <span>
-                  <label class="check check-secondary"
-                    ><input type="checkbox" /> Accessory HUB(Lahore)</label
-                  >
-                </span>
-              </div>
-              <hr />
-              <div class="cart-card">
-                <div class="card-head">
-                  <div class="checkbox">
-                    <label class="check check-secondary"
-                      ><input type="checkbox"
-                    /></label>
-                  </div>
-                  <div class="cart-conent">
-                    <img
-                      src="./assets/images/nike-product.jpg"
-                      alt="Product Image"
-                      class="image"
-                    />
-                    <div class="card-desc">
-                      <p class="text-ellipsis text-ellipsis-2">
-                        text trancate loremThis component truncates text with an
-                        ellipsis (...) when it exceeds the width of its
-                        container, useful for displaying long text in a limited
-                        space.Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. Quisque ut risus sit amet nisl suscipit
-                        condimentum.Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit. Quisque ut risus sit amet nisl suscipit
-                        condimentum.
-                      </p>
-                      <span>No Brand, Color Family:White</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <div class="prices">
-                    <p class="price">Rs. 799</p>
-                    <p class="discount"><s>Rs. 200</s></p>
-                    <div class="icon-group">
-                      <span class="wishlist"><i class="bx bx-heart"></i></span>
-                      <span class="wishlist"><i class="bx bx-trash"></i></span>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-foot">
-                  <div class="quantity-counter">
-                    <div class="counter">
-                      <button
-                        class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
-                      ></button>
-                      <input
-                        class="counter-value value"
-                        type="number"
-                        value="0"
-                      />
-                      <button
-                        class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
-                      ></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card card-summary">
+          {% for product in products %}
+          {% for item in product.cart_items %}
+          <div class="card card-webinar cart-product-card">
             <div class="card-head">
-              <div class="location">
-                <span>Location</span>  
+              <span>
+                <label class="check check-secondary">
+                  <input type="checkbox" />{{ item.title }}
+                </label>
+              </span>
+            </div>
+            <hr />
+            <div class="cart-card">
+              <div class="card-head">
+                <div class="checkbox">
+                  <label class="check check-secondary">
+                    <input type="checkbox" />
+                  </label>
+                </div>
+                <div class="cart-content">
+                  <img src="{{ item.image }}" alt="Product Image" class="image" />
+                  <p class="text-ellipsis text-ellipsis-2">
+                    {{ item.description }}
+                  </p>
+                  <span>{{ item.brand }}</span>
+                </div>
               </div>
-              <div class="container model-container" x-data="{ isOpen: false }"  x-init="$watch('isOpen', value => { 
+              <div class="card-body">
+                <div class="prices">
+                  <p class="price">$ {{ item.price }}</p>
+                  <p class="discount"><s>${{ item.discount }}</s></p>
+                  <div class="icon-group">
+                    <span class="wishlist"><i class="bx bx-heart"></i></span>
+                    <span class="wishlist"><i class="bx bx-trash"></i></span>
+                  </div>
+                </div>
+              </div>
+              <div class="card-foot">
+                <div class="quantity-counter">
+                  <div class="counter">
+                    <button
+                      class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"></button>
+                    <input class="counter-value value" type="number" value="0" />
+                    <button
+                      class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          {% endfor %}
+
+        </div>
+
+      </div>
+      <div class="col">
+        <div class="card card-summary">
+          <div class="card-head">
+            <div class="location">
+              <span>Location</span>
+            </div>
+            <div class="container model-container" x-data="{ isOpen: false }" x-init="$watch('isOpen', value => { 
     document.body.style.overflow = value ? 'hidden' : 'auto';
 })">
-                <button class="btn btn-secondary btn-icon model-btn" x-on:click="isOpen = true"><i class="bx bx-location-plus icon-pre"></i> Add Shipping Address </button>
-                <div class="modal active" x-show="isOpen" x-transition style="display: none;">
-                    <div class="modal-dialog"  @click.away="isOpen = false">
-                        <div class="modal-content ">
-                            <div class="modal-head">
-                                <h3 class="modal-title">Add Shipping Details</h3>
-                            </div>
-                            <div class="modal-body">
-                              <div class="form-field">
-                                <label class="field-label">First Name</label>
-                                <div class="field">
-                                  <input type="text" class="field-text" placeholder="Enter first name" />
-                                </div>
-                              </div>
-                              <div class="form-field">
-                                <label class="field-label">Last Name</label>
-                                <div class="field">
-                                  <input type="text" class="field-text" placeholder="Enter last name" />
-                                </div>
-                              </div>
-                              <div class="form-field">
-                                <label class="field-label">Phone No</label>
-                                <div class="field">
-                                  <input type="text" class="field-text" placeholder="Enter your phone number" />
-                                </div>
-                              </div>
-                              <div class="form-field">
-                                <label class="field-label">Address</label>
-                                <div class="field">
-                                  <input type="text" class="field-text" placeholder="Enter your Address" />
-                                </div>
-                              </div>
-                              <div class="form-field">
-                                <label class="field-label">Email</label>
-                                <div class="field">
-                                  <input type="email" class="field-text" placeholder="Enter your email" />
-                                </div>
-                              </div>
-                              <div class="form-field">
-                                <label class="field-label">Province</label>
-                                <div class="field">
-                                  <select name="" id="" class="field-select">
-                                    <option value="">Select your Province</option>
-                                    <option value="Option">Option</option>
-                                    <option value="Option">Option</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <div class="form-field">
-                                <label class="field-label">City</label>
-                                <div class="field">
-                                  <select name="" id="" class="field-select">
-                                    <option value="">Select your City</option>
-                                    <option value="Option">Option</option>
-                                    <option value="Option">Option</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <div class="form-field">
-                                <label class="field-label">Zip / Postal code</label>
-                                <div class="field">
-                                  <input type="text" class="field-text" placeholder="Enter your Code" />
-                                </div>
-                              </div>
-                            </div>
-                            <div class="modal-foot">
-                                <button class="btn" x-on:click="isOpen = false">Cancel</button>
-                                <button class="btn btn-secondary">Apply</button>
-                            </div>
-                        </div>
+              <button class="btn btn-secondary btn-icon model-btn" x-on:click="isOpen = true"><i
+                  class="bx bx-location-plus icon-pre"></i> Add Shipping Address </button>
+              <div class="modal active" x-show="isOpen" x-transition style="display: none;">
+                <div class="modal-dialog" @click.away="isOpen = false">
+                  <div class="modal-content ">
+                    <div class="modal-head">
+                      <h3 class="modal-title">Add Shipping Details</h3>
                     </div>
+                    <div class="modal-body">
+                      <div class="form-field">
+                        <label class="field-label">First Name</label>
+                        <div class="field">
+                          <input type="text" class="field-text" placeholder="Enter first name" id="firstname" />
+                        </div>
+                      </div>
+                      <div class="form-field">
+                        <label class="field-label">Last Name</label>
+                        <div class="field">
+                          <input type="text" class="field-text" placeholder="Enter last name" id="lastname" />
+                        </div>
+                      </div>
+                      <div class="form-field">
+                        <label class="field-label">Phone No</label>
+                        <div class="field">
+                          <input type="text" class="field-text" placeholder="Enter your phone number" id="phone" />
+                        </div>
+                      </div>
+                      <div class="form-field">
+                        <label class="field-label">Address</label>
+                        <div class="field">
+                          <input type="text" class="field-text" placeholder="Enter your Address" id="address" />
+                        </div>
+                      </div>
+                      <div class="form-field">
+                        <label class="field-label">Email</label>
+                        <div class="field">
+                          <input type="email" class="field-text" placeholder="Enter your email" id="email" />
+                        </div>
+                      </div>
+                      <div class="form-field">
+                        <label class="field-label">Province</label>
+                        <div class="field">
+                          <select name="" id=" province" class="field-select">
+                            <option value="">Select your Province</option>
+                            <option value="Option">Option</option>
+                            <option value="Option">Option</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-field">
+                        <label class="field-label">City</label>
+                        <div class="field">
+                          <select name="" id="city" class="field-select">
+                            <option value="">Select your City</option>
+                            <option value="Option">Option</option>
+                            <option value="Option">Option</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-field">
+                        <label class="field-label">Zip / Postal code</label>
+                        <div class="field">
+                          <input type="text" class="field-text" placeholder="Enter your Code" id="postalcode" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-foot">
+                      <button class="btn" x-on:click="isOpen = false">Cancel</button>
+                      <button class="btn btn-secondary">Apply</button>
+                    </div>
+                  </div>
                 </div>
-            </div> 
+              </div>
+            </div>
             <div class="media">
               <div class="media-head">
                 <i class="bx bxs-user"></i>
@@ -316,217 +166,104 @@
                 <p class="media-title">Ammar Shahid</p>
                 <p class="media-subtitle txt-sm fw-500">04165651763</p>
                 <h6 class="text-ellipsis text-ellipsis-2 txt-sm">
-                  <strong>Two Line Truncation</strong>text trancate  loremThis component truncates text with an ellipsis (...)
-                  when it exceeds the width of its container, useful for displaying long text in a limited space.Lorem ipsum dolor 
-                  sit amet, consectetur adipiscing elit. Quisque ut risus sit amet nisl suscipit condimentum.Lorem ipsum 
+                  <strong>Two Line Truncation</strong>text trancate loremThis component truncates text with an ellipsis
+                  (...)
+                  when it exceeds the width of its container, useful for displaying long text in a limited space.Lorem
+                  ipsum dolor
+                  sit amet, consectetur adipiscing elit. Quisque ut risus sit amet nisl suscipit condimentum.Lorem ipsum
                   dolor sit amet, consectetur adipiscing elit. Quisque ut risus sit amet nisl suscipit condimentum.
-                  </h6>
-                 </div>
+                </h6>
+              </div>
               <div class="media-foot">
                 <label class="check check-dark"> <input type="checkbox" /></label>
               </div>
             </div>
-            </div>
-            <hr>
-            <div class="card-body">
-              <div class="card-summary">
-                <h2>Order Summary</h2>
-                <div class="summary-content">
-                  <p class="summary-name">Subtotal (4 items)</p>
-                  <span class="summary-value">Rs. 3,139</span>
-                </div>
-                <div class="summary-content">
-                  <p class="summary-name">Subtotal (4 items)</p>
-                  <span class="summary-value">Rs. 3,139</span>
-                </div>
-                <div class="voucher">
-                  <div class="voucher-input-control">
-                    <span class="field">
-                      <input
-                        type="text"
-                        class="field-text"
-                        placeholder="Enter Voucher Code"
-                      />
-                    </span>
-                    <button type="button" class="btn btn-secondary">
-                      Submit
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-foot">
+          </div>
+          <hr>
+          <div class="card-body">
+            <div class="card-summary">
+              <h2>Order Summary</h2>
               <div class="summary-content">
                 <p class="summary-name">Subtotal (4 items)</p>
-                <span class="summary-value text-danger">Rs. 3,139</span>
+                <span class="summary-value">Rs. 3,139</span>
               </div>
-              <button class="btn btn-secondary btn-sm btn-block">
-                <a href="./checkout.html" style="text-decoration: none;">
-                  Proceed To Checkout(5)
-                </a>
-              </button>
+              <div class="summary-content">
+                <p class="summary-name">Subtotal (4 items)</p>
+                <span class="summary-value">Rs. 3,139</span>
+              </div>
+              <div class="voucher">
+                <div class="voucher-input-control">
+                  <span class="field">
+                    <input type="text" class="field-text" placeholder="Enter Voucher Code" />
+                  </span>
+                  <button type="button" class="btn btn-secondary">
+                    Submit
+                  </button>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="card-foot">
+            <div class="summary-content">
+              <p class="summary-name">Subtotal (4 items)</p>
+              <span class="summary-value text-danger">Rs. 3,139</span>
+            </div>
+            <button class="btn btn-secondary btn-sm btn-block">
+              <a href="/checkout" style="text-decoration: none;">
+                Proceed To Checkout(5)
+              </a>
+            </button>
           </div>
         </div>
       </div>
     </div>
-    <div class="container products" >
-        <h1>Just For You</h1>
-        <!-- Slider main container -->
-        <div class="swiper product-slider" >
-            <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
-                <!-- Slides -->
-                <div class="swiper-slide">
-                    <div class="products">
-                        <div class="badge badge-primary badge-pill">HOT</div>
-                        <div class="card product-card">
-                            <a href="./products.html">
-                            <div class="card-head">
-                                <img class="card-image" src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg">
-                            </div>
-                            <div class="card-body">
-                                <div class="card-title">Nike Space-X Shoes</div>
-                                <div class="card-desc text-ellipsis text-ellipsis-2">
-                                       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti est harum ipsa, officiis quidem quia impedit at nobis sunt, asperiores rerum accusamus reiciendis eum voluptatem debitis, illum ipsum incidunt consequatur.cipit condimentum.Lorem ipsum 
-                                        dolor sit amet, consectetur adipiscing elit. Quisque ut risus sit amet nisl suscipit condimentum. 
-                                </div>
-                                <div class="card-subtitle"><del>USD 1500</del></div>
-                                <div class="card-title">USD 1000</div>
-                                <div class="card-rating">
-                                    <i class="bx bxs-star"></i>
-                                    <span>4.9</span>(12.3k) Sold
-                                </div>
-                            </div>
-                        </a>
-                            <div class="card-foot">
-                                <button class="btn btn-light btn-icon btn-pill"><i class="bx bx-cart icon-pre"></i> Buy Now </button>  
-                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
-                            </div>
-                        </div>
-                    </div>
+  </div>
+  <div class="container products">
+    <h1>Just For You</h1>
+    <!-- Slider main container -->
+    <div class="swiper product-slider">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        {% for product in products %}
+
+        {% for variation in product.variations %}
+        <div class="swiper-slide">
+          <div class="products">
+            <div class="badge badge-primary badge-pill">{{ variation.title }}</div>
+            <div class="card product-card">
+              <a href="/product">
+                <div class="card-head">
+                  <img class="card-image"
+                    src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg">
                 </div>
-                <div class="swiper-slide">
-                    <div class="products">
-                        <div class="badge badge-primary badge-pill">HOT</div>
-                        <div class="card product-card">
-                            <a href="./products.html">
-                            <div class="card-head">
-                                <img class="card-image" src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg">
-                            </div>
-                            <div class="card-body">
-                                <div class="card-title">Nike Space-X Shoes</div>
-                                <div class="card-desc text-ellipsis text-ellipsis-2">
-                                       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti est harum ipsa, officiis quidem quia impedit at nobis sunt, asperiores rerum accusamus reiciendis eum voluptatem debitis, illum ipsum incidunt consequatur.cipit condimentum.Lorem ipsum 
-                                        dolor sit amet, consectetur adipiscing elit. Quisque ut risus sit amet nisl suscipit condimentum. 
-                                </div>
-                                <div class="card-subtitle"><del>USD 1500</del></div>
-                                <div class="card-title">USD 1000</div>
-                                <div class="card-rating">
-                                    <i class="bx bxs-star"></i>
-                                    <span>4.9</span>(12.3k) Sold
-                                </div>
-                            </div>
-                        </a>
-                            <div class="card-foot">
-                                <button class="btn btn-light btn-icon btn-pill"><i class="bx bx-cart icon-pre"></i> Buy Now </button>  
-                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card-body">
+                  <div class="card-title">{{ variation.intro }}</div>
+                  <div class="card-desc text-ellipsis text-ellipsis-2">
+                    {{ variation.description }}
+                  </div>
+                  <div class="card-subtitle"><del>USD {{ variation.price }}</del></div>
+                  <div class="card-title">USD {{ variation.discount }}</div>
+                  <div class="card-rating">
+                    <i class="bx bxs-star"></i>
+                    <span>{{ product.rating_count }}</span> ({{ product.sold }} Sold)
+                  </div>
                 </div>
-                <div class="swiper-slide">
-                    <div class="products">
-                        <div class="badge badge-primary badge-pill">HOT</div>
-                        <div class="card product-card">
-                            <a href="./products.html">
-                            <div class="card-head">
-                                <img class="card-image" src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg">
-                            </div>
-                            <div class="card-body">
-                                <div class="card-title">Nike Space-X Shoes</div>
-                                <div class="card-desc text-ellipsis text-ellipsis-2">
-                                       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti est harum ipsa, officiis quidem quia impedit at nobis sunt, asperiores rerum accusamus reiciendis eum voluptatem debitis, illum ipsum incidunt consequatur.cipit condimentum.Lorem ipsum 
-                                        dolor sit amet, consectetur adipiscing elit. Quisque ut risus sit amet nisl suscipit condimentum. 
-                                </div>
-                                <div class="card-subtitle"><del>USD 1500</del></div>
-                                <div class="card-title">USD 1000</div>
-                                <div class="card-rating">
-                                    <i class="bx bxs-star"></i>
-                                    <span>4.9</span>(12.3k) Sold
-                                </div>
-                            </div>
-                        </a>
-                            <div class="card-foot">
-                                <button class="btn btn-light btn-icon btn-pill"><i class="bx bx-cart icon-pre"></i> Buy Now </button>  
-                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="products">
-                        <div class="badge badge-primary badge-pill">HOT</div>
-                        <div class="card product-card">
-                            <a href="./products.html">
-                            <div class="card-head">
-                                <img class="card-image" src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg">
-                            </div>
-                            <div class="card-body">
-                                <div class="card-title">Nike Space-X Shoes</div>
-                                <div class="card-desc text-ellipsis text-ellipsis-2">
-                                       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti est harum ipsa, officiis quidem quia impedit at nobis sunt, asperiores rerum accusamus reiciendis eum voluptatem debitis, illum ipsum incidunt consequatur.cipit condimentum.Lorem ipsum 
-                                        dolor sit amet, consectetur adipiscing elit. Quisque ut risus sit amet nisl suscipit condimentum. 
-                                </div>
-                                <div class="card-subtitle"><del>USD 1500</del></div>
-                                <div class="card-title">USD 1000</div>
-                                <div class="card-rating">
-                                    <i class="bx bxs-star"></i>
-                                    <span>4.9</span>(12.3k) Sold
-                                </div>
-                            </div>
-                        </a>
-                            <div class="card-foot">
-                                <button class="btn btn-light btn-icon btn-pill"><i class="bx bx-cart icon-pre"></i> Buy Now </button>  
-                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="products">
-                        <div class="badge badge-primary badge-pill">HOT</div>
-                        <div class="card product-card">
-                            <a href="./products.html">
-                            <div class="card-head">
-                                <img class="card-image" src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg">
-                            </div>
-                            <div class="card-body">
-                                <div class="card-title">Nike Space-X Shoes</div>
-                                <div class="card-desc text-ellipsis text-ellipsis-2">
-                                       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti est harum ipsa, officiis quidem quia impedit at nobis sunt, asperiores rerum accusamus reiciendis eum voluptatem debitis, illum ipsum incidunt consequatur.cipit condimentum.Lorem ipsum 
-                                        dolor sit amet, consectetur adipiscing elit. Quisque ut risus sit amet nisl suscipit condimentum. 
-                                </div>
-                                <div class="card-subtitle"><del>USD 1500</del></div>
-                                <div class="card-title">USD 1000</div>
-                                <div class="card-rating">
-                                    <i class="bx bxs-star"></i>
-                                    <span>4.9</span>(12.3k) Sold
-                                </div>
-                            </div>
-                        </a>
-                            <div class="card-foot">
-                                <button class="btn btn-light btn-icon btn-pill"><i class="bx bx-cart icon-pre"></i> Buy Now </button>  
-                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </a>
+              <div class="card-foot">
+                <button class="btn btn-light btn-icon btn-pill"><i class="bx bx-cart icon-pre"></i> Buy Now</button>
+                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+              </div>
             </div>
-            <button class="slide-next btn btn-secondary btn-sm bx bx-right-arrow-alt"></button>
-            <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
+          </div>
         </div>
+        {% endfor %}
+        {% endfor %}
+      </div>
+      <button class="slide-next btn btn-secondary btn-sm bx bx-right-arrow-alt"></button>
+      <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
     </div>
+  </div>
   {% endblock %}
 
- <!-- header-fixed
+  <!-- header-fixed

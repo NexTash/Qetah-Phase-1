@@ -1,8 +1,9 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "PV:",
- "creation": "2024-05-20 12:27:42.933505",
+ "autoname": "CI:",
+ "creation": "2024-08-29 01:32:05.365357",
+ "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -10,13 +11,10 @@
   "title",
   "description",
   "section_break_wzzmz",
-  "intro",
+  "brand",
   "price",
   "discount",
-  "column_break_00f4n",
-  "sequence",
-  "link",
-  "link_title"
+  "image"
  ],
  "fields": [
   {
@@ -38,6 +36,17 @@
    "label": "Description"
   },
   {
+   "fieldname": "section_break_wzzmz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "brand",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "label": "Brand"
+  },
+  {
    "fieldname": "price",
    "fieldtype": "Float",
    "in_filter": 1,
@@ -56,46 +65,19 @@
    "label": "Discount"
   },
   {
-   "fieldname": "sequence",
-   "fieldtype": "Int",
+   "fieldname": "image",
+   "fieldtype": "Attach",
    "in_list_view": 1,
-   "label": "Sequence"
-  },
-  {
-   "fieldname": "link",
-   "fieldtype": "Data",
-   "label": "Link"
-  },
-  {
-   "fieldname": "link_title",
-   "fieldtype": "Data",
-   "label": "Link Title"
-  },
-  {
-   "fieldname": "section_break_wzzmz",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "column_break_00f4n",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "intro",
-   "fieldtype": "Data",
-   "in_filter": 1,
-   "in_list_view": 1,
-   "in_preview": 1,
-   "in_standard_filter": 1,
-   "label": "Intro"
+   "label": "Image"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-08-28 16:22:04.096741",
+ "modified": "2024-08-29 01:55:02.490836",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
- "name": "Product Variation",
+ "name": "Cart Items",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [],

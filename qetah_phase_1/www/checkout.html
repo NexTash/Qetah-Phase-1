@@ -6,7 +6,7 @@
 
     <div class="content-area" :class="{'shifted-content': isStatic}">
         <div class="container checkout">
-            <form action="" class="information">
+            <form action="" method="" class="information">
                 <h5>Delivery Information</h5>
                 <div class="grp">
                     <div class="form-field">
@@ -62,7 +62,7 @@
                     </div>
                   </div>
                 </div>
-                <button class="btn btn-secondary btn-checkout" onclick="save()">Save</button>
+                <button class="btn btn-secondary btn-checkout" onclick="on_submit()">Save</button>
             </form>
             <form action="" class="payment">
 <h5>Promotion</h5>
@@ -72,7 +72,7 @@
       <input type="text" class="field-text" placeholder="Enter Code" id="code"/>
     </div>
   </div>
-  <button class="btn btn-secondary btn-apply" onclick="save()">Apply</button>
+  <button class="btn btn-secondary btn-apply" onclick="on_submit()">Apply</button>
 </div>
 <h5>Order Summary</h5>
 <div class="order-info">
@@ -149,7 +149,7 @@
     
     {% endblock %}
     <script>
-    function save() {
+    function on_submit(){
   
       let fullname = document.getElementById("fullname").value;
       let province = document.getElementById("province").value;
@@ -165,12 +165,11 @@
         args: {
             fullname : fullname,
             email: email,
-            province :province,
-            city : city,
-            area : area,
             phone : phone,
-            email :email ,
             address : address,
+            city : city,
+            province :province,
+            area : area,
             code : code,
         },
         callback(r) {
@@ -182,7 +181,6 @@
           document.getElementById("city").value = ""
           document.getElementById("area").value = ""
           document.getElementById("phone").value = ""
-          document.getElementById("email").value = ""
           document.getElementById("subject").value = ""
           document.getElementById("address").value = ""
           document.getElementById("code").value = ""

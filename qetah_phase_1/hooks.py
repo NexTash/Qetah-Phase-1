@@ -213,3 +213,9 @@ home_page = "index"
 # auth_hooks = [
 # 	"qetah_phase_1.auth.validate"
 # ]
+# website_route_rules = [
+#     {
+#         "from_route": "/blog-post/<path:slug>",
+#         "to_route": "blog-post",
+#     }
+# ]

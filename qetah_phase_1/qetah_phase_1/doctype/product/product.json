@@ -7,30 +7,25 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "is_featured",
   "title",
   "category",
-  "demo",
-  "demo_user",
-  "demo_password",
-  "column_break_mwqxp",
-  "excerpt",
   "order",
-  "section_break_194sv",
-  "video",
-  "email",
-  "column_break_tvl9m",
   "featured_image",
+  "column_break_bnn10",
+  "email",
   "phone",
+  "rating_count",
+  "sold",
+  "video",
   "section_break_uwzbh",
   "description",
+  "product_images_section",
   "images",
+  "product_variation_section",
   "variations",
-  "section_break_ugbkz",
-  "rating_count",
-  "column_break_bnn10",
-  "is_banner",
-  "column_break_6erof",
-  "is_featured"
+  "cart_item_section",
+  "cart_items"
  ],
  "fields": [
   {
@@ -74,20 +69,10 @@
    "label": "Phone"
   },
   {
-   "fieldname": "demo",
-   "fieldtype": "Data",
-   "label": "Demo Link"
-  },
-  {
    "fieldname": "variations",
    "fieldtype": "Table",
    "label": "Variations",
    "options": "Product Variation"
-  },
-  {
-   "fieldname": "excerpt",
-   "fieldtype": "Small Text",
-   "label": "Excerpt"
   },
   {
    "fieldname": "images",
@@ -101,20 +86,8 @@
    "label": "Video"
   },
   {
-   "fieldname": "column_break_mwqxp",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "section_break_uwzbh",
    "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "section_break_194sv",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "column_break_tvl9m",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "rating_count",
@@ -122,21 +95,7 @@
    "label": "Rating Count"
   },
   {
-   "fieldname": "section_break_ugbkz",
-   "fieldtype": "Section Break"
-  },
-  {
    "fieldname": "column_break_bnn10",
-   "fieldtype": "Column Break"
-  },
-  {
-   "default": "0",
-   "fieldname": "is_banner",
-   "fieldtype": "Check",
-   "label": "Is Banner"
-  },
-  {
-   "fieldname": "column_break_6erof",
    "fieldtype": "Column Break"
   },
   {
@@ -156,20 +115,36 @@
    "label": "Order"
   },
   {
-   "fieldname": "demo_user",
-   "fieldtype": "Data",
-   "label": "Demo User"
+   "fieldname": "sold",
+   "fieldtype": "Float",
+   "label": "Sold"
   },
   {
-   "fieldname": "demo_password",
-   "fieldtype": "Data",
-   "label": "Demo Password"
+   "fieldname": "cart_items",
+   "fieldtype": "Table",
+   "label": "Cart Items",
+   "options": "Cart Items"
+  },
+  {
+   "fieldname": "product_images_section",
+   "fieldtype": "Section Break",
+   "label": "Product Images"
+  },
+  {
+   "fieldname": "product_variation_section",
+   "fieldtype": "Section Break",
+   "label": "Product Variation"
+  },
+  {
+   "fieldname": "cart_item_section",
+   "fieldtype": "Section Break",
+   "label": "Cart Item"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
  "make_attachments_public": 1,
- "modified": "2024-06-25 09:50:15.291894",
+ "modified": "2024-08-29 01:35:34.699600",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Product",
