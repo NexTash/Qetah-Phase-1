@@ -1,156 +1,309 @@
 {% extends "templates/primary.html" %}
 
-{% block title %}  QETAH | Checkout  {% endblock %}
+{% block title %} QETAH | Checkout {% endblock %}
 
 {% block content %}
-
-    <div class="content-area" :class="{'shifted-content': isStatic}">
-        <div class="container checkout">
-            <form action="" method="" class="information">
-                <h5>Delivery Information</h5>
-                <div class="grp">
-                    <div class="form-field">
-                        <label class="field-label">Full Name</label>
-                        <div class="field field-dark">
-                          <input type="text" class="field-text" id="fullname" placeholder="Enter your first and last name" />
-                        </div>
-                      </div>
-                      <div class="form-field">
-                        <label class="field-label" >Province</label>
-                        <div class="field field-dark">
-                          <select name="" id="province" class="field-select">
-                            <option value="">Please choose your province</option>
-                            <option value="Option">Option</option>
-                            <option value="Option">Option</option>
-                          </select>
-                        </div>
-                      </div>
-                </div>
-                <div class="grp">
-                    <div class="form-field">
-                        <label class="field-label" >Phone Number</label>
-                        <div class="field field-dark">
-                          <input type="text" class="field-text" id="phone" placeholder="Please enter your phone number" />
-                        </div>
-                      </div>
-                      <div class="form-field">
-                          <label class="field-label">City</label>
-                          <div class="field field-dark">
-                            <select name="" id="city" class="field-select">
-                              <option value="">Please choose your city</option>
-                              <option value="Option">Option</option>
-                              <option value="Option">Option</option>
-                            </select>
-                          </div>
-                        </div>
-                </div>
-                <div class="grp">
-                  <div class="form-field">
-                    <label class="field-label">Address</label>
-                    <div class="field field-dark">
-                      <input type="text" class="field-text" id="address"  placeholder="Enter your Address" />
-                    </div>
-                  </div>
-                  <div class="form-field">
-                    <label class="field-label">Area</label>
-                    <div class="field field-dark">
-                      <select name="" id="area" class="field-select">
-                        <option value="">Please choose your area</option>
-                        <option value="Option">Option</option>
-                        <option value="Option">Option</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <button class="btn btn-secondary btn-checkout" onclick="on_submit()">Save</button>
-            </form>
-            <form action="" class="payment">
-<h5>Promotion</h5>
-<div class="grp">
-  <div class="form-field">
-    <div class="field field-dark">
-      <input type="text" class="field-text" placeholder="Enter Code" id="code"/>
+<!-- sidebar start -->
+<aside id="sidebar" class="sidebar-header" :class="{'static-sidebar': isStatic}" x-data="{ sidebarOpen: false }">
+  <!-- Course Sidebar Header -->
+  <header class="program-sidebar">
+    <div class="program-sidebar-brand">
+      <div class="sidebar-brand">
+        <!-- Large Logo -->
+        <a href="#" class="lg-logo" x-show="isStatic">
+          <img src="/assets/qetah_phase_1/images/black-qetah-removebg-preview.png" width="100px" class="lg-img"
+            alt="Logo" />
+        </a>
+        <!-- Small Logo -->
+        <a href="#" class="sm-logo">
+          <img src="/assets/qetah_phase_1/images/WhatsApp_Image_2024-08-08_at_13.44.53_b31d506f-removebg-preview.png"
+            class="sm-img" alt="Responsive Logo" width="30px" />
+        </a>
+      </div>
     </div>
-  </div>
-  <button class="btn btn-secondary btn-apply" onclick="on_submit()">Apply</button>
-</div>
-<h5>Order Summary</h5>
-<div class="order-info">
-  <div class="order-detail">
-    <div class="item">items Total (1 items)</div>
-    <div class="price">USD. 1000</div>
-  </div>
-  <div class="order-detail">
-    <div class="item">Delivery Fee</div>
-    <div class="price">USD. 125</div>
-  </div>
-  <div class="order-detail">
-    <div class="item">Delivery Discount</div>
-    <div class="price">USD. -125</div>
-  </div>
-  <hr>
-  <div class="total">
-    <div class="sum">Total:</div>
-    <div class="price">USD. 1000</div>
-  </div>
-  <div class="taxes">Taxes included, where applicable</div>
-  <button class="btn btn-dark btn-block">Proceed to Pay</button>
-</div>
-            </form>
+    <div class="sidebar-auth">
+      <a href="/index" data-target="sidebar-tooltip" data-title="Home">
+        <img src="/assets/qetah_phase_1/images/black-qetah-removebg-preview.png" class="logo-header" width="20px"
+          height="20px" alt="" srcset="">
+        <br>
+      </a>
+      <a href="/index" data-target="sidebar-tooltip" data-title="Home">
+        <div class="auth-media">
+          <i class="bx bx-home"></i>
+          <div class="auth-intro" x-show="isStatic" x-cloak>
+            <h3 class="heading"><a href="/index">Home</a></h3>
+          </div>
         </div>
-        <div class="container checkout-items">
-          <div class="card card-webinar cart-product-card">
-            <div class="card-head">
-              <span>Pakage 1 of 1</span>
-              <p>Fullfilled by <b>QETAH</b> </p>
+      </a>
+      <a href="">
+        <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
+        <span class="divider divider-text divider-secondary">About</span>
+      </a>
+      <a href="/story" data-target="sidebar-tooltip" data-title="Story">
+        <div class="auth-media">
+          <i class="bx bx-book"></i>
+          <div class="auth-intro" x-show="isStatic" x-cloak>
+            <h3 class="heading"><a href="/story">Story</a></h3>
+          </div>
+        </div>
+      </a>
+      <a href="/Blogs" data-target="sidebar-tooltip" data-title="Blogs">
+        <div class="auth-media">
+          <i class="bx bx-spreadsheet"></i>
+          <div class="auth-intro" x-show="isStatic" x-cloak>
+            <h3 class="heading"><a href="/Blogs">Blogs</a></h3>
+          </div>
+        </div>
+      </a>
+      <a href="/contact-us" data-target="sidebar-tooltip" data-title="Contact Us">
+        <div class="auth-media">
+          <i class="bx bx-phone"></i>
+          <div class="auth-intro" x-show="isStatic" x-cloak>
+            <h3 class="heading">
+              <a href="/contact-us">Contact Us</a>
+            </h3>
+          </div>
+        </div>
+      </a>
+      <a href="">
+        <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
+        <span class="divider divider-text divider-secondary">About</span>
+      </a>
+      <a href="/product" data-target="sidebar-tooltip" data-title="Shop">
+        <div class="auth-media">
+          <i class="bx bx-store"></i>
+          <div class="auth-intro" x-show="isStatic" x-cloak>
+            <h3 class="heading"><a href="/product">Shop</a></h3>
+          </div>
+        </div>
+      </a>
+
+      <!-- Men's Collection Dropdown -->
+      <div class="auth-media">
+        <a href="/product" data-target="sidebar-tooltip" data-title="Men's collection">
+          <i class="bx bx-male"></i>
+        </a>
+        <div class="auth-intro" x-show="isStatic" x-cloak>
+          <div x-data="{ open: false }">
+            <div @click="open = !open" class="cursor-pointer">
+              <h6 class="text-center text-dark side-coll" style="cursor: pointer;font-size: 14px ; ">
+                Men's Collection
+              </h6>
+              <i class="bx bx-chevron-down"></i>
             </div>
-            <hr />
-            <div class="cart-card">
-              <div class="card-head">
-                <div class="cart-conent">
-                  <img
-                    src="/assets/qetah_phase_1/images/nike-product.jpg"
-                    alt="Product Image"
-                    class="image"
-                  />
-                  <div class="card-desc">
-                    <p class="text-ellipsis text-ellipsis-2">
-                      text trancate loremThis component truncates text with an
-                      ellipsis (...) when it exceeds the width of its
-                      container, useful for displaying long text in a limited
-                      space.Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit. Quisque ut risus sit amet nisl suscipit
-                      condimentum.Lorem ipsum dolor sit amet, consectetur
-                      adipiscing elit. Quisque ut risus sit amet nisl suscipit
-                      condimentum.
-                    </p>
-                    <span>No Brand, Color Family:White</span>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="prices">
-                  <p class="price">Rs. 799</p>
-                  <p class="discount"><s>Rs. 200</s></p>
-                  <div class="icon-group">
-                    <span class="wishlist"><i class="bx bx-trash"></i></span>
-                  </div>
-                </div>
-              </div>
-              <div class="card-foot">
-                <div class="qty">
-                  <span>Qty:</span>
-                  <span>1</span>
-                </div>
-              </div>
+            <div class="drops" x-show="open" x-cloak>
+              <ul class="ml-4">
+                <li><a href="/product">Unstitched</a></li>
+                <li><a href="/product">Readymade Clothes</a></li>
+                <li><a href="/product">Accessories</a></li>
+                <li><a href="/product">Perfumes</a></li>
+                <li><a href="/product">Cutting, Stitching</a></li>
+              </ul>
             </div>
           </div>
         </div>
-    
-    {% endblock %}
-    <script>
-    function on_submit(){
-  
+      </div>
+      <!-- Women's Collection Dropdown -->
+      <div class="auth-media">
+        <a href="/product" data-target="sidebar-tooltip" data-title="Women's collection">
+          <i class="bx bx-female"></i>
+        </a>
+        <div class="auth-intro" x-show="isStatic" x-cloak>
+          <div x-data="{ open: false }">
+            <div @click="open = !open" class="cursor-pointer">
+              <h6 class="text-center text-dark side-coll" style="cursor: pointer;font-size: 14px;">
+                Women's Collection
+              </h6>
+              <i class="bx bx-chevron-down"></i>
+            </div>
+            <div class="drops" x-show="open" x-cloak>
+              <ul class="list ml-4">
+                <li><a href="/product">Unstitched</a></li>
+                <li><a href="/product">Readymade Clothes</a></li>
+                <li><a href="/product">Accessories</a></li>
+                <li><a href="/product">Perfumes</a></li>
+                <li><a href="/product">Cutting, Stitching</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="">
+        <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
+        <span class="divider divider-text divider-secondary">Cart</span>
+      </a>
+      <a href="/cart-items" data-target="sidebar-tooltip" data-title="Cart">
+        <div class="auth-media">
+          <i class="bx bx-cart"></i>
+          <div class="auth-intro" x-show="isStatic" x-cloak>
+            <h3 class="heading">
+              <a href="/cart-items">Cart</a>
+            </h3>
+          </div>
+        </div>
+      </a>
+      <div class="language">
+        <a href="">
+          <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
+          <span class="divider divider-text divider-secondary">Languages</span>
+        </a>
+        <div class="field field-inline field-light">
+          <select name="" id="" class="field-select" style="background-image: none !important;">
+            <option value="Option">ENG</option>
+            <option value="Option">ARA</option>
+          </select>
+        </div>
+        <!-- Additional Sidebar Items -->
+      </div>
+    </div>
+  </header>
+  <!-- Course Sidebar Header End -->
+</aside>
+<!--/ Course Sidebar End -->
+
+<div class="content-area" :class="{'shifted-content': isStatic}">
+  <div class="container checkout">
+    <form action="" method="" class="information">
+      <h5>Delivery Information</h5>
+      <div class="grp">
+        <div class="form-field">
+          <label class="field-label">Full Name</label>
+          <div class="field field-dark">
+            <input type="text" class="field-text" id="fullname" placeholder="Enter your first and last name" />
+          </div>
+        </div>
+        <div class="form-field">
+          <label class="field-label">Province</label>
+          <div class="field field-dark">
+            <select name="" id="province" class="field-select">
+              <option value="">Please choose your province</option>
+              <option value="Option">Option</option>
+              <option value="Option">Option</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="grp">
+        <div class="form-field">
+          <label class="field-label">Phone Number</label>
+          <div class="field field-dark">
+            <input type="text" class="field-text" id="phone" placeholder="Please enter your phone number" />
+          </div>
+        </div>
+        <div class="form-field">
+          <label class="field-label">City</label>
+          <div class="field field-dark">
+            <select name="" id="city" class="field-select">
+              <option value="">Please choose your city</option>
+              <option value="Option">Option</option>
+              <option value="Option">Option</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="grp">
+        <div class="form-field">
+          <label class="field-label">Address</label>
+          <div class="field field-dark">
+            <input type="text" class="field-text" id="address" placeholder="Enter your Address" />
+          </div>
+        </div>
+        <div class="form-field">
+          <label class="field-label">Area</label>
+          <div class="field field-dark">
+            <select name="" id="area" class="field-select">
+              <option value="">Please choose your area</option>
+              <option value="Option">Option</option>
+              <option value="Option">Option</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-secondary btn-checkout" onclick="on_submit()">Save</button>
+    </form>
+    <form action="" class="payment">
+      <h5>Promotion</h5>
+      <div class="grp">
+        <div class="form-field">
+          <div class="field field-dark">
+            <input type="text" class="field-text" placeholder="Enter Code" id="code" />
+          </div>
+        </div>
+        <button class="btn btn-secondary btn-apply" onclick="on_submit()">Apply</button>
+      </div>
+      <h5>Order Summary</h5>
+      <div class="order-info">
+        <div class="order-detail">
+          <div class="item">items Total (1 items)</div>
+          <div class="price">USD. 1000</div>
+        </div>
+        <div class="order-detail">
+          <div class="item">Delivery Fee</div>
+          <div class="price">USD. 125</div>
+        </div>
+        <div class="order-detail">
+          <div class="item">Delivery Discount</div>
+          <div class="price">USD. -125</div>
+        </div>
+        <hr>
+        <div class="total">
+          <div class="sum">Total:</div>
+          <div class="price">USD. 1000</div>
+        </div>
+        <div class="taxes">Taxes included, where applicable</div>
+        <button class="btn btn-dark btn-block">Proceed to Pay</button>
+      </div>
+    </form>
+  </div>
+  <div class="container checkout-items">
+    <div class="card card-webinar cart-product-card">
+      <div class="card-head">
+        <span>Pakage 1 of 1</span>
+        <p>Fullfilled by <b>QETAH</b> </p>
+      </div>
+      <hr />
+      <div class="cart-card">
+        <div class="card-head">
+          <div class="cart-conent">
+            <img src="/assets/qetah_phase_1/images/nike-product.jpg" alt="Product Image" class="image" />
+            <div class="card-desc">
+              <p class="text-ellipsis text-ellipsis-2">
+                text trancate loremThis component truncates text with an
+                ellipsis (...) when it exceeds the width of its
+                container, useful for displaying long text in a limited
+                space.Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit. Quisque ut risus sit amet nisl suscipit
+                condimentum.Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Quisque ut risus sit amet nisl suscipit
+                condimentum.
+              </p>
+              <span>No Brand, Color Family:White</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="prices">
+            <p class="price">Rs. 799</p>
+            <p class="discount"><s>Rs. 200</s></p>
+            <div class="icon-group">
+              <span class="wishlist"><i class="bx bx-trash"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="card-foot">
+          <div class="qty">
+            <span>Qty:</span>
+            <span>1</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+  <script>
+    function on_submit() {
+
       let fullname = document.getElementById("fullname").value;
       let province = document.getElementById("province").value;
       let city = document.getElementById("city").value;
@@ -159,18 +312,18 @@
       let email = document.getElementById("email").value;
       let address = document.getElementById("address").value;
       let code = document.getElementById("code").value;
-  
+
       frappe.call({
         method: 'qetah_phase_1.events.checkout.checks',
         args: {
-            fullname : fullname,
-            email: email,
-            phone : phone,
-            address : address,
-            city : city,
-            province :province,
-            area : area,
-            code : code,
+          fullname: fullname,
+          email: email,
+          phone: phone,
+          address: address,
+          city: city,
+          province: province,
+          area: area,
+          code: code,
         },
         callback(r) {
           console.log(r.message)
@@ -188,7 +341,7 @@
       });
     }
   </script>
-   
+
   <!-- header-fixed
   <script>
     let lastScrollTop = 0;
@@ -208,5 +361,3 @@
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
     });
 </script> -->
-
-

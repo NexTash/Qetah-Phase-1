@@ -1,22 +1,222 @@
 {% extends "templates/primary.html" %}
 
-{% block title %}  QETAH | Story  {% endblock %}
+{% block title %} QETAH | Story {% endblock %}
 
 {% block content %}
- <div class="content-area" :class="{'shifted-content': isStatic}">
-        <div class="container our-story" style="max-width: 1200px;">
-            <div class="row">
-                <div class="col-xs-12 heading" style="text-align:center;">
-                    <h2>– About Us –</h2>
+<!-- sidebar start -->
+<aside id="sidebar" class="sidebar-header" :class="{'static-sidebar': isStatic}" x-data="{ sidebarOpen: false }">
+    <!-- Course Sidebar Header -->
+    <header class="program-sidebar">
+        <div class="program-sidebar-brand">
+            <div class="sidebar-brand">
+                <!-- Large Logo -->
+                <a href="#" class="lg-logo" x-show="isStatic">
+                    <img src="/assets/qetah_phase_1/images/black-qetah-removebg-preview.png" width="100px"
+                        class="lg-img" alt="Logo" />
+                </a>
+                <!-- Small Logo -->
+                <a href="#" class="sm-logo">
+                    <img src="/assets/qetah_phase_1/images/WhatsApp_Image_2024-08-08_at_13.44.53_b31d506f-removebg-preview.png"
+                        class="sm-img" alt="Responsive Logo" width="30px" />
+                </a>
+            </div>
+        </div>
+        <div class="sidebar-auth">
+            <a href="/index" data-target="sidebar-tooltip" data-title="Home">
+                <img src="/assets/qetah_phase_1/images/black-qetah-removebg-preview.png" class="logo-header"
+                    width="20px" height="20px" alt="" srcset="">
+                <br>
+            </a>
+            <a href="/index" data-target="sidebar-tooltip" data-title="Home">
+                <div class="auth-media">
+                    <i class="bx bx-home"></i>
+                    <div class="auth-intro" x-show="isStatic" x-cloak>
+                        <h3 class="heading"><a href="/index">Home</a></h3>
+                    </div>
                 </div>
-                <div class="col-xs-12 col-sm-8 col-md-6"  >
+            </a>
+            <a href="">
+                <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
+                <span class="divider divider-text divider-secondary">About</span>
+            </a>
+            <a href="/story" data-target="sidebar-tooltip" data-title="Story">
+                <div class="auth-media">
+                    <i class="bx bx-book"></i>
+                    <div class="auth-intro" x-show="isStatic" x-cloak>
+                        <h3 class="heading"><a href="/story">Story</a></h3>
+                    </div>
+                </div>
+            </a>
+            <a href="/Blogs" data-target="sidebar-tooltip" data-title="Blogs">
+                <div class="auth-media">
+                    <i class="bx bx-spreadsheet"></i>
+                    <div class="auth-intro" x-show="isStatic" x-cloak>
+                        <h3 class="heading"><a href="/Blogs">Blogs</a></h3>
+                    </div>
+                </div>
+            </a>
+            <a href="/contact-us" data-target="sidebar-tooltip" data-title="Contact Us">
+                <div class="auth-media">
+                    <i class="bx bx-phone"></i>
+                    <div class="auth-intro" x-show="isStatic" x-cloak>
+                        <h3 class="heading">
+                            <a href="/contact-us">Contact Us</a>
+                        </h3>
+                    </div>
+                </div>
+            </a>
+            <a href="">
+                <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
+                <span class="divider divider-text divider-secondary">About</span>
+            </a>
+            <a href="/product" data-target="sidebar-tooltip" data-title="Shop">
+                <div class="auth-media">
+                    <i class="bx bx-store"></i>
+                    <div class="auth-intro" x-show="isStatic" x-cloak>
+                        <h3 class="heading"><a href="/product">Shop</a></h3>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Men's Collection Dropdown -->
+            <div class="auth-media">
+                <a href="/product" data-target="sidebar-tooltip" data-title="Men's collection">
+                    <i class="bx bx-male"></i>
+                </a>
+                <div class="auth-intro" x-show="isStatic" x-cloak>
+                    <div x-data="{ open: false }">
+                        <div @click="open = !open" class="cursor-pointer">
+                            <h6 class="text-center text-dark side-coll" style="cursor: pointer;font-size: 14px ; ">
+                                Men's Collection
+                            </h6>
+                            <i class="bx bx-chevron-down"></i>
+                        </div>
+                        <div class="drops" x-show="open" x-cloak>
+                            <ul class="ml-4">
+                                <li><a href="/product">Unstitched</a></li>
+                                <li><a href="/product">Readymade Clothes</a></li>
+                                <li><a href="/product">Accessories</a></li>
+                                <li><a href="/product">Perfumes</a></li>
+                                <li><a href="/product">Cutting, Stitching</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Women's Collection Dropdown -->
+            <div class="auth-media">
+                <a href="/product" data-target="sidebar-tooltip" data-title="Women's collection">
+                    <i class="bx bx-female"></i>
+                </a>
+                <div class="auth-intro" x-show="isStatic" x-cloak>
+                    <div x-data="{ open: false }">
+                        <div @click="open = !open" class="cursor-pointer">
+                            <h6 class="text-center text-dark side-coll" style="cursor: pointer;font-size: 14px;">
+                                Women's Collection
+                            </h6>
+                            <i class="bx bx-chevron-down"></i>
+                        </div>
+                        <div class="drops" x-show="open" x-cloak>
+                            <ul class="list ml-4">
+                                <li><a href="/product">Unstitched</a></li>
+                                <li><a href="/product">Readymade Clothes</a></li>
+                                <li><a href="/product">Accessories</a></li>
+                                <li><a href="/product">Perfumes</a></li>
+                                <li><a href="/product">Cutting, Stitching</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="">
+                <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
+                <span class="divider divider-text divider-secondary">Cart</span>
+            </a>
+            <a href="/cart-items" data-target="sidebar-tooltip" data-title="Cart">
+                <div class="auth-media">
+                    <i class="bx bx-cart"></i>
+                    <div class="auth-intro" x-show="isStatic" x-cloak>
+                        <h3 class="heading">
+                            <a href="/cart-items">Cart</a>
+                        </h3>
+                    </div>
+                </div>
+            </a>
+            <div class="language">
+                <a href="">
+                    <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
+                    <span class="divider divider-text divider-secondary">Languages</span>
+                </a>
+                <div class="field field-inline field-light">
+                    <select name="" id="" class="field-select" style="background-image: none !important;">
+                        <option value="Option">ENG</option>
+                        <option value="Option">ARA</option>
+                    </select>
+                </div>
+                <!-- Additional Sidebar Items -->
+            </div>
+        </div>
+    </header>
+    <!-- Course Sidebar Header End -->
+</aside>
+<!--/ Course Sidebar End -->
+<div class="content-area" :class="{'shifted-content': isStatic}">
+    <div class="container our-story" style="max-width: 1200px;">
+        <div class="row">
+            <div class="col-xs-12 heading" style="text-align:center;">
+                <h2>– About Us –</h2>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-6">
+                <div class="info-text">
+                    <h1 class="heading">Customer Importance</h1>
+                    <p>
+                        We know how important it is to make a meaningful connection with your customer or consumer
+                        and that the right promotional product is part of the equation. The Swag Team at Active
+                        International is your dedicated resource for branded premiums, corporate gifts and
+                        promotional items.
+                    </p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-6">
+                <div class="col-xs-12">
+                    <figure class="snip1374"><a href="#"><img
+                                src="https://cdn.shopify.com/s/files/1/2204/2817/files/featurette-10-1000x1000.jpg?98122347912348223"
+                                alt="sample66" /></a>
+                    </figure>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <br>
+            <div class="row mb-5 mt-3">
+                <div class="col-xs-12 col-sm-4 col-sm-pull-8 col-md-6 col-md-pull-6">
+                    <div class="col-xs-12 col-sm-12">
+                        <figure class="snip1374"><a href="#"><img
+                                    src="https://cdn.shopify.com/s/files/1/2204/2817/files/featurette-5-1000x1000.jpg?98122347912348223"
+                                    alt="sample57" /></a></figure>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-sm-push-4 col-md-6 col-md-push-6">
+                    <div class="info-text right">
+                        <h1 class="heading">Our Goal</h1>
+                        <p>With more than a decade of experience working with media companies, retailers and
+                            manufacturers, our goal is to make sure your experience is exceptional, whether we’re
+                            recommending new ideas, managing creative or ensuring fulfillment.</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <br>
+            <div class="row mb-5 mt-3">
+                <div class="col-xs-12 col-sm-8 col-md-6">
                     <div class="info-text">
-                        <h1 class="heading">Customer Importance</h1>
+                        <h1 class="heading">Our Vision</h1>
                         <p>
-                            We know how important it is to make a meaningful connection with your customer or consumer
-                            and that the right promotional product is part of the equation. The Swag Team at Active
-                            International is your dedicated resource for branded premiums, corporate gifts and
-                            promotional items.
+                            Our vision for the eCommerce website is to create a platform that prioritizes the needs of
+                            our customers by offering a seamless and personalized shopping experience. We aim to provide
+                            a vast selection of high-quality products, ensuring that every customer can find exactly
+                            what they’re looking for.
                         </p>
                     </div>
                 </div>
@@ -28,54 +228,14 @@
                         </figure>
                     </div>
                 </div>
-                <br>
-                <hr>
-                <br>
-                <div class="row mb-5 mt-3">
-                    <div class="col-xs-12 col-sm-4 col-sm-pull-8 col-md-6 col-md-pull-6" >
-                        <div class="col-xs-12 col-sm-12">
-                            <figure class="snip1374"><a href="#"><img
-                                        src="https://cdn.shopify.com/s/files/1/2204/2817/files/featurette-5-1000x1000.jpg?98122347912348223"
-                                        alt="sample57" /></a></figure>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-8 col-sm-push-4 col-md-6 col-md-push-6" >
-                        <div class="info-text right">
-                            <h1 class="heading">Our Goal</h1>
-                            <p>With more than a decade of experience working with media companies, retailers and
-                                manufacturers, our goal is to make sure your experience is exceptional, whether we’re
-                                recommending new ideas, managing creative or ensuring fulfillment.</p>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <hr>
-                <br>
-                <div class="row mb-5 mt-3">
-                    <div class="col-xs-12 col-sm-8 col-md-6">
-                        <div class="info-text">
-                            <h1 class="heading">Our Vision</h1>
-                            <p>
-                                Our vision for the eCommerce website is to create a platform that prioritizes the needs of our customers by offering a seamless and personalized shopping experience. We aim to provide a vast selection of high-quality products, ensuring that every customer can find exactly what they’re looking for.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-6" >
-                        <div class="col-xs-12">
-                            <figure class="snip1374"><a href="#"><img
-                                        src="https://cdn.shopify.com/s/files/1/2204/2817/files/featurette-10-1000x1000.jpg?98122347912348223"
-                                        alt="sample66" /></a>
-                            </figure>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-       
+    </div>
 
-      {% endblock %}
 
-     <!-- header-fixed
+    {% endblock %}
+
+    <!-- header-fixed
   <script>
     let lastScrollTop = 0;
     const header = document.getElementById("header");
