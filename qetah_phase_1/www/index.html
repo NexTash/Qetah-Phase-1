@@ -161,404 +161,257 @@
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper">
         <!-- Slides -->
+        {% for product in products %}
         <div class="swiper-slide">
           <div class="products">
-            <div class="badge badge-primary badge-pill">HOT</div>
+            <div class="badge badge-primary badge-pill">{{ product.title }}</div>
             <div class="card product-card">
-              <a href="/product">
+              <a href="/product-detail?id={{ product.name }}">
                 <div class="card-head">
-                  <img class="card-image"
-                    src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg" />
-                </div>
-                <div class="card-body">
-                  <div class="card-title">Nike Space-X Shoes</div>
-                  <div class="card-desc text-ellipsis text-ellipsis-2">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing
-                    elit. Deleniti est harum ipsa, officiis quidem quia
-                    impedit at nobis sunt, asperiores rerum accusamus
-                    reiciendis eum voluptatem debitis, illum ipsum incidunt
-                    consequatur.cipit condimentum.Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit. Quisque ut risus sit
-                    amet nisl suscipit condimentum.
-                  </div>
-                  <div class="card-subtitle"><del>USD 1500</del></div>
-                  <div class="card-title">USD 1000</div>
-                  <div class="card-rating">
-                    <i class="bx bxs-star"></i>
-                    <span>4.9</span>(12.3k) Sold
-                  </div>
+                  <img class="card-image" src="{{ product.featured_image }}" alt="Product Image">
                 </div>
               </a>
+              <div class="card-body">
+                {% if product.variations %}
+                {% for variation in product.variations %}
+                <div class="variation">
+                  <div class="card-title">{{ variation.title }}</div>
+                  <div class="card-desc text-ellipsis text-ellipsis-2">{{ variation.description }}</div>
+                  <div class="card-subtitle"><del>USD {{ variation.discount }}</del></div>
+                  <div class="card-title">USD {{ variation.price }}</div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p>No variations available</p>
+                {% endif %}
+                <div class="card-rating">
+                  <i class="bx bxs-star"></i>
+                  <span>{{ product.rating_count }}</span> ({{ product.sold }}) Sold
+                </div>
+              </div>
               <div class="card-foot">
-                <button class="btn btn-light btn-icon btn-pill">
-                  <i class="bx bx-cart icon-pre"></i> Buy Now
-                </button>
+                <button class="btn btn-light btn-icon btn-pill"><i class="bx bx-cart icon-pre"></i> Buy Now</button>
                 <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
               </div>
             </div>
           </div>
         </div>
-        <div class="swiper-slide">
-          <div class="products">
-            <div class="badge badge-primary badge-pill">HOT</div>
-            <div class="card product-card">
-              <a href="/product">
-                <div class="card-head">
-                  <img class="card-image"
-                    src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg" />
-                </div>
-                <div class="card-body">
-                  <div class="card-title">Nike Space-X Shoes</div>
-                  <div class="card-desc text-ellipsis text-ellipsis-2">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing
-                    elit. Deleniti est harum ipsa, officiis quidem quia
-                    impedit at nobis sunt, asperiores rerum accusamus
-                    reiciendis eum voluptatem debitis, illum ipsum incidunt
-                    consequatur.cipit condimentum.Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit. Quisque ut risus sit
-                    amet nisl suscipit condimentum.
-                  </div>
-                  <div class="card-subtitle"><del>USD 1500</del></div>
-                  <div class="card-title">USD 1000</div>
-                  <div class="card-rating">
-                    <i class="bx bxs-star"></i>
-                    <span>4.9</span>(12.3k) Sold
-                  </div>
-                </div>
-              </a>
-              <div class="card-foot">
-                <button class="btn btn-light btn-icon btn-pill">
-                  <i class="bx bx-cart icon-pre"></i> Buy Now
-                </button>
-                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="products">
-            <div class="badge badge-primary badge-pill">HOT</div>
-            <div class="card product-card">
-              <a href="/product">
-                <div class="card-head">
-                  <img class="card-image"
-                    src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg" />
-                </div>
-                <div class="card-body">
-                  <div class="card-title">Nike Space-X Shoes</div>
-                  <div class="card-desc text-ellipsis text-ellipsis-2">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing
-                    elit. Deleniti est harum ipsa, officiis quidem quia
-                    impedit at nobis sunt, asperiores rerum accusamus
-                    reiciendis eum voluptatem debitis, illum ipsum incidunt
-                    consequatur.cipit condimentum.Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit. Quisque ut risus sit
-                    amet nisl suscipit condimentum.
-                  </div>
-                  <div class="card-subtitle"><del>USD 1500</del></div>
-                  <div class="card-title">USD 1000</div>
-                  <div class="card-rating">
-                    <i class="bx bxs-star"></i>
-                    <span>4.9</span>(12.3k) Sold
-                  </div>
-                </div>
-              </a>
-              <div class="card-foot">
-                <button class="btn btn-light btn-icon btn-pill">
-                  <i class="bx bx-cart icon-pre"></i> Buy Now
-                </button>
-                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="products">
-            <div class="badge badge-primary badge-pill">HOT</div>
-            <div class="card product-card">
-              <a href="/product">
-                <div class="card-head">
-                  <img class="card-image"
-                    src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg" />
-                </div>
-                <div class="card-body">
-                  <div class="card-title">Nike Space-X Shoes</div>
-                  <div class="card-desc text-ellipsis text-ellipsis-2">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing
-                    elit. Deleniti est harum ipsa, officiis quidem quia
-                    impedit at nobis sunt, asperiores rerum accusamus
-                    reiciendis eum voluptatem debitis, illum ipsum incidunt
-                    consequatur.cipit condimentum.Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit. Quisque ut risus sit
-                    amet nisl suscipit condimentum.
-                  </div>
-                  <div class="card-subtitle"><del>USD 1500</del></div>
-                  <div class="card-title">USD 1000</div>
-                  <div class="card-rating">
-                    <i class="bx bxs-star"></i>
-                    <span>4.9</span>(12.3k) Sold
-                  </div>
-                </div>
-              </a>
-              <div class="card-foot">
-                <button class="btn btn-light btn-icon btn-pill">
-                  <i class="bx bx-cart icon-pre"></i> Buy Now
-                </button>
-                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="products">
-            <div class="badge badge-primary badge-pill">HOT</div>
-            <div class="card product-card">
-              <a href="/product">
-                <div class="card-head">
-                  <img class="card-image"
-                    src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg" />
-                </div>
-                <div class="card-body">
-                  <div class="card-title">Nike Space-X Shoes</div>
-                  <div class="card-desc text-ellipsis text-ellipsis-2">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing
-                    elit. Deleniti est harum ipsa, officiis quidem quia
-                    impedit at nobis sunt, asperiores rerum accusamus
-                    reiciendis eum voluptatem debitis, illum ipsum incidunt
-                    consequatur.cipit condimentum.Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit. Quisque ut risus sit
-                    amet nisl suscipit condimentum.
-                  </div>
-                  <div class="card-subtitle"><del>USD 1500</del></div>
-                  <div class="card-title">USD 1000</div>
-                  <div class="card-rating">
-                    <i class="bx bxs-star"></i>
-                    <span>4.9</span>(12.3k) Sold
-                  </div>
-                </div>
-              </a>
-              <div class="card-foot">
-                <button class="btn btn-light btn-icon btn-pill">
-                  <i class="bx bx-cart icon-pre"></i> Buy Now
-                </button>
-                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
-      <button class="btn btn-dark btn-pill explore">
-        <a href="/product">Explore More</a>
-      </button>
-      <button class="slide-next btn btn-secondary btn-sm bx bx-right-arrow-alt"></button>
-      <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
+    </div>
+
+    <button class="btn btn-dark btn-pill explore">
+      <a href="/product">Explore More</a>
+    </button>
+    <button class="slide-next btn btn-secondary btn-sm bx bx-right-arrow-alt"></button>
+    <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
+  </div>
+</div>
+<div class="container Story">
+  <div class="badge badge-o-dark badge-pill fw-bold">Our Story</div>
+  <div class="container d-flex">
+    <div class="images">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMVSO5_Qnbe7v-DlXEcagBf8IxIBeieQ3eyA&s"
+        width="450px" height="400px" alt="" />
+    </div>
+    <div class="story-desc">
+      <h3 class="heading">Our Story</h3>
+      <p class="desc">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia,
+        rerum laborum nemo perferendis eum maiores similique porro
+        delectus alias, voluptatibus assumenda in a? Non laborum accusamus
+        officiis iusto reiciendis voluptatum.
+      </p>
+      <br />
+      <p class="desc">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia,
+        rerum laborum nemo perferendis eum maiores similique porro
+        delectus alias, voluptatibus assumenda in a? Non laborum accusamus
+        officiis iusto reiciendis voluptatum.
+      </p>
+      <div x-data="{ createRipple: createRipple }">
+        <button x-on:click="createRipple($event)" class="btn btn-secondary ripple btn-icon">
+          <a href="./story.html">Read More</a>
+          <i class="bx bx-right-arrow-alt icon-post"></i>
+        </button>
+      </div>
     </div>
   </div>
-  <div class="container Story">
-    <div class="badge badge-o-dark badge-pill fw-bold">Our Story</div>
-    <div class="container d-flex">
-      <div class="images">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMVSO5_Qnbe7v-DlXEcagBf8IxIBeieQ3eyA&s"
-          width="450px" height="400px" alt="" />
+</div>
+<div class="container Appointment" style="background-image: url('/assets/qetah_phase_1/images/bg-swirl-1.webp')">
+  <div class="text">
+    <h1>Book An Appointment</h1>
+    <p>Just book your appointment now and get your dress done</p>
+  </div>
+  <div class="button">
+    <button class="btn btn-pill">
+      <a href="./contact-us.html">Click Here!</a>
+    </button>
+  </div>
+</div>
+<div class="container Blogs">
+  <div class="badge badge-o-dark badge-pill">Blogs</div>
+  <div class="text">
+    <h2>Related Blogs</h2>
+    <a href="./Blogs.html">See more <i class="bx bx-right-arrow-alt"></i></a>
+  </div>
+  <p class="sub-title">Get started by reading our blogs</p>
+  <div class="swiper blog-slider">
+    <section class="swiper-wrapper blog-wrap">
+      <div class="swiper-slide blog-section">
+        <article class="card card-blog" data-aos-duration="1000" data-aos="fade-up" data-aos-once="true"
+          data-aos-easing="ease-in-out">
+          <a class="card-image image-zoom" href="./Blogs.html">
+            <img src="/assets/qetah_phase_1/images/blogs.jpg" class="image" loading="lazy" alt="" />
+          </a>
+          <div class="card-body">
+            <span class="card-badge">News</span>
+            <h3 class="card-title">
+              <a href="./Blogs.html">Top 5 technologies in 2023 you should learn</a>
+            </h3>
+            <p class="card-subtitle">24-july-2023</p>
+          </div>
+        </article>
       </div>
-      <div class="story-desc">
-        <h3 class="heading">Our Story</h3>
-        <p class="desc">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia,
-          rerum laborum nemo perferendis eum maiores similique porro
-          delectus alias, voluptatibus assumenda in a? Non laborum accusamus
-          officiis iusto reiciendis voluptatum.
+      <div class="swiper-slide blog-section">
+        <article class="card card-blog" data-aos-duration="1000" data-aos="fade-up" data-aos-once="true"
+          data-aos-easing="ease-in-out">
+          <a class="card-image image-zoom" href="./Blogs.html">
+            <img src="/assets/qetah_phase_1/images/blogs.jpg" class="image" loading="lazy" alt="" />
+          </a>
+          <div class="card-body">
+            <span class="card-badge">News</span>
+            <h3 class="card-title">
+              <a href="./Blogs.html">Top 5 technologies in 2023 you should learn</a>
+            </h3>
+            <p class="card-subtitle">24-july-2023</p>
+          </div>
+        </article>
+      </div>
+      <div class="swiper-slide blog-section">
+        <article class="card card-blog" data-aos-duration="1000" data-aos="fade-up" data-aos-once="true"
+          data-aos-easing="ease-in-out">
+          <a class="card-image image-zoom" href="./Blogs.html">
+            <img src="/assets/qetah_phase_1/images/blogs.jpg" class="image" loading="lazy" alt="" />
+          </a>
+          <div class="card-body">
+            <span class="card-badge">News</span>
+            <h3 class="card-title">
+              <a href="./Blogs.html">Top 5 technologies in 2023 you should learn</a>
+            </h3>
+            <p class="card-subtitle">24-july-2023</p>
+          </div>
+        </article>
+      </div>
+      <div class="swiper-slide blog-section">
+        <article class="card card-blog" data-aos-duration="1000" data-aos="fade-up" data-aos-once="true"
+          data-aos-easing="ease-in-out">
+          <a class="card-image image-zoom" href="./Blogs.html">
+            <img src="/assets/qetah_phase_1/images/blogs.jpg" class="image" loading="lazy" alt="" />
+          </a>
+          <div class="card-body">
+            <span class="card-badge">News</span>
+            <h3 class="card-title">
+              <a href="./Blogs.html">Top 5 technologies in 2023 you should learn</a>
+            </h3>
+            <p class="card-subtitle">24-july-2023</p>
+          </div>
+        </article>
+      </div>
+      <div class="swiper-slide blog-section">
+        <article class="card card-blog" data-aos-duration="1000" data-aos="fade-up" data-aos-once="true"
+          data-aos-easing="ease-in-out">
+          <a class="card-image image-zoom" href="./Blogs.html">
+            <img src="/assets/qetah_phase_1/images/blogs.jpg" class="image" loading="lazy" alt="" />
+          </a>
+          <div class="card-body">
+            <span class="card-badge">News</span>
+            <h3 class="card-title">
+              <a href="./Blogs.html">Top 5 technologies in 2023 you should learn</a>
+            </h3>
+            <p class="card-subtitle">24-july-2023</p>
+          </div>
+        </article>
+      </div>
+      <div class="swiper-slide blog-section">
+        <article class="card card-blog" data-aos-duration="1000" data-aos="fade-up" data-aos-once="true"
+          data-aos-easing="ease-in-out">
+          <a class="card-image image-zoom" href="./Blogs.html">
+            <img src="/assets/qetah_phase_1/images/blogs.jpg" class="image" loading="lazy" alt="" />
+          </a>
+          <div class="card-body">
+            <span class="card-badge">News</span>
+            <h3 class="card-title">
+              <a href="./Blogs.html">Top 5 technologies in 2023 you should learn</a>
+            </h3>
+            <p class="card-subtitle">24-july-2023</p>
+          </div>
+        </article>
+      </div>
+      <div class="swiper-slide blog-section">
+        <article class="card card-blog" data-aos-duration="1000" data-aos="fade-up" data-aos-once="true"
+          data-aos-easing="ease-in-out">
+          <a class="card-image image-zoom" href="./Blogs.html">
+            <img src="/assets/qetah_phase_1/images/blogs.jpg" class="image" loading="lazy" alt="" />
+          </a>
+          <div class="card-body">
+            <span class="card-badge">News</span>
+            <h3 class="card-title">
+              <a href="./Blogs.html">Top 5 technologies in 2023 you should learn</a>
+            </h3>
+            <p class="card-subtitle">24-july-2023</p>
+          </div>
+        </article>
+      </div>
+    </section>
+    <button class="slide-next btn btn-secondary btn-sm bx bx-right-arrow-alt"></button>
+    <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
+  </div>
+</div>
+<div class="container customer-reviews">
+  <div class="badge badge-o-dark badge-pill">Reviews</div>
+  <h1 class="text-center customer-say">What Our Customers Say</h1>
+  <div class="border text-center"></div>
+  <div class="slide-container text-center">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide review-content">
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          Tempora fuga architecto fugit placeat laudantium beatae repellat
+          distinctio labore culpa perspiciatis excepturi, incidunt sed
+          quasi blanditiis nobis iste in sequi tempore.
         </p>
-        <br />
-        <p class="desc">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia,
-          rerum laborum nemo perferendis eum maiores similique porro
-          delectus alias, voluptatibus assumenda in a? Non laborum accusamus
-          officiis iusto reiciendis voluptatum.
+        <h2 class="fw-bold reviewer-name">Hassan</h2>
+        <i class="company-name">Example Company Name</i>
+      </div>
+      <div class="swiper-slide review-content">
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          Tempora fuga architecto fugit placeat laudantium beatae repellat
+          distinctio labore culpa perspiciatis excepturi, incidunt sed
+          quasi blanditiis nobis iste in sequi tempore.
         </p>
-        <div x-data="{ createRipple: createRipple }">
-          <button x-on:click="createRipple($event)" class="btn btn-secondary ripple btn-icon">
-            <a href="./story.html">Read More</a>
-            <i class="bx bx-right-arrow-alt icon-post"></i>
-          </button>
-        </div>
+        <h2 class="fw-bold reviewer-name">Abdul</h2>
+        <i class="company-name">Example Company Name</i>
+      </div>
+      <div class="swiper-slide review-content">
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          Tempora fuga architecto fugit placeat laudantium beatae repellat
+          distinctio labore culpa perspiciatis excepturi, incidunt sed
+          quasi blanditiis nobis iste in sequi tempore.
+        </p>
+        <h2 class="fw-bold reviewer-name">Ahmad</h2>
+        <i class="company-name">Example Company Name</i>
       </div>
     </div>
+    <!-- Navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
   </div>
-  <div class="container Appointment" style="background-image: url('/assets/qetah_phase_1/images/bg-swirl-1.webp')">
-    <div class="text">
-      <h1>Book An Appointment</h1>
-      <p>Just book your appointment now and get your dress done</p>
-    </div>
-    <div class="button">
-      <button class="btn btn-pill">
-        <a href="./contact-us.html">Click Here!</a>
-      </button>
-    </div>
-  </div>
-  <div class="container Blogs">
-    <div class="badge badge-o-dark badge-pill">Blogs</div>
-    <div class="text">
-      <h2>Related Blogs</h2>
-      <a href="./Blogs.html">See more <i class="bx bx-right-arrow-alt"></i></a>
-    </div>
-    <p class="sub-title">Get started by reading our blogs</p>
-    <div class="swiper blog-slider">
-      <section class="swiper-wrapper blog-wrap">
-        <div class="swiper-slide blog-section">
-          <article class="card card-blog" data-aos-duration="1000" data-aos="fade-up" data-aos-once="true"
-            data-aos-easing="ease-in-out">
-            <a class="card-image image-zoom" href="./Blogs.html">
-              <img src="/assets/qetah_phase_1/images/blogs.jpg" class="image" loading="lazy" alt="" />
-            </a>
-            <div class="card-body">
-              <span class="card-badge">News</span>
-              <h3 class="card-title">
-                <a href="./Blogs.html">Top 5 technologies in 2023 you should learn</a>
-              </h3>
-              <p class="card-subtitle">24-july-2023</p>
-            </div>
-          </article>
-        </div>
-        <div class="swiper-slide blog-section">
-          <article class="card card-blog" data-aos-duration="1000" data-aos="fade-up" data-aos-once="true"
-            data-aos-easing="ease-in-out">
-            <a class="card-image image-zoom" href="./Blogs.html">
-              <img src="/assets/qetah_phase_1/images/blogs.jpg" class="image" loading="lazy" alt="" />
-            </a>
-            <div class="card-body">
-              <span class="card-badge">News</span>
-              <h3 class="card-title">
-                <a href="./Blogs.html">Top 5 technologies in 2023 you should learn</a>
-              </h3>
-              <p class="card-subtitle">24-july-2023</p>
-            </div>
-          </article>
-        </div>
-        <div class="swiper-slide blog-section">
-          <article class="card card-blog" data-aos-duration="1000" data-aos="fade-up" data-aos-once="true"
-            data-aos-easing="ease-in-out">
-            <a class="card-image image-zoom" href="./Blogs.html">
-              <img src="/assets/qetah_phase_1/images/blogs.jpg" class="image" loading="lazy" alt="" />
-            </a>
-            <div class="card-body">
-              <span class="card-badge">News</span>
-              <h3 class="card-title">
-                <a href="./Blogs.html">Top 5 technologies in 2023 you should learn</a>
-              </h3>
-              <p class="card-subtitle">24-july-2023</p>
-            </div>
-          </article>
-        </div>
-        <div class="swiper-slide blog-section">
-          <article class="card card-blog" data-aos-duration="1000" data-aos="fade-up" data-aos-once="true"
-            data-aos-easing="ease-in-out">
-            <a class="card-image image-zoom" href="./Blogs.html">
-              <img src="/assets/qetah_phase_1/images/blogs.jpg" class="image" loading="lazy" alt="" />
-            </a>
-            <div class="card-body">
-              <span class="card-badge">News</span>
-              <h3 class="card-title">
-                <a href="./Blogs.html">Top 5 technologies in 2023 you should learn</a>
-              </h3>
-              <p class="card-subtitle">24-july-2023</p>
-            </div>
-          </article>
-        </div>
-        <div class="swiper-slide blog-section">
-          <article class="card card-blog" data-aos-duration="1000" data-aos="fade-up" data-aos-once="true"
-            data-aos-easing="ease-in-out">
-            <a class="card-image image-zoom" href="./Blogs.html">
-              <img src="/assets/qetah_phase_1/images/blogs.jpg" class="image" loading="lazy" alt="" />
-            </a>
-            <div class="card-body">
-              <span class="card-badge">News</span>
-              <h3 class="card-title">
-                <a href="./Blogs.html">Top 5 technologies in 2023 you should learn</a>
-              </h3>
-              <p class="card-subtitle">24-july-2023</p>
-            </div>
-          </article>
-        </div>
-        <div class="swiper-slide blog-section">
-          <article class="card card-blog" data-aos-duration="1000" data-aos="fade-up" data-aos-once="true"
-            data-aos-easing="ease-in-out">
-            <a class="card-image image-zoom" href="./Blogs.html">
-              <img src="/assets/qetah_phase_1/images/blogs.jpg" class="image" loading="lazy" alt="" />
-            </a>
-            <div class="card-body">
-              <span class="card-badge">News</span>
-              <h3 class="card-title">
-                <a href="./Blogs.html">Top 5 technologies in 2023 you should learn</a>
-              </h3>
-              <p class="card-subtitle">24-july-2023</p>
-            </div>
-          </article>
-        </div>
-        <div class="swiper-slide blog-section">
-          <article class="card card-blog" data-aos-duration="1000" data-aos="fade-up" data-aos-once="true"
-            data-aos-easing="ease-in-out">
-            <a class="card-image image-zoom" href="./Blogs.html">
-              <img src="/assets/qetah_phase_1/images/blogs.jpg" class="image" loading="lazy" alt="" />
-            </a>
-            <div class="card-body">
-              <span class="card-badge">News</span>
-              <h3 class="card-title">
-                <a href="./Blogs.html">Top 5 technologies in 2023 you should learn</a>
-              </h3>
-              <p class="card-subtitle">24-july-2023</p>
-            </div>
-          </article>
-        </div>
-      </section>
-      <button class="slide-next btn btn-secondary btn-sm bx bx-right-arrow-alt"></button>
-      <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
-    </div>
-  </div>
-  <div class="container customer-reviews">
-    <div class="badge badge-o-dark badge-pill">Reviews</div>
-    <h1 class="text-center customer-say">What Our Customers Say</h1>
-    <div class="border text-center"></div>
-    <div class="slide-container text-center">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide review-content">
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Tempora fuga architecto fugit placeat laudantium beatae repellat
-            distinctio labore culpa perspiciatis excepturi, incidunt sed
-            quasi blanditiis nobis iste in sequi tempore.
-          </p>
-          <h2 class="fw-bold reviewer-name">Hassan</h2>
-          <i class="company-name">Example Company Name</i>
-        </div>
-        <div class="swiper-slide review-content">
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Tempora fuga architecto fugit placeat laudantium beatae repellat
-            distinctio labore culpa perspiciatis excepturi, incidunt sed
-            quasi blanditiis nobis iste in sequi tempore.
-          </p>
-          <h2 class="fw-bold reviewer-name">Abdul</h2>
-          <i class="company-name">Example Company Name</i>
-        </div>
-        <div class="swiper-slide review-content">
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Tempora fuga architecto fugit placeat laudantium beatae repellat
-            distinctio labore culpa perspiciatis excepturi, incidunt sed
-            quasi blanditiis nobis iste in sequi tempore.
-          </p>
-          <h2 class="fw-bold reviewer-name">Ahmad</h2>
-          <i class="company-name">Example Company Name</i>
-        </div>
-      </div>
-      <!-- Navigation buttons -->
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-    </div>
-  </div>
-  {% endblock %}
-  <!-- header-fixed
+</div>
+{% endblock %}
+<!-- header-fixed
   <script>
     let lastScrollTop = 0;
     const header = document.getElementById("header");

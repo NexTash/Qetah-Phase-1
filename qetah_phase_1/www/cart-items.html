@@ -39,10 +39,16 @@
                 </div>
                 <div class="cart-content">
                   <img src="{{ item.image }}" alt="Product Image" class="image" />
-                  <p class="text-ellipsis text-ellipsis-2">
-                    {{ item.description }}
-                  </p>
-                  <span>{{ item.brand }}</span>
+                  <div class="card-desc">
+                    <!-- <p class="text-ellipsis text-ellipsis-2">
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. In modi earum natus a corrupti iste iure
+                      libero veritatis nobis aut dignissimos dolore, alias porro, sed consequatur quo omnis at illo?
+                    </p> -->
+                    <h3 class="text-ellipsis text-ellipsis-2">
+                      {{item.description}}
+                    </h3>
+                    <span>{{ item.brand }}</span>
+                  </div>
                 </div>
               </div>
               <div class="card-body">

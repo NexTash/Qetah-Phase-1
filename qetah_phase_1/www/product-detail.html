@@ -108,7 +108,7 @@
               <div class="products">
                 <div class="badge badge-primary badge-pill">{{ variation.title }}</div>
                 <div class="card product-card">
-                  <a href="/product">
+                  <a href="/product-detail?id={{product.name}}">
                     <div class="card-head">
                       <img class="card-image"
                         src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg">
@@ -152,40 +152,19 @@
         <div class="border text-center"></div>
         <div class="slide-container text-center">
           <div class="swiper-wrapper">
+            {% for testimonil in testimonils %}
             <div class="swiper-slide review-content">
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora fuga architecto fugit placeat
-                laudantium
-                beatae repellat distinctio labore culpa perspiciatis excepturi, incidunt sed quasi blanditiis nobis iste
-                in
-                sequi tempore.</p>
-              <h2 class="fw-bold reviewer-name">Hassan</h2>
-              <i class="company-name">Example Company Name</i>
+              <p>{{testimonil.feedback}}</p>
+              <h2 class="fw-bold reviewer-name">{{testimonil.full_name}}</h2>
+              <i class="company-name">{{testimonil.designation}}</i>
             </div>
-            <div class="swiper-slide review-content">
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora fuga architecto fugit placeat
-                laudantium
-                beatae repellat distinctio labore culpa perspiciatis excepturi, incidunt sed quasi blanditiis nobis iste
-                in
-                sequi tempore.</p>
-              <h2 class="fw-bold reviewer-name">Abdul</h2>
-              <i class="company-name">Example Company Name</i>
-            </div>
-            <div class="swiper-slide review-content">
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora fuga architecto fugit placeat
-                laudantium
-                beatae repellat distinctio labore culpa perspiciatis excepturi, incidunt sed quasi blanditiis nobis iste
-                in
-                sequi tempore.</p>
-              <h2 class="fw-bold reviewer-name">Ahmad</h2>
-              <i class="company-name">Example Company Name</i>
-            </div>
+            {% endfor %}
           </div>
           <!-- Navigation buttons -->
           <div class="swiper-button-prev"></div>
           <div class="swiper-button-next"></div>
         </div>
       </div>
-
 
       {% endblock %}
 

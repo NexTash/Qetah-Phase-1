@@ -94,7 +94,7 @@
         padding-right: 0;
       }
 
-      .cart-conent {
+      .cart-content {
         display: flex;
 
         .image {
@@ -111,10 +111,10 @@
         .card-desc {
           margin: 0;
           margin-left: 10px;
-
-          p {
+          h3 {
             margin-bottom: 5px;
             color: var(--text);
+            line-height: 0.8;
           }
 
           span {
