@@ -164,25 +164,32 @@
 <div class="content-area" :class="{'shifted-content': isStatic}">
     <div class="container section-products">
         <div class="filters">
+
             <div class="category-filters">
                 <h5>Category</h5>
                 <hr>
-                <label class="check check-dark mt-2"><input type="checkbox" /> Men's Collection </label>
-                <label class="check check-dark"><input type="checkbox" /> Women's Collection </label>
-                <label class="check check-dark"><input type="checkbox" /> Services </label>
+                <label class="check check-dark mt-2">
+                    <input type="checkbox" name="category" value="Men's Collection" /> Men's Collection
+                </label>
+                <label class="check check-dark">
+                    <input type="checkbox" name="category" value="Women's Collection" /> Women's Collection
+                </label>
+                <label class="check check-dark">
+                    <input type="checkbox" name="category" value="Services" /> Services
+                </label>
                 <h5>Price Range</h5>
                 <hr>
                 <div class="range-slider">
                     <span class="rangeValues"></span>
-                    <input value="1000" min="1000" max="50000" step="500" id="price-range-max" name="price"
+                    <input value="1000" min="1000" max="50000" step="500" id="price-range-min" name="min_price"
                         type="range">
-                    <input value="50000" min="1000" max="50000" step="500" id="price-range-min" name="price"
+                    <input value="50000" min="1000" max="50000" step="500" id="price-range-max" name="max_price"
                         type="range">
                 </div>
                 <h5 class="mt-3">By Rating</h5>
                 <hr>
                 <div class="field-rating">
-                    <input type="radio" id="star5" id="get_ratings" name="rating" value="5">
+                    <input type="radio" id="star5" name="rating" value="5">
                     <label for="star5" title="5 stars"></label>
                     <input type="radio" id="star4" name="rating" value="4">
                     <label for="star4" title="4 stars"></label>
@@ -193,14 +200,22 @@
                     <input type="radio" id="star1" name="rating" value="1">
                     <label for="star1" title="1 star"></label>
                 </div>
-                <h5>Discount's</h5>
+                <h5>Discounts</h5>
                 <hr>
-                <label class="check check-dark mt-2"><input type="checkbox" /> Sale 35% OFF </label>
-                <label class="check check-dark"><input type="checkbox" /> Sale 50% OFF </label>
-                <label class="check check-dark"><input type="checkbox" /> Sale 75% OFF </label>
-                <button class="btn btn-secondary">Apply</button>
+                <label class="check check-dark mt-2">
+                    <input type="checkbox" name="discount" value="35" /> Sale 35% OFF
+                </label>
+                <label class="check check-dark">
+                    <input type="checkbox" name="discount" value="50" /> Sale 50% OFF
+                </label>
+                <label class="check check-dark">
+                    <input type="checkbox" name="discount" value="75" /> Sale 75% OFF
+                </label>
+                <button type="button" class="btn btn-secondary" onclick="applyFilters()">Apply</button>
             </div>
         </div>
+
+
         <div class="filtered-cards">
             <div class="container model-container" x-data="{ isOpen: false }">
                 <button class="btn btn-light btn-icon btn-model" x-on:click="isOpen = true">Filters</button>
@@ -261,9 +276,9 @@
                 </div>
             </div>
 
-            <form class="field field-inline">
-                <input type="text" class="field-text" placeholder="Search..." />
-                <button class="field-icon bx bx-search"></button>
+            <form class="field field-inline" onsubmit="applyFilters(event)">
+                <input type="text" class="field-text" id="search-query" placeholder="Search..." name="q" />
+                <button type="submit" class="field-icon bx bx-search"></button>
             </form>
             <div class="cards">
                 <div class="boxed">
@@ -557,56 +572,22 @@
 {% endblock %}
 
 {% block scripts %}
-
 <script>
+    function applyFilters(event) {
+        if (event) event.preventDefault(); // Prevent the form from submitting normally
 
-    $("#search_btn").on("click", () => {
-        let txt = $("#search").val()
-        document.location.href = document.location.origin + document.location.pathname + "?q=" + txt
-    })
+        const filters = {
+            q: document.getElementById('search-query').value,
+            category: Array.from(document.querySelectorAll('input[name="category"]:checked')).map(el => el.value),
+            min_price: document.getElementById('price-range-min').value,
+            max_price: document.getElementById('price-range-max').value,
+            rating: document.querySelector('input[name="rating"]:checked') ? document.querySelector('input[name="rating"]:checked').value : null,
+            discount: Array.from(document.querySelectorAll('input[name="discount"]:checked')).map(el => el.value)
+        };
 
-    $("#search").on("keydown", (e) => {
-        if (e.which == 13) {
-            let txt = $("#search").val()
-            document.location.href = document.location.origin + document.location.pathname + "?q=" + txt
-        }
-    })
-    $("#get_price").on("click", () => {
-        let min_price = document.getElementById("price-range-min").value
-        let max_price = document.getElementById("price-range-max").value
-        document.location.href = document.location.origin + document.location.pathname + "?min_price=" + min_price + "&max_price=" + max_price
-    })
-    $("#clear_price").on("click", () => {
-        document.location.href = document.location.href = document.location.origin + document.location.pathname
-    })
-
-
-    $("#clear_all_filters").on("click", () => {
-        document.location.href = document.location.href = document.location.origin + document.location.pathname
-    })
-
-    $("#get_categories").on("click", () => {
-        var checkedValues = [];
-        var checkboxes = document.getElementsByClassName("category-checkbox");
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                checkedValues.push(checkboxes[i].value);
-            }
-        }
-        document.location.href = document.location.href = document.location.origin + document.location.pathname + "?category=" + checkedValues
-    })
-
-    $("#get_ratings").on("click", () => {
-        let txt = $("input[name='ratings']:checked").val();
-        document.location.href = document.location.origin + document.location.pathname + "?q=&ratings=" + txt;
-    });
-
-
-    $("#clear_ratings").on("click", () => {
-        $("input[name='ratings']").prop("checked", false);
-        document.location.href = document.location.origin + document.location.pathname;
-    });
-
+        const queryString = new URLSearchParams(filters).toString();
+        window.location.href = `/your-page-url?${queryString}`;
+    }
 </script>
 
 <script>
