@@ -333,7 +333,7 @@
                                                 {% endif %}
                                                 <div class="card-rating">
                                                     <i class="bx bxs-star"></i>
-                                                    <span>{{ product.rating_count }}</span> ({{product.sold}}) Sold
+                                                    <span>{{ product.rating }}</span> ({{product.sold}}) Sold
                                                 </div>
                                             </div>
                                             <div class="card-foot">
@@ -577,16 +577,16 @@
         if (event) event.preventDefault(); // Prevent the form from submitting normally
 
         const filters = {
-            q: document.getElementById('search-query').value,
+            q: document.getElementById('search-query') ? document.getElementById('search-query').value : '',  // Check if element exists
             category: Array.from(document.querySelectorAll('input[name="category"]:checked')).map(el => el.value),
             min_price: document.getElementById('price-range-min').value,
             max_price: document.getElementById('price-range-max').value,
-            rating: document.querySelector('input[name="rating"]:checked') ? document.querySelector('input[name="rating"]:checked').value : null,
+            rating: document.querySelector('input[name="rating"]:checked') ? document.querySelector('input[name="rating"]:checked').value : '',
             discount: Array.from(document.querySelectorAll('input[name="discount"]:checked')).map(el => el.value)
         };
 
         const queryString = new URLSearchParams(filters).toString();
-        window.location.href = `/your-page-url?${queryString}`;
+        window.location.href = `/product?${queryString}`;
     }
 </script>
 

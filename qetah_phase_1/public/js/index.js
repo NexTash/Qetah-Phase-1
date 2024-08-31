@@ -114,7 +114,7 @@ function createRipple(event) {
   const rippleY = event.offsetY;
   const rippleDiameter = Math.sqrt(
     button.offsetWidth * button.offsetWidth +
-      button.offsetHeight * button.offsetHeight
+    button.offsetHeight * button.offsetHeight
   );
 
   ripple.style.top = `${rippleY - rippleDiameter / 2}px`;
@@ -132,31 +132,55 @@ function createRipple(event) {
 window.Alpine = {
   createRipple: createRipple,
 };
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.btn.ripple').forEach(button => {
-          button.addEventListener('click', function (e) {
-            // Remove any existing ripple effect
-            const existingRipple = this.querySelector('.ripple-effect');
-            if (existingRipple) {
-              existingRipple.remove();
-            }
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.btn.ripple').forEach(button => {
+    button.addEventListener('click', function (e) {
+      // Remove any existing ripple effect
+      const existingRipple = this.querySelector('.ripple-effect');
+      if (existingRipple) {
+        existingRipple.remove();
+      }
 
-            const rect = button.getBoundingClientRect();
-            const ripple = document.createElement('span');
-            ripple.classList.add('ripple-effect');
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
+      const rect = button.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple-effect');
+      const size = Math.max(rect.width, rect.height);
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
 
-            ripple.style.width = ripple.style.height = `${size}px`;
-            ripple.style.left = `${x}px`;
-            ripple.style.top = `${y}px`;
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
 
-            this.appendChild(ripple);
+      this.appendChild(ripple);
 
-            ripple.addEventListener('animationend', () => {
-              ripple.remove();
-            });
-          });
-        });
+      ripple.addEventListener('animationend', () => {
+        ripple.remove();
       });
+    });
+  });
+});
+
+
+
+// Add to Cart button functionality
+document.getElementById('addToCartBtn')?.addEventListener('click', function () {
+  var badge = document.getElementById('cartBadge');
+  var currentValue = parseInt(badge.textContent, 10);
+  badge.textContent = currentValue + 1;
+});
+
+// Handle counter increments
+document.querySelectorAll('.counter-increment').forEach(button => {
+  button.addEventListener('click', function () {
+    var counter = this.previousElementSibling;
+    var value = parseInt(counter.value, 10);
+    counter.value = value + 1;
+
+    // Update cart badge count
+    updateCartBadge(1);
+  });
+});
+
+
+

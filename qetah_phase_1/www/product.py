@@ -1,56 +1,75 @@
 import frappe
 
 def get_context(context):
-    # Retrieve filter values from the request
     search_query = frappe.form_dict.get('q', None)
     categories = frappe.form_dict.get('category', [])
     min_price = frappe.form_dict.get('min_price', None)
     max_price = frappe.form_dict.get('max_price', None)
     rating = frappe.form_dict.get('rating', None)
     discounts = frappe.form_dict.get('discount', [])
+    id = frappe.form_dict.get('id', None)
 
-    # Prepare filters dictionary
-    filters = {}
+    filters = []
+    values = {}
 
+    # Handling search query
     if search_query:
-        filters['name'] = ['like', f'%{search_query}%']  # Adjust the field and filter type based on your needs
+        filters.append("name LIKE %(search_query)s")
+        values['search_query'] = f"%{search_query}%"
 
+    # Handling categories
     if categories:
-        filters['category'] = ['in', categories]
-
-    if min_price and max_price:
-        filters['price'] = ['between', [min_price, max_price]]
-
-    if rating:
-        filters['rating'] = rating
-
-    if discounts:
-        filters['discount'] = ['in', discounts]
-
-
+        filters.append("category IN %(categories)s")
+        values['categories'] = categories.split(",")
     
-    id = frappe.form_dict.id
-    # context.doc = frappe.get_all('Product', )
+    # Handling discounts
+    if discounts:
+        filters.append("discount IN %(discounts)s")
+        values['discounts'] = discounts.split(",")
 
-    products = frappe.get_all('Product',filters={"name": id})
-    products = frappe.get_all('Product',filters=filters , fields=['*'])
+    # Handling price range
+    if min_price and max_price:
+        filters.append("price BETWEEN %(min_price)s AND %(max_price)s")
+        values['min_price'] = int(min_price)
+        values['max_price'] = int(max_price)
 
+    # Handling rating
+    if rating:
+        filters.append("rating = %(rating)s")
+        values['rating'] = rating
+
+    # Handling specific product id
+    if id:
+        filters.append("name = %(id)s")
+        values['id'] = id
+
+    # Construct the SQL query
+    where_clause = " AND ".join(filters) if filters else "1 = 1"
+
+    # # # Debugging
+    # frappe.throw(f"""
+    #     SQL Query: SELECT * FROM `tabProduct` WHERE {where_clause}
+    #     Values: {values}
+    # """)
+
+    products = frappe.db.sql(f"""
+        SELECT * FROM `tabProduct`
+        WHERE {where_clause}
+    """, values, as_dict=True)
+
+    # Fetch variations and images for each product
     for product in products:
-        product['variations'] = frappe.get_all(
-            'Product Variation', 
-            fields=['*'],
-            filters={'parent': product['name']} 
-        )
+        product_name = product['name']
         
-       
-        product['images'] = frappe.get_all(
-            'Product Images',  
-            fields=['*'],
-            filters={'parent': product['name']}  
-        )
-
-
-
+        product['variations'] = frappe.db.sql("""
+            SELECT * FROM `tabProduct Variation`
+            WHERE parent = %(parent)s
+        """, {'parent': product_name}, as_dict=True)
+        
+        product['images'] = frappe.db.sql("""
+            SELECT * FROM `tabProduct Images`
+            WHERE parent = %(parent)s
+        """, {'parent': product_name}, as_dict=True)
 
     context.update({
         "products": products
