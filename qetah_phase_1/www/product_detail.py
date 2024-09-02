@@ -17,7 +17,6 @@ def get_context(context):
             filters={'parent': product['name']}  
         )
         
-        
         product['images'] = frappe.get_all(
             'Product Images', 
             fields=['*'],

@@ -8,6 +8,12 @@ app_license = "NexTash(SMC.Pvt).Ltd."
 # Includes in <head>
 # ------------------
 
+app_logo_url = "/assets/qetah_phase_1/images/qetah-browser-removebg-preview.png"
+website_context = {
+  "favicon": "/assets/qetah_phase_1/images/qetah-browser-removebg-preview.png",
+  "splash_image": "/assets/qetah_phase_1/images/black-qetah-removebg-preview.png",
+}
+
 # include js, css files in header of desk.html
 # app_include_css = "/assets/qetah_phase_1/css/qetah_phase_1.css"
 # app_include_js = "/assets/qetah_phase_1/js/qetah_phase_1.js"

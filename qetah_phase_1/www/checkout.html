@@ -133,7 +133,7 @@
         <span class="divider divider-text divider-secondary">Cart</span>
       </a>
       <a href="/cart-items" data-target="sidebar-tooltip" data-title="Cart">
-        <div class="auth-media">
+        <div class="auth-media sidebar-active">
           <i class="bx bx-cart"></i>
           <div class="auth-intro" x-show="isStatic" x-cloak>
             <h3 class="heading">
@@ -300,16 +300,13 @@
     </div>
   </div>
 
-  {% endblock %}
   <script>
     function on_submit() {
-
       let fullname = document.getElementById("fullname").value;
       let province = document.getElementById("province").value;
       let city = document.getElementById("city").value;
       let area = document.getElementById("area").value;
       let phone = document.getElementById("phone").value;
-      let email = document.getElementById("email").value;
       let address = document.getElementById("address").value;
       let code = document.getElementById("code").value;
 
@@ -317,7 +314,6 @@
         method: 'qetah_phase_1.events.checkout.checks',
         args: {
           fullname: fullname,
-          email: email,
           phone: phone,
           address: address,
           city: city,
@@ -328,7 +324,6 @@
         callback(r) {
           console.log(r.message)
           document.getElementById("messages").innerHTML = r.message
-          document.getElementById("email").value = ""
           document.getElementById("fullname").value = ""
           document.getElementById("province").value = ""
           document.getElementById("city").value = ""
@@ -341,6 +336,7 @@
       });
     }
   </script>
+  {% endblock %}
 
   <!-- header-fixed
   <script>
