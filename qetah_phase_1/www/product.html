@@ -85,9 +85,11 @@
                     <i class="bx bx-male"></i>
                 </a>
                 <div class="auth-intro" x-show="isStatic" x-cloak>
-                    <div x-data="{ open: false }">
-                        <div @click="open = !open" class="cursor-pointer">
-                            <h6 class="text-center text-dark side-coll" style="cursor: pointer;font-size: 14px ; ">
+                    <div x-data="{ open: false, isActive: false }">
+                        <div @click="open = !open; applyCategoryFilter('Men\'s Collection'); isActive = true;"
+                            class="cursor-pointer">
+                            <h6 class="text-center text-dark side-coll" :class="{ 'active': isActive }"
+                                style="cursor: pointer; font-size: 14px;">
                                 Men's Collection
                             </h6>
                             <i class="bx bx-chevron-down"></i>
@@ -104,15 +106,18 @@
                     </div>
                 </div>
             </div>
+
             <!-- Women's Collection Dropdown -->
             <div class="auth-media">
                 <a href="/product" data-target="sidebar-tooltip" data-title="Women's collection">
                     <i class="bx bx-female"></i>
                 </a>
                 <div class="auth-intro" x-show="isStatic" x-cloak>
-                    <div x-data="{ open: false }">
-                        <div @click="open = !open" class="cursor-pointer">
-                            <h6 class="text-center text-dark side-coll" style="cursor: pointer;font-size: 14px;">
+                    <div x-data="{ open: false, isActive: false }">
+                        <div @click="open = !open; applyCategoryFilter('Women\'s Collection'); isActive = true;"
+                            class="cursor-pointer">
+                            <h6 class="text-center text-dark side-coll" :class="{ 'active': isActive }"
+                                style="cursor: pointer; font-size: 14px;">
                                 Women's Collection
                             </h6>
                             <i class="bx bx-chevron-down"></i>
@@ -129,6 +134,8 @@
                     </div>
                 </div>
             </div>
+
+
             <a href="">
                 <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
                 <span class="divider divider-text divider-secondary">Cart</span>
@@ -339,7 +346,44 @@
                                             <div class="card-foot">
                                                 <button class="btn btn-light btn-icon btn-pill"><i
                                                         class="bx bx-cart icon-pre"></i> Buy Now</button>
-                                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                                                <button
+                                                    class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="products">
+                                        <div class="badge badge-primary badge-pill">{{ product.title }}</div>
+                                        <div class="card product-card">
+                                            <a href="/product-detail?id={{product.name}}">
+                                                <div class="card-head">
+                                                    <img class="card-image" src="{{ product.featured_image }}"
+                                                        alt="Product Image">
+                                                </div>
+                                            </a>
+                                            <div class="card-body">
+                                                {% if product.variations %}
+                                                {% for variation in product.variations %}
+                                                <div class="variation">
+                                                    <div class="card-title">{{ variation.title }}</div>
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2">{{
+                                                        variation.description }}</div>
+                                                    <div class="card-subtitle"><del>{{ variation.price }}</del></div>
+                                                    <div class="card-title">USD {{ variation.discount }}</div>
+                                                </div>
+                                                {% endfor %}
+                                                {% else %}
+                                                <p>No variations available</p>
+                                                {% endif %}
+                                                <div class="card-rating">
+                                                    <i class="bx bxs-star"></i>
+                                                    <span>{{ product.rating }}</span> ({{ product.sold }}) Sold
+                                                </div>
+                                            </div>
+                                            <div class="card-foot">
+                                                <button class="btn btn-light btn-icon btn-pill"><i
+                                                        class="bx bx-cart icon-pre"></i> Buy Now</button>
+                                                <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart">
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -572,6 +616,110 @@
 {% endblock %}
 
 {% block scripts %}
+
+<script>
+    function applyCategoryFilter(category) {
+        const filters = {
+            category: category // Set the category filter based on the user's selection
+        };
+
+        // Construct the query string and update the URL
+        const queryString = new URLSearchParams(filters).toString();
+        window.location.href = `/product?${queryString}`;
+    }
+</script>
+<!-- wishlist -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const offcanvas = document.getElementById('offcanvas');
+        const offcanvasBody = offcanvas.querySelector('.offcanvas-body'); // Add this line to get the offcanvas body
+        const badge = document.querySelector('.noti-badge'); // Update this selector if needed
+        const deleteSelectedBtn = document.getElementById('deleteSelectedBtn');
+
+        let wishlist = [];
+
+        function updateOffcanvas() {
+            // Clear the current items
+            offcanvasBody.innerHTML = '';
+
+            // Add each item in the wishlist to the offcanvas
+            wishlist.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'items d-flex';
+                itemDiv.innerHTML = `
+                <div class="check-item">
+                    <label class="check check-secondary">
+                        <input type="checkbox" class="item-checkbox" data-index="${index}" />
+                    </label>
+                </div>
+                <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
+                <div class="text">
+                    <p class="offcanvas-title text-ellipsis">${item.title}</p>
+                     <div class="quantity-counter">
+                    <p class="price">${item.price}</p>
+                            <div class="counter">
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                              ></button>
+                              <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                              />
+                              <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                              ></button>
+                            </div>
+                          </div>
+                    
+                </div>
+            `;
+                offcanvasBody.appendChild(itemDiv);
+            });
+            badge.textContent = wishlist.length;
+        }
+
+        function addToWishlist(product) {
+            // Add the product to the wishlist array
+            wishlist.push(product);
+            // Update the offcanvas display
+            updateOffcanvas();
+        }
+
+        document.querySelectorAll('.btn-heart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const productCard = e.target.closest('.product-card');
+                if (!productCard) return;
+
+                // Get product details from the card
+                const product = {
+                    title: productCard.querySelector('.card-title').innerText,
+                    image: productCard.querySelector('.card-image').src,
+                    price: productCard.querySelector('.card-title').innerText,
+                };
+
+                // Add product to wishlist
+                addToWishlist(product);
+            });
+        });
+
+        deleteSelectedBtn.addEventListener('click', () => {
+            const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
+            // Iterate backward to safely remove items
+            for (let i = checkboxes.length - 1; i >= 0; i--) {
+                const checkbox = checkboxes[i];
+                if (checkbox.checked) {
+                    const index = parseInt(checkbox.getAttribute('data-index'), 10);
+                    wishlist.splice(index, 1);
+                    checkbox.closest('.items').remove();
+                }
+            }
+
+            updateOffcanvas();
+        });
+
+    });
+</script>
 <script>
     function applyFilters(event) {
         if (event) event.preventDefault(); // Prevent the form from submitting normally
@@ -589,7 +737,9 @@
         window.location.href = `/product?${queryString}`;
     }
 </script>
+<script>
 
+</script>
 <script>
     function getVals() {
         // Get slider values

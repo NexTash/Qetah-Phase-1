@@ -1,8 +1,8 @@
 import frappe
 
 @frappe.whitelist()
-def checks(fullname,phone,address,city,province,area,code):
-    doc = frappe.new_doc("Checkout")
+def checks(fullname, phone, address, city, province, area, code):
+    doc = frappe.new_doc("Proceed Checkout")
     doc.full_name = fullname
     doc.phone = phone
     doc.address = address
@@ -11,7 +11,7 @@ def checks(fullname,phone,address,city,province,area,code):
     doc.area = area
     doc.code = code 
     # doc.append("email_ids", {
-    #         'email_id' : email
-    #     })
-    doc.insert()
+    #     'email_id': email
+    # })
     doc.save()
+    # return "Created"

@@ -198,30 +198,30 @@
           <textarea class="field-textarea" rows="4" id="message" placeholder="Messsage*"></textarea>
         </div>
         <div class="submit">
-          <label class="check check-dark"><input type="checkbox" />Checkout our <a href="/terms-and-conditions"> Terms
-              and Conditions </a> and <a href="/privacy-policy">Privacy Policy</a>.</label>
-          <br>
-          <br>
-          <button class="btn btn-secondary" onclick="contact_info()">Submit</button>
+          <label class="check check-dark">
+            <input type="checkbox" />Checkout our <a href="/terms-and-conditions"> Terms and Conditions </a> and <a
+              href="/privacy-policy">Privacy Policy</a>.
+          </label>
+          <br><br>
+          <button type="button" class="btn btn-secondary" onclick="contact_info()">Submit</button>
         </div>
+        <div id="messages"></div> <!-- Add this div to display messages -->
       </form>
+
     </div>
   </div>
 
-  {% endblock %}
-
   <script>
     function contact_info() {
-
       var fullname = document.getElementById("fullname").value;
       var email = document.getElementById("email").value;
       var phone = document.getElementById("phone").value;
       var message = document.getElementById("message").value;
 
       frappe.call({
-        method: 'qetah_phase_1.events.contact-us.contacts',
+        method: 'qetah_phase_1.events.contact_us.contacts',
         args: {
-          firstname: firstname,
+          fullname: fullname,
           email: email,
           phone: phone,
           message: message,
@@ -230,7 +230,7 @@
           // console.log(r.message)
           document.getElementById("messages").innerHTML = r.message;
 
-          document.getElementById("firstname").value = ""
+          document.getElementById("fullname").value = ""
           document.getElementById("email").value = ""
           document.getElementById("phone").value = ""
           document.getElementById("message").value = ""
@@ -238,5 +238,7 @@
       });
     }
   </script>
+  {% endblock %}
+
 
   <!-- header-fixed

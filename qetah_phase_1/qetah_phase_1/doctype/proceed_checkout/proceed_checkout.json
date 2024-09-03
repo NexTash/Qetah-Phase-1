@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:Checkout-{#####}",
+ "autoname": "Checkout-.#####",
  "creation": "2024-08-28 11:37:26.689989",
  "default_view": "List",
  "doctype": "DocType",
@@ -9,7 +9,6 @@
  "engine": "InnoDB",
  "field_order": [
   "full_name",
-  "email",
   "phone",
   "address",
   "column_break_iaejv",
@@ -23,11 +22,6 @@
    "fieldname": "full_name",
    "fieldtype": "Data",
    "label": "Full Name"
-  },
-  {
-   "fieldname": "email",
-   "fieldtype": "Data",
-   "label": "Email"
   },
   {
    "fieldname": "city",
@@ -66,11 +60,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-28 11:42:06.966450",
+ "modified": "2024-09-02 11:54:51.838825",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
- "name": "Checkout",
- "naming_rule": "Expression",
+ "name": "Proceed Checkout",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

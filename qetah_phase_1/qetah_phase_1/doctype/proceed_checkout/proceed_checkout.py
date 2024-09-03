@@ -4,5 +4,5 @@
 # import frappe
 from frappe.model.document import Document
 
-class Checkout(Document):
+class ProceedCheckout(Document):
 	pass

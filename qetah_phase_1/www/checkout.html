@@ -163,22 +163,23 @@
 
 <div class="content-area" :class="{'shifted-content': isStatic}">
   <div class="container checkout">
-    <form action="" method="" class="information">
+    <form action="" method="" class="information" id="informationForm">
       <h5>Delivery Information</h5>
       <div class="grp">
         <div class="form-field">
           <label class="field-label">Full Name</label>
           <div class="field field-dark">
-            <input type="text" class="field-text" id="fullname" placeholder="Enter your first and last name" />
+            <input type="text" class="field-text" id="fullname" name="fullname"
+              placeholder="Enter your first and last name" />
           </div>
         </div>
         <div class="form-field">
           <label class="field-label">Province</label>
           <div class="field field-dark">
-            <select name="" id="province" class="field-select">
+            <select id="province" name="province" class="field-select">
               <option value="">Please choose your province</option>
-              <option value="Option">Option</option>
-              <option value="Option">Option</option>
+              <option value="Option1">Option1</option>
+              <option value="Option2">Option2</option>
             </select>
           </div>
         </div>
@@ -187,16 +188,17 @@
         <div class="form-field">
           <label class="field-label">Phone Number</label>
           <div class="field field-dark">
-            <input type="text" class="field-text" id="phone" placeholder="Please enter your phone number" />
+            <input type="text" class="field-text" id="phone" name="phone"
+              placeholder="Please enter your phone number" />
           </div>
         </div>
         <div class="form-field">
           <label class="field-label">City</label>
           <div class="field field-dark">
-            <select name="" id="city" class="field-select">
+            <select id="city" name="city" class="field-select">
               <option value="">Please choose your city</option>
-              <option value="Option">Option</option>
-              <option value="Option">Option</option>
+              <option value="Option1">Option1</option>
+              <option value="Option2">Option2</option>
             </select>
           </div>
         </div>
@@ -205,31 +207,32 @@
         <div class="form-field">
           <label class="field-label">Address</label>
           <div class="field field-dark">
-            <input type="text" class="field-text" id="address" placeholder="Enter your Address" />
+            <input type="text" class="field-text" id="address" name="address" placeholder="Enter your Address" />
           </div>
         </div>
         <div class="form-field">
           <label class="field-label">Area</label>
           <div class="field field-dark">
-            <select name="" id="area" class="field-select">
+            <select id="area" name="area" class="field-select">
               <option value="">Please choose your area</option>
-              <option value="Option">Option</option>
-              <option value="Option">Option</option>
+              <option value="Option1">Option1</option>
+              <option value="Option2">Option2</option>
             </select>
           </div>
         </div>
       </div>
-      <button class="btn btn-secondary btn-checkout" onclick="on_submit()">Save</button>
+      <button type="button" class="btn btn-secondary btn-checkout" onclick="on_submit()">Save</button>
     </form>
-    <form action="" class="payment">
+
+    <form action="" method="POST" class="payment" id="paymentForm">
       <h5>Promotion</h5>
       <div class="grp">
         <div class="form-field">
           <div class="field field-dark">
-            <input type="text" class="field-text" placeholder="Enter Code" id="code" />
+            <input type="text" class="field-text" placeholder="Enter Code" id="code" name="code" />
           </div>
         </div>
-        <button class="btn btn-secondary btn-apply" onclick="on_submit()">Apply</button>
+        <button type="button" class="btn btn-secondary btn-apply" onclick="on_chek()">Apply</button>
       </div>
       <h5>Order Summary</h5>
       <div class="order-info">
@@ -254,6 +257,8 @@
         <button class="btn btn-dark btn-block">Proceed to Pay</button>
       </div>
     </form>
+    <div id="messages"></div>
+
   </div>
   <div class="container checkout-items">
     <div class="card card-webinar cart-product-card">
@@ -311,7 +316,7 @@
       let code = document.getElementById("code").value;
 
       frappe.call({
-        method: 'qetah_phase_1.events.checkout.checks',
+        method: 'qetah_phase_1.events.proceed_checkout.checks',
         args: {
           fullname: fullname,
           phone: phone,
@@ -325,12 +330,11 @@
           console.log(r.message)
           document.getElementById("messages").innerHTML = r.message
           document.getElementById("fullname").value = ""
-          document.getElementById("province").value = ""
-          document.getElementById("city").value = ""
-          document.getElementById("area").value = ""
           document.getElementById("phone").value = ""
-          document.getElementById("subject").value = ""
           document.getElementById("address").value = ""
+          document.getElementById("city").value = ""
+          document.getElementById("province").value = ""
+          document.getElementById("area").value = ""
           document.getElementById("code").value = ""
         }
       });
