@@ -9,12 +9,13 @@
  "engine": "InnoDB",
  "field_order": [
   "title",
-  "description",
-  "section_break_wzzmz",
   "brand",
+  "image",
+  "column_break_a7tc",
   "price",
   "discount",
-  "image"
+  "section_break_wzzmz",
+  "description"
  ],
  "fields": [
   {
@@ -69,18 +70,34 @@
    "fieldtype": "Attach",
    "in_list_view": 1,
    "label": "Image"
+  },
+  {
+   "fieldname": "column_break_a7tc",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
- "istable": 1,
  "links": [],
- "modified": "2024-08-29 01:55:02.490836",
+ "modified": "2024-09-03 15:31:59.567416",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Cart Items",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
- "permissions": [],
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

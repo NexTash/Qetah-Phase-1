@@ -1,13 +1,9 @@
 import frappe
 
 def get_context(context):
+    carts = frappe.get_all('Cart Items', fields=['*'])
     products = frappe.get_all('Product', fields=['*'])
     for product in products:
-        product['cart_items'] = frappe.get_all(
-            'Cart Items', 
-            fields=['*'],
-            filters={'parent': product['name']} 
-        )
         product['variations'] = frappe.get_all(
             'Product Variation', 
             fields=['*'],
@@ -15,5 +11,6 @@ def get_context(context):
         )
         
     context.products = products
+    context.carts = carts
 
     return context

@@ -176,13 +176,13 @@
               </button>
             </div>
           </div>
-          {% for product in products %}
-          {% for item in product.cart_items %}
+         
+          {% for cart in carts %}
           <div class="card card-webinar cart-product-card">
             <div class="card-head">
               <span>
                 <label class="check check-secondary">
-                  <input type="checkbox" />{{ item.title }}
+                  <input type="checkbox" id="title" />{{ cart.title }}
                 </label>
               </span>
             </div>
@@ -195,23 +195,23 @@
                   </label>
                 </div>
                 <div class="cart-content">
-                  <img src="{{ item.image }}" alt="Product Image" class="image" />
+                  <img src="{{ cart.image }}" alt="Product Image" id="image" class="image" />
                   <div class="card-desc">
                     <!-- <p class="text-ellipsis text-ellipsis-2">
                       Lorem ipsum dolor sit, amet consectetur adipisicing elit. In modi earum natus a corrupti iste iure
                       libero veritatis nobis aut dignissimos dolore, alias porro, sed consequatur quo omnis at illo?
                     </p> -->
                     <h3 class="text-ellipsis text-ellipsis-2">
-                      {{item.description}}
+                      {{cart.description}}
                     </h3>
-                    <span>{{ item.brand }}</span>
+                    <span>{{ cart.brand }}</span>
                   </div>
                 </div>
               </div>
               <div class="card-body">
                 <div class="prices">
-                  <p class="price">$ {{ item.price }}</p>
-                  <p class="discount"><s>${{ item.discount }}</s></p>
+                  <p class="price">$ {{ cart.price }}</p>
+                  <p class="discount"><s>${{ cart.discount }}</s></p>
                   <div class="icon-group">
                     <span class="wishlist"><i class="bx bx-heart"></i></span>
                     <span class="wishlist"><i class="bx bx-trash"></i></span>
@@ -232,7 +232,7 @@
             </div>
           </div>
           {% endfor %}
-          {% endfor %}
+         
 
         </div>
 

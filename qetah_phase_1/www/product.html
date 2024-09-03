@@ -325,65 +325,27 @@
                                                 </div>
                                             </a>
                                             <div class="card-body">
-                                                {% if product.variations %}
+                                              
                                                 {% for variation in product.variations %}
                                                 <div class="variation">
                                                     <div class="card-title">{{ variation.title }}</div>
                                                     <div class="card-desc text-ellipsis text-ellipsis-2">{{
                                                         variation.description }}</div>
-                                                    <div class="card-subtitle"><del>{{ variation.price }}</del></div>
-                                                    <div class="card-title">USD {{ variation.discount }}</div>
+                                                    <div class="card-subtitle"><del>{{ variation.discount}}</del></div>
+                                                    <div class="card-title">$ {{ variation.price }}</div>
                                                 </div>
                                                 {% endfor %}
-                                                {% else %}
-                                                <p>No variations available</p>
-                                                {% endif %}
+                                    
                                                 <div class="card-rating">
                                                     <i class="bx bxs-star"></i>
                                                     <span>{{ product.rating }}</span> ({{product.sold}}) Sold
                                                 </div>
                                             </div>
                                             <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill"><i
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart" onclick="cart()"><i
                                                         class="bx bx-cart icon-pre"></i> Buy Now</button>
                                                 <button
                                                     class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="products">
-                                        <div class="badge badge-primary badge-pill">{{ product.title }}</div>
-                                        <div class="card product-card">
-                                            <a href="/product-detail?id={{product.name}}">
-                                                <div class="card-head">
-                                                    <img class="card-image" src="{{ product.featured_image }}"
-                                                        alt="Product Image">
-                                                </div>
-                                            </a>
-                                            <div class="card-body">
-                                                {% if product.variations %}
-                                                {% for variation in product.variations %}
-                                                <div class="variation">
-                                                    <div class="card-title">{{ variation.title }}</div>
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2">{{
-                                                        variation.description }}</div>
-                                                    <div class="card-subtitle"><del>{{ variation.price }}</del></div>
-                                                    <div class="card-title">USD {{ variation.discount }}</div>
-                                                </div>
-                                                {% endfor %}
-                                                {% else %}
-                                                <p>No variations available</p>
-                                                {% endif %}
-                                                <div class="card-rating">
-                                                    <i class="bx bxs-star"></i>
-                                                    <span>{{ product.rating }}</span> ({{ product.sold }}) Sold
-                                                </div>
-                                            </div>
-                                            <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill"><i
-                                                        class="bx bx-cart icon-pre"></i> Buy Now</button>
-                                                <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart">
-                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -424,7 +386,7 @@
                                                 </div>
                                             </div>
                                             <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill"><i
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
                                                         class="bx bx-cart icon-pre"></i> Buy Now</button>
                                                 <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
                                             </div>
@@ -466,7 +428,7 @@
                                                 </div>
                                             </div>
                                             <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill"><i
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
                                                         class="bx bx-cart icon-pre"></i> Buy Now</button>
                                                 <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
                                             </div>
@@ -508,7 +470,7 @@
                                                 </div>
                                             </div>
                                             <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill"><i
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
                                                         class="bx bx-cart icon-pre"></i> Buy Now</button>
                                                 <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
                                             </div>
@@ -550,7 +512,7 @@
                                                 </div>
                                             </div>
                                             <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill"><i
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
                                                         class="bx bx-cart icon-pre"></i> Buy Now</button>
                                                 <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
                                             </div>
@@ -592,7 +554,7 @@
                                                 </div>
                                             </div>
                                             <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill"><i
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
                                                         class="bx bx-cart icon-pre"></i> Buy Now</button>
                                                 <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
                                             </div>
@@ -611,7 +573,33 @@
     </div>
 </div>
 </div>
+ <script>
+    function cart(){
+      var fullname = document.getElementById("fullname").value;
+      var email = document.getElementById("email").value;
+      var phone = document.getElementById("phone").value;
+      var message = document.getElementById("message").value;
 
+      frappe.call({
+        method: 'qetah_phase_1.events.contact_us.contacts',
+        args: {
+          fullname: fullname,
+          email: email,
+          phone: phone,
+          message: message,
+        },
+        callback(r) {
+          // console.log(r.message)
+          document.getElementById("messages").innerHTML = r.message;
+
+          document.getElementById("fullname").value = ""
+          document.getElementById("email").value = ""
+          document.getElementById("phone").value = ""
+          document.getElementById("message").value = ""
+        }
+      });
+    }
+  </script>
 
 {% endblock %}
 
@@ -778,6 +766,102 @@
         }
     }
 </script>
+<!-- cart -->
+<!-- cart -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const offcanvas = document.getElementById('offcanvas-cart');
+    const offcanvasBody = offcanvas.querySelector('.offcanvas-body-cart'); // Add this line to get the offcanvas body
+    const badge = document.querySelector('.cart-badge'); // Update this selector if needed
+    const deleteSelectedBtn = document.getElementById('del-cart');
+
+    let wishlist = [];
+
+    function updateOffcanvas() {
+        // Clear the current items
+        offcanvasBody.innerHTML = '';
+        
+        // Add each item in the wishlist to the offcanvas
+        wishlist.forEach((item, index) => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'items d-flex';
+            itemDiv.innerHTML = `
+                <div class="check-item">
+                    <label class="check check-secondary">
+                        <input type="checkbox" class="item-checkbox" data-index="${index}" />
+                    </label>
+                </div>
+                <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
+                <div class="text">
+                    <p class="offcanvas-title text-ellipsis">${item.title}</p>
+                    <div class="quantity-counter">
+                        <p class="price">${item.price}</p>
+                        <div class="counter">
+                            <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
+                            ></button>
+                            <input
+                                class="counter-value value"
+                                type="number"
+                                value="0"
+                            />
+                            <button
+                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
+                            ></button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            offcanvasBody.appendChild(itemDiv);
+        });
+        
+        // Update badge number
+        badge.textContent = wishlist.length;
+    }
+
+    function addToWishlist(product) {
+        // Add the product to the wishlist array
+        wishlist.push(product);
+        // Update the offcanvas display
+        updateOffcanvas();
+    }
+
+    document.querySelectorAll('.btn-cart').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const productCard = e.target.closest('.product-card');
+            if (!productCard) return;
+
+            // Get product details from the card
+            const product = {
+                title: productCard.querySelector('.card-title').innerText,
+                image: productCard.querySelector('.card-image').src,
+                price: productCard.querySelector('.card-title').innerText,
+            };
+            
+            // Add product to wishlist
+            addToWishlist(product);
+        });
+    });
+
+    deleteSelectedBtn.addEventListener('click', () => {
+        const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
+        
+        // Iterate backward to safely remove items
+        for (let i = checkboxes.length - 1; i >= 0; i--) {
+            const checkbox = checkboxes[i];
+            if (checkbox.checked) {
+                const index = parseInt(checkbox.getAttribute('data-index'), 10);
+                wishlist.splice(index, 1);
+                checkbox.closest('.items').remove();
+            }
+        }
+
+        updateOffcanvas();
+    });
+});
+</script>
+
+
 
 
 
