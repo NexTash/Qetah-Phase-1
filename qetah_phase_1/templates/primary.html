@@ -202,28 +202,40 @@
   <script>
     AOS.init();
   </script>
-  <!-- counter -->
-  <script>
-    document.querySelectorAll(".quantity-counter").forEach((counter) => {
-      let count = 0;
+<!-- counter -->
 
-      const counterValue = counter.querySelector(".counter-value");
-      const counterIncrement = counter.querySelector(".counter-increment");
-      const counterDecrement = counter.querySelector(".counter-decrement");
-
-      counterIncrement.addEventListener("click", () => {
-        count++;
-        counterValue.value = count;
-      });
-
-      counterDecrement.addEventListener("click", () => {
-        if (count > 0) {
-          // Only decrement if count is greater than 0
-          count--;
+<script>
+  document.addEventListener('click', (event) => {
+      const target = event.target;
+  
+      if (target.classList.contains('counter-increment')) {
+          const counter = target.closest('.counter');
+          const counterValue = counter.querySelector('.counter-value');
+          let count = parseInt(counterValue.value, 10) || 0;
+          count++;
           counterValue.value = count;
-        }
-      });
-    });
+      }
+  
+      if (target.classList.contains('counter-decrement')) {
+          const counter = target.closest('.counter');
+          const counterValue = counter.querySelector('.counter-value');
+          let count = parseInt(counterValue.value, 10) || 0;
+          if (count > 0) {
+              count--;
+              counterValue.value = count;
+          }
+      }
+  });
+  
+  // Handle manual input changes
+  document.addEventListener('input', (event) => {
+      if (event.target.classList.contains('counter-value')) {
+          const counterValue = event.target;
+          let count = parseInt(counterValue.value, 10);
+          count = isNaN(count) ? 0 : Math.max(0, count);
+          counterValue.value = count;
+      }
+  });
   </script>
   <!-- aside -->
   <script>
@@ -297,8 +309,179 @@
     });
 
   </script>
+<!-- cart -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      const offcanvas = document.getElementById('offcanvas-cart');
+      const offcanvasBody = offcanvas.querySelector('.offcanvas-body-cart'); // Add this line to get the offcanvas body
+      const badge = document.querySelector('.cart-badge'); // Update this selector if needed
+      const deleteSelectedBtn = document.getElementById('del-cart');
 
+      let wishlist = [];
 
+      function updateOffcanvas() {
+          // Clear the current items
+          offcanvasBody.innerHTML = '';
+
+          // Add each item in the wishlist to the offcanvas
+          wishlist.forEach((item, index) => {
+              const itemDiv = document.createElement('div');
+              itemDiv.className = 'items d-flex';
+              itemDiv.innerHTML = `
+              <div class="check-item">
+                  <label class="check check-secondary">
+                      <input type="checkbox" class="item-checkbox" data-index="${index}" />
+                  </label>
+              </div>
+              <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
+              <div class="text">
+                  <p class="offcanvas-title text-ellipsis">${item.title}</p>
+                  <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;}">${item.desc}</div>
+                   <div class="quantity-counter">
+                  <p class="price">${item.price}</p>
+                          <div class="counter">
+          <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement"></button>
+          <input class="counter-value value" type="number" value="0" min="0" />
+          <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment"></button>
+      </div> 
+                        </div>
+                  
+              </div>
+          `;
+              offcanvasBody.appendChild(itemDiv);
+          });
+
+          // Update badge number
+          badge.textContent = wishlist.length;
+      }
+
+      function addToWishlist(product) {
+          // Add the product to the wishlist array
+          wishlist.push(product);
+          // Update the offcanvas display
+          updateOffcanvas();
+      }
+
+      document.querySelectorAll('.btn-cart').forEach(button => {
+          button.addEventListener('click', (e) => {
+              const productCard = e.target.closest('.product-card');
+              if (!productCard) return;
+
+              // Get product details from the card
+              const product = {
+                  title: productCard.querySelector('.card-title').innerText,
+                  image: productCard.querySelector('.card-image').src,
+                  desc: productCard.querySelector('.card-desc').innerText,
+                  price: productCard.querySelector('.card-price').innerText,
+              };
+
+              // Add product to wishlist
+              addToWishlist(product);
+          });
+      });
+
+      deleteSelectedBtn.addEventListener('click', () => {
+          const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
+
+          // Iterate backward to safely remove items
+          for (let i = checkboxes.length - 1; i >= 0; i--) {
+              const checkbox = checkboxes[i];
+              if (checkbox.checked) {
+                  const index = parseInt(checkbox.getAttribute('data-index'), 10);
+                  wishlist.splice(index, 1);
+                  checkbox.closest('.items').remove();
+              }
+          }
+
+          updateOffcanvas();
+      });
+  });
+</script>
+<!-- wishlist -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      const offcanvas = document.getElementById('offcanvas');
+      const offcanvasBody = offcanvas.querySelector('.offcanvas-body'); // Add this line to get the offcanvas body
+      const badge = document.querySelector('.noti-badge'); // Update this selector if needed
+      const deleteSelectedBtn = document.getElementById('deleteSelectedBtn');
+
+      let wishlist = [];
+
+      function updateOffcanvas() {
+          // Clear the current items
+          offcanvasBody.innerHTML = '';
+
+          // Add each item in the wishlist to the offcanvas
+          wishlist.forEach((item, index) => {
+              const itemDiv = document.createElement('div');
+              itemDiv.className = 'items d-flex';
+              itemDiv.innerHTML = `
+              <div class="check-item">
+                  <label class="check check-secondary">
+                      <input type="checkbox" class="item-checkbox" data-index="${index}" />
+                  </label>
+              </div>
+              <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
+              <div class="text">
+                  <p class="offcanvas-title text-ellipsis">${item.title}</p>
+                  <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;}">${item.desc}</div>
+                   <div class="quantity-counter">
+                  <p class="price">${item.price}</p>
+                          <div class="counter">
+          <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement"></button>
+          <input class="counter-value value" type="number" value="0" min="0" />
+          <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment"></button>
+      </div> 
+                        </div>
+                  
+              </div>
+          `;
+              offcanvasBody.appendChild(itemDiv);
+          });
+          badge.textContent = wishlist.length;
+      }
+
+      function addToWishlist(product) {
+          // Add the product to the wishlist array
+          wishlist.push(product);
+          // Update the offcanvas display
+          updateOffcanvas();
+      }
+
+      document.querySelectorAll('.btn-heart').forEach(button => {
+          button.addEventListener('click', (e) => {
+              const productCard = e.target.closest('.product-card');
+              if (!productCard) return;
+
+              // Get product details from the card
+              const product = {
+                  title: productCard.querySelector('.card-title').innerText,
+                  image: productCard.querySelector('.card-image').src,
+                  desc: productCard.querySelector('.card-desc').innerText,
+                  price: productCard.querySelector('.card-price').innerText,
+              };
+
+              // Add product to wishlist
+              addToWishlist(product);
+          });
+      });
+
+      deleteSelectedBtn.addEventListener('click', () => {
+          const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
+          // Iterate backward to safely remove items
+          for (let i = checkboxes.length - 1; i >= 0; i--) {
+              const checkbox = checkboxes[i];
+              if (checkbox.checked) {
+                  const index = parseInt(checkbox.getAttribute('data-index'), 10);
+                  wishlist.splice(index, 1);
+                  checkbox.closest('.items').remove();
+              }
+          }
+          updateOffcanvas();
+      });
+
+  });
+</script>
   <!--Block SCRIPTS-->
   {% block scripts %} {% endblock %}
   <!-- SCRIPTS-->

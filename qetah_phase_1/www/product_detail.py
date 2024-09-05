@@ -9,6 +9,8 @@ def get_context(context):
     
     products = frappe.get_all('Product',filters={"name": id}, fields=['*'])
     testimonils = frappe.get_all('Testimonial',filters={}, fields=['*'])
+    bigimage = frappe.get_all('Big Images',filters={}, fields=['*'])
+
     
     for product in products:
         product['variations'] = frappe.get_all(
@@ -24,5 +26,6 @@ def get_context(context):
         )
     context.update({
         "products": products,
-        "testimonils": testimonils
+        "testimonils": testimonils,
+        "bigimage" :bigimage,
     })

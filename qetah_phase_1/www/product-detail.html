@@ -3,6 +3,43 @@
 {% block title %} QETAH | Product Detail {% endblock %}
 
 {% block content %}
+<style>
+
+
+#image-zoomer-box {
+  max-width: 500px;
+  height: auto;
+  position: relative;
+}
+
+#image-1 {
+  width: 100%;
+  height: auto;
+}
+
+#image-zoomer-box:hover, #image-zoomer-box:active {
+  cursor: crosshair;
+}
+
+#image-zoomer-box:hover #image-2, #image-zoomer-box:active #image-2 {
+  opacity: 1;
+}
+
+#image-2 {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  background: url("/assets/qetah_phase_1/images/stiched-men.webp") no-repeat #fff;
+  background-size: 300%; /* Increase to zoom more */
+  box-shadow: 0px 5px 10px -2px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  opacity: 0;
+  border: 3px solid whitesmoke;
+  border-radius: 100%;
+  transition: opacity .2s;
+  z-index: 999;
+}
+</style>
 <!-- sidebar start -->
 <aside id="sidebar" class="sidebar-header" :class="{'static-sidebar': isStatic}" x-data="{ sidebarOpen: false }">
   <!-- Course Sidebar Header -->
@@ -40,7 +77,7 @@
         <span class="divider divider-text divider-secondary">About</span>
       </a>
       <a href="/story" data-target="sidebar-tooltip" data-title="Story">
-        <div class="auth-media sidebar-active">
+        <div class="auth-media ">
           <i class="bx bx-book"></i>
           <div class="auth-intro" x-show="isStatic" x-cloak>
             <h3 class="heading"><a href="/story">Story</a></h3>
@@ -70,7 +107,7 @@
         <span class="divider divider-text divider-secondary">About</span>
       </a>
       <a href="/product" data-target="sidebar-tooltip" data-title="Shop">
-        <div class="auth-media">
+        <div class="auth-media sidebar-active">
           <i class="bx bx-store"></i>
           <div class="auth-intro" x-show="isStatic" x-cloak>
             <h3 class="heading"><a href="/product">Shop</a></h3>
@@ -163,7 +200,7 @@
 <div class="content-area" :class="{'shifted-content': isStatic}">
   <div class="container detailed-product">
     <div class="row row-col-2">
-      <div class="row row-col-2">
+      <div class="row row-col-2 product-details">
         {% for product in products %}
         <div class="col product-image-area">
           <div class="images">
@@ -171,34 +208,36 @@
               {% for image in product.images %}
               <img src="{{ image.images }}" alt="Product Image" class="img" data-target="img{{ loop.index }}" />
               {% endfor %}
-
             </div>
-            <div class="product-image">
-              <img id="img1" src="{{product.featured_image}}" alt="Main Product Image" class="img main-img" />
+            {% for image in bigimage  %}
+            <div class="product-image" id="image-zoomer-box">
+              <img id="img{{ loop.index }}" src="{{image.images}}" alt="Main Product Image" class="img main-img detail-img" />
+              <div id="image-2"></div>
             </div>
+            {% endfor %}
           </div>
         </div>
-
         <div class="col product-content-area">
           <div class="product-detail-content">
             <div class="product-head">
               {% if product.variations %}
               {% for variation in product.variations %}
               <p>{{ variation.intro }}</p>
-              <h1>{{ variation.title }}</h1>
+              <h1 class="p-title">{{ variation.title }}</h1>
               <div class="product-body">
                 <div class="content-body">
-                  <h2 class="price-head">$
-                    {{ variation.price }} <span class="hori">|</span>
+                  <h2 class="price-head"><span class="p-price">
+                    $ {{ variation.price }}
+                  </span><span class="hori">|</span>
                     <div class="badge badge-danger badge-pill">{{ product.category }}</div>
                   </h2>
                   <div class="content">
-                    <p class="text-ellipsis text-ellipsis-3">{{ variation.description }}</p>
+                    <div class="content-desc text-ellipsis text-ellipsis-3">{{ variation.description }}</div>
                   </div>
                   <div class="sizes">
                     <button class="btn btn-light btn-sm">sm</button>
-                    <button class="btn btn-light btn-sm">lg</button>
                     <button class="btn btn-light btn-sm active">md</button>
+                    <button class="btn btn-light btn-sm">lg</button>
                     <button class="btn btn-light btn-sm">xl</button>
                     <button class="btn btn-light btn-sm">xxl</button>
                   </div>
@@ -223,7 +262,7 @@
                 </button>
 
 
-                <button class="btn btn-light btn-lg btn-icon">
+                <button class="btn btn-light btn-lg btn-icon btn-heart">
                   <i class="bx bx-heart icon-pre"></i>Save To Wishlist
                 </button>
               </div>
@@ -252,10 +291,7 @@
         </div>
         {% endfor %}
       </div>
-
-
-
-
+</div>
       <div class="container products">
         <h1 class="text-start">Related Product</h1>
         <!-- Slider main container -->
@@ -290,7 +326,7 @@
                   </a>
                   <div class="card-foot">
                     <button class="btn btn-light btn-icon btn-pill"><i class="bx bx-cart icon-pre"></i> Buy Now</button>
-                    <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                    <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
                   </div>
                 </div>
 
@@ -372,23 +408,234 @@
           });
         });
       </script>
-      <!-- header-fixed
- <script>
-  let lastScrollTop = 0;
-  const header = document.getElementById("header");
+    <!-- cart -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      const offcanvas = document.getElementById('offcanvas-cart');
+      const offcanvasBody = offcanvas.querySelector('.offcanvas-body-cart'); // Add this line to get the offcanvas body
+      const badge = document.querySelector('.cart-badge'); // Update this selector if needed
+      const deleteSelectedBtn = document.getElementById('del-cart');
 
-  window.addEventListener("scroll", function() {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      let wishlist = [];
 
-      if (scrollTop < lastScrollTop) {
-          // Scroll up - show header
-          header.style.transform = "translateY(0)";
-      } else {
-          // Scroll down - hide header
-          header.style.transform = "translateY(-100%)";
+      function updateOffcanvas() {
+          // Clear the current items
+          offcanvasBody.innerHTML = '';
+
+          // Add each item in the wishlist to the offcanvas
+          wishlist.forEach((item, index) => {
+              const itemDiv = document.createElement('div');
+              itemDiv.className = 'items d-flex';
+              itemDiv.innerHTML = `
+              <div class="check-item">
+                  <label class="check check-secondary">
+                      <input type="checkbox" class="item-checkbox" data-index="${index}" />
+                  </label>
+              </div>
+              <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
+              <div class="text">
+                  <p class="offcanvas-title text-ellipsis">${item.title}</p>
+                  <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;}">${item.desc}</div>
+                   <div class="quantity-counter">
+                  <p class="price">${item.price}</p>
+                          <div class="counter">
+          <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement"></button>
+          <input class="counter-value value" type="number" value="0" min="0" />
+          <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment"></button>
+      </div> 
+                        </div>
+                  
+              </div>
+          `;
+              offcanvasBody.appendChild(itemDiv);
+          });
+
+          // Update badge number
+          badge.textContent = wishlist.length;
       }
 
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+      function addToWishlist(product) {
+          // Add the product to the wishlist array
+          wishlist.push(product);
+          // Update the offcanvas display
+          updateOffcanvas();
+      }
+
+      document.querySelectorAll('.btn-cart').forEach(button => {
+          button.addEventListener('click', (e) => {
+              const productCard = e.target.closest('.product-card');
+              if (!productCard) return;
+
+              // Get product details from the card
+              const product = {
+                  title: productCard.querySelector('.card-title').innerText,
+                  image: productCard.querySelector('.card-image').src,
+                  desc: productCard.querySelector('.card-desc').innerText,
+                  price: productCard.querySelector('.card-price').innerText,
+              };
+
+              // Add product to wishlist
+              addToWishlist(product);
+          });
+      });
+
+      deleteSelectedBtn.addEventListener('click', () => {
+          const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
+
+          // Iterate backward to safely remove items
+          for (let i = checkboxes.length - 1; i >= 0; i--) {
+              const checkbox = checkboxes[i];
+              if (checkbox.checked) {
+                  const index = parseInt(checkbox.getAttribute('data-index'), 10);
+                  wishlist.splice(index, 1);
+                  checkbox.closest('.items').remove();
+              }
+          }
+
+          updateOffcanvas();
+      });
   });
-</script> -->
+</script>
+<!-- wishlist -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      const offcanvas = document.getElementById('offcanvas');
+      const offcanvasBody = offcanvas.querySelector('.offcanvas-body'); // Add this line to get the offcanvas body
+      const badge = document.querySelector('.noti-badge'); // Update this selector if needed
+      const deleteSelectedBtn = document.getElementById('deleteSelectedBtn');
+
+
+
+      let wishlist = [];
+
+      function updateOffcanvas() {
+          // Clear the current items
+          offcanvasBody.innerHTML = '';
+
+          // Add each item in the wishlist to the offcanvas
+          wishlist.forEach((item, index) => {
+              const itemDiv = document.createElement('div');
+              itemDiv.className = 'items d-flex';
+              itemDiv.innerHTML = `
+              <div class="check-item">
+                  <label class="check check-secondary">
+                      <input type="checkbox" class="item-checkbox" data-index="${index}" />
+                  </label>
+              </div>
+              <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
+              <div class="text">
+                  <p class="offcanvas-title text-ellipsis">${item.title}</p>
+                  <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;}">${item.desc}</div>
+                   <div class="badge badge-secondary mt-2">${item.size}</div>
+                   <div class="quantity-counter">
+                  <p class="price">${item.price}</p>
+                          <div class="counter">
+          <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement"></button>
+          <input class="counter-value value" type="number" value="0" min="0" />
+          <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment"></button>
+      </div> 
+                        </div>
+                  
+              </div>
+          `;
+              offcanvasBody.appendChild(itemDiv);
+          });
+          badge.textContent = wishlist.length;
+      }
+
+      function addToWishlist(product) {
+          // Add the product to the wishlist array
+          wishlist.push(product);
+          // Update the offcanvas display
+          updateOffcanvas();
+      }
+
+      document.querySelectorAll('.btn-heart').forEach(button => {
+          button.addEventListener('click', (e) => {
+              const productCard = e.target.closest('.product-details');
+              if (!productCard) return;
+
+              // Get product details from the card
+              const product = {
+                  title: productCard.querySelector('.p-title').innerText,
+                  image: productCard.querySelector('.detail-img').src,
+                  desc: productCard.querySelector('.content-desc').innerText,
+                  size: productCard.querySelector('.active').innerText,
+                  price: productCard.querySelector('.p-price').innerText,
+              };
+
+              // Add product to wishlist
+              addToWishlist(product);
+          });
+      });
+
+      deleteSelectedBtn.addEventListener('click', () => {
+          const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
+          const indicesToRemove = new Set();
+
+          // Collect indices of checked checkboxes
+          checkboxes.forEach(checkbox => {
+              if (checkbox.checked) {
+                  const index = parseInt(checkbox.getAttribute('data-index'), 10);
+                  if (!isNaN(index)) {
+                      indicesToRemove.add(index);
+                  }
+              }
+          });
+
+          // Remove items from wishlist based on collected indices
+          indicesToRemove.forEach(index => {
+              if (index >= 0 && index < wishlist.length) {
+                  wishlist.splice(index, 1);
+              }
+          });
+
+          // Remove items from the DOM
+          checkboxes.forEach(checkbox => {
+              if (checkbox.checked) {
+                  const itemElement = checkbox.closest('.items');
+                  if (itemElement) {
+                      itemElement.remove();
+                  }
+              }
+          });
+
+          // Reindex wishlist and update data-index attributes
+          updateOffcanvas();
+      });
+
+
+  });
+</script>
+<!-- zoomer img -->
+<script>
+  const zoomBox = document.querySelector("#image-zoomer-box");
+  const originalImage = document.querySelector("#image-1");
+  const magnified = document.querySelector("#image-2");
+
+  zoomBox.addEventListener("mousemove", function (e) {
+      const rect = originalImage.getBoundingClientRect(); // Get position of the image
+      const x = e.clientX - rect.left; // X-coordinate of cursor relative to the image
+      const y = e.clientY - rect.top; // Y-coordinate of cursor relative to the image
+      const imgWidth = originalImage.offsetWidth;
+      const imgHeight = originalImage.offsetHeight;
+
+      // Calculate percentage positions for the zoomed background
+      const xPercent = (x / imgWidth) * 100;
+      const yPercent = (y / imgHeight) * 100;
+
+      // Set background position and zoom area position
+      magnified.style.backgroundPosition = `${xPercent}% ${yPercent}%`;
+      magnified.style.left = `${x - magnified.offsetWidth / 2}px`;
+      magnified.style.top = `${y - magnified.offsetHeight / 2}px`;
+  });
+
+  zoomBox.addEventListener("mouseleave", function () {
+      magnified.style.opacity = 0; // Hide zoom on mouse leave
+  });
+
+  zoomBox.addEventListener("mouseenter", function () {
+      magnified.style.opacity = 1; // Show zoom on mouse enter
+  });
+</script>
       {% endblock %}

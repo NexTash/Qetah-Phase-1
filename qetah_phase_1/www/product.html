@@ -169,6 +169,7 @@
 </aside>
 <!--/ Course Sidebar End -->
 <div class="content-area" :class="{'shifted-content': isStatic}">
+
     <div class="container section-products">
         <div class="filters">
 
@@ -221,8 +222,6 @@
                 <button type="button" class="btn btn-secondary" onclick="applyFilters()">Apply</button>
             </div>
         </div>
-
-
         <div class="filtered-cards">
             <div class="container model-container" x-data="{ isOpen: false }">
                 <button class="btn btn-light btn-icon btn-model" x-on:click="isOpen = true">Filters</button>
@@ -333,7 +332,7 @@
                                                             variation.description }}</div>
                                                         <div class="card-subtitle"><del>{{ variation.discount}}</del>
                                                         </div>
-                                                        <div class="card-title">$ {{ variation.price }}</div>
+                                                        <div class="card-title card-price">$ {{ variation.price }}</div>
                                                     </div>
                                                     {% endfor %}
 
@@ -612,11 +611,8 @@
         });
     }
 </script>
-
 {% endblock %}
-
 {% block scripts %}
-
 <script>
     function applyCategoryFilter(category) {
         const filters = {
@@ -627,98 +623,6 @@
         const queryString = new URLSearchParams(filters).toString();
         window.location.href = `/product?${queryString}`;
     }
-</script>
-<!-- wishlist -->
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const offcanvas = document.getElementById('offcanvas');
-        const offcanvasBody = offcanvas.querySelector('.offcanvas-body'); // Add this line to get the offcanvas body
-        const badge = document.querySelector('.noti-badge'); // Update this selector if needed
-        const deleteSelectedBtn = document.getElementById('deleteSelectedBtn');
-
-        let wishlist = [];
-
-        function updateOffcanvas() {
-            // Clear the current items
-            offcanvasBody.innerHTML = '';
-
-            // Add each item in the wishlist to the offcanvas
-            wishlist.forEach((item, index) => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'items d-flex';
-                itemDiv.innerHTML = `
-                <div class="check-item">
-                    <label class="check check-secondary">
-                        <input type="checkbox" class="item-checkbox" data-index="${index}" />
-                    </label>
-                </div>
-                <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
-                <div class="text">
-                    <p class="offcanvas-title text-ellipsis">${item.title}</p>
-                     <div class="quantity-counter">
-                    <p class="price">${item.price}</p>
-                            <div class="counter">
-                              <button
-                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
-                              ></button>
-                              <input
-                                class="counter-value value"
-                                type="number"
-                                value="0"
-                              />
-                              <button
-                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
-                              ></button>
-                            </div>
-                          </div>
-                    
-                </div>
-            `;
-                offcanvasBody.appendChild(itemDiv);
-            });
-            badge.textContent = wishlist.length;
-        }
-
-        function addToWishlist(product) {
-            // Add the product to the wishlist array
-            wishlist.push(product);
-            // Update the offcanvas display
-            updateOffcanvas();
-        }
-
-        document.querySelectorAll('.btn-heart').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const productCard = e.target.closest('.product-card');
-                if (!productCard) return;
-
-                // Get product details from the card
-                const product = {
-                    title: productCard.querySelector('.card-title').innerText,
-                    image: productCard.querySelector('.card-image').src,
-                    price: productCard.querySelector('.card-title').innerText,
-                };
-
-                // Add product to wishlist
-                addToWishlist(product);
-            });
-        });
-
-        deleteSelectedBtn.addEventListener('click', () => {
-            const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
-            // Iterate backward to safely remove items
-            for (let i = checkboxes.length - 1; i >= 0; i--) {
-                const checkbox = checkboxes[i];
-                if (checkbox.checked) {
-                    const index = parseInt(checkbox.getAttribute('data-index'), 10);
-                    wishlist.splice(index, 1);
-                    checkbox.closest('.items').remove();
-                }
-            }
-
-            updateOffcanvas();
-        });
-
-    });
 </script>
 <script>
     function applyFilters(event) {
@@ -736,9 +640,6 @@
         const queryString = new URLSearchParams(filters).toString();
         window.location.href = `/product?${queryString}`;
     }
-</script>
-<script>
-
 </script>
 <script>
     function getVals() {
@@ -778,100 +679,7 @@
         }
     }
 </script>
-<!-- cart -->
-<!-- cart -->
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const offcanvas = document.getElementById('offcanvas-cart');
-        const offcanvasBody = offcanvas.querySelector('.offcanvas-body-cart'); // Add this line to get the offcanvas body
-        const badge = document.querySelector('.cart-badge'); // Update this selector if needed
-        const deleteSelectedBtn = document.getElementById('del-cart');
 
-        let wishlist = [];
-
-        function updateOffcanvas() {
-            // Clear the current items
-            offcanvasBody.innerHTML = '';
-
-            // Add each item in the wishlist to the offcanvas
-            wishlist.forEach((item, index) => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'items d-flex';
-                itemDiv.innerHTML = `
-                <div class="check-item">
-                    <label class="check check-secondary">
-                        <input type="checkbox" class="item-checkbox" data-index="${index}" />
-                    </label>
-                </div>
-                <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
-                <div class="text">
-                    <p class="offcanvas-title text-ellipsis">${item.title}</p>
-                    <div class="quantity-counter">
-                        <p class="price">${item.price}</p>
-                        <div class="counter">
-                            <button
-                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"
-                            ></button>
-                            <input
-                                class="counter-value value"
-                                type="number"
-                                value="0"
-                            />
-                            <button
-                                class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"
-                            ></button>
-                        </div>
-                    </div>
-                </div>
-            `;
-                offcanvasBody.appendChild(itemDiv);
-            });
-
-            // Update badge number
-            badge.textContent = wishlist.length;
-        }
-
-        function addToWishlist(product) {
-            // Add the product to the wishlist array
-            wishlist.push(product);
-            // Update the offcanvas display
-            updateOffcanvas();
-        }
-
-        document.querySelectorAll('.btn-cart').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const productCard = e.target.closest('.product-card');
-                if (!productCard) return;
-
-                // Get product details from the card
-                const product = {
-                    title: productCard.querySelector('.card-title').innerText,
-                    image: productCard.querySelector('.card-image').src,
-                    price: productCard.querySelector('.card-title').innerText,
-                };
-
-                // Add product to wishlist
-                addToWishlist(product);
-            });
-        });
-
-        deleteSelectedBtn.addEventListener('click', () => {
-            const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
-
-            // Iterate backward to safely remove items
-            for (let i = checkboxes.length - 1; i >= 0; i--) {
-                const checkbox = checkboxes[i];
-                if (checkbox.checked) {
-                    const index = parseInt(checkbox.getAttribute('data-index'), 10);
-                    wishlist.splice(index, 1);
-                    checkbox.closest('.items').remove();
-                }
-            }
-
-            updateOffcanvas();
-        });
-    });
-</script>
 
 
 

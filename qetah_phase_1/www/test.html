@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Zoomer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #image-zoomer-box {
+            max-width: 500px;
+            height: auto;
+            position: relative;
+            margin: 50px auto;
+        }
+
+        #image-1 {
+            width: 100%;
+            height: auto;
+        }
+
+        #image-zoomer-box:hover, #image-zoomer-box:active {
+            cursor: crosshair;
+        }
+
+        #image-zoomer-box:hover #image-2, #image-zoomer-box:active #image-2 {
+            opacity: 1;
+        }
+
+        #image-2 {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            background: url("/assets/qetah_phase_1/images/stiched-men.webp") no-repeat #fff;
+            background-size: 300%; /* Increase to zoom more */
+            box-shadow: 0px 5px 10px -2px rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+            opacity: 0;
+            border: 3px solid whitesmoke;
+            border-radius: 100%;
+            transition: opacity .2s;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <div id="image-zoomer-box">
+        <img src="/assets/qetah_phase_1/images/stiched-men.webp" id="image-1" alt="Zoomable Image">
+        <div id="image-2"></div>
+    </div>
+
+    <script>
+        const zoomBox = document.querySelector("#image-zoomer-box");
+        const originalImage = document.querySelector("#image-1");
+        const magnified = document.querySelector("#image-2");
+
+        zoomBox.addEventListener("mousemove", function (e) {
+            const rect = originalImage.getBoundingClientRect(); // Get position of the image
+            const x = e.clientX - rect.left; // X-coordinate of cursor relative to the image
+            const y = e.clientY - rect.top; // Y-coordinate of cursor relative to the image
+            const imgWidth = originalImage.offsetWidth;
+            const imgHeight = originalImage.offsetHeight;
+
+            // Calculate percentage positions for the zoomed background
+            const xPercent = (x / imgWidth) * 100;
+            const yPercent = (y / imgHeight) * 100;
+
+            // Set background position and zoom area position
+            magnified.style.backgroundPosition = `${xPercent}% ${yPercent}%`;
+            magnified.style.left = `${x - magnified.offsetWidth / 2}px`;
+            magnified.style.top = `${y - magnified.offsetHeight / 2}px`;
+        });
+
+        zoomBox.addEventListener("mouseleave", function () {
+            magnified.style.opacity = 0; // Hide zoom on mouse leave
+        });
+
+        zoomBox.addEventListener("mouseenter", function () {
+            magnified.style.opacity = 1; // Show zoom on mouse enter
+        });
+    </script>
+</body>
+</html>

@@ -22,7 +22,9 @@
   "images",
   "product_variation_section",
   "variations",
-  "id"
+  "id",
+  "big_image_section",
+  "big_images"
  ],
  "fields": [
   {
@@ -116,12 +118,23 @@
    "fieldname": "discount",
    "fieldtype": "Data",
    "label": "Discount"
+  },
+  {
+   "fieldname": "big_image_section",
+   "fieldtype": "Section Break",
+   "label": "Big Image"
+  },
+  {
+   "fieldname": "big_images",
+   "fieldtype": "Table",
+   "label": "Big Images",
+   "options": "Big Images"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
  "make_attachments_public": 1,
- "modified": "2024-09-03 14:08:05.051362",
+ "modified": "2024-09-05 19:27:24.834528",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Product",

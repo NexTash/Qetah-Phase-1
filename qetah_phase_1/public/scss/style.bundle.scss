@@ -8,6 +8,16 @@ body {
 html {
   overflow-x: hidden;
 }
+    /* CSS to remove the default arrows from all number inputs */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type="number"] {
+        -moz-appearance: textfield; /* For Firefox */
+    }
 @media (max-width: 768px) {
   .program-header-navbar .navbarDrop {
     z-index: 9999;

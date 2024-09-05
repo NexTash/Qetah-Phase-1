@@ -3,6 +3,57 @@
 {% block title %} QETAH | Checkout {% endblock %}
 
 {% block content %}
+<style>
+    .visa {
+            font-family: 'Verdana', 'Arial', sans-serif; /* Use system fonts that resemble Visa */
+            font-weight: bold; /* Bold style similar to Visa */
+            color: #1a1f71; /* Visa's signature blue color */
+            font-size: 50px; /* Adjust size as needed */
+            letter-spacing: 2px; /* Adds spacing similar to the Visa logo */
+            text-transform: uppercase; /* Visa text is usually in uppercase */
+        }
+  .stripe {
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #6772E5;
+  letter-spacing: -0.02em;
+  text-transform: lowercase;
+}
+.stripe-card.focus{
+      border: 2px solid #6772e5;
+      background-color: #c1c6ff69;
+  
+  }
+.stripe-card{
+    .focus{
+      border: 2px solid #6772e5;
+      background-color: #c1c6ff69;
+  
+    }
+}
+.stripe-card .card{
+display: flex;
+justify-content: space-between;
+flex-direction: row;
+outline: none;
+}
+.stripe-card .card .card-head{
+display: flex;
+align-items: center;
+}
+.stripe-card .card .card-head .check input {
+top: -5px;
+}
+.stripe-card .card .card-head .check input:before {
+border-radius: 50px;
+
+}
+.stripe-card .card .card-body .stripe-logo {
+border-radius: 0.5rem;
+}
+
+</style>
 <!-- sidebar start -->
 <aside id="sidebar" class="sidebar-header" :class="{'static-sidebar': isStatic}" x-data="{ sidebarOpen: false }">
   <!-- Course Sidebar Header -->
@@ -165,63 +216,48 @@
   <div class="container checkout">
     <form action="" method="" class="information" id="informationForm">
       <h5>Delivery Information</h5>
+      <div class="badge badge-secondary m-2">Office</div>
       <div class="grp">
-        <div class="form-field">
-          <label class="field-label">Full Name</label>
-          <div class="field field-dark">
-            <input type="text" class="field-text" id="fullname" name="fullname"
-              placeholder="Enter your first and last name" />
-          </div>
-        </div>
-        <div class="form-field">
-          <label class="field-label">Province</label>
-          <div class="field field-dark">
-            <select id="province" name="province" class="field-select">
-              <option value="">Please choose your province</option>
-              <option value="Option1">Option1</option>
-              <option value="Option2">Option2</option>
-            </select>
-          </div>
-        </div>
+        <h6 class="title">Full Name :</h6>
+        <div class="subtitle">Ammar Shahid</div>
       </div>
       <div class="grp">
-        <div class="form-field">
-          <label class="field-label">Phone Number</label>
-          <div class="field field-dark">
-            <input type="text" class="field-text" id="phone" name="phone"
-              placeholder="Please enter your phone number" />
-          </div>
-        </div>
-        <div class="form-field">
-          <label class="field-label">City</label>
-          <div class="field field-dark">
-            <select id="city" name="city" class="field-select">
-              <option value="">Please choose your city</option>
-              <option value="Option1">Option1</option>
-              <option value="Option2">Option2</option>
-            </select>
-          </div>
-        </div>
+        <h6 class="title">Phone No :</h6>
+        <div class="subtitle">+92 3164241634</div>
       </div>
       <div class="grp">
-        <div class="form-field">
-          <label class="field-label">Address</label>
-          <div class="field field-dark">
-            <input type="text" class="field-text" id="address" name="address" placeholder="Enter your Address" />
-          </div>
-        </div>
-        <div class="form-field">
-          <label class="field-label">Area</label>
-          <div class="field field-dark">
-            <select id="area" name="area" class="field-select">
-              <option value="">Please choose your area</option>
-              <option value="Option1">Option1</option>
-              <option value="Option2">Option2</option>
-            </select>
-          </div>
-        </div>
+        <h6 style="width: 60%;">Address :</h6>
+        <div class="subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo esse ad sit cum praesentium labore deleniti ea aliquam nulla, hic illo est nobis numquam accusantium, ex laboriosam aliquid cupiditate ducimus.</div>
       </div>
-      <button type="button" class="btn btn-secondary btn-checkout" onclick="on_submit()">Save</button>
+      <div class="grp">
+        <h6 class="title">E-mail :</h6>
+        <p class="subtitle">ammarpubgplayer97@gmail.com</p>
+      </div>
+      <div class="grp">
+        <h6 class="title">Province :</h6>
+        <div class="subtitle">Punjab</div>
+      </div>
+      <div class="grp">
+        <h6 class="title">City :</h6>
+        <div class="subtitle">Lahore</div>
+      </div>
+      <div class="grp">
+        <h6 class="title">Zip / Postal Code :</h6>
+        <div class="subtitle">54810</div>
+      </div>
+      <div style="margin: 0px;border: none;width: 100%;color: black;padding: 0;background: rgb(207, 207, 207);height: 1px;"></div>
+      <h5 class="card-title mt-3">Card Payment</h5>
+                <div class="stripe-card">
+                  <div class="card inner-card focus" tabindex="0" data-radio-id="radio1">
+                    <div class="card-head">
+                     <label class="check check-disable"> <input  type="checkbox" checked="checked" disabled id="radio1"/></label>
+                      <div class="stripe">Stripe</div>
+                    </div>
+                    <div class="card-body">
+                     <img class="stripe-logo" src="/assets/qetah_phase_1/images/stripe.svg" height="50px" width="50px">
+                    </div>
+                  </div>
+                </div>
     </form>
 
     <form action="" method="POST" class="payment" id="paymentForm">
@@ -340,24 +376,33 @@
       });
     }
   </script>
-  {% endblock %}
-
-  <!-- header-fixed
+  <!-- stripe-card -->
   <script>
-    let lastScrollTop = 0;
-    const header = document.getElementById("header");
-
-    window.addEventListener("scroll", function() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        if (scrollTop < lastScrollTop) {
-            // Scroll up - show header
-            header.style.transform = "translateY(0)";
-        } else {
-            // Scroll down - hide header
-            header.style.transform = "translateY(-100%)";
+    // Get all the card and radio input elements
+    const cards = document.querySelectorAll('.inner-card');
+    const radios = document.querySelectorAll('input[type="checkbox"]');
+    
+    // Add event listener to each card
+    cards.forEach(card => {
+      card.addEventListener('click', function() {
+        // Remove focus and checked attributes from all cards and radios
+        cards.forEach(c => c.classList.remove('focus'));
+        radios.forEach(r => r.removeAttribute('checked'));
+    
+        // Add focus class to the clicked card
+        this.classList.add('focus');
+        
+        // Get the associated radio input using the data attribute
+        const radioId = this.getAttribute('data-radio-id');
+        const radio = document.getElementById(radioId);
+        
+        // Set the checked attribute on the associated radio input
+        if (radio) {
+          radio.setAttribute('checked', 'checked');
         }
-
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+      });
     });
-</script> -->
+    
+    
+       </script>
+  {% endblock %}
