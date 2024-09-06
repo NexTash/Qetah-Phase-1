@@ -171,16 +171,16 @@ document.getElementById('addToCartBtn')?.addEventListener('click', function () {
 });
 
 // Handle counter increments
-document.querySelectorAll('.counter-increment').forEach(button => {
-  button.addEventListener('click', function () {
-    var counter = this.previousElementSibling;
-    var value = parseInt(counter.value, 10);
-    counter.value = value + 1;
+// document.querySelectorAll('.counter-increment').forEach(button => {
+//   button.addEventListener('click', function () {
+//     var counter = this.previousElementSibling;
+//     var value = parseInt(counter.value, 10);
+//     counter.value = value + 1;
 
-    // Update cart badge count
-    updateCartBadge(1);
-  });
-});
+//     // Update cart badge count
+//     updateCartBadge(1);
+//   });
+// });
 
 
 

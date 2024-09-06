@@ -169,7 +169,6 @@
 </aside>
 <!--/ Course Sidebar End -->
 <div class="content-area" :class="{'shifted-content': isStatic}">
-
     <div class="container section-products">
         <div class="filters">
 
@@ -310,269 +309,264 @@
                         <!-- Tab Panes -->
                         <div class="tab-panes">
 
-                                <!-- All Products Tab -->
-                                <div x-show="OpenTab == 1" class="tab-pane">
-                                    <div class="row">
-                                        {% for product in products %}
-                                        <div class="products">
-                                            <div class="badge badge-primary badge-pill">{{ product.title }}</div>
-                                            <div class="card product-card">
-                                                <a href="/product-detail?id={{product.name}}">
-                                                    <div class="card-head">
-                                                        <img class="card-image" src="{{ product.featured_image }}"
-                                                            alt="Product Image">
-                                                    </div>
-                                                </a>
-                                                <div class="card-body">
-
-                                                    {% for variation in product.variations %}
-                                                    <div class="variation">
-                                                        <div class="card-title">{{ variation.title }}</div>
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2">{{
-                                                            variation.description }}</div>
-                                                        <div class="card-subtitle"><del>{{ variation.discount}}</del>
-                                                        </div>
-                                                        <div class="card-title card-price">$ {{ variation.price }}</div>
-                                                    </div>
-                                                    {% endfor %}
-
-                                                    <div class="card-rating">
-                                                        <i class="bx bxs-star"></i>
-                                                        <span>{{ product.rating }}</span> ({{product.sold}}) Sold
-                                                    </div>
+                            <!-- All Products Tab -->
+                            <div x-show="OpenTab == 1" class="tab-pane">
+                                <div class="row">
+                                    {% for product in products %}
+                                    <div class="products">
+                                        <div class="badge badge-primary badge-pill">{{ product.title }}</div>
+                                        <div class="card product-card">
+                                            <a href="/product-detail?id={{product.name}}">
+                                                <div class="card-head">
+                                                    <img class="card-image" src="{{ product.featured_image }}"
+                                                        alt="Product Image">
                                                 </div>
-                                                <div class="card-foot">
-                                                    <button class="btn btn-light btn-icon btn-pill btn-cart"
-                                                        onclick="cart()"><i class="bx bx-cart icon-pre"></i> Buy
-                                                        Now</button>
-                                                    <button
-                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
+                                            </a>
+                                            <div class="card-body">
+
+                                                {% for variation in product.variations %}
+                                                <div class="variation">
+                                                    <div class="card-title">{{ variation.title }}</div>
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2">{{
+                                                        variation.description }}</div>
+                                                    <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                    </div>
+                                                    <div class="card-title card-price">$ {{ variation.price }}</div>
                                                 </div>
+                                                {% endfor %}
+
+                                                <div class="card-rating">
+                                                    <i class="bx bxs-star"></i>
+                                                    <span>{{ product.rating }}</span> ({{product.sold}}) Sold
+                                                </div>
+                                            </div>
+                                            <div class="card-foot">
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"
+                                                    onclick="cart()"><i class="bx bx-cart icon-pre"></i> Buy
+                                                    Now</button>
+                                                <button
+                                                    class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
                                             </div>
                                         </div>
-                                        {% endfor %}
                                     </div>
+                                    {% endfor %}
                                 </div>
+                            </div>
 
-                                <!-- Un-stitched Products Tab -->
-                                <div x-show="OpenTab == 2" class="tab-pane">
-                                    <div class="row">
-                                        {% for product in products if product.category == 'Un-stitched' %}
-                                        <div class="products">
-                                            <div class="badge badge-primary badge-pill">{{ product.title }}</div>
-                                            <div class="card product-card">
-                                                <a href="/product-detail?id={{product.name}}">
-                                                    <div class="card-head">
-                                                        <img class="card-image" src="{{ product.featured_image }}"
-                                                            alt="Product Image">
-                                                    </div>
-                                                </a>
-                                                <div class="card-body">
-                                                    {% if product.variations %}
-                                                    {% for variation in product.variations %}
-                                                    <div class="variation">
-                                                        <div class="card-title">{{ variation.title }}</div>
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2">{{
-                                                            variation.description }}</div>
-                                                        <div class="card-subtitle"><del>{{ variation.price }}</del>
-                                                        </div>
-                                                        <div class="card-title">USD {{ variation.discount }}</div>
-                                                    </div>
-                                                    {% endfor %}
-                                                    {% else %}
-                                                    <p>No variations available</p>
-                                                    {% endif %}
-                                                    <div class="card-rating">
-                                                        <i class="bx bxs-star"></i>
-                                                        <span>{{ product.rating_count }}</span> (12.3k) Sold
-                                                    </div>
+                            <!-- Un-stitched Products Tab -->
+                            <div x-show="OpenTab == 2" class="tab-pane">
+                                <div class="row">
+                                    {% for product in products if product.category == 'Un-stitched' %}
+                                    <div class="products">
+                                        <div class="badge badge-primary badge-pill">{{ product.title }}</div>
+                                        <div class="card product-card">
+                                            <a href="/product-detail?id={{product.name}}">
+                                                <div class="card-head">
+                                                    <img class="card-image" src="{{ product.featured_image }}"
+                                                        alt="Product Image">
                                                 </div>
-                                                <div class="card-foot">
-                                                    <button class="btn btn-light btn-icon btn-pill btn-cart"><i
-                                                            class="bx bx-cart icon-pre"></i> Buy Now</button>
-                                                    <button
-                                                        class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                                            </a>
+                                            <div class="card-body">
+                                                {% if product.variations %}
+                                                {% for variation in product.variations %}
+                                                <div class="variation">
+                                                    <div class="card-title">{{ variation.title }}</div>
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2">{{
+                                                        variation.description }}</div>
+                                                    <div class="card-subtitle"><del>{{ variation.price }}</del>
+                                                    </div>
+                                                    <div class="card-title">USD {{ variation.discount }}</div>
+                                                </div>
+                                                {% endfor %}
+                                                {% else %}
+                                                <p>No variations available</p>
+                                                {% endif %}
+                                                <div class="card-rating">
+                                                    <i class="bx bxs-star"></i>
+                                                    <span>{{ product.rating_count }}</span> (12.3k) Sold
                                                 </div>
                                             </div>
-                                        </div> {% endfor %}
-                                    </div>
+                                            <div class="card-foot">
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
+                                                        class="bx bx-cart icon-pre"></i> Buy Now</button>
+                                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                                            </div>
+                                        </div>
+                                    </div> {% endfor %}
                                 </div>
+                            </div>
 
-                                <!-- ReadyMade Products Tab -->
-                                <div x-show="OpenTab == 3" class="tab-pane">
-                                    <div class="row">
-                                        {% for product in products if product.category == 'ReadyMade' %}
-                                        <div class="products">
-                                            <div class="badge badge-primary badge-pill">{{ product.title }}</div>
-                                            <div class="card product-card">
-                                                <a href="/product-detail?id={{product.name}}">
-                                                    <div class="card-head">
-                                                        <img class="card-image" src="{{ product.featured_image }}"
-                                                            alt="Product Image">
-                                                    </div>
-                                                </a>
-                                                <div class="card-body">
-                                                    {% if product.variations %}
-                                                    {% for variation in product.variations %}
-                                                    <div class="variation">
-                                                        <div class="card-title">{{ variation.title }}</div>
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2">{{
-                                                            variation.description }}</div>
-                                                        <div class="card-subtitle"><del>{{ variation.price }}</del>
-                                                        </div>
-                                                        <div class="card-title">USD {{ variation.discount }}</div>
-                                                    </div>
-                                                    {% endfor %}
-                                                    {% else %}
-                                                    <p>No variations available</p>
-                                                    {% endif %}
-                                                    <div class="card-rating">
-                                                        <i class="bx bxs-star"></i>
-                                                        <span>{{ product.rating_count }}</span> (12.3k) Sold
-                                                    </div>
+                            <!-- ReadyMade Products Tab -->
+                            <div x-show="OpenTab == 3" class="tab-pane">
+                                <div class="row">
+                                    {% for product in products if product.category == 'ReadyMade' %}
+                                    <div class="products">
+                                        <div class="badge badge-primary badge-pill">{{ product.title }}</div>
+                                        <div class="card product-card">
+                                            <a href="/product-detail?id={{product.name}}">
+                                                <div class="card-head">
+                                                    <img class="card-image" src="{{ product.featured_image }}"
+                                                        alt="Product Image">
                                                 </div>
-                                                <div class="card-foot">
-                                                    <button class="btn btn-light btn-icon btn-pill btn-cart"><i
-                                                            class="bx bx-cart icon-pre"></i> Buy Now</button>
-                                                    <button
-                                                        class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                                            </a>
+                                            <div class="card-body">
+                                                {% if product.variations %}
+                                                {% for variation in product.variations %}
+                                                <div class="variation">
+                                                    <div class="card-title">{{ variation.title }}</div>
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2">{{
+                                                        variation.description }}</div>
+                                                    <div class="card-subtitle"><del>{{ variation.price }}</del>
+                                                    </div>
+                                                    <div class="card-title">USD {{ variation.discount }}</div>
+                                                </div>
+                                                {% endfor %}
+                                                {% else %}
+                                                <p>No variations available</p>
+                                                {% endif %}
+                                                <div class="card-rating">
+                                                    <i class="bx bxs-star"></i>
+                                                    <span>{{ product.rating_count }}</span> (12.3k) Sold
                                                 </div>
                                             </div>
-                                        </div> {% endfor %}
-                                    </div>
+                                            <div class="card-foot">
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
+                                                        class="bx bx-cart icon-pre"></i> Buy Now</button>
+                                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                                            </div>
+                                        </div>
+                                    </div> {% endfor %}
                                 </div>
+                            </div>
 
-                                <!-- Accessories Products Tab -->
-                                <div x-show="OpenTab == 4" class="tab-pane">
-                                    <div class="row">
-                                        {% for product in products if product.category == 'Accessories' %}
-                                        <div class="products">
-                                            <div class="badge badge-primary badge-pill">{{ product.title }}</div>
-                                            <div class="card product-card">
-                                                <a href="/product-detail?id={{product.name}}">
-                                                    <div class="card-head">
-                                                        <img class="card-image" src="{{ product.featured_image }}"
-                                                            alt="Product Image">
-                                                    </div>
-                                                </a>
-                                                <div class="card-body">
-                                                    {% if product.variations %}
-                                                    {% for variation in product.variations %}
-                                                    <div class="variation">
-                                                        <div class="card-title">{{ variation.title }}</div>
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2">{{
-                                                            variation.description }}</div>
-                                                        <div class="card-subtitle"><del>{{ variation.price }}</del>
-                                                        </div>
-                                                        <div class="card-title">USD {{ variation.discount }}</div>
-                                                    </div>
-                                                    {% endfor %}
-                                                    {% else %}
-                                                    <p>No variations available</p>
-                                                    {% endif %}
-                                                    <div class="card-rating">
-                                                        <i class="bx bxs-star"></i>
-                                                        <span>{{ product.rating_count }}</span> (12.3k) Sold
-                                                    </div>
+                            <!-- Accessories Products Tab -->
+                            <div x-show="OpenTab == 4" class="tab-pane">
+                                <div class="row">
+                                    {% for product in products if product.category == 'Accessories' %}
+                                    <div class="products">
+                                        <div class="badge badge-primary badge-pill">{{ product.title }}</div>
+                                        <div class="card product-card">
+                                            <a href="/product-detail?id={{product.name}}">
+                                                <div class="card-head">
+                                                    <img class="card-image" src="{{ product.featured_image }}"
+                                                        alt="Product Image">
                                                 </div>
-                                                <div class="card-foot">
-                                                    <button class="btn btn-light btn-icon btn-pill btn-cart"><i
-                                                            class="bx bx-cart icon-pre"></i> Buy Now</button>
-                                                    <button
-                                                        class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                                            </a>
+                                            <div class="card-body">
+                                                {% if product.variations %}
+                                                {% for variation in product.variations %}
+                                                <div class="variation">
+                                                    <div class="card-title">{{ variation.title }}</div>
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2">{{
+                                                        variation.description }}</div>
+                                                    <div class="card-subtitle"><del>{{ variation.price }}</del>
+                                                    </div>
+                                                    <div class="card-title">USD {{ variation.discount }}</div>
+                                                </div>
+                                                {% endfor %}
+                                                {% else %}
+                                                <p>No variations available</p>
+                                                {% endif %}
+                                                <div class="card-rating">
+                                                    <i class="bx bxs-star"></i>
+                                                    <span>{{ product.rating_count }}</span> (12.3k) Sold
                                                 </div>
                                             </div>
-                                        </div> {% endfor %}
-                                    </div>
+                                            <div class="card-foot">
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
+                                                        class="bx bx-cart icon-pre"></i> Buy Now</button>
+                                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                                            </div>
+                                        </div>
+                                    </div> {% endfor %}
                                 </div>
+                            </div>
 
-                                <!-- Perfumes Products Tab -->
-                                <div x-show="OpenTab == 5" class="tab-pane">
-                                    <div class="row">
-                                        {% for product in products if product.category == 'Perfumes' %}
-                                        <div class="products">
-                                            <div class="badge badge-primary badge-pill">{{ product.title }}</div>
-                                            <div class="card product-card">
-                                                <a href="/product-detail?id={{product.name}}">
-                                                    <div class="card-head">
-                                                        <img class="card-image" src="{{ product.featured_image }}"
-                                                            alt="Product Image">
-                                                    </div>
-                                                </a>
-                                                <div class="card-body">
-                                                    {% if product.variations %}
-                                                    {% for variation in product.variations %}
-                                                    <div class="variation">
-                                                        <div class="card-title">{{ variation.title }}</div>
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2">{{
-                                                            variation.description }}</div>
-                                                        <div class="card-subtitle"><del>{{ variation.price }}</del>
-                                                        </div>
-                                                        <div class="card-title">USD {{ variation.discount }}</div>
-                                                    </div>
-                                                    {% endfor %}
-                                                    {% else %}
-                                                    <p>No variations available</p>
-                                                    {% endif %}
-                                                    <div class="card-rating">
-                                                        <i class="bx bxs-star"></i>
-                                                        <span>{{ product.rating_count }}</span> (12.3k) Sold
-                                                    </div>
+                            <!-- Perfumes Products Tab -->
+                            <div x-show="OpenTab == 5" class="tab-pane">
+                                <div class="row">
+                                    {% for product in products if product.category == 'Perfumes' %}
+                                    <div class="products">
+                                        <div class="badge badge-primary badge-pill">{{ product.title }}</div>
+                                        <div class="card product-card">
+                                            <a href="/product-detail?id={{product.name}}">
+                                                <div class="card-head">
+                                                    <img class="card-image" src="{{ product.featured_image }}"
+                                                        alt="Product Image">
                                                 </div>
-                                                <div class="card-foot">
-                                                    <button class="btn btn-light btn-icon btn-pill btn-cart"><i
-                                                            class="bx bx-cart icon-pre"></i> Buy Now</button>
-                                                    <button
-                                                        class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                                            </a>
+                                            <div class="card-body">
+                                                {% if product.variations %}
+                                                {% for variation in product.variations %}
+                                                <div class="variation">
+                                                    <div class="card-title">{{ variation.title }}</div>
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2">{{
+                                                        variation.description }}</div>
+                                                    <div class="card-subtitle"><del>{{ variation.price }}</del>
+                                                    </div>
+                                                    <div class="card-title">USD {{ variation.discount }}</div>
+                                                </div>
+                                                {% endfor %}
+                                                {% else %}
+                                                <p>No variations available</p>
+                                                {% endif %}
+                                                <div class="card-rating">
+                                                    <i class="bx bxs-star"></i>
+                                                    <span>{{ product.rating_count }}</span> (12.3k) Sold
                                                 </div>
                                             </div>
-                                        </div> {% endfor %}
-                                    </div>
+                                            <div class="card-foot">
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
+                                                        class="bx bx-cart icon-pre"></i> Buy Now</button>
+                                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                                            </div>
+                                        </div>
+                                    </div> {% endfor %}
                                 </div>
+                            </div>
 
-                                <!-- Cutting & Stitching Products Tab -->
-                                <div x-show="OpenTab == 6" class="tab-pane">
-                                    <div class="row">
-                                        {% for product in products if product.category == 'Cutting & Stitching' %}
-                                        <div class="products">
-                                            <div class="badge badge-primary badge-pill">{{ product.title }}</div>
-                                            <div class="card product-card">
-                                                <a href="/product-detail?id={{product.name}}">
-                                                    <div class="card-head">
-                                                        <img class="card-image" src="{{ product.featured_image }}"
-                                                            alt="Product Image">
-                                                    </div>
-                                                </a>
-                                                <div class="card-body">
-                                                    {% if product.variations %}
-                                                    {% for variation in product.variations %}
-                                                    <div class="variation">
-                                                        <div class="card-title">{{ variation.title }}</div>
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2">{{
-                                                            variation.description }}</div>
-                                                        <div class="card-subtitle"><del>{{ variation.price }}</del>
-                                                        </div>
-                                                        <div class="card-title">USD {{ variation.discount }}</div>
-                                                    </div>
-                                                    {% endfor %}
-                                                    {% else %}
-                                                    <p>No variations available</p>
-                                                    {% endif %}
-                                                    <div class="card-rating">
-                                                        <i class="bx bxs-star"></i>
-                                                        <span>{{ product.rating_count }}</span> (12.3k) Sold
-                                                    </div>
+                            <!-- Cutting & Stitching Products Tab -->
+                            <div x-show="OpenTab == 6" class="tab-pane">
+                                <div class="row">
+                                    {% for product in products if product.category == 'Cutting & Stitching' %}
+                                    <div class="products">
+                                        <div class="badge badge-primary badge-pill">{{ product.title }}</div>
+                                        <div class="card product-card">
+                                            <a href="/product-detail?id={{product.name}}">
+                                                <div class="card-head">
+                                                    <img class="card-image" src="{{ product.featured_image }}"
+                                                        alt="Product Image">
                                                 </div>
-                                                <div class="card-foot">
-                                                    <button class="btn btn-light btn-icon btn-pill btn-cart"><i
-                                                            class="bx bx-cart icon-pre"></i> Buy Now</button>
-                                                    <button
-                                                        class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                                            </a>
+                                            <div class="card-body">
+                                                {% if product.variations %}
+                                                {% for variation in product.variations %}
+                                                <div class="variation">
+                                                    <div class="card-title">{{ variation.title }}</div>
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2">{{
+                                                        variation.description }}</div>
+                                                    <div class="card-subtitle"><del>{{ variation.price }}</del>
+                                                    </div>
+                                                    <div class="card-title">USD {{ variation.discount }}</div>
+                                                </div>
+                                                {% endfor %}
+                                                {% else %}
+                                                <p>No variations available</p>
+                                                {% endif %}
+                                                <div class="card-rating">
+                                                    <i class="bx bxs-star"></i>
+                                                    <span>{{ product.rating_count }}</span> (12.3k) Sold
                                                 </div>
                                             </div>
-                                        </div> {% endfor %}
-                                    </div>
+                                            <div class="card-foot">
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
+                                                        class="bx bx-cart icon-pre"></i> Buy Now</button>
+                                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                                            </div>
+                                        </div>
+                                    </div> {% endfor %}
                                 </div>
+                            </div>
 
                         </div>
                     </div>
@@ -600,9 +594,7 @@
                 message: message,
             },
             callback(r) {
-                // console.log(r.message)
                 document.getElementById("messages").innerHTML = r.message;
-
                 document.getElementById("fullname").value = ""
                 document.getElementById("email").value = ""
                 document.getElementById("phone").value = ""
@@ -679,11 +671,342 @@
         }
     }
 </script>
+<!-- cart -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const offcanvas = document.getElementById('offcanvas-cart');
+        const offcanvasBody = offcanvas.querySelector('.offcanvas-body-cart'); // Add this line to get the offcanvas body
+        const badge = document.querySelector('.cart-badge'); // Update this selector if needed
+        const deleteSelectedBtn = document.getElementById('del-cart');
 
+        let wishlist = [];
 
+        function updateOffcanvas() {
+            // Clear the current items
+            offcanvasBody.innerHTML = '';
 
+            // Add each item in the wishlist to the offcanvas
+            wishlist.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'items d-flex';
+                itemDiv.innerHTML = `
+                <div class="check-item" >
+                    <label class="check check-secondary">
+                        <input type="checkbox" class="item-checkbox" data-index="${index}" />
+                    </label>
+                </div>
+                <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
+                <div class="text">
+                    <p class="offcanvas-title text-ellipsis">${item.title}</p>
+                    <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;}">${item.desc}</div>
+                     <div class="quantity-counter">
+                    <p class="price update-price" data-price-per-item="${item.price}">${item.price}</p> 
+                            <div class="counter">
+            <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement"></button>
+            <input class="counter-value value" type="number" value="1" min="0" />
+            <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment"></button>
+        </div> 
+                          </div>
+                    
+                </div>
+            `;
+                offcanvasBody.appendChild(itemDiv);
+            });
 
+            // Update badge number
+            badge.textContent = wishlist.length;
+        }
 
+        function addToWishlist(product) {
+            // Add the product to the wishlist array
+            wishlist.push(product);
+            // Update the offcanvas display
+            updateOffcanvas();
+        }
+
+        document.querySelectorAll('.btn-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const productCard = e.target.closest('.product-card');
+                if (!productCard) return;
+
+                // Get product details from the card
+                const product = {
+                    title: productCard.querySelector('.card-title').innerText,
+                    image: productCard.querySelector('.card-image').src,
+                    desc: productCard.querySelector('.card-desc').innerText,
+                    price: productCard.querySelector('.card-price').innerText,
+                };
+
+                // Add product to wishlist
+                addToWishlist(product);
+            });
+        });
+
+        deleteSelectedBtn.addEventListener('click', () => {
+            const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
+
+            // Iterate backward to safely remove items
+            for (let i = checkboxes.length - 1; i >= 0; i--) {
+                const checkbox = checkboxes[i];
+                if (checkbox.checked) {
+                    const index = parseInt(checkbox.getAttribute('data-index'), 10);
+                    wishlist.splice(index, 1);
+                    checkbox.closest('.items').remove();
+                }
+            }
+
+            updateOffcanvas();
+        });
+    });
+</script>
+<!-- wishlist -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const offcanvas = document.getElementById('offcanvas');
+        const offcanvasBody = offcanvas.querySelector('.offcanvas-body'); // Add this line to get the offcanvas body
+        const badge = document.querySelector('.noti-badge'); // Update this selector if needed
+        const deleteSelectedBtn = document.getElementById('deleteSelectedBtn');
+
+        let wishlist = [];
+
+        function updateOffcanvas() {
+            // Clear the current items
+            offcanvasBody.innerHTML = '';
+
+            // Add each item in the wishlist to the offcanvas
+            wishlist.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'items d-flex';
+                itemDiv.innerHTML = `
+            <div class="check-item">
+                <label class="check check-secondary">
+                    <input type="checkbox" class="item-checkbox" data-index="${index}" />
+                </label>
+            </div>
+            <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
+            <div class="text">
+                  <p class="offcanvas-title text-ellipsis">${item.title}</p>
+                <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;}">${item.desc}</div>
+                    <div class="quantity-counter">
+                            <p class="price update-price" data-price-per-item="${item.price}">${item.price}</p> 
+                        <div class="counter">
+                            <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement"></button>
+                            <input class="counter-value value" type="number" value="1" min="0" />
+                            <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment"></button>
+                        </div> 
+                     </div>
+                  </div>
+        `;
+                offcanvasBody.appendChild(itemDiv);
+            });
+            badge.textContent = wishlist.length;
+        }
+
+        function addToWishlist(product) {
+            // Add the product to the wishlist array
+            wishlist.push(product);
+            // Update the offcanvas display
+            updateOffcanvas();
+        }
+
+        document.querySelectorAll('.btn-heart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const productCard = e.target.closest('.product-card');
+                if (!productCard) return;
+
+                // Get product details from the card
+                const product = {
+                    title: productCard.querySelector('.card-title').innerText,
+                    image: productCard.querySelector('.card-image').src,
+                    desc: productCard.querySelector('.card-desc').innerText,
+                    price: productCard.querySelector('.card-price').innerText,
+                };
+                addToWishlist(product);
+            });
+        });
+
+        deleteSelectedBtn.addEventListener('click', () => {
+            const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
+            // Iterate backward to safely remove items
+            for (let i = checkboxes.length - 1; i >= 0; i--) {
+                const checkbox = checkboxes[i];
+                if (checkbox.checked) {
+                    const index = parseInt(checkbox.getAttribute('data-index'), 10);
+                    wishlist.splice(index, 1);
+                    checkbox.closest('.items').remove();
+                }
+            }
+            updateOffcanvas();
+        });
+
+    });
+    
+    
+
+</script>
+<!-- quanitity -->
+<script>
+ document.addEventListener('DOMContentLoaded', () => {
+    const selectAll1 = document.getElementById("selectAll1");
+    const offcanvasBody1 = document.getElementById("offcanvasBody");
+    const selectAll2 = document.getElementById("selectAll2");
+    const offcanvasBody2 = document.getElementById("offcanvasBody-cart");
+    
+    const quantity1 = document.querySelector(".quantity");
+    const quantity2 = document.querySelector(".quantity-cart");
+
+    function updateQuantity(offcanvasBody, quantityElement) {
+        if (!offcanvasBody || !quantityElement) return;
+        const checkboxes = offcanvasBody.querySelectorAll(".item-checkbox");
+        const checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+        quantityElement.textContent = checkedCount;
+    }
+
+    if (selectAll1 && offcanvasBody1) {
+        selectAll1.addEventListener('change', () => {
+            const checkboxes = offcanvasBody1.querySelectorAll(".item-checkbox");
+            checkboxes.forEach(checkbox => checkbox.checked = selectAll1.checked);
+            updateQuantity(offcanvasBody1, quantity1);
+        });
+
+        offcanvasBody1.addEventListener('change', () => {
+            const checkboxes = offcanvasBody1.querySelectorAll(".item-checkbox");
+            selectAll1.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+            updateQuantity(offcanvasBody1, quantity1);
+        });
+    }
+
+    if (selectAll2 && offcanvasBody2) {
+        selectAll2.addEventListener('change', () => {
+            const checkboxes = offcanvasBody2.querySelectorAll(".item-checkbox");
+            checkboxes.forEach(checkbox => checkbox.checked = selectAll2.checked);
+            updateQuantity(offcanvasBody2, quantity2);
+        });
+
+        offcanvasBody2.addEventListener('change', () => {
+            const checkboxes = offcanvasBody2.querySelectorAll(".item-checkbox");
+            selectAll2.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+            updateQuantity(offcanvasBody2, quantity2);
+        });
+    }
+});
+
+</script>
+<!-- quanity ===========>>>>>> price -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('click', (event) => {
+            const target = event.target;
+
+            if (target.classList.contains('counter-increment') || target.classList.contains('counter-decrement')) {
+                const counter = target.closest('.counter');
+
+                if (!counter) {
+                    return;
+                }
+
+                const counterValue = counter.querySelector('.counter-value');
+
+                if (!counterValue) {
+                    return;
+                }
+
+                const priceElement = counter.closest('.quantity-counter').querySelector('.update-price');
+
+                if (!priceElement) {
+                    return;
+                }
+
+                // Get current total price and price per item
+                let totalPrice = parseFloat(priceElement.textContent.replace(/[^0-9.-]/g, '')); // Remove $ and other non-numeric characters
+                if (isNaN(totalPrice)) {
+                    return;
+                }
+
+                let priceText = priceElement.getAttribute('data-price-per-item'); // Assume price per item is stored in a data attribute
+                let pricePerItem = parseFloat(priceText.replace(/[^0-9.-]/g, '')); // Remove $ and other non-numeric characters
+                if (isNaN(pricePerItem)) {
+                    return;
+                }
+
+                // Update quantity
+                let count = parseInt(counterValue.value, 10) || 0;
+                if (target.classList.contains('counter-increment')) {
+                    count++;
+                    totalPrice += pricePerItem;
+                } else if (target.classList.contains('counter-decrement')) {
+                    if (count > 0) {
+                        count--;
+                        totalPrice -= pricePerItem;
+                    }
+                }
+
+                // Update counter value and price
+                counterValue.value = count;
+                priceElement.textContent = `$${totalPrice.toFixed(2)}`; // Format price with $ symbol
+            }
+        });
+    });
+</script>
+<script>
+function updateSubtotal() {
+    let subtotal = 0;
+    console.log('Updating subtotal...');
+
+    document.querySelectorAll('.items').forEach((item) => {
+        const checkbox = item.querySelector('.item-checkbox');
+        console.log('Checkbox:', checkbox);
+
+        if (checkbox && checkbox.checked) {
+            const priceElement = item.querySelector('.price');
+            const quantityInput = item.querySelector('.counter-value');
+            console.log('Price element:', priceElement ? priceElement.outerHTML : 'Not found');
+            console.log('Quantity input:', quantityInput ? quantityInput.outerHTML : 'Not found');
+
+            if (priceElement && quantityInput) {
+                // Use parseFloat to convert the price to a floating-point number
+                const pricePerItem = (priceElement.getAttribute('data-price-per-item'));
+                // Use parseInt to convert the quantity to an integer
+                const quantity = (quantityInput.value, "0");
+
+                console.log(`Price per item: ${pricePerItem} (Type: ${typeof pricePerItem})`);
+                console.log(`Quantity: ${quantity} (Type: ${typeof quantity})`);
+
+                if (!(pricePerItem) || (quantity)) {
+                    subtotal = pricePerItem + quantity;
+                    console.log(`Subtotal so far: ${subtotal}`);
+                } else {
+                    console.log('Invalid price or quantity');
+                }
+            }
+        }
+    });
+
+    console.log(`Final subtotal: ${subtotal}`);
+    document.getElementById('subTotal').textContent = `${subtotal}`;
+}
+
+document.addEventListener('change', (event) => {
+    if (event.target.classList.contains('item-checkbox') || event.target.classList.contains('counter-value')) {
+        updateSubtotal();
+    }
+});
+
+// document.addEventListener('click', (event) => {
+//     if (event.target.classList.contains('counter-increment') || event.target.classList.contains('counter-decrement')) {
+//         const input = event.target.closest('.quantity-counter').querySelector('.counter-value');
+//         if (event.target.classList.contains('counter-increment')) {
+//             input.value = parseInt(input.value, 10) + 1;
+//         } else if (event.target.classList.contains('counter-decrement')) {
+//             input.value = Math.max(0, parseInt(input.value, 10) - 1);
+//         }
+//         updateSubtotal();
+//     }
+// });
+document.addEventListener('DOMContentLoaded', () => {
+        updateSubtotal(); // Test with static content
+    });
+</script>
 
 
 {% endblock %}

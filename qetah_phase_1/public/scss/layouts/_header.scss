@@ -15,8 +15,19 @@
         position: fixed;
         bottom: 0;
         right: 0;
+        background-color: white;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
         padding: 10px 20px;
+        .card-title{
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .subtotal{
+            display: flex;
+            justify-content: space-between;
+        }
+       .btn-grp{
         display: flex;
         justify-content: end;
         gap: 10px;
@@ -40,6 +51,7 @@
                 color: var(--body);
             }
         }
+       }
     }
 }
 

@@ -35,12 +35,28 @@
                     Add to Wishlist
                     <button class="btn-close" @click="isOpenRight = false"></button>
                   </div>
+                  <div class="select-all" style="padding: 16px 16px 0px 16px;">
+                    <label class="check check-secondary">
+                      <input type="checkbox" id="selectAll1"/>Select All
+                  </label>
+                  <hr style="margin: 5px 0px;
+                  border: none;
+                  width: 100%;
+                  color: black;
+                  padding: 0;
+                  background: darkgrey;
+                  height: 1px;">
+                  </div>
                   <div class="offcanvas-body" id="offcanvasBody">
 
                   </div>
+
                   <div class="offcanvas-foot">
-                    <button class="btn btn-remove" id="deleteSelectedBtn">Delete</button>
-                    <button class="btn btn-cart">Add to cart</button>
+                    
+                    <div class="btn-grp">
+                      <button class="btn btn-remove" id="deleteSelectedBtn">Delete</button>
+                      <button class="btn btn-cart">Add to cart</button>
+                    </div>
                   </div>
                 </div>
                 <div class="overlay" :class="{ 'show': isOpenRight }" @click="isOpenRight = false"></div>
@@ -69,13 +85,36 @@
                         @click="isOpenRight = false"
                       ></button>
                     </div>
+                    <div class="select-all" style="padding: 16px 16px 0px 16px;">
+                      <label class="check check-secondary">
+                        <input type="checkbox" id="selectAll2"/>Select All
+                    </label>
+                    <hr style="margin: 5px 0px;
+                    border: none;
+                    width: 100%;
+                    color: black;
+                    padding: 0;
+                    background: darkgrey;
+                    height: 1px;">
+                    </div>
                     <div class="offcanvas-body offcanvas-body-cart" id="offcanvasBody-cart">
                     </div>
                     <div class="offcanvas-foot">
+                      <div class="card-title">Summary :-</div>
+                    <div class="subtotal">
+                      <p>Items :</p>
+                      <p>Qty : <b class="quantity-cart">0</b></p>
+                    </div>
+                    <div class="subtotal">
+                      <p>Subtotal :</p>
+                      <p style="font-weight: 600;" id="subTotal"></p> 
+                    </div>
+                    <div class="btn-grp">
                       <button class="btn btn-remove" id="del-cart" >Delete</button>
                       <a href="/cart-items">
-                      <button class="btn btn-cart">Checkout</button>
+                      <button class="btn btn-cart">Go to Cart</button>
                       </a>
+                    </div>
                     </div>
                   </div>
                   <div

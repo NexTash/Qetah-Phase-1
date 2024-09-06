@@ -445,8 +445,8 @@
           img {
             max-width: 436px;
             max-height: 560px;
-            height: auto;
-            width: auto;
+            height: 560px;
+            width: 436px;
             @media (max-width: 425px) {
               max-height: 320px;
             }
@@ -574,8 +574,10 @@
         }
 }
 }
+.product-details-content{
+  margin: 50px 0px;
 }
-
+}
 }
 .btn-model {
   display: none;

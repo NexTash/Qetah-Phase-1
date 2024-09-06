@@ -5,7 +5,6 @@
 {% block content %}
 <style>
 
-
 #image-zoomer-box {
   max-width: 500px;
   height: auto;
@@ -17,11 +16,13 @@
   height: auto;
 }
 
-#image-zoomer-box:hover, #image-zoomer-box:active {
+#image-zoomer-box:hover,
+#image-zoomer-box:active {
   cursor: crosshair;
 }
 
-#image-zoomer-box:hover #image-2, #image-zoomer-box:active #image-2 {
+#image-zoomer-box:hover #image-2,
+#image-zoomer-box:active #image-2 {
   opacity: 1;
 }
 
@@ -29,16 +30,17 @@
   width: 200px;
   height: 200px;
   position: absolute;
-  background: url("/assets/qetah_phase_1/images/stiched-men.webp") no-repeat #fff;
-  background-size: 300%; /* Increase to zoom more */
+  background: no-repeat #fff;
+  background-size: 300%;
   box-shadow: 0px 5px 10px -2px rgba(0, 0, 0, 0.3);
   pointer-events: none;
   opacity: 0;
   border: 3px solid whitesmoke;
   border-radius: 100%;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
   z-index: 999;
 }
+
 </style>
 <!-- sidebar start -->
 <aside id="sidebar" class="sidebar-header" :class="{'static-sidebar': isStatic}" x-data="{ sidebarOpen: false }">
@@ -204,17 +206,21 @@
         {% for product in products %}
         <div class="col product-image-area">
           <div class="images">
-            <div class="product-image-group">
+          
+            <div class="product-image-group" id="thumbnails">
               {% for image in product.images %}
-              <img src="{{ image.images }}" alt="Product Image" class="img" data-target="img{{ loop.index }}" />
+              <img src="{{ image.images }}" alt="Product Image" class="img thumbnail" data-target="img{{ loop.index }}" data-full="{{ image.images }}" />
               {% endfor %}
             </div>
-            {% for image in bigimage  %}
+
             <div class="product-image" id="image-zoomer-box">
-              <img id="img{{ loop.index }}" src="{{image.images}}" alt="Main Product Image" class="img main-img detail-img" />
+              {% for image in product.images %}
+              <img id="img{{ loop.index }}" src="{{ image.images }}" alt="Main Product Image" class="img main-img detail-img" style="display: {{ 'block' if loop.first else 'none' }};"/>
+              {% endfor %}
               <div id="image-2"></div>
             </div>
-            {% endfor %}
+
+
           </div>
         </div>
         <div class="col product-content-area">
@@ -254,14 +260,9 @@
             </div>
             <div class="product-foot">
               <div class="btn-group">
-
-
-
                 <button id="addToCartBtn" class="btn btn-secondary btn-lg btn-icon">
                   <i class="bx bx-cart icon-pre"></i>Add To Cart
                 </button>
-
-
                 <button class="btn btn-light btn-lg btn-icon btn-heart">
                   <i class="bx bx-heart icon-pre"></i>Save To Wishlist
                 </button>
@@ -609,33 +610,61 @@
 </script>
 <!-- zoomer img -->
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const thumbnails = document.querySelectorAll(".thumbnail");
+  const mainImage = document.querySelector(".main-img");
   const zoomBox = document.querySelector("#image-zoomer-box");
-  const originalImage = document.querySelector("#image-1");
   const magnified = document.querySelector("#image-2");
 
+  // Function to update the main image and set the zoom background
+  function updateMainImage(src) {
+    mainImage.src = src; // Update the main image source
+
+    // Set the zoom background image with the correct path
+    const zoomImagePath = `/files/${src.split('/').pop()}`; // Adds /files/ prefix
+    magnified.style.backgroundImage = `url(${zoomImagePath})`;
+    magnified.style.backgroundSize = "300%"; // Adjust as needed for zoom level
+    magnified.style.backgroundPosition = "0% 0%"; // Reset background position
+  }
+
+  // Initial setup: Set zoom background to the first main image
+  updateMainImage(mainImage.src);
+
+  // Event listener for thumbnail clicks
+  thumbnails.forEach(thumbnail => {
+    thumbnail.addEventListener("click", function () {
+      const fullImageSrc = this.getAttribute("data-full");
+      updateMainImage(fullImageSrc); // Update the main image and zoomer on click
+    });
+  });
+
+  // Event listener for zoom effect on hover
   zoomBox.addEventListener("mousemove", function (e) {
-      const rect = originalImage.getBoundingClientRect(); // Get position of the image
-      const x = e.clientX - rect.left; // X-coordinate of cursor relative to the image
-      const y = e.clientY - rect.top; // Y-coordinate of cursor relative to the image
-      const imgWidth = originalImage.offsetWidth;
-      const imgHeight = originalImage.offsetHeight;
+    // Ensure the main image and magnified background are properly updated
+    const rect = mainImage.getBoundingClientRect();
+    const x = e.clientX - rect.left; // Cursor's X position relative to the main image
+    const y = e.clientY - rect.top;  // Cursor's Y position relative to the main image
+    const imgWidth = mainImage.offsetWidth;
+    const imgHeight = mainImage.offsetHeight;
 
-      // Calculate percentage positions for the zoomed background
-      const xPercent = (x / imgWidth) * 100;
-      const yPercent = (y / imgHeight) * 100;
+    // Calculate percentage positions of the cursor within the main image
+    const xPercent = (x / imgWidth) * 100;
+    const yPercent = (y / imgHeight) * 100;
 
-      // Set background position and zoom area position
-      magnified.style.backgroundPosition = `${xPercent}% ${yPercent}%`;
-      magnified.style.left = `${x - magnified.offsetWidth / 2}px`;
-      magnified.style.top = `${y - magnified.offsetHeight / 2}px`;
+    // Dynamically update the background position to follow the cursor
+    magnified.style.backgroundPosition = `${xPercent}% ${yPercent}%`;
+    magnified.style.left = `${x - magnified.offsetWidth / 2}px`; // Center the zoomer horizontally
+    magnified.style.top = `${y - magnified.offsetHeight / 2}px`; // Center the zoomer vertically
+  });
+
+  // Handle mouse enter and leave to show and hide the zoom effect
+  zoomBox.addEventListener("mouseenter", function () {
+    magnified.style.opacity = 1; // Show the zoom on hover
   });
 
   zoomBox.addEventListener("mouseleave", function () {
-      magnified.style.opacity = 0; // Hide zoom on mouse leave
+    magnified.style.opacity = 0; // Hide the zoom when the mouse leaves
   });
-
-  zoomBox.addEventListener("mouseenter", function () {
-      magnified.style.opacity = 1; // Show zoom on mouse enter
-  });
+});
 </script>
       {% endblock %}

@@ -23,10 +23,29 @@ flex-direction: column;
         margin: 5px 0px;
         .title{
           width: 22%;
+          @media(max-width:1024px){
+            width: 32%;
+          }
+          @media(max-width:768px){
+            width: 27%;
+          }
+          @media(max-width:425px){
+            width: 55%;
+          }
+        }
+        .address{
+          width: 60%;
+          @media(max-width:1024px){
+            width: 148%;
+          }
+          @media(max-width:768px){
+            width: 90%;
+          }
         }
         @media (max-width:425px) {
             gap: 0;
             flex-direction: column;
+            margin: 0px 0px 20px 0px;
         }
         .field{
           width: 300px;  
