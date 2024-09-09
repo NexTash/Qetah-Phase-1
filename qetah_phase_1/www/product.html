@@ -4,170 +4,6 @@
 
 {% block content %}
 
-<!-- sidebar start -->
-<aside id="sidebar" class="sidebar-header" :class="{'static-sidebar': isStatic}" x-data="{ sidebarOpen: false }">
-    <!-- Course Sidebar Header -->
-    <header class="program-sidebar">
-        <div class="program-sidebar-brand">
-            <div class="sidebar-brand">
-                <!-- Large Logo -->
-                <a href="#" class="lg-logo" x-show="isStatic">
-                    <img src="/assets/qetah_phase_1/images/black-qetah-removebg-preview.png" width="100px"
-                        class="lg-img" alt="Logo" />
-                </a>
-                <!-- Small Logo -->
-                <a href="#" class="sm-logo">
-                    <img src="/assets/qetah_phase_1/images/WhatsApp_Image_2024-08-08_at_13.44.53_b31d506f-removebg-preview.png"
-                        class="sm-img" alt="Responsive Logo" width="30px" />
-                </a>
-            </div>
-        </div>
-        <div class="sidebar-auth">
-            <a href="/index" data-target="sidebar-tooltip" data-title="Home">
-                <img src="/assets/qetah_phase_1/images/black-qetah-removebg-preview.png" class="logo-header"
-                    width="20px" height="20px" alt="" srcset="">
-                <br>
-            </a>
-            <a href="/index" data-target="sidebar-tooltip" data-title="Home">
-                <div class="auth-media">
-                    <i class="bx bx-home"></i>
-                    <div class="auth-intro" x-show="isStatic" x-cloak>
-                        <h3 class="heading"><a href="/index">Home</a></h3>
-                    </div>
-                </div>
-            </a>
-            <a href="">
-                <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
-                <span class="divider divider-text divider-secondary">About</span>
-            </a>
-            <a href="/story" data-target="sidebar-tooltip" data-title="Story">
-                <div class="auth-media">
-                    <i class="bx bx-book"></i>
-                    <div class="auth-intro" x-show="isStatic" x-cloak>
-                        <h3 class="heading"><a href="/story">Story</a></h3>
-                    </div>
-                </div>
-            </a>
-            <a href="/Blogs" data-target="sidebar-tooltip" data-title="Blogs">
-                <div class="auth-media">
-                    <i class="bx bx-spreadsheet"></i>
-                    <div class="auth-intro" x-show="isStatic" x-cloak>
-                        <h3 class="heading"><a href="/Blogs">Blogs</a></h3>
-                    </div>
-                </div>
-            </a>
-            <a href="/contact-us" data-target="sidebar-tooltip" data-title="Contact Us">
-                <div class="auth-media">
-                    <i class="bx bx-phone"></i>
-                    <div class="auth-intro" x-show="isStatic" x-cloak>
-                        <h3 class="heading">
-                            <a href="/contact-us">Contact Us</a>
-                        </h3>
-                    </div>
-                </div>
-            </a>
-            <a href="">
-                <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
-                <span class="divider divider-text divider-secondary">About</span>
-            </a>
-            <a href="/product" data-target="sidebar-tooltip" data-title="Shop">
-                <div class="auth-media sidebar-active">
-                    <i class="bx bx-store"></i>
-                    <div class="auth-intro" x-show="isStatic" x-cloak>
-                        <h3 class="heading"><a href="/product">Shop</a></h3>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Men's Collection Dropdown -->
-            <div class="auth-media">
-                <a href="/product" data-target="sidebar-tooltip" data-title="Men's collection">
-                    <i class="bx bx-male"></i>
-                </a>
-                <div class="auth-intro" x-show="isStatic" x-cloak>
-                    <div x-data="{ open: false, isActive: false }">
-                        <div @click="open = !open; applyCategoryFilter('Men\'s Collection'); isActive = true;"
-                            class="cursor-pointer">
-                            <h6 class="text-center text-dark side-coll" :class="{ 'active': isActive }"
-                                style="cursor: pointer; font-size: 14px;">
-                                Men's Collection
-                            </h6>
-                            <i class="bx bx-chevron-down"></i>
-                        </div>
-                        <div class="drops" x-show="open" x-cloak>
-                            <ul class="ml-4">
-                                <li><a href="/product">Unstitched</a></li>
-                                <li><a href="/product">Readymade Clothes</a></li>
-                                <li><a href="/product">Accessories</a></li>
-                                <li><a href="/product">Perfumes</a></li>
-                                <li><a href="/product">Cutting, Stitching</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Women's Collection Dropdown -->
-            <div class="auth-media">
-                <a href="/product" data-target="sidebar-tooltip" data-title="Women's collection">
-                    <i class="bx bx-female"></i>
-                </a>
-                <div class="auth-intro" x-show="isStatic" x-cloak>
-                    <div x-data="{ open: false, isActive: false }">
-                        <div @click="open = !open; applyCategoryFilter('Women\'s Collection'); isActive = true;"
-                            class="cursor-pointer">
-                            <h6 class="text-center text-dark side-coll" :class="{ 'active': isActive }"
-                                style="cursor: pointer; font-size: 14px;">
-                                Women's Collection
-                            </h6>
-                            <i class="bx bx-chevron-down"></i>
-                        </div>
-                        <div class="drops" x-show="open" x-cloak>
-                            <ul class="list ml-4">
-                                <li><a href="/product">Unstitched</a></li>
-                                <li><a href="/product">Readymade Clothes</a></li>
-                                <li><a href="/product">Accessories</a></li>
-                                <li><a href="/product">Perfumes</a></li>
-                                <li><a href="/product">Cutting, Stitching</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <a href="">
-                <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
-                <span class="divider divider-text divider-secondary">Cart</span>
-            </a>
-            <a href="/cart-items" data-target="sidebar-tooltip" data-title="Cart">
-                <div class="auth-media">
-                    <i class="bx bx-cart"></i>
-                    <div class="auth-intro" x-show="isStatic" x-cloak>
-                        <h3 class="heading">
-                            <a href="/cart-items">Cart</a>
-                        </h3>
-                    </div>
-                </div>
-            </a>
-            <div class="language">
-                <a href="">
-                    <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
-                    <span class="divider divider-text divider-secondary">Languages</span>
-                </a>
-                <div class="field field-inline field-light">
-                    <select name="" id="" class="field-select" style="background-image: none !important;">
-                        <option value="Option">ENG</option>
-                        <option value="Option">ARA</option>
-                    </select>
-                </div>
-                <!-- Additional Sidebar Items -->
-            </div>
-        </div>
-    </header>
-    <!-- Course Sidebar Header End -->
-</aside>
-<!--/ Course Sidebar End -->
 <div class="content-area" :class="{'shifted-content': isStatic}">
     <div class="container section-products">
         <div class="filters">
@@ -840,56 +676,56 @@
         });
 
     });
-    
-    
+
+
 
 </script>
 <!-- quanitity -->
 <script>
- document.addEventListener('DOMContentLoaded', () => {
-    const selectAll1 = document.getElementById("selectAll1");
-    const offcanvasBody1 = document.getElementById("offcanvasBody");
-    const selectAll2 = document.getElementById("selectAll2");
-    const offcanvasBody2 = document.getElementById("offcanvasBody-cart");
-    
-    const quantity1 = document.querySelector(".quantity");
-    const quantity2 = document.querySelector(".quantity-cart");
+    document.addEventListener('DOMContentLoaded', () => {
+        const selectAll1 = document.getElementById("selectAll1");
+        const offcanvasBody1 = document.getElementById("offcanvasBody");
+        const selectAll2 = document.getElementById("selectAll2");
+        const offcanvasBody2 = document.getElementById("offcanvasBody-cart");
 
-    function updateQuantity(offcanvasBody, quantityElement) {
-        if (!offcanvasBody || !quantityElement) return;
-        const checkboxes = offcanvasBody.querySelectorAll(".item-checkbox");
-        const checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
-        quantityElement.textContent = checkedCount;
-    }
+        const quantity1 = document.querySelector(".quantity");
+        const quantity2 = document.querySelector(".quantity-cart");
 
-    if (selectAll1 && offcanvasBody1) {
-        selectAll1.addEventListener('change', () => {
-            const checkboxes = offcanvasBody1.querySelectorAll(".item-checkbox");
-            checkboxes.forEach(checkbox => checkbox.checked = selectAll1.checked);
-            updateQuantity(offcanvasBody1, quantity1);
-        });
+        function updateQuantity(offcanvasBody, quantityElement) {
+            if (!offcanvasBody || !quantityElement) return;
+            const checkboxes = offcanvasBody.querySelectorAll(".item-checkbox");
+            const checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+            quantityElement.textContent = checkedCount;
+        }
 
-        offcanvasBody1.addEventListener('change', () => {
-            const checkboxes = offcanvasBody1.querySelectorAll(".item-checkbox");
-            selectAll1.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
-            updateQuantity(offcanvasBody1, quantity1);
-        });
-    }
+        if (selectAll1 && offcanvasBody1) {
+            selectAll1.addEventListener('change', () => {
+                const checkboxes = offcanvasBody1.querySelectorAll(".item-checkbox");
+                checkboxes.forEach(checkbox => checkbox.checked = selectAll1.checked);
+                updateQuantity(offcanvasBody1, quantity1);
+            });
 
-    if (selectAll2 && offcanvasBody2) {
-        selectAll2.addEventListener('change', () => {
-            const checkboxes = offcanvasBody2.querySelectorAll(".item-checkbox");
-            checkboxes.forEach(checkbox => checkbox.checked = selectAll2.checked);
-            updateQuantity(offcanvasBody2, quantity2);
-        });
+            offcanvasBody1.addEventListener('change', () => {
+                const checkboxes = offcanvasBody1.querySelectorAll(".item-checkbox");
+                selectAll1.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+                updateQuantity(offcanvasBody1, quantity1);
+            });
+        }
 
-        offcanvasBody2.addEventListener('change', () => {
-            const checkboxes = offcanvasBody2.querySelectorAll(".item-checkbox");
-            selectAll2.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
-            updateQuantity(offcanvasBody2, quantity2);
-        });
-    }
-});
+        if (selectAll2 && offcanvasBody2) {
+            selectAll2.addEventListener('change', () => {
+                const checkboxes = offcanvasBody2.querySelectorAll(".item-checkbox");
+                checkboxes.forEach(checkbox => checkbox.checked = selectAll2.checked);
+                updateQuantity(offcanvasBody2, quantity2);
+            });
+
+            offcanvasBody2.addEventListener('change', () => {
+                const checkboxes = offcanvasBody2.querySelectorAll(".item-checkbox");
+                selectAll2.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+                updateQuantity(offcanvasBody2, quantity2);
+            });
+        }
+    });
 
 </script>
 <!-- quanity ===========>>>>>> price -->
@@ -906,30 +742,27 @@
                 }
 
                 const counterValue = counter.querySelector('.counter-value');
-
-                if (!counterValue) {
-                    return;
-                }
-
                 const priceElement = counter.closest('.quantity-counter').querySelector('.update-price');
 
-                if (!priceElement) {
+                if (!counterValue || !priceElement) {
                     return;
                 }
 
-                // Get current total price and price per item
-                let totalPrice = parseFloat(priceElement.textContent.replace(/[^0-9.-]/g, '')); // Remove $ and other non-numeric characters
-                if (isNaN(totalPrice)) {
-                    return;
-                }
-
-                let priceText = priceElement.getAttribute('data-price-per-item'); // Assume price per item is stored in a data attribute
+                // Get price per item from the data attribute
+                let priceText = priceElement.getAttribute('data-price-per-item');
                 let pricePerItem = parseFloat(priceText.replace(/[^0-9.-]/g, '')); // Remove $ and other non-numeric characters
                 if (isNaN(pricePerItem)) {
+                    console.error('Invalid price per item:', priceText);
                     return;
                 }
 
-                // Update quantity
+                // Get current total price and ensure it's a number
+                let totalPrice = parseFloat(priceElement.textContent.replace(/[^0-9.-]/g, ''));
+                if (isNaN(totalPrice)) {
+                    totalPrice = 0; // Initialize to 0 if not a valid number
+                }
+
+                // Update quantity and total price
                 let count = parseInt(counterValue.value, 10) || 0;
                 if (target.classList.contains('counter-increment')) {
                     count++;
@@ -948,65 +781,109 @@
         });
     });
 </script>
+ <!-- <script>
+    function updateSubtotal() {
+        let subtotal = 0; 
+        function updateSubtotal() {
+            const priceElement = document.querySelector('.price.update-price');
+            const quantityInput = document.querySelector('.counter-value.value');
+            if (priceElement && quantityInput) {
+                const pricePerItemText = priceElement.getAttribute('data-price-per-item');
+                const pricePerItem = parseFloat(pricePerItemText.replace(/[^0-9.-]/g, ''));
+                const quantity = parseInt(quantityInput.value, 10);
+
+
+                if (!isNaN(pricePerItem) && !isNaN(quantity)) {
+                    subtotal = pricePerItem * quantity;
+                } else {
+                    document.write('Invalid price or quantity');
+                }
+                document.getElementById('subTotal').textContent = `${subtotal}`;
+            }
+        }
+        document.querySelector('.counter-value.value').addEventListener('input', updateSubtotal);
+        updateSubtotal();
+    }
+   
+    document.addEventListener('change', (event) => {
+        if (event.target.classList.contains('item-checkbox') || event.target.classList.contains('counter-value')) {
+            updateSubtotal();
+        }
+    })
+
+     document.addEventListener('DOMContentLoaded', () => {
+        updateSubtotal();
+    });
+
+</script> -->
+
 <script>
 function updateSubtotal() {
     let subtotal = 0;
-    console.log('Updating subtotal...');
 
-    document.querySelectorAll('.items').forEach((item) => {
-        const checkbox = item.querySelector('.item-checkbox');
-        console.log('Checkbox:', checkbox);
+    // Function to calculate subtotal for all checked items
+    function calculateSubtotal() {
+        subtotal = 0; // Reset subtotal
 
-        if (checkbox && checkbox.checked) {
-            const priceElement = item.querySelector('.price');
-            const quantityInput = item.querySelector('.counter-value');
-            console.log('Price element:', priceElement ? priceElement.outerHTML : 'Not found');
-            console.log('Quantity input:', quantityInput ? quantityInput.outerHTML : 'Not found');
+        // Get all checked item checkboxes within the offcanvas
+        const checkedItems = document.querySelectorAll('.offcanvas .item-checkbox:checked');
 
-            if (priceElement && quantityInput) {
-                // Use parseFloat to convert the price to a floating-point number
-                const pricePerItem = (priceElement.getAttribute('data-price-per-item'));
-                // Use parseInt to convert the quantity to an integer
-                const quantity = (quantityInput.value, "0");
+        console.log(`Number of checked items: ${checkedItems.length}`);
 
-                console.log(`Price per item: ${pricePerItem} (Type: ${typeof pricePerItem})`);
-                console.log(`Quantity: ${quantity} (Type: ${typeof quantity})`);
+        // Iterate over each checked item
+        checkedItems.forEach((checkbox) => {
+            // Find the closest item card from the checkbox
+            const itemCard = checkbox.closest('.items');
 
-                if (!(pricePerItem) || (quantity)) {
-                    subtotal = pricePerItem + quantity;
-                    console.log(`Subtotal so far: ${subtotal}`);
+            if (itemCard) {
+                // Get the price element and quantity input within the item card
+                const priceElement = itemCard.querySelector('.price.update-price');
+                const quantityInput = itemCard.querySelector('.counter-value.value');
+
+                if (priceElement && quantityInput) {
+                    // Extract and parse the price per item
+                    const pricePerItemText = priceElement.getAttribute('data-price-per-item');
+                    const pricePerItem = parseFloat(pricePerItemText.replace(/[^0-9.-]/g, '')); // Remove non-numeric characters
+                    
+                    // Get the quantity value and parse it to a number
+                    const quantity = parseInt(quantityInput.value, 10);
+
+                    console.log(`Price per item: ${pricePerItem} (Type: ${typeof pricePerItem})`);
+                    console.log(`Quantity: ${quantity} (Type: ${typeof quantity})`);
+
+                    if (!isNaN(pricePerItem) && !isNaN(quantity)) {
+                        // Add the subtotal for this item to the total
+                        subtotal += pricePerItem * quantity;
+                    } else {
+                        console.log('Invalid price or quantity for item');
+                    }
                 } else {
-                    console.log('Invalid price or quantity');
+                    console.log('Price or quantity input not found for item card');
                 }
+            } else {
+                console.log('Item card not found for checkbox');
             }
+        });
+
+        // Update the final subtotal display
+        document.getElementById('subTotal').textContent = `${subtotal.toFixed(2)}`;
+    }
+
+    // Event listener for quantity changes and item checkbox changes
+    document.addEventListener('change', (event) => {
+        if (event.target.classList.contains('item-checkbox') || event.target.classList.contains('counter-value')) {
+            calculateSubtotal();
         }
     });
 
-    console.log(`Final subtotal: ${subtotal}`);
-    document.getElementById('subTotal').textContent = `${subtotal}`;
+    // Call calculateSubtotal initially to set the correct subtotal on page load
+    document.addEventListener('DOMContentLoaded', calculateSubtotal);
 }
 
-document.addEventListener('change', (event) => {
-    if (event.target.classList.contains('item-checkbox') || event.target.classList.contains('counter-value')) {
-        updateSubtotal();
-    }
-});
+// Initialize the subtotal calculation
+updateSubtotal();
 
-// document.addEventListener('click', (event) => {
-//     if (event.target.classList.contains('counter-increment') || event.target.classList.contains('counter-decrement')) {
-//         const input = event.target.closest('.quantity-counter').querySelector('.counter-value');
-//         if (event.target.classList.contains('counter-increment')) {
-//             input.value = parseInt(input.value, 10) + 1;
-//         } else if (event.target.classList.contains('counter-decrement')) {
-//             input.value = Math.max(0, parseInt(input.value, 10) - 1);
-//         }
-//         updateSubtotal();
-//     }
-// });
-document.addEventListener('DOMContentLoaded', () => {
-        updateSubtotal(); // Test with static content
-    });
+
 </script>
-
 
 {% endblock %}

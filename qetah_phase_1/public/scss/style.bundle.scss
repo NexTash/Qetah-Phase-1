@@ -18,6 +18,36 @@ html {
     input[type="number"] {
         -moz-appearance: textfield; /* For Firefox */
     }
+
+   .thumbnail {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+        }
+
+        .product-image {
+            position: relative;
+        }
+
+        .product-image img {
+            width: 600px;
+            height: 400px;
+            display: none;
+        }
+
+        .img-magnifier-glass {
+        position: absolute;
+            border: 3px solid white;
+            border-radius: 50%;
+            cursor: none;
+            width: 150px;
+            height: 150px;
+            display: none;
+            background-repeat: no-repeat;
+            background-size: 600px 400px;
+            pointer-events: none; 
+        }
+    
 @media (max-width: 768px) {
   .program-header-navbar .navbarDrop {
     z-index: 9999;

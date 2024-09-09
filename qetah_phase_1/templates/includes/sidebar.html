@@ -1,0 +1,190 @@
+<!-- sidebar start -->
+<aside id="sidebar" class="sidebar-header" :class="{'static-sidebar': isStatic}" x-data="{ sidebarOpen: false }">
+  <!-- Course Sidebar Header -->
+  <header class="program-sidebar">
+    <div class="program-sidebar-brand">
+      <div class="sidebar-brand">
+        <!-- Large Logo -->
+        <a href="#" class="lg-logo" x-show="isStatic">
+          <img src="/assets/qetah_phase_1/images/black-qetah-removebg-preview.png" width="100px" class="lg-img"
+            alt="Logo" />
+        </a>
+        <!-- Small Logo -->
+        <a href="#" class="sm-logo">
+          <img src="/assets/qetah_phase_1/images/WhatsApp_Image_2024-08-08_at_13.44.53_b31d506f-removebg-preview.png"
+            class="sm-img" alt="Responsive Logo" width="30px" />
+        </a>
+      </div>
+    </div>
+    <div class="sidebar-auth">
+      <a href="/index" data-target="sidebar-tooltip" data-title="Home">
+        <img src="/assets/qetah_phase_1/images/black-qetah-removebg-preview.png" class="logo-header" width="20px"
+          height="20px" alt="" srcset="">
+        <br>
+      </a>
+      <a href="/index" data-target="sidebar-tooltip" data-title="Home">
+        <div class="auth-media">
+          <i class="bx bx-home"></i>
+          <div class="auth-intro" x-show="isStatic" x-cloak>
+            <h3 class="heading"><a href="/index">Home</a></h3>
+          </div>
+        </div>
+      </a>
+      <a href="">
+        <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
+        <span class="divider divider-text divider-secondary">About</span>
+      </a>
+      <a href="/story" data-target="sidebar-tooltip" data-title="Story">
+        <div class="auth-media">
+          <i class="bx bx-book"></i>
+          <div class="auth-intro" x-show="isStatic" x-cloak>
+            <h3 class="heading"><a href="/story">Story</a></h3>
+          </div>
+        </div>
+      </a>
+      <a href="/Blogs" data-target="sidebar-tooltip" data-title="Blogs">
+        <div class="auth-media">
+          <i class="bx bx-spreadsheet"></i>
+          <div class="auth-intro" x-show="isStatic" x-cloak>
+            <h3 class="heading"><a href="/Blogs">Blogs</a></h3>
+          </div>
+        </div>
+      </a>
+      <a href="/contact-us" data-target="sidebar-tooltip" data-title="Contact Us">
+        <div class="auth-media">
+          <i class="bx bx-phone"></i>
+          <div class="auth-intro" x-show="isStatic" x-cloak>
+            <h3 class="heading">
+              <a href="/contact-us">Contact Us</a>
+            </h3>
+          </div>
+        </div>
+      </a>
+      <a href="">
+        <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
+        <span class="divider divider-text divider-secondary">About</span>
+      </a>
+      <a href="/product" data-page="shop" data-target="sidebar-tooltip" data-title="Shop">
+        <div class="auth-media" id="shop-link">
+          <i class="bx bx-store"></i>
+          <div class="auth-intro" x-show="isStatic" x-cloak>
+            <h3 class="heading"><a href="/product">Shop</a></h3>
+          </div>
+        </div>
+      </a>
+
+      <!-- Men's Collection -->
+      <div class="auth-media">
+        <a href="/product?category=mens" data-page="mens" data-target="sidebar-tooltip" data-title="Men's collection">
+          <i class="bx bx-male"></i>
+        </a>
+        <div class="auth-intro" x-show="isStatic" x-cloak>
+          <div x-data="{ open: false }">
+            <div @click="open = !open" class="cursor-pointer">
+              <h6 class="text-center text-dark side-coll" style="cursor: pointer;font-size: 14px;">
+                Men's Collection
+              </h6>
+              <i class="bx bx-chevron-down"></i>
+            </div>
+            <div class="drops" x-show="open" x-cloak>
+              <ul class="ml-4">
+                <li><a href="/product?category=mens&sub=unstitched">Unstitched</a></li>
+                <li><a href="/product?category=mens&sub=readymade">Readymade Clothes</a></li>
+                <li><a href="/product?category=mens&sub=accessories">Accessories</a></li>
+                <li><a href="/product?category=mens&sub=perfumes">Perfumes</a></li>
+                <li><a href="/product?category=mens&sub=cutting-stitching">Cutting, Stitching</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Women's Collection -->
+      <div class="auth-media">
+        <a href="/product?category=womens" data-page="womens" data-target="sidebar-tooltip"
+          data-title="Women's collection">
+          <i class="bx bx-female"></i>
+        </a>
+        <div class="auth-intro" x-show="isStatic" x-cloak>
+          <div x-data="{ open: false }">
+            <div @click="open = !open" class="cursor-pointer">
+              <h6 class="text-center text-dark side-coll" style="cursor: pointer;font-size: 14px;">
+                Women's Collection
+              </h6>
+              <i class="bx bx-chevron-down"></i>
+            </div>
+            <div class="drops" x-show="open" x-cloak>
+              <ul class="list ml-4">
+                <li><a href="/product?category=womens&sub=unstitched">Unstitched</a></li>
+                <li><a href="/product?category=womens&sub=readymade">Readymade Clothes</a></li>
+                <li><a href="/product?category=womens&sub=accessories">Accessories</a></li>
+                <li><a href="/product?category=womens&sub=perfumes">Perfumes</a></li>
+                <li><a href="/product?category=womens&sub=cutting-stitching">Cutting, Stitching</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="">
+        <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
+        <span class="divider divider-text divider-secondary">Cart</span>
+      </a>
+      <a href="/cart-items" data-target="sidebar-tooltip" data-title="Cart">
+        <div class="auth-media">
+          <i class="bx bx-cart"></i>
+          <div class="auth-intro" x-show="isStatic" x-cloak>
+            <h3 class="heading">
+              <a href="/cart-items">Cart</a>
+            </h3>
+          </div>
+        </div>
+      </a>
+      <div class="language">
+        <a href="">
+          <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
+          <span class="divider divider-text divider-secondary">Languages</span>
+        </a>
+        <div class="field field-inline field-light">
+          <select name="" id="" class="field-select" style="background-image: none !important;">
+            <option value="Option">ENG</option>
+            <option value="Option">ARA</option>
+          </select>
+        </div>
+        <!-- Additional Sidebar Items -->
+      </div>
+    </div>
+  </header>
+  <!-- Course Sidebar Header End -->
+</aside>
+<!--/ Course Sidebar End -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get the current path and query string
+    const currentPath = window.location.pathname;
+    const searchParams = new URLSearchParams(window.location.search);
+    const category = searchParams.get("category");
+
+    // Find all sidebar links
+    const sidebarLinks = document.querySelectorAll('.auth-media');
+
+    sidebarLinks.forEach(link => {
+      const page = link.querySelector('a').getAttribute('data-page');
+
+      // Check the base path first
+      if (currentPath === '/product') {
+        if (page === 'shop' && !category) {
+          link.classList.add('sidebar-active');
+        }
+        if (page === 'mens' && category === 'mens') {
+          link.classList.add('sidebar-active');
+        }
+        if (page === 'womens' && category === 'womens') {
+          link.classList.add('sidebar-active');
+        }
+      } else if (currentPath === link.querySelector('a').getAttribute('href')) {
+        link.classList.add('sidebar-active');
+      }
+    });
+  });
+</script>
