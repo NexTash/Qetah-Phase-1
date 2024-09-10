@@ -353,20 +353,123 @@
 
       localStorage.setItem('shippingDetails', JSON.stringify(shippingDetails));
 
-      // Log the data to the console
       console.log('Data saved to localStorage:', shippingDetails);
-
-      // Display the data in another div
       displayData();
     });
 
-    // Display the data on page load if available
     document.addEventListener('DOMContentLoaded', function () {
       displayData();
     });
   </script>
-  <!-- Include your scripts -->
-  <script src="cart.js"></script>
+  <!-- Cart Items  -->
+ <script>
+ 
+ document.addEventListener('DOMContentLoaded', () => {
+    const cartContainer = document.querySelector('.cart-container');
+    const subtotalElement = document.getElementById('subtotal');
+    const itemCountElement = document.getElementById('item-count'); // To display the item count
+
+    // Retrieve cart items from localStorage
+    let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Function to render cart items
+    function renderCartItems(items) {
+        let subtotal = 0;
+        let itemCount = 0;
+
+        // Clear the cart container
+        cartContainer.innerHTML = '';
+
+        items.forEach(item => {
+            // Convert price to a number
+            const price = parseFloat(item.price.replace(/[^0-9.-]/g, ''));
+            subtotal += price;
+            itemCount++;
+
+            // Create HTML for the cart item
+            const itemHTML = `
+                <div class="card card-webinar cart-product-card">
+                    <div class="card-head">
+                        <span>
+                            <label class="check check-secondary">
+                                <input type="checkbox" class="item-checkbox" data-title="${item.title}" />${item.title}
+                            </label>
+                        </span>
+                    </div>
+                    <hr />
+                    <div class="cart-card">
+                        <div class="card-head">
+                            <div class="checkbox">
+                                <label class="check check-secondary">
+                                    <input type="checkbox" />
+                                </label>
+                            </div>
+                            <div class="cart-content">
+                                <img src="${item.image}" alt="${item.title}" id="image" class="image" />
+                                <div class="card-desc">
+                                    <p class="text-ellipsis text-ellipsis-2">
+                                        ${item.desc}
+                                    </p>
+                                    <span>${item.brand}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="prices">
+                                <p class="price">${item.price}</p>
+                                <p class="discount"><s>${item.discount}</s></p>
+                                <div class="icon-group">
+                                    <span class="wishlist"><i class="bx bx-heart"></i></span>
+                                    <span class="wishlist delete-item" data-title="${item.title}"><i class="bx bx-trash"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-foot">
+                            <div class="quantity-counter">
+                                <div class="counter">
+                                    <button class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"></button>
+                                    <input class="counter-value value" type="number" value="1" min="1" />
+                                    <button class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Append the generated HTML to the cart container
+            cartContainer.innerHTML += itemHTML;
+        });
+
+        // Update the subtotal
+        subtotalElement.textContent = `Rs. ${subtotal.toFixed(2)}`;
+        // Update the item count
+        itemCountElement.textContent = itemCount;
+    }
+
+    // Call the function to render cart items
+    renderCartItems(cartItems);
+
+    // Add functionality for delete buttons to delete only selected items
+    document.getElementById('delete-selected-btn').addEventListener('click', function () {
+        const selectedItems = document.querySelectorAll('.item-checkbox:checked');
+        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Get the titles of all selected items
+        const selectedTitles = Array.from(selectedItems).map(checkbox => checkbox.getAttribute('data-title'));
+
+        // Filter out the selected items from cartItems
+        cartItems = cartItems.filter(item => !selectedTitles.includes(item.title));
+
+        // Save the updated cart to localStorage
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+
+        // Reload the cart after deletion
+        renderCartItems(cartItems);
+    });
+});
+
+ </script>
   {% endblock %}
 
   <!-- header-fixed

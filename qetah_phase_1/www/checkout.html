@@ -178,52 +178,6 @@
   <div class="container wishlist-items">
     <!-- Wishlist items will be dynamically added here by JavaScript -->
   </div>
-
-
-  <!-- <div class="container checkout-items">
-    <div class="card card-webinar cart-product-card">
-      <div class="card-head">
-        <span>Pakage 1 of 1</span>
-        <p>Fullfilled by <b>QETAH</b> </p>
-      </div>
-      <hr />
-      <div class="cart-card">
-        <div class="card-head">
-          <div class="cart-conent">
-            <img src="/assets/qetah_phase_1/images/nike-product.jpg" alt="Product Image" class="image" />
-            <div class="card-desc">
-              <p class="text-ellipsis text-ellipsis-2">
-                text trancate loremThis component truncates text with an
-                ellipsis (...) when it exceeds the width of its
-                container, useful for displaying long text in a limited
-                space.Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit. Quisque ut risus sit amet nisl suscipit
-                condimentum.Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit. Quisque ut risus sit amet nisl suscipit
-                condimentum.
-              </p>
-              <span>No Brand, Color Family:White</span>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="prices">
-            <p class="price"> 79985</p>
-            <p class="discount"><s> 200</s></p>
-            <div class="icon-group">
-              <span class="wishlist"><i class="bx bx-trash"></i></span>
-            </div>
-          </div>
-        </div>
-        <div class="card-foot">
-          <div class="qty">
-            <span>Qty:</span>
-            <span>1</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
   <script>
     // Function to display data from localStorage
     function displayData() {
@@ -317,6 +271,8 @@
           document.getElementById("code").value = "";
         }
       });
+      localStorage.removeItem('cart')
+      window.location.reload();
     }
   </script>
 
