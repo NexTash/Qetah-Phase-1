@@ -112,7 +112,7 @@
                     <div class="btn-grp">
                       <button class="btn btn-remove" id="del-cart" >Delete</button>
                       <a href="/cart-items">
-                      <button class="btn btn-cart">Go to Cart</button>
+                      <button class="btn btn-cart" id="goToCart">Go to Cart</button>
                       </a>
                     </div>
                     </div>
@@ -139,3 +139,41 @@
 </header>
 
 <!-- Student Header -->
+<script>
+document.getElementById('goToCart').addEventListener('click', () => {
+    // Redirect to the cart page
+    window.location.href = 'cart-items.html';  // Replace with the correct path if needed
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const cartButton = document.querySelectorAll('.btn-cart'); // Select all 'Add to Cart' buttons
+
+    cartButton.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const productCard = e.target.closest('.product-card');
+            if (!productCard) return;
+
+            // Get product details
+            const product = {
+                title: productCard.querySelector('.card-title').innerText,
+                image: productCard.querySelector('.card-image').src,
+                desc: productCard.querySelector('.card-desc').innerText,
+                price: productCard.querySelector('.card-price').innerText,
+            };
+
+            // Get current cart from localStorage or initialize an empty array
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Add new product to the cart
+            cart.push(product);
+
+            // Save the updated cart back to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Show a message or confirmation (optional)
+            // alert('Product added to cart!');
+        });
+    });
+});
+
+</script>

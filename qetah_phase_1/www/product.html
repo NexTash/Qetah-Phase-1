@@ -1,9 +1,6 @@
 {% extends "templates/primary.html" %}
-
 {% block title %} QETAH | product {% endblock %}
-
 {% block content %}
-
 <div class="content-area" :class="{'shifted-content': isStatic}">
     <div class="container section-products">
         <div class="filters">
@@ -73,44 +70,55 @@
                                     <div class="category-filters">
                                         <h5>Category</h5>
                                         <hr>
-                                        <label class="check check-dark mt-2"><input type="checkbox" /> Men's Collection
+                                        <label class="check check-dark mt-2"><input type="checkbox"
+                                                value="Men's Collection" /> Men's Collection
                                         </label>
-                                        <label class="check check-dark"><input type="checkbox" /> Women's Collection
+                                        <label class="check check-dark"><input type="checkbox"
+                                                value="Women's Collection" /> Women's Collection
                                         </label>
-                                        <label class="check check-dark"><input type="checkbox" /> Services </label>
+                                        <label class="check check-dark"><input type="checkbox" value="Services" />
+                                            Services </label>
                                         <h5>Price Range</h5>
                                         <hr>
-                                        <div class="model-range-slider">
-                                            <span class="rangeValues"></span>
-                                            <input value="1000" min="1000" max="50000" step="500" type="range">
-                                            <input value="50000" min="1000" max="50000" step="500" type="range">
-                                        </div>
-                                        <h5 class="mt-3">By Rating</h5>
-                                        <hr>
-                                        <div class="field-rating">
-                                            <input type="radio" id="star5" name="rating" value="5">
-                                            <label for="star5" title="5 stars"></label>
-                                            <input type="radio" id="star4" name="rating" value="4">
-                                            <label for="star4" title="4 stars"></label>
-                                            <input type="radio" id="star3" name="rating" value="3">
-                                            <label for="star3" title="3 stars"></label>
-                                            <input type="radio" id="star2" name="rating" value="2">
-                                            <label for="star2" title="2 stars"></label>
-                                            <input type="radio" id="star1" name="rating" value="1">
-                                            <label for="star1" title="1 star"></label>
-                                        </div>
-                                        <h5>Discount's</h5>
-                                        <hr>
-                                        <label class="check check-dark mt-2"><input type="checkbox" /> Sale 35% OFF
-                                        </label>
-                                        <label class="check check-dark"><input type="checkbox" /> Sale 50% OFF </label>
-                                        <label class="check check-dark"><input type="checkbox" /> Sale 75% OFF </label>
+                                        <div class="range-slider"></div>
+                                        <span class="rangeValues"></span>
+                                        <input value="1000" min="1000" max="50000" step="500" id="price-range-min"
+                                            name="min_price" type="range">
+                                        <input value="50000" min="1000" max="50000" step="500" id="price-range-max"
+                                            name="max_price" type="range">
                                     </div>
+
+                                    <h5 class="mt-3">By Rating</h5>
+                                    <hr>
+                                    <div class="field-rating">
+                                        <input type="radio" id="star5" name="rating" value="5">
+                                        <label for="star5" title="5 stars"></label>
+                                        <input type="radio" id="star4" name="rating" value="4">
+                                        <label for="star4" title="4 stars"></label>
+                                        <input type="radio" id="star3" name="rating" value="3">
+                                        <label for="star3" title="3 stars"></label>
+                                        <input type="radio" id="star2" name="rating" value="2">
+                                        <label for="star2" title="2 stars"></label>
+                                        <input type="radio" id="star1" name="rating" value="1">
+                                        <label for="star1" title="1 star"></label>
+                                    </div>
+                                    <h5>Discounts</h5>
+                                    <hr>
+                                    <label class="check check-dark mt-2">
+                                        <input type="checkbox" name="discount" value="35" /> Sale 35% OFF
+                                    </label>
+                                    <label class="check check-dark">
+                                        <input type="checkbox" name="discount" value="50" /> Sale 50% OFF
+                                    </label>
+                                    <label class="check check-dark">
+                                        <input type="checkbox" name="discount" value="75" /> Sale 75% OFF
+                                    </label>
+
                                 </div>
                             </div>
                             <div class="modal-foot">
                                 <button class="btn" x-on:click="isOpen = false">Cancel</button>
-                                <button class="btn btn-primary">Apply</button>
+                                <button class="btn btn-primary" onclick="applyFilters()">Apply</button>
                             </div>
                         </div>
                     </div>
@@ -410,7 +418,6 @@
             </div>
 
         </div>
-
     </div>
 </div>
 </div>
@@ -540,11 +547,11 @@
                             <div class="counter">
             <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement"></button>
             <input class="counter-value value" type="number" value="1" min="0" />
-            <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment"></button>
+            <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment "></button>
         </div> 
-                          </div>
+        </div>
                     
-                </div>
+        </div>
             `;
                 offcanvasBody.appendChild(itemDiv);
             });
@@ -590,7 +597,6 @@
                     checkbox.closest('.items').remove();
                 }
             }
-
             updateOffcanvas();
         });
     });
@@ -680,6 +686,7 @@
 
 
 </script>
+
 <!-- quanitity -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -781,7 +788,7 @@
         });
     });
 </script>
- <!-- <script>
+<!-- <script>
     function updateSubtotal() {
         let subtotal = 0; 
         function updateSubtotal() {
@@ -818,72 +825,212 @@
 </script> -->
 
 <script>
-function updateSubtotal() {
-    let subtotal = 0;
+    function updateSubtotal() {
+        let subtotal = 0;
 
-    // Function to calculate subtotal for all checked items
-    function calculateSubtotal() {
-        subtotal = 0; // Reset subtotal
+        // Function to calculate subtotal for all checked items
+        function calculateSubtotal() {
+            subtotal = 0; // Reset subtotal
 
-        // Get all checked item checkboxes within the offcanvas
-        const checkedItems = document.querySelectorAll('.offcanvas .item-checkbox:checked');
+            // Get all checked item checkboxes within the offcanvas
+            const checkedItems = document.querySelectorAll('.offcanvas .item-checkbox:checked');
 
-        console.log(`Number of checked items: ${checkedItems.length}`);
+            console.log(`Number of checked items: ${checkedItems.length}`);
 
-        // Iterate over each checked item
-        checkedItems.forEach((checkbox) => {
-            // Find the closest item card from the checkbox
-            const itemCard = checkbox.closest('.items');
+            // Iterate over each checked item
+            checkedItems.forEach((checkbox) => {
+                // Find the closest item card from the checkbox
+                const itemCard = checkbox.closest('.items');
 
-            if (itemCard) {
-                // Get the price element and quantity input within the item card
-                const priceElement = itemCard.querySelector('.price.update-price');
-                const quantityInput = itemCard.querySelector('.counter-value.value');
+                if (itemCard) {
+                    // Get the price element and quantity input within the item card
+                    const priceElement = itemCard.querySelector('.price.update-price');
+                    const quantityInput = itemCard.querySelector('.counter-value.value');
 
-                if (priceElement && quantityInput) {
-                    // Extract and parse the price per item
-                    const pricePerItemText = priceElement.getAttribute('data-price-per-item');
-                    const pricePerItem = parseFloat(pricePerItemText.replace(/[^0-9.-]/g, '')); // Remove non-numeric characters
-                    
-                    // Get the quantity value and parse it to a number
-                    const quantity = parseInt(quantityInput.value, 10);
+                    if (priceElement && quantityInput) {
+                        // Extract and parse the price per item
+                        const pricePerItemText = priceElement.getAttribute('data-price-per-item');
+                        const pricePerItem = parseFloat(pricePerItemText.replace(/[^0-9.-]/g, '')); // Remove non-numeric characters
 
-                    console.log(`Price per item: ${pricePerItem} (Type: ${typeof pricePerItem})`);
-                    console.log(`Quantity: ${quantity} (Type: ${typeof quantity})`);
+                        // Get the quantity value and parse it to a number
+                        const quantity = parseInt(quantityInput.value, 10);
 
-                    if (!isNaN(pricePerItem) && !isNaN(quantity)) {
-                        // Add the subtotal for this item to the total
-                        subtotal += pricePerItem * quantity;
+                        console.log(`Price per item: ${pricePerItem} (Type: ${typeof pricePerItem})`);
+                        console.log(`Quantity: ${quantity} (Type: ${typeof quantity})`);
+
+                        if (!isNaN(pricePerItem) && !isNaN(quantity)) {
+                            // Add the subtotal for this item to the total
+                            subtotal += pricePerItem * quantity;
+                        } else {
+                            console.log('Invalid price or quantity for item');
+                        }
                     } else {
-                        console.log('Invalid price or quantity for item');
+                        console.log('Price or quantity input not found for item card');
                     }
                 } else {
-                    console.log('Price or quantity input not found for item card');
+                    console.log('Item card not found for checkbox');
                 }
-            } else {
-                console.log('Item card not found for checkbox');
+            });
+
+            // Update the final subtotal display
+            document.getElementById('subTotal').textContent = `${subtotal.toFixed(2)}`;
+        }
+
+        // Event listener for quantity changes and item checkbox changes
+        document.addEventListener('change', (event) => {
+            if (event.target.classList.contains('item-checkbox') || event.target.classList.contains('counter-value')) {
+                calculateSubtotal();
             }
         });
 
-        // Update the final subtotal display
-        document.getElementById('subTotal').textContent = `${subtotal.toFixed(2)}`;
+        // Call calculateSubtotal initially to set the correct subtotal on page load
+        document.addEventListener('DOMContentLoaded', calculateSubtotal);
     }
 
-    // Event listener for quantity changes and item checkbox changes
-    document.addEventListener('change', (event) => {
-        if (event.target.classList.contains('item-checkbox') || event.target.classList.contains('counter-value')) {
-            calculateSubtotal();
-        }
-    });
-
-    // Call calculateSubtotal initially to set the correct subtotal on page load
-    document.addEventListener('DOMContentLoaded', calculateSubtotal);
-}
-
-// Initialize the subtotal calculation
-updateSubtotal();
+    // Initialize the subtotal calculation
+    updateSubtotal();
 
 
 </script>
+
+<script>
+    function addToWishlist(product) {
+        // Add the product to the wishlist array
+        wishlist.push(product);
+
+        // Save the updated wishlist to localStorage
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
+        // Update the offcanvas display
+        updateOffcanvas();
+    }
+    function addToCart(product) {
+        // Add the product to the cart array
+        cart.push(product);
+
+        // Save the updated cart to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Update the offcanvas display
+        updateOffcanvas();
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        const cartContainer = document.querySelector('.cart-container'); // Add the correct container element
+        const wishlistContainer = document.querySelector('.wishlist-container'); // Add the correct container element
+
+        // Get cart data from localStorage
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Get wishlist data from localStorage
+        const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+        // Render Cart Items
+        function renderCartItems(items) {
+            items.forEach(item => {
+                const itemHTML = `
+            <div class="cart-card">
+                <div class="card-head">
+                  <div class="checkbox">
+                    <label class="check check-secondary">
+                      <input type="checkbox"/>
+                    </label>
+                  </div>
+                  <div class="cart-conent">
+                    <img src="${item.image}" alt="${item.title}" class="image"/>
+                    <div class="card-desc">
+                      <p class="text-ellipsis text-ellipsis-2">${item.desc}</p>
+                      <span>No Brand, Color Family: White</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="prices">
+                    <p class="price">Rs. ${item.price}</p>
+                    <div class="icon-group">
+                      <span class="wishlist"><i class="bx bx-heart"></i></span>
+                      <span class="wishlist"><i class="bx bx-trash"></i></span>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            `;
+                cartContainer.innerHTML += itemHTML;
+            });
+        }
+
+        // Render Wishlist Items
+        function renderWishlistItems(items) {
+            items.forEach(item => {
+                const itemHTML = `
+            <div class="wishlist-card">
+                <div class="card-head">
+                  <div class="checkbox">
+                    <label class="check check-secondary">
+                      <input type="checkbox"/>
+                    </label>
+                  </div>
+                  <div class="wishlist-conent">
+                    <img src="${item.image}" alt="${item.title}" class="image"/>
+                    <div class="card-desc">
+                      <p class="text-ellipsis text-ellipsis-2">${item.desc}</p>
+                      <span>No Brand, Color Family: White</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="prices">
+                    <p class="price">Rs. ${item.price}</p>
+                    <div class="icon-group">
+                      <span class="wishlist"><i class="bx bx-heart"></i></span>
+                      <span class="wishlist"><i class="bx bx-trash"></i></span>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            `;
+                wishlistContainer.innerHTML += itemHTML;
+            });
+        }
+
+        // Call render functions for both cart and wishlist
+        renderCartItems(cartItems);
+        renderWishlistItems(wishlistItems);
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const cartButtons = document.querySelectorAll('.btn-cart'); // Select all 'Add to Cart' buttons
+
+        cartButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const productCard = e.target.closest('.product-card');
+                if (!productCard) return;
+
+                // Get product details from the product card
+                const product = {
+                    title: productCard.querySelector('.card-title').innerText,
+                    image: productCard.querySelector('.card-image').src,
+                    desc: productCard.querySelector('.card-desc').innerText,
+                    brand: productCard.querySelector('.card-brand').innerText,
+                    price: productCard.querySelector('.card-price').innerText,
+                    discount: productCard.querySelector('.card-discount').innerText,
+                };
+
+                // Get current cart from localStorage or initialize an empty array
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                // Add the new product to the cart
+                cart.push(product);
+
+                // Save the updated cart back to localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                // Optionally show a message
+                // alert('Product added to cart!');
+            });
+        });
+    });
+
+</script>
+
 
 {% endblock %}

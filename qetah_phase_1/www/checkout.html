@@ -68,6 +68,9 @@
   }
 </style>
 
+<!-- <h1>Your Cart</h1> -->
+<!-- <div class="cart-container">
+          </div> -->
 
 <div class="content-area" :class="{'shifted-content': isStatic}">
   <div class="container checkout">
@@ -123,7 +126,7 @@
       </div>
     </form>
 
-    <form action="" method="POST" class="payment" id="paymentForm">
+    <form action="" method="" class="payment" id="paymentForm">
       <h5>Promotion</h5>
       <div class="grp">
         <div class="form-field">
@@ -136,22 +139,30 @@
       <h5>Order Summary</h5>
       <div class="order-info">
         <div class="order-detail">
-          <div class="item">items Total (1 items)</div>
-          <div class="price">USD. 1000</div>
+          <div class="item">Total (<span id="item-count">0</span> items)</div> <!-- Item count goes here -->
+          <div class="">$ <span id="subtotal">0</span></div> <!-- Subtotal goes here -->
         </div>
         <div class="order-detail">
           <div class="item">Delivery Fee</div>
-          <div class="price">USD. 125</div>
+          <div class="price" id="delivery-fee">USD. 0.00</div>
         </div>
         <div class="order-detail">
           <div class="item">Delivery Discount</div>
-          <div class="price">USD. -125</div>
+          <div class="price" id="delivery-discount">USD. 0.00</div>
         </div>
         <hr>
         <div class="total">
           <div class="sum">Total:</div>
-          <div class="price">USD. 1000</div>
+          <div class="price" id="grand-total">USD. 0.00</div>
         </div>
+        <!-- <p>Subtotal: Rs. <span id="subtotal">0.00</span></p>
+        <p>Grand Total (including delivery): Rs. <span id="grand-total">0.00</span></p>
+        <p>Items in Cart: <span id="item-count">0</span></p>
+        <p id="messages"></p>
+
+        <input type="text" id="code" placeholder="Enter Promo Code">
+        <button id="apply-code">Apply Promo Code</button> -->
+
         <div class="taxes">Taxes included, where applicable</div>
         <button class="btn btn-dark btn-block" onclick="on_proceed()">Proceed to Pay</button>
       </div>
@@ -159,7 +170,17 @@
     <div id="messages"></div>
 
   </div>
+
+
   <div class="container checkout-items">
+    <!-- Cart items will be dynamically added here by JavaScript -->
+  </div>
+  <div class="container wishlist-items">
+    <!-- Wishlist items will be dynamically added here by JavaScript -->
+  </div>
+
+
+  <!-- <div class="container checkout-items">
     <div class="card card-webinar cart-product-card">
       <div class="card-head">
         <span>Pakage 1 of 1</span>
@@ -187,8 +208,8 @@
         </div>
         <div class="card-body">
           <div class="prices">
-            <p class="price">Rs. 799</p>
-            <p class="discount"><s>Rs. 200</s></p>
+            <p class="price"> 79985</p>
+            <p class="discount"><s> 200</s></p>
             <div class="icon-group">
               <span class="wishlist"><i class="bx bx-trash"></i></span>
             </div>
@@ -202,22 +223,22 @@
         </div>
       </div>
     </div>
-  </div>
- <script>
-  // Function to display data from localStorage
-  function displayData() {
-    const data = JSON.parse(localStorage.getItem('shippingDetails'));
+  </div> -->
+  <script>
+    // Function to display data from localStorage
+    function displayData() {
+      const data = JSON.parse(localStorage.getItem('shippingDetails'));
 
-    // Log the retrieved data to the console
-    console.log('Retrieved data from localStorage:', data);
+      // Log the retrieved data to the console
+      console.log('Retrieved data from localStorage:', data);
 
-    if (data) {
-      const displayDiv = document.getElementById('displayData');
-      displayDiv.innerHTML = `
+      if (data) {
+        const displayDiv = document.getElementById('displayData');
+        displayDiv.innerHTML = `
         <div class="badge badge-secondary m-2">Office</div>
         <div class="grp">
         <h6 class="title">Full Name :</h6>
-        <div class="subtitle">${data.firstname} ${data.lastname}</div>
+        <div class="subtitle">${data.firstname} , ${data.lastname}</div>
         </div>
         <div class="grp">
         <h6 class="title">Phone No :</h6>
@@ -245,59 +266,59 @@
         </div>
       `;
 
-      // Also fill the form fields with the data from localStorage
-      document.getElementById("fullname").value = `${data.firstname} ${data.lastname}`;
-      document.getElementById("state").value = data.state;
-      document.getElementById("city").value = data.city;
-      document.getElementById("phone").value = data.phone;
-      document.getElementById("address").value = data.address;
-      document.getElementById("code").value = data.postalcode;
-    } else {
-      console.log('No data found in localStorage');
-    }
-  }
-
-  // Call displayData function on page load
-  document.addEventListener('DOMContentLoaded', function () {
-    displayData();
-  });
-</script>
-
-<script>
-  // Function to send data via frappe.call
-  function on_proceed(){
-    let fullname = document.getElementById("fullname").value;
-    let province = document.getElementById("state").value;
-    let city = document.getElementById("city").value;
-    let phone = document.getElementById("phone").value;
-    let address = document.getElementById("address").value;
-    let code = document.getElementById("code").value;
-
-    frappe.call({
-      method: 'qetah_phase_1.events.proceed_checkout.checks',
-      args: {
-        fullname: fullname,
-        phone: phone,
-        address: address,
-        city: city,
-        province: province,
-        code: code,
-      },
-      callback(r) {
-        console.log(r.message);
-        document.getElementById("messages").innerHTML = r.message;
-
-        // Clear the form fields after submission
-        document.getElementById("fullname").value = "";
-        document.getElementById("phone").value = "";
-        document.getElementById("address").value = "";
-        document.getElementById("city").value = "";
-        document.getElementById("state").value = "";
-        document.getElementById("code").value = "";
+        // Also fill the form fields with the data from localStorage
+        document.getElementById("fullname").value = `${data.firstname} ${data.lastname}`;
+        document.getElementById("state").value = data.state;
+        document.getElementById("city").value = data.city;
+        document.getElementById("phone").value = data.phone;
+        document.getElementById("address").value = data.address;
+        document.getElementById("code").value = data.postalcode;
+      } else {
+        console.log('No data found in localStorage');
       }
+    }
+
+    // Call displayData function on page load
+    document.addEventListener('DOMContentLoaded', function () {
+      displayData();
     });
-  }
-</script>
+  </script>
+
+  <script>
+    // Function to send data via frappe.call
+    function on_proceed() {
+      let fullname = document.getElementById("fullname").value;
+      let province = document.getElementById("state").value;
+      let city = document.getElementById("city").value;
+      let phone = document.getElementById("phone").value;
+      let address = document.getElementById("address").value;
+      let code = document.getElementById("code").value;
+
+      frappe.call({
+        method: 'qetah_phase_1.events.proceed_checkout.checks',
+        args: {
+          fullname: fullname,
+          phone: phone,
+          address: address,
+          city: city,
+          province: province,
+          code: code,
+        },
+        callback(r) {
+          console.log(r.message);
+          document.getElementById("messages").innerHTML = r.message;
+
+          // Clear the form fields after submission
+          document.getElementById("fullname").value = "";
+          document.getElementById("phone").value = "";
+          document.getElementById("address").value = "";
+          document.getElementById("city").value = "";
+          document.getElementById("state").value = "";
+          document.getElementById("code").value = "";
+        }
+      });
+    }
+  </script>
 
   <!-- stripe-card -->
   <script>
@@ -328,4 +349,138 @@
 
 
   </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cartContainer = document.querySelector('.checkout-items');
+      let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+      // Define delivery fee and discount
+      const deliveryFee = 1000; // Example delivery fee
+      const deliveryDiscount = 125; // Example delivery discount
+
+      // Function to calculate and update the grand total
+      function calculateGrandTotal(subtotal) {
+        const totalWithFee = subtotal + deliveryFee; // Add delivery fee
+        const totalWithDiscount = totalWithFee - deliveryDiscount; // Subtract discount
+        return totalWithDiscount; // Return the final grand total
+      }
+
+      // Render Cart Items and Update Subtotal
+      function renderCartItems(items) {
+        cartContainer.innerHTML = ''; // Clear the container before appending new items
+        let subtotal = 0;
+        let itemCount = items.length;
+
+        items.forEach((item, index) => {
+          const price = parseFloat(item.price.replace(/[^0-9.-]/g, '')); // Convert price string to a number
+          subtotal += price;
+          const itemHTML = `
+                <div class="card card-webinar cart-product-card">
+                    <div class="card-head">
+                        <span>Package ${index + 1} of ${items.length}</span>
+                        <p>Fulfilled by <b>QETAH</b></p>
+                    </div>
+                    <hr />
+                    <div class="cart-card">
+                        <div class="card-head">
+                            <div class="cart-conent">
+                                <img src="${item.image}" alt="${item.title}" class="image" />
+                                <div class="card-desc">
+                                    <p class="text-ellipsis text-ellipsis-2">${item.desc}</p>
+                                    <span>${item.brand}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="prices">
+                                <p class="price"> ${item.price}</p>
+                                <p class="discount"><s> ${item.discount}</s></p>
+                                <div class="icon-group">
+                                    <span class="wishlist delete-item" data-title="${item.title}">
+                                        <i class="bx bx-trash"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-foot">
+                            <div class="qty">
+                                <span>Qty:</span>
+                                <span>1</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+          cartContainer.innerHTML += itemHTML; // Append the item to the cart container
+        });
+
+        // Update the subtotal and item count
+        document.getElementById('subtotal').textContent = subtotal.toFixed(2); // Display subtotal
+        document.getElementById('item-count').textContent = itemCount; // Display item count
+
+        // Calculate and display the grand total
+        const grandTotal = calculateGrandTotal(subtotal);
+        document.getElementById('grand-total').textContent = grandTotal.toFixed(2); // Display grand total
+
+        // Update delivery fee and discount
+        document.getElementById('delivery-fee').textContent = deliveryFee.toFixed(2);
+        document.getElementById('delivery-discount').textContent = deliveryDiscount.toFixed(2);
+
+        // Add event listeners to all delete buttons (trash icons)
+        document.querySelectorAll('.delete-item').forEach((trashIcon, index) => {
+          trashIcon.addEventListener('click', function () {
+            deleteCartItem(index);  // Use index from forEach to delete item
+          });
+        });
+      }
+
+      // Function to delete an item from the cart
+      function deleteCartItem(index) {
+        cartItems.splice(index, 1); // Remove item from array using index
+        localStorage.setItem('cart', JSON.stringify(cartItems)); // Save the updated cart to localStorage
+        renderCartItems(cartItems); // Re-render the updated cart
+      }
+
+      // Call renderCartItems on page load
+      renderCartItems(cartItems);
+
+      // Promo code logic
+      document.getElementById('apply-code').addEventListener('click', function () {
+        const promoCode = document.getElementById('code').value;
+        let subtotal = parseFloat(document.getElementById('subtotal').textContent);
+
+        if (isNaN(subtotal)) {
+          document.getElementById('messages').textContent = "Subtotal is invalid!";
+          return;
+        }
+
+        if (promoCode === 'DISCOUNT10') {
+          const discount = subtotal * 0.10;
+          const newSubtotal = subtotal - discount;
+          document.getElementById('subtotal').textContent = newSubtotal.toFixed(2);
+          localStorage.setItem('subtotal', newSubtotal.toFixed(2));
+          document.getElementById('messages').textContent = `Promo code applied! You saved Rs. ${discount.toFixed(2)}.`;
+
+          // Update the grand total after applying the promo code
+          const grandTotal = calculateGrandTotal(newSubtotal);
+          document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
+        } else {
+          document.getElementById('messages').textContent = "Invalid promo code.";
+        }
+      });
+
+      // Retrieve subtotal and item count from localStorage on page load
+      const storedSubtotal = localStorage.getItem('subtotal') || '0.00';
+      const itemCount = (JSON.parse(localStorage.getItem('cart')) || []).length;
+      document.getElementById('subtotal').textContent = storedSubtotal;
+      document.getElementById('item-count').textContent = itemCount;
+
+      // Recalculate the grand total after page load
+      const grandTotal = calculateGrandTotal(parseFloat(storedSubtotal));
+      document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
+    });
+
+  </script>
+
   {% endblock %}

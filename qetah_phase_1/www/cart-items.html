@@ -16,68 +16,15 @@
                 <label class="check check-secondary"><input type="checkbox" /> Select All (7 item(s))</label>
               </span>
               <button class="btn btn-light btn-icon">
-                <i class="bx bx-trash icon-pre"></i> Delete
+                <i class="bx bx-trash icon-pre"></i> Delete 
               </button>
             </div>
           </div>
 
-          {% for cart in carts %}
-          <div class="card card-webinar cart-product-card">
-            <div class="card-head">
-              <span>
-                <label class="check check-secondary">
-                  <input type="checkbox" id="title" />{{ cart.title }}
-                </label>
-              </span>
-            </div>
-            <hr />
-            <div class="cart-card">
-              <div class="card-head">
-                <div class="checkbox">
-                  <label class="check check-secondary">
-                    <input type="checkbox" />
-                  </label>
-                </div>
-                <div class="cart-content">
-                  <img src="{{ cart.image }}" alt="Product Image" id="image" class="image" />
-                  <div class="card-desc">
-                    <!-- <p class="text-ellipsis text-ellipsis-2">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. In modi earum natus a corrupti iste iure
-                      libero veritatis nobis aut dignissimos dolore, alias porro, sed consequatur quo omnis at illo?
-                    </p> -->
-                    <h3 class="text-ellipsis text-ellipsis-2">
-                      {{cart.description}}
-                    </h3>
-                    <span>{{ cart.brand }}</span>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="prices">
-                  <p class="price">$ {{ cart.price }}</p>
-                  <p class="discount"><s>${{ cart.discount }}</s></p>
-                  <div class="icon-group">
-                    <span class="wishlist"><i class="bx bx-heart"></i></span>
-                    <span class="wishlist"><i class="bx bx-trash"></i></span>
-                  </div>
-                </div>
-              </div>
-              <div class="card-foot">
-                <div class="quantity-counter">
-                  <div class="counter">
-                    <button
-                      class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"></button>
-                    <input class="counter-value value" type="number" value="0" />
-                    <button
-                      class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"></button>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <!-- <h1>Your Cart</h1> -->
+          <div class="cart-container">
+            <!-- Cart items will be dynamically inserted here -->
           </div>
-          {% endfor %}
-
-
         </div>
 
       </div>
@@ -215,15 +162,16 @@
           <hr>
           <div class="card-body">
             <div class="card-summary">
+              <div id="updateOffcanvas"></div>
               <h2>Order Summary</h2>
               <div class="summary-content">
+                <p class="summary-name">Subtotal <span id="item-count">0</span></p>
+                <span class="summary-value">$ <span id="subtotal" ></span></span>
+              </div>
+              <!-- <div class="summary-content">
                 <p class="summary-name">Subtotal (4 items)</p>
                 <span class="summary-value">Rs. 3,139</span>
-              </div>
-              <div class="summary-content">
-                <p class="summary-name">Subtotal (4 items)</p>
-                <span class="summary-value">Rs. 3,139</span>
-              </div>
+              </div> -->
               <div class="voucher">
                 <div class="voucher-input-control">
                   <span class="field">
@@ -237,10 +185,6 @@
             </div>
           </div>
           <div class="card-foot">
-            <div class="summary-content">
-              <p class="summary-name">Subtotal (4 items)</p>
-              <span class="summary-value text-danger">Rs. 3,139</span>
-            </div>
             <a href="/checkout" style="text-decoration: none;">
               <button class="btn btn-secondary btn-sm btn-block">
                 Proceed To Checkout(5)
@@ -297,6 +241,94 @@
       <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
     </div>
   </div>
+  <!-- cart -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const offcanvas = document.getElementById('offcanvas-cart');
+      const offcanvasBody = offcanvas.querySelector('.offcanvas-body-cart'); // Add this line to get the offcanvas body
+      const badge = document.querySelector('.cart-badge'); // Update this selector if needed
+      const deleteSelectedBtn = document.getElementById('del-cart');
+
+      let wishlist = [];
+
+      function updateOffcanvas() {
+        // Clear the current items
+        offcanvasBody.innerHTML = '';
+
+        // Add each item in the wishlist to the offcanvas
+        wishlist.forEach((item, index) => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'items d-flex';
+          itemDiv.innerHTML = `
+                <div class="check-item" >
+                    <label class="check check-secondary">
+                        <input type="checkbox" class="item-checkbox" data-index="${index}" />
+                    </label>
+                </div>
+                <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
+                <div class="text">
+                    <p class="offcanvas-title text-ellipsis">${item.title}</p>
+                    <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;}">${item.desc}</div>
+                     <div class="quantity-counter">
+                    <p class="price update-price" data-price-per-item="${item.price}">${item.price}</p> 
+                            <div class="counter">
+            <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement"></button>
+            <input class="counter-value value" type="number" value="1" min="0" />
+            <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment"></button>
+        </div> 
+         </div>
+                    
+                </div>
+            `;
+          offcanvasBody.appendChild(itemDiv);
+        });
+
+        // Update badge number
+        badge.textContent = wishlist.length;
+      }
+
+      function addToWishlist(product) {
+        // Add the product to the wishlist array
+        wishlist.push(product);
+        // Update the offcanvas display
+        updateOffcanvas();
+      }
+
+      document.querySelectorAll('.btn-cart').forEach(button => {
+        button.addEventListener('click', (e) => {
+          const productCard = e.target.closest('.product-card');
+          if (!productCard) return;
+
+          // Get product details from the card
+          const product = {
+            title: productCard.querySelector('.card-title').innerText,
+            image: productCard.querySelector('.card-image').src,
+            desc: productCard.querySelector('.card-desc').innerText,
+            price: productCard.querySelector('.card-price').innerText,
+          };
+
+          // Add product to wishlist
+          addToWishlist(product);
+        });
+      });
+
+      deleteSelectedBtn.addEventListener('click', () => {
+        const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
+
+        // Iterate backward to safely remove items
+        for (let i = checkboxes.length - 1; i >= 0; i--) {
+          const checkbox = checkboxes[i];
+          if (checkbox.checked) {
+            const index = parseInt(checkbox.getAttribute('data-index'), 10);
+            wishlist.splice(index, 1);
+            checkbox.closest('.items').remove();
+          }
+        }
+
+        updateOffcanvas();
+      });
+    });
+  </script>
 
   <script>
     document.getElementById('saveButton').addEventListener('click', function () {
@@ -328,38 +360,13 @@
       displayData();
     });
 
-    // function displayData() {
-    //     const data = JSON.parse(localStorage.getItem('shippingDetails'));
-
-    //     // Log the retrieved data to the console
-    //     console.log('Retrieved data from localStorage:', data);
-
-    //     if (data) {
-    //         const displayDiv = document.getElementById('displayData');
-    //         displayDiv.innerHTML = `
-    //             <h3>Shipping Details:</h3>
-    //             <p><strong>First Name:</strong> ${data.firstname}</p>
-    //             <p><strong>Last Name:</strong> ${data.lastname}</p>
-    //             <p><strong>Phone:</strong> ${data.phone}</p>
-    //             <p><strong>Address:</strong> ${data.address}</p>
-    //             <p><strong>Email:</strong> ${data.email}</p>
-    //             <p><strong>state:</strong> ${data.state}</p>
-    //             <p><strong>City:</strong> ${data.city}</p>
-    //             <p><strong>Postal Code:</strong> ${data.postalcode}</p>
-    //         `;
-    //     } else {
-    //         console.log('No data found in localStorage');
-    //     }
-    // }
-
-
-
     // Display the data on page load if available
     document.addEventListener('DOMContentLoaded', function () {
       displayData();
     });
   </script>
-
+  <!-- Include your scripts -->
+  <script src="cart.js"></script>
   {% endblock %}
 
   <!-- header-fixed
