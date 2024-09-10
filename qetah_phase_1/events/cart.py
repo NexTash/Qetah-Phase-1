@@ -1,16 +1,15 @@
 import frappe
 
 @frappe.whitelist()
-def contacts(fullname,email,phone,message):
-    doc = frappe.new_doc("Contact us")
-    doc.full_name = fullname
-    doc.email = email
+def carts(email,phone,address,state,city,postalcode):
+    doc = frappe.new_doc("Address")
+    doc.address_line1= address
+    doc.address_type= "Billing"
+    doc.address_title= address
+    doc.email_id = email
+    doc.state = state
+    doc.city = city
     doc.phone = phone
-    doc.message = message
-   
-    # doc.append("email_ids", {
-    #         'email_id' : email
-    #     })
+    doc.pincode = postalcode
     doc.insert()
-
     return "Created"
