@@ -411,8 +411,9 @@
                                     </div> {% endfor %}
                                 </div>
                             </div>
-
+                            
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -789,41 +790,6 @@
         });
     });
 </script>
-<!-- <script>
-    function updateSubtotal() {
-        let subtotal = 0; 
-        function updateSubtotal() {
-            const priceElement = document.querySelector('.price.update-price');
-            const quantityInput = document.querySelector('.counter-value.value');
-            if (priceElement && quantityInput) {
-                const pricePerItemText = priceElement.getAttribute('data-price-per-item');
-                const pricePerItem = parseFloat(pricePerItemText.replace(/[^0-9.-]/g, ''));
-                const quantity = parseInt(quantityInput.value, 10);
-
-
-                if (!isNaN(pricePerItem) && !isNaN(quantity)) {
-                    subtotal = pricePerItem * quantity;
-                } else {
-                    document.write('Invalid price or quantity');
-                }
-                document.getElementById('subTotal').textContent = `${subtotal}`;
-            }
-        }
-        document.querySelector('.counter-value.value').addEventListener('input', updateSubtotal);
-        updateSubtotal();
-    }
-   
-    document.addEventListener('change', (event) => {
-        if (event.target.classList.contains('item-checkbox') || event.target.classList.contains('counter-value')) {
-            updateSubtotal();
-        }
-    })
-
-     document.addEventListener('DOMContentLoaded', () => {
-        updateSubtotal();
-    });
-
-</script> -->
 
 <script>
     function updateSubtotal() {
@@ -985,13 +951,13 @@
                     <img src="${item.image}" alt="${item.title}" class="image"/>
                     <div class="card-desc">
                       <p class="text-ellipsis text-ellipsis-2">${item.desc}</p>
-                      <span>No Brand, Color Family: White</span>
+                      <span>${item.brand}</span>
                     </div>
                   </div>
                 </div>
                 <div class="card-body">
                   <div class="prices">
-                    <p class="price">Rs. ${item.price}</p>
+                    <p class="price">$. ${item.price}</p>
                     <div class="icon-group">
                       <span class="wishlist"><i class="bx bx-heart"></i></span>
                       <span class="wishlist"><i class="bx bx-trash"></i></span>

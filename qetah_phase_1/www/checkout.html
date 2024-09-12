@@ -344,14 +344,15 @@
                                 <img src="${item.image}" alt="${item.title}" class="image" />
                                 <div class="card-desc">
                                     <p class="text-ellipsis text-ellipsis-2">${item.desc}</p>
-                                    <span>${item.brand}</span>
+                                    
+                                   ${item.brand ? `<span>${item.brand}</span>` : ''}
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="prices">
                                 <p class="price"> ${item.price}</p>
-                                <p class="discount"><s> ${item.discount}</s></p>
+                                ${item.discount ? `<span>${item.discount}</span>` : ''}
                                 <div class="icon-group">
                                     <span class="wishlist delete-item" data-title="${item.title}">
                                         <i class="bx bx-trash"></i>
