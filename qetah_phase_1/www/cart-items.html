@@ -16,7 +16,7 @@
                 <label class="check check-secondary"><input type="checkbox" /> Select All (7 item(s))</label>
               </span>
               <button class="btn btn-light btn-icon">
-                <i class="bx bx-trash icon-pre"></i> Delete 
+                <i class="bx bx-trash icon-pre delete-item"></i> Delete
               </button>
             </div>
           </div>
@@ -166,7 +166,7 @@
               <h2>Order Summary</h2>
               <div class="summary-content">
                 <p class="summary-name">Subtotal <span id="item-count">0</span></p>
-                <span class="summary-value">$ <span id="subtotal" ></span></span>
+                <span class="summary-value">$ <span id="subtotal"></span></span>
               </div>
               <!-- <div class="summary-content">
                 <p class="summary-name">Subtotal (4 items)</p>
@@ -397,96 +397,151 @@
     }
   </script>
   <!-- Cart Items  -->
- <script>
- 
- document.addEventListener('DOMContentLoaded', () => {
-    const cartContainer = document.querySelector('.cart-container');
-    const subtotalElement = document.getElementById('subtotal');
-    const itemCountElement = document.getElementById('item-count'); // To display the item count
 
-    // Retrieve cart items from localStorage
-    let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  <script>
 
-    // Function to render cart items
-    function renderCartItems(items) {
+    document.addEventListener('DOMContentLoaded', () => {
+      const cartContainer = document.querySelector('.cart-container');
+      const subtotalElement = document.getElementById('subtotal');
+      const itemCountElement = document.getElementById('item-count');
+
+      // Retrieve cart items from localStorage, ensuring it's an array
+      let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+      // Function to render cart items
+      function renderCartItems(items) {
         let subtotal = 0;
         let itemCount = 0;
 
         // Clear the cart container
         cartContainer.innerHTML = '';
 
-        items.forEach(item => {
-            // Convert price to a number
-            const price = parseFloat(item.price.replace(/[^0-9.-]/g, ''));
-            subtotal += price;
-            itemCount++;
+        items.forEach((item, index) => {
+          // Convert price to a number
+          console.log(index);
+          let idx =index;
+          const price = parseFloat(item.price.replace(/[^0-9.-]/g, ''));
+          const itemTotal = price * (item.quantity || 1);
+          subtotal += itemTotal;
+          itemCount += item.quantity || 1; // Increase itemCount by item quantity
 
-            // Create HTML for the cart item
-            const itemHTML = `
-                <div class="card card-webinar cart-product-card">
-                    <div class="card-head">
-                        <span>
-                            <label class="check check-secondary">
-                                <input type="checkbox" class="item-checkbox" data-title="${item.title}" />${item.title}
-                            </label>
-                        </span>
-                    </div>
-                    <hr />
-                    <div class="cart-card">
-                        <div class="card-head">
-                            <div class="checkbox">
-                                <label class="check check-secondary">
-                                    <input type="checkbox" />
-                                </label>
-                            </div>
-                            <div class="cart-content">
-                                <img src="${item.image}" alt="${item.title}" id="image" class="image" />
-                                <div class="card-desc">
-                                    <p class="text-ellipsis text-ellipsis-2">
-                                        ${item.desc}
-                                    </p>
-                                    <span>${item.brand}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="prices">
-                                <p class="price">${item.price}</p>
-                                <p class="discount"><s>${item.discount}</s></p>
-                                <div class="icon-group">
-                                    <span class="wishlist"><i class="bx bx-heart"></i></span>
-                                    <span class="wishlist delete-item" data-title="${item.title}"><i class="bx bx-trash"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-foot">
-                            <div class="quantity-counter">
-                                <div class="counter">
-                                    <button class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement"></button>
-                                    <input class="counter-value value" type="number" value="1" min="1" />
-                                    <button class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment"></button>
-                                </div>
-                            </div>
+          // Create HTML for the cart item
+          const itemHTML = `
+        <div class="card card-webinar cart-product-card" data-index="`+idx+`">
+            <div class="card-head">
+                <span>
+                    <label class="check check-secondary">
+                        <input type="checkbox" class="item-checkbox" data-title="${item.title}" />${item.title}
+                    </label>
+                </span>
+            </div>
+            <hr />
+            <div class="cart-card">
+                <div class="card-head">
+                    <div class="cart-content">
+                        <img src="${item.image}" alt="${item.title}" id="image" class="image" />
+                        <div class="card-desc">
+                            <p class="text-ellipsis text-ellipsis-2">
+                                ${item.desc}
+                            </p>
+                            <span>${item.brand}</span>
                         </div>
                     </div>
                 </div>
-            `;
+                <div class="card-body">
+                    <div class="prices">
+                        <p class="price">${(itemTotal).toFixed(2)}</p>
+                        <p class="discount"><s>${item.discount}</s></p>
+                        <div class="icon-group">
+                            <span class="wishlist"><i class="bx bx-heart"></i></span>
+                            <span class="wishlist delete-item" data-index="${index}"><i class="bx bx-trash"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-foot">
+                    <div class="quantity-counter">
+                        <div class="counter">
+                            <button class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement" data-index="`+index+`" data-field="addition"></button>
+                            <input class="counter-value value" type="number" value="${item.quantity || 1}" min="1" data-index="`+index+`" />
+                            <button class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment" data-index="`+index+`"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      `;
 
-            // Append the generated HTML to the cart container
-            cartContainer.innerHTML += itemHTML;
+          // Append the generated HTML to the cart container
+          cartContainer.innerHTML += itemHTML;
         });
 
         // Update the subtotal
-        subtotalElement.textContent = `Rs. ${subtotal.toFixed(2)}`;
+        subtotalElement.textContent = `${subtotal.toFixed(2)}`;
         // Update the item count
         itemCountElement.textContent = itemCount;
-    }
+      }
 
-    // Call the function to render cart items
-    renderCartItems(cartItems);
+      // Call the function to render cart items initially
+      renderCartItems(cartItems);
 
-    // Add functionality for delete buttons to delete only selected items
-    document.getElementById('delete-selected-btn').addEventListener('click', function () {
+      // Add event listener for the quantity increment and decrement
+      cartContainer.addEventListener('click', function (event) {
+        const target = event.target;
+        const index = target.getAttribute('data-index');
+        console.log(index);
+        
+        if (index !== null && !isNaN(index)) {
+          if (target.classList.contains('increment')) {
+            console.log(1);
+            
+            updateQuantity(index, 1);
+          } else if (target.classList.contains('decrement')) {
+            console.log(2);
+            updateQuantity(index, -1);
+          } else if (target.classList.contains('delete-item')) {
+            console.log(3);
+            deleteCartItem(index);
+          }
+        }
+      });
+
+      // Function to update the quantity and price
+        function updateQuantity(index, change) {
+          console.log(index,change);
+          
+          const quantityInput = document.querySelector(`.counter-value[data-index="`+index+`"]`);
+          console.log(quantityInput);
+          
+          if (quantityInput) {
+            let quantity = parseInt(quantityInput.value) + change;
+            quantity = Math.max(quantity, 1); // Ensure quantity is at least 1
+
+            cartItems[index].quantity = quantity;
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+
+            renderCartItems(cartItems); // Re-render cart items with updated quantity
+          } else {
+            console.error('Quantity input not found for index:', index);
+          }
+        }
+
+      // Delete individual items
+      cartContainer.addEventListener('click', function (event) {
+        if (event.target.classList.contains('bx-trash')) {
+          const index = event.target.closest('.delete-item').getAttribute('data-index');
+          deleteCartItem(index);
+        }
+      });
+
+      // Function to delete an item from the cart
+      function deleteCartItem(index) {
+        cartItems.splice(index, 1); // Remove item from array using index
+        localStorage.setItem('cart', JSON.stringify(cartItems)); // Save the updated cart to localStorage
+        renderCartItems(cartItems); // Re-render the updated cart
+      }
+
+      // Delete selected items
+      document.getElementById('delete-selected-btn').addEventListener('click', function () {
         const selectedItems = document.querySelectorAll('.item-checkbox:checked');
         let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -501,10 +556,29 @@
 
         // Reload the cart after deletion
         renderCartItems(cartItems);
-    });
-});
+      });
 
- </script>
+      // Add new items to the cart
+      function addToCart(newItem) {
+        cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Ensure we clear previous cart items and only push new items
+        cartItems.push(newItem);
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+        renderCartItems(cartItems);
+      }
+
+      // Clear the cart before adding new items (use when necessary)
+      function clearCart() {
+        cartItems = [];
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+        renderCartItems(cartItems);
+      }
+    });
+
+
+  </script>
+
   {% endblock %}
 
   <!-- header-fixed
