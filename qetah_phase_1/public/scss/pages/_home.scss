@@ -1040,7 +1040,10 @@ z-index: 0;
 }
 .mySwiper .swiper-wrapper .swiper-slide .image img {
   width: 85%;
-  height: 181px;
+  height: 245px;
+}
+.About .heading {
+  font-size: 40px !important;
 }
 .field-inline input, .field-inline select {
   width: 100px;
@@ -1057,6 +1060,7 @@ z-index: 0;
     }
     .Story .container .story-desc {
       width: auto;
+      margin: 20px;
     }
     .customer-reviews .badge {
       margin-left: 45%;
@@ -1064,12 +1068,26 @@ z-index: 0;
   .Joining .qetah-family .card-body {
    display: none;
   }
-  
+  footer .social .links ul{
+    width: 342px !important;
+    display: flex !important;
+  }
   .Joining .qetah-family .card-head .card-title {
     font-size: 32px;
     margin-bottom: 20px;
 }
-
+.Story .container .images {
+  display: none !important;
+}
+.Blogs{
+  padding: 20px !important;
+}
+.Joining{
+ padding: 0px 20px !important;
+}
+.Story .badge {
+    margin-left: 42% !important;
+}
 .Joining .qetah-family .card-head  {
   width: auto;
 }
@@ -1079,6 +1097,7 @@ z-index: 0;
 .Appointment {
   flex-direction: column;
   padding: 40px 24px;
+  width: 392px !important;
 }
 .sale .sale-product .sale-content {
   width: 100%;
@@ -1156,7 +1175,7 @@ z-index: 0;
 
 .mySwiper .swiper-wrapper .swiper-slide .image img {
   width: 85%;
-  height: 164px;
+  height: 200px !important;
 }
       .divider{
         display: flex;
@@ -1168,9 +1187,20 @@ z-index: 0;
         display: none;
       }
       .About .heading{
-        font-size: 30px;
+        font-size: 30px !important;
       }
-      
+      .products .heading {
+    margin-left: 42%;
+}
+    .products .explore {
+        margin-left: 32%;
+    }
+        .Appointment {
+        width: 350px !important;
+    }
+        footer .social .quote {
+        width: 300px;
+    }
 .Story .heading {
   font-size: 30px;
 }
@@ -1217,6 +1247,17 @@ z-index: 0;
   left: 68px;
   display: none !important;
 }
+
+
+footer .social .links ul {
+    display: grid !important;
+    grid-template-columns: auto auto;
+    width: 243px !important;
+}
+
+    .Appointment {
+        width: 290px !important;
+    }
  .customer-say {
     font-size: 28px;
     margin: 20px 0px;

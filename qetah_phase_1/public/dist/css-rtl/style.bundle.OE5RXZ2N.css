@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* ../../../../../tmp/tmp-2494-S41peEcw7Y7D/qetah_phase_1/qetah_phase_1/public/scss/style.bundle.css */
+/* ../../../../../tmp/tmp-8740-PouSKTq1Wtnm/qetah_phase_1/qetah_phase_1/public/scss/style.bundle.css */
 [x-cloak] {
   display: none !important;
 }
@@ -1700,7 +1700,10 @@ footer .quote i {
   }
   .mySwiper .swiper-wrapper .swiper-slide .image img {
     width: 85%;
-    height: 181px;
+    height: 245px;
+  }
+  .About .heading {
+    font-size: 40px !important;
   }
   .field-inline input,
   .field-inline select {
@@ -1718,6 +1721,7 @@ footer .quote i {
   }
   .Story .container .story-desc {
     width: auto;
+    margin: 20px;
   }
   .customer-reviews .badge {
     margin-right: 45%;
@@ -1725,9 +1729,25 @@ footer .quote i {
   .Joining .qetah-family .card-body {
     display: none;
   }
+  footer .social .links ul {
+    width: 342px !important;
+    display: flex !important;
+  }
   .Joining .qetah-family .card-head .card-title {
     font-size: 32px;
     margin-bottom: 20px;
+  }
+  .Story .container .images {
+    display: none !important;
+  }
+  .Blogs {
+    padding: 20px !important;
+  }
+  .Joining {
+    padding: 0px 20px !important;
+  }
+  .Story .badge {
+    margin-right: 42% !important;
   }
   .Joining .qetah-family .card-head {
     width: auto;
@@ -1738,6 +1758,7 @@ footer .quote i {
   .Appointment {
     flex-direction: column;
     padding: 40px 24px;
+    width: 392px !important;
   }
   .sale .sale-product .sale-content {
     width: 100%;
@@ -1812,7 +1833,7 @@ footer .quote i {
   }
   .mySwiper .swiper-wrapper .swiper-slide .image img {
     width: 85%;
-    height: 164px;
+    height: 200px !important;
   }
   .divider {
     display: flex;
@@ -1824,7 +1845,19 @@ footer .quote i {
     display: none;
   }
   .About .heading {
-    font-size: 30px;
+    font-size: 30px !important;
+  }
+  .products .heading {
+    margin-right: 42%;
+  }
+  .products .explore {
+    margin-right: 32%;
+  }
+  .Appointment {
+    width: 350px !important;
+  }
+  footer .social .quote {
+    width: 300px;
   }
   .Story .heading {
     font-size: 30px;
@@ -1871,6 +1904,14 @@ footer .quote i {
   .icon-dropdown {
     right: 68px;
     display: none !important;
+  }
+  footer .social .links ul {
+    display: grid !important;
+    grid-template-columns: auto auto;
+    width: 243px !important;
+  }
+  .Appointment {
+    width: 290px !important;
   }
   .customer-say {
     font-size: 28px;
@@ -4202,4 +4243,4 @@ input[type=number] {
   margin-right: -60px;
   border-radius: 100%;
 }
-/*# sourceMappingURL=style.bundle.N3R5YZSV.css.map */
+/*# sourceMappingURL=style.bundle.OE5RXZ2N.css.map */
