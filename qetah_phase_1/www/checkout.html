@@ -27,6 +27,13 @@
     letter-spacing: -0.02em;
     text-transform: lowercase;
   }
+  .COD {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #000000;
+    letter-spacing: -0.02em;
+  }
 
   .stripe-card.focus {
     border: 2px solid #6772e5;
@@ -114,13 +121,19 @@
       </div>
       <h5 class="card-title mt-3">Card Payment</h5>
       <div class="stripe-card">
-        <div class="card inner-card focus" tabindex="0" data-radio-id="radio1">
+        <div class="card inner-card " tabindex="0" data-radio-id="radio1">
           <div class="card-head">
-            <label class="check check-disable"> <input type="checkbox" checked="checked" disabled id="radio1" /></label>
+            <label class="check check-disable"> <input type="checkbox"  id="radio1" /></label>
             <div class="stripe">Stripe</div>
           </div>
           <div class="card-body">
             <img class="stripe-logo" src="/assets/qetah_phase_1/images/stripe.svg" height="50px" width="50px">
+          </div>
+        </div>
+        <div class="card inner-card " tabindex="0" data-radio-id="radio2">
+          <div class="card-head">
+            <label class="check check-disable"> <input type="checkbox"  id="radio2" /></label>
+            <div class="COD">Cash on Delivery</div>
           </div>
         </div>
       </div>
