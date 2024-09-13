@@ -231,15 +231,12 @@
         console.log('No data found in localStorage');
       }
     }
-
-    // Call displayData function on page load
     document.addEventListener('DOMContentLoaded', function () {
       displayData();
     });
   </script>
 
   <script>
-    // Function to send data via frappe.call
     function on_proceed() {
       let fullname = document.getElementById("fullname").value;
       let province = document.getElementById("state").value;
@@ -355,7 +352,7 @@
                                 ${item.discount ? `<span>${item.discount}</span>` : ''}
                                 <div class="icon-group">
                                     <span class="wishlist delete-item" data-title="${item.title}">
-                                        <i class="bx bx-trash"></i>
+                                    <i class="bx bx-trash"></i>
                                     </span>
                                 </div>
                             </div>
