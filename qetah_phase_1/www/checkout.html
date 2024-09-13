@@ -81,7 +81,7 @@
 
 <div class="content-area" :class="{'shifted-content': isStatic}">
   <div class="container checkout">
-    <form action="" method="" class="information" id="informationForm">
+    <form action="" method="POST" class="information" id="informationForm">
       <h5>Delivery Information</h5>
       <!-- Target div where the data will be displayed -->
       <div id="displayData"></div>
@@ -124,7 +124,7 @@
         <div class="card inner-card " tabindex="0" data-radio-id="radio1">
           <div class="card-head">
             <label class="check check-disable"> <input type="checkbox"  id="radio1" /></label>
-            <div class="stripe">Stripe</div>
+            <div class="stripe" id="stripe">Stripe</div>
           </div>
           <div class="card-body">
             <img class="stripe-logo" src="/assets/qetah_phase_1/images/stripe.svg" height="50px" width="50px">
@@ -132,8 +132,8 @@
         </div>
         <div class="card inner-card " tabindex="0" data-radio-id="radio2">
           <div class="card-head">
-            <label class="check check-disable"> <input type="checkbox"  id="radio2" /></label>
-            <div class="COD">Cash on Delivery</div>
+            <label class="check check-disable"> <input type="checkbox"  id="radio2" id="cod"/></label>
+            <div class="COD" >Cash on Delivery</div>
           </div>
         </div>
       </div>
@@ -279,6 +279,60 @@
           document.getElementById("city").value = "";
           document.getElementById("state").value = "";
           document.getElementById("code").value = "";
+        }
+      });
+      localStorage.removeItem('cart')
+      window.location.reload();
+    }
+  </script>
+
+  <script>
+    function on_proceed() {
+      let fullname = document.getElementById("fullname").value;
+      let province = document.getElementById("state").value;
+      let city = document.getElementById("city").value;
+      let phone = document.getElementById("phone").value;
+      let address = document.getElementById("address").value;
+      let code = document.getElementById("code").value;
+      let email = document.getElementById("email").value;
+      let stripe = document.getElementById("stripe").value;
+      let cod = document.getElementById("cod").value;
+      let item_count = document.getElementById("item-count").value;
+      let grand_total = document.getElementById("grand-total").value;
+      
+
+      frappe.call({
+        method: 'qetah_phase_1.events.delivery_info.info',
+        args: {
+          fullname: fullname,
+          phone: phone,
+          address: address,
+          city: city,
+          state: state,
+          code: code,
+          email: email,
+          stripe: stripe,
+          cod: cod,
+          item_qty:item-count,
+          grand_total:grand-total,
+
+        },
+        callback(r) {
+          console.log(r.message);
+          document.getElementById("messages").innerHTML = r.message;
+
+          // Clear the form fields after submission
+          document.getElementById("fullname").value = "";
+          document.getElementById("phone").value = "";
+          document.getElementById("address").value = "";
+          document.getElementById("city").value = "";
+          document.getElementById("state").value = "";
+          document.getElementById("code").value = "";
+          document.getElementById("email").value = "";
+          document.getElementById("stripe").value = "";
+          document.getElementById("item-count").value = "";
+          document.getElementById("grand-total").value = "";
+
         }
       });
       localStorage.removeItem('cart')
@@ -449,5 +503,4 @@
     });
 
   </script>
-
   {% endblock %}

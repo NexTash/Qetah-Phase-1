@@ -860,6 +860,22 @@ z-index: 0;
         width: 100%;
     }
     }
+    @media(max-width:991px){
+      .Joining .qetah-family .card-head .card-title {
+        font-size: 46px;
+        }
+        .our-story{
+          gap: 50px;
+        }
+        .About .container .images img {
+              width: 400px;
+    height: 421px;
+    margin-left: 225px;
+        }
+        .About .heading {
+    font-size: 42px;
+        }
+    }
     @media(max-width:768px){
       .nxt-header {
         width: 100%;
