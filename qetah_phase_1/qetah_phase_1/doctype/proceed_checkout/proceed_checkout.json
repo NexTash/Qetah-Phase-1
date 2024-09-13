@@ -1,21 +1,24 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "Checkout-.#####",
- "creation": "2024-08-28 11:37:26.689989",
- "default_view": "List",
+ "autoname": "naming_series:",
+ "creation": "2024-09-13 16:44:37.840542",
  "doctype": "DocType",
- "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "full_name",
-  "phone",
-  "address",
-  "column_break_iaejv",
+  "phone_no",
+  "postal_code",
+  "email",
+  "total_price",
+  "column_break_zlvk",
+  "state",
   "city",
-  "province",
-  "area",
-  "code"
+  "items",
+  "payment_method",
+  "section_break_2kls",
+  "address",
+  "naming_series"
  ],
  "fields": [
   {
@@ -24,47 +27,74 @@
    "label": "Full Name"
   },
   {
+   "fieldname": "phone_no",
+   "fieldtype": "Data",
+   "label": "Phone No"
+  },
+  {
+   "fieldname": "postal_code",
+   "fieldtype": "Int",
+   "label": "Postal Code"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "column_break_zlvk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
    "fieldname": "city",
    "fieldtype": "Data",
-   "label": "City"
+   "label": "City "
   },
   {
-   "fieldname": "province",
-   "fieldtype": "Data",
-   "label": "Province"
-  },
-  {
-   "fieldname": "area",
-   "fieldtype": "Data",
-   "label": "Area"
-  },
-  {
-   "fieldname": "phone",
-   "fieldtype": "Int",
-   "label": "Phone"
+   "fieldname": "payment_method",
+   "fieldtype": "Select",
+   "label": "Payment Method",
+   "options": "\nStripe\nCash on Delivery"
   },
   {
    "fieldname": "address",
-   "fieldtype": "Data",
+   "fieldtype": "Text",
    "label": "Address"
   },
   {
-   "fieldname": "code",
-   "fieldtype": "Int",
-   "label": " Code"
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Naming Series",
+   "options": "Delivery Info"
   },
   {
-   "fieldname": "column_break_iaejv",
-   "fieldtype": "Column Break"
+   "fieldname": "section_break_2kls",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "total_price",
+   "fieldtype": "Int",
+   "label": "Total Price"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Int",
+   "label": "Items"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-02 11:54:51.838825",
+ "modified": "2024-09-13 21:11:04.314090",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Proceed Checkout",
- "naming_rule": "Expression (old style)",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {

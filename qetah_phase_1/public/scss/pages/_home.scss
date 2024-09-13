@@ -875,11 +875,46 @@ z-index: 0;
         .About .heading {
     font-size: 42px;
         }
+        .divider-text:before {
+        display: none;
+    }
+        .sidebar-header {
+          top: 0px;
+        }
+            .program-header .sm-logo {
+          display: none;
+        }
+        .side-logo{
+          height: 40px !important;
+        }
+            .logo-header {
+        display: block;
+        width: 126px;
+        height: 35px;
+    }
+    .divider {
+    --divider-m: 5px 0px !important;
+    }
+    .icon-dropdown {
+      margin-left: 780px;
+    }
+    .mobile-desktop{
+      margin-left: -28px;
+    }
+    .nxt-header .navbar-brand {
+      display: none;
+    }
+    .nxt-header .navbar-brand-lt {
+      margin: 0;
+    }
     }
     @media(max-width:768px){
       .nxt-header {
         width: 100%;
       }
+          .icon-dropdown {
+        margin-left: 558px;
+    }
       .cart .select-items button {
         z-index:0;
       }
@@ -893,7 +928,7 @@ z-index: 0;
         display: none;
       }
       .logo-header{
-        display: none;
+        display: block;
       }
       .divider{
         display: flex;
@@ -903,6 +938,7 @@ z-index: 0;
       }
       .About .container .images img{
         width: 330px;
+        margin-left: 0;
       }
       .Joining .qetah-family .card-head {
         --card-head-p: 32px 15px 20px 30px;
@@ -949,6 +985,10 @@ footer .social .links ul {
       .btn-circle-sm {
 z-index: 0;
 }
+#header{
+  display: flex;
+  align-items: center;
+}
     .side-coll{
      font-size:12px !important;
     }
@@ -968,7 +1008,7 @@ z-index: 0;
       margin-top: 50px;
     }
     .blogs{
-      margin-top: 5\0px;
+      margin-top: 50px;
     }
       .field-inline{
         display: block;
@@ -1030,7 +1070,7 @@ z-index: 0;
     }
 .main-crospo {
   position: relative;
-  right: -265px;
+  right: -270px;
 }
 .icon-dropdown{
   left: 169px;
@@ -1128,6 +1168,9 @@ z-index: 0;
 .sale .sale-product .sale-disc {
   width: 100%;
 }
+    .nxt-header .navbar-brand-lt .navbarDropToggler{
+      margin-left: -7px;
+    }
 .sale .sale-product {
   flex-direction: column;
   padding: 40px 0px;
@@ -1182,7 +1225,7 @@ z-index: 0;
         display: block;
       }
       .nxt-header .navbar-brand-lt .navbarDropToggler {
-        margin-left: 0px;
+        margin-left: 4px;
     }
     .main-crospo {
       right: -215px;

@@ -241,6 +241,41 @@
       <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
     </div>
   </div>
+  {% endblock %}
+   {% block scripts %} 
+  <script>
+    function savebutton() {
+      const phone = document.getElementById('phone').value;
+      const address = document.getElementById('address').value;
+      const email = document.getElementById('email').value;
+      const state = document.getElementById('state').value;
+      const city = document.getElementById('city').value;
+      const postalcode = document.getElementById('postalcode').value;
+
+      frappe.call({
+        method: 'qetah_phase_1.events.cart.carts',
+        args: {
+          address: address,
+          email: email,
+          phone: phone,
+          state: state,
+          city: city,
+          postalcode: postalcode,
+        },
+        callback(r) {
+          // console.log(r.message)
+          document.getElementById("messages").innerHTML = r.message;
+
+          document.getElementById('phone').value = ""
+          document.getElementById("email").value = ""
+          document.getElementById('address').value = ""
+          document.getElementById('state').value = ""
+          document.getElementById('city').value = ""
+          document.getElementById('postalcode').value = ""
+        }
+      });
+    }
+  </script>
   <!-- cart -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -329,7 +364,6 @@
       });
     });
   </script>
-
   <script>
     document.getElementById('saveButton').addEventListener('click', function () {
       const firstname = document.getElementById('firstname').value;
@@ -360,41 +394,6 @@
     document.addEventListener('DOMContentLoaded', function () {
       displayData();
     });
-  </script>
-
-
-  <script>
-    function savebutton() {
-      const phone = document.getElementById('phone').value;
-      const address = document.getElementById('address').value;
-      const email = document.getElementById('email').value;
-      const state = document.getElementById('state').value;
-      const city = document.getElementById('city').value;
-      const postalcode = document.getElementById('postalcode').value;
-
-      frappe.call({
-        method: 'qetah_phase_1.events.cart.carts',
-        args: {
-          address: address,
-          email: email,
-          phone: phone,
-          state: state,
-          city: city,
-          postalcode: postalcode,
-        },
-        callback(r) {
-          // console.log(r.message)
-          document.getElementById("messages").innerHTML = r.message;
-
-          document.getElementById('phone').value = ""
-          document.getElementById("email").value = ""
-          document.getElementById('address').value = ""
-          document.getElementById('state').value = ""
-          document.getElementById('city').value = ""
-          document.getElementById('postalcode').value = ""
-        }
-      });
-    }
   </script>
   <!-- Cart Items  -->
   <script>
@@ -569,7 +568,5 @@
     });
   </script>
 
-
   {% endblock %}
-
   <!-- header-fixed

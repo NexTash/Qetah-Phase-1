@@ -1,24 +1,22 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "naming_series:",
- "creation": "2024-09-13 16:44:37.840542",
+ "autoname": "Checkout-.#####",
+ "creation": "2024-08-28 11:37:26.689989",
+ "default_view": "List",
  "doctype": "DocType",
+ "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "full_name",
-  "phone_no",
-  "postal_code",
-  "email",
-  "total_price",
-  "column_break_zlvk",
-  "state",
-  "city",
-  "items",
-  "payment_method",
-  "section_break_2kls",
+  "phone",
   "address",
-  "naming_series"
+  "column_break_iaejv",
+  "city",
+  "province",
+  "order_number",
+  "items_section",
+  "order_items"
  ],
  "fields": [
   {
@@ -27,74 +25,53 @@
    "label": "Full Name"
   },
   {
-   "fieldname": "phone_no",
-   "fieldtype": "Phone",
-   "label": "Phone No"
-  },
-  {
-   "fieldname": "postal_code",
-   "fieldtype": "Int",
-   "label": "Postal Code"
-  },
-  {
-   "fieldname": "email",
+   "fieldname": "city",
    "fieldtype": "Data",
-   "label": "Email"
+   "label": "City"
   },
   {
-   "fieldname": "column_break_zlvk",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "state",
+   "fieldname": "province",
    "fieldtype": "Data",
    "label": "State"
   },
   {
-   "fieldname": "city",
-   "fieldtype": "Data",
-   "label": "City "
-  },
-  {
-   "fieldname": "payment_method",
-   "fieldtype": "Select",
-   "label": "Payment Method",
-   "options": "\nStripe\nCash on Delivery"
+   "fieldname": "phone",
+   "fieldtype": "Int",
+   "label": "Phone"
   },
   {
    "fieldname": "address",
-   "fieldtype": "Text",
+   "fieldtype": "Data",
    "label": "Address"
   },
   {
-   "fieldname": "naming_series",
-   "fieldtype": "Select",
-   "hidden": 1,
-   "label": "Naming Series",
-   "options": "Delivery Info"
+   "fieldname": "column_break_iaejv",
+   "fieldtype": "Column Break"
   },
   {
-   "fieldname": "section_break_2kls",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "total_price",
+   "fieldname": "order_number",
    "fieldtype": "Int",
-   "label": "Total Price"
+   "label": "Order Number"
   },
   {
-   "fieldname": "items",
-   "fieldtype": "Int",
+   "fieldname": "items_section",
+   "fieldtype": "Section Break",
    "label": "Items"
+  },
+  {
+   "fieldname": "order_items",
+   "fieldtype": "Table",
+   "label": "Order Items",
+   "options": "Order Items"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-13 17:24:35.550732",
+ "modified": "2024-09-13 22:30:03.846543",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Delivery Information",
- "naming_rule": "By \"Naming Series\" field",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
