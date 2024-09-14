@@ -86,54 +86,23 @@
       <h5>Delivery Information</h5>
       <!-- Target div where the data will be displayed -->
       <div id="displayData"></div>
-      <!-- <div class="badge badge-secondary m-2">Office</div>
-      <div class="grp">
-        <h6 class="title">Full Name :</h6>
-        <div class="subtitle" id="fullname">${data.firstname} ${data.lastname}</div>
-      </div>
-      <div class="grp">
-        <h6 class="title">Phone No :</h6>
-        <div class="subtitle">+92 3164241634</div>
-      </div>
-      <div class="grp">
-        <h6 class="address">Address :</h6>
-        <div class="subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo esse ad sit cum
-          praesentium labore deleniti ea aliquam nulla, hic illo est nobis numquam accusantium, ex laboriosam aliquid
-          cupiditate ducimus.</div>
-      </div>
-      <div class="grp">
-        <h6 class="title">E-mail :</h6>
-        <p class="subtitle">ammarpubgplayer97@gmail.com</p>
-      </div>
-      <div class="grp">
-        <h6 class="title">Province :</h6>
-        <div class="subtitle">Punjab</div>
-      </div>
-      <div class="grp">
-        <h6 class="title">City :</h6>
-        <div class="subtitle">Lahore</div>
-      </div>
-      <div class="grp">
-        <h6 class="title">Zip / Postal Code :</h6>
-        <div class="subtitle">54810</div>
-      </div> -->
       <div
         style="margin: 0px;border: none;width: 100%;color: black;padding: 0;background: rgb(207, 207, 207);height: 1px;">
       </div>
       <h5 class="card-title mt-3">Card Payment</h5>
       <div class="stripe-card">
-        <div class="card inner-card " tabindex="0" data-radio-id="radio1">
+        <div class="card inner-card " tabindex="0" data-radio-id="stripe">
           <div class="card-head">
-            <label class="check check-disable"> <input type="checkbox" id="radio1" /></label>
+            <label class="check check-disable"> <input type="radio" id="stripe" name="pm" checked=""/></label>
             <div class="stripe" id="stripe">Stripe</div>
           </div>
           <div class="card-body">
             <img class="stripe-logo" src="/assets/qetah_phase_1/images/stripe.svg" height="50px" width="50px">
           </div>
         </div>
-        <div class="card inner-card " tabindex="0" data-radio-id="radio2">
+        <div class="card inner-card " tabindex="0" data-radio-id="cod">
           <div class="card-head">
-            <label class="check check-disable"> <input type="checkbox" id="radio2" id="cod" /></label>
+            <label class="check check-disable"> <input type="radio" id="cod"  name="pm"  checked=""/></label>
             <div class="COD">Cash on Delivery</div>
           </div>
         </div>
@@ -153,7 +122,8 @@
       <h5>Order Summary</h5>
       <div class="order-info">
         <div class="order-detail">
-          <div class="item">Total (<span id="item-count">0</span> items)</div> <!-- Item count goes here -->
+          <div class="item">Total (<span id="item-count" ></span> items)</div>
+           <!-- Item count goes here -->
           <div class="">$ <span id="subtotal">0</span></div> <!-- Subtotal goes here -->
         </div>
         <div class="order-detail">
@@ -167,7 +137,7 @@
         <hr>
         <div class="total">
           <div class="sum">Total:</div>
-          <div class="price" id="grand-total">USD. 0.00</div>
+          <div class="price" id="grand-total" ></div>
         </div>
         <!-- <p>Subtotal: Rs. <span id="subtotal">0.00</span></p>
         <p>Grand Total (including delivery): Rs. <span id="grand-total">0.00</span></p>
@@ -178,7 +148,7 @@
         <button id="apply-code">Apply Promo Code</button> -->
 
         <div class="taxes">Taxes included, where applicable</div>
-        <input class="btn btn-dark btn-block" data-field="proceed-checkout" onclick="on_proceed()" value="Proceed to Pay"></input>
+        <input type="button" class="btn btn-dark btn-block" data-field="proceed-checkout" onclick="on_proceed()" value="Proceed to Pay"></input>
       </div>
     </form>
 
@@ -193,10 +163,116 @@
   </div>
 
 <script>
+function on_proceed() {
+  console.log("working");
+  
+  // Retrieve form input values
+  let fullname = "";
+  let state = "";
+  let city = "";
+  let phone = "";
+  let address = "";
+  let code = "";
+  let email = "";
+  let stripe = 0;
+  let cod = 0;
+  // let cod = document.getElementById("cod").value;
+  let item_count1 = 0;
+  let grand_total1 = "";
+  let title = " shoes";
+
+  console.log("variables created");
+
+  fullname = document.getElementById("fullname").value;
+  console.log(fullname);
+  state = document.getElementById("state").value;
+  console.log(state);
+  
+  city = document.getElementById("city").value;
+  
+  console.log(city);
+  phone = document.getElementById("phone").value;
+  console.log(phone);
+  
+  address = document.getElementById("address").value;
+  console.log(address);
+  
+  code = document.getElementById("code").value;
+  console.log(code);
+  
+  email = document.getElementById("email").value;
+  console.log(email);
+  
+  stripe = document.getElementById("stripe").value;
+  cod = document.getElementById("cod").value;
+  // let cod = document.getElementById("cod").value;
+  console.log(stripe);
+  
+  item_count1 = document.getElementById("item-count");
+
+  // Retrieve and log the innerHTML of the element
+  item_count1 = item_count1.innerHTML; 
+
+  console.log("item_count",item_count1);
+  
+  grand_total1 = document.getElementById("grand-total");
+  grand_total1 = grand_total1.innerHTML;
+  console.log(grand_total1);
+
+  console.log("values added");
+
+  // Hardcoded values
+  //  title = document.getElementById("title-item").value;
+  // console.log(title);
+  console.log("call started");
+
+  // Proceed with Frappe call
+  frappe.call({
+    method: 'qetah_phase_1.events.proceed_checkout.poceed_to_checkout',
+    args: {
+        fullname: fullname,
+        phone: phone,
+        address: address,
+        city: city,
+        state: state,
+        code: code,
+        email: email,
+        stripe: 0,   // Defaulted stripe to 0
+        cod: cod,
+        item_count1: item_count1,
+        grand_total1: grand_total1,
+        title:title,
+      },
+    callback(r) {
+      console.log("Frappe response:", r.message);
+      if (r.message == "Created") {
+        // Perform any success action
+      }
+      document.getElementById("messages").innerHTML = r.message;
+
+      // // Clear form fields after submission
+      // document.getElementById("fullname").value = "";
+      // document.getElementById("phone").value = "";
+      // document.getElementById("address").value = "";
+      // document.getElementById("city").value = "";
+      // document.getElementById("state").value = "";
+      // document.getElementById("code").value = "";
+      // document.getElementById("email").value = "";
+      // document.getElementById("stripe").value = "";
+    }
+  });
+
+  // Clear cart data from localStorage
+  localStorage.removeItem('cart');
+}
+
+</script>
+
+<script>
 function showOrderSummary(items) {
     let popupContent = '<h3>Your Selected Items:</h3><ul>';
     items.forEach(item => {
-        popupContent += `<li>${item.item_name} - Quantity: ${item.quantity} - Price: ${item.price}</li>`;
+        popupContent += `<li>${item.title} - Quantity: ${item.qty} </li>`;
     });
     popupContent += '</ul>';
 
@@ -214,102 +290,10 @@ function showOrderSummary(items) {
     document.body.appendChild(popup);
 }
 
-// Assuming you have a button for proceeding to checkout
-document.querySelector('[data-field="proceed-checkout"]').addEventListener('click', function() {
-    let fullname = document.querySelector('#fullname').value;
-    let phone = document.querySelector('#phone').value;
-    // Collect all form fields here...
-    
-    // Collect the items from the cart
-    let items = [];  // Collect from your frontend structure
-    document.querySelectorAll('.cart-item').forEach(function(el) {
-        items.push({
-            item_name: el.querySelector('.item-name').innerText,
-            quantity: el.querySelector('.quantity').value,
-            price: el.querySelector('.price').innerText
-        });
-    });
-
-    // Call the backend (Frappe call) to process the checkout
-    frappe.call({
-          method: 'qetah_phase_1.events.proceed_checkout.checks',
-        args: {
-            fullname: fullname,
-            phone: phone,
-            // Add other arguments here...
-            items: items,
-        },
-        callback: function(response) {
-            if (response.message) {
-                // Show the order summary in a popup
-                showOrderSummary(response.message.items);
-            }
-        }
-    });
-});
-
 </script>  
 
 
-  <script>
-
-  function on_proceed() {
-      let fullname = document.getElementById("fullname").value;
-      let state = document.getElementById("state").value;
-      let city = document.getElementById("city").value;
-      let phone = document.getElementById("phone").value;
-      let address = document.getElementById("address").value;
-      let code = document.getElementById("code").value;
-      let email = document.getElementById("email").value;
-      let stripe = document.getElementById("stripe").value;
-      // let cod = document.getElementById("cod").value;
-      let cod=1;
-      let item_count=1;
-      let grand_total=500;
-      // let item_count = document.getElementById("item_count").value;
-      // let grand_total = document.getElementById("grand_total").value;
-        console.log("working");
-        
-        frappe.call({
-          method: 'qetah_phase_1.events.proceed_checkout.checks',
-          args: {
-             fullname: fullname,
-              phone: phone,
-              address: address,
-              city: city,
-              state: state,
-              code: code,
-              email: email,
-              stripe: 0,
-              cod: 1,
-              item_count: item_count,
-              grand_total: grand_total,
-          },
-          callback(r) {
-            console.log(r.message);
-            if(r.message=="Created"){
-
-            }
-            document.getElementById("messages").innerHTML = r.message;
-
-            // Clear the form fields after submission
-            document.getElementById("fullname").value = "";
-            document.getElementById("phone").value = "";
-            document.getElementById("address").value = "";
-            document.getElementById("city").value = "";
-            document.getElementById("state").value = "";
-            document.getElementById("code").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("stripe").value = "";
-            document.getElementById("item_count").value = "";
-            document.getElementById("grand_total").value = "";
-          }
-        });
-        localStorage.removeItem('cart')
-      
-    }
-  
-  </script>
+ 
 
   
 
@@ -357,6 +341,7 @@ document.querySelector('[data-field="proceed-checkout"]').addEventListener('clic
 
         // Also fill the form fields with the data from localStorage
         document.getElementById("fullname").value = `${data.firstname} ${data.lastname}`;
+        document.getElementById("email").value = data.email;
         document.getElementById("state").value = data.state;
         document.getElementById("city").value = data.city;
         document.getElementById("phone").value = data.phone;
@@ -375,27 +360,63 @@ document.querySelector('[data-field="proceed-checkout"]').addEventListener('clic
   <script>
     // Get all the card and radio input elements
     const cards = document.querySelectorAll('.inner-card');
-    const radios = document.querySelectorAll('input[type="checkbox"]');
+    const radios = document.querySelectorAll('input[type="checkbox"], input[type="radio"]');
 
     // Add event listener to each card
     cards.forEach(card => {
-      card.addEventListener('click', function () {
+      card.addEventListener('click', function (e) {
         // Remove focus and checked attributes from all cards and radios
         cards.forEach(c => c.classList.remove('focus'));
         radios.forEach(r => r.removeAttribute('checked'));
-
         // Add focus class to the clicked card
         this.classList.add('focus');
-
+        
         // Get the associated radio input using the data attribute
         const radioId = this.getAttribute('data-radio-id');
         const radio = document.getElementById(radioId);
-
+        
         // Set the checked attribute on the associated radio input
         if (radio) {
           radio.setAttribute('checked', 'checked');
         }
       });
+    });
+    function handleRadioChange(event) {
+        const target = event.target;
+
+        // Check if the target is a radio button or a parent div
+        let radioId = '';
+
+        if (target.type === 'radio') {
+            // If clicked on a radio button, use its id
+            radioId = target.id;
+        } else {
+            // If clicked on a parent div, get the data-radio-id
+            const parentDiv = target.closest('.card.inner-card');
+            radioId = parentDiv ? parentDiv.getAttribute('data-radio-id') : '';
+        }
+
+        // Uncheck all radio buttons
+        document.querySelectorAll('input[type="radio"][name="pm"]').forEach(radio => {
+            radio.checked = false;
+        });
+
+        // Check the selected radio button
+        if (radioId) {
+            const selectedRadio = document.querySelector(`input[type="radio"][id="${radioId}"]`);
+            if (selectedRadio) {
+                selectedRadio.checked = true;
+            }
+        }
+    }
+
+    // Attach event listeners to all radio buttons and their parent divs
+    document.querySelectorAll('input[type="radio"][name="pm"]').forEach(radio => {
+        radio.addEventListener('click', handleRadioChange);
+    });
+
+    document.querySelectorAll('.card.inner-card').forEach(div => {
+        div.addEventListener('click', handleRadioChange);
     });
 
 
@@ -407,8 +428,8 @@ document.querySelector('[data-field="proceed-checkout"]').addEventListener('clic
       let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
       // Define delivery fee and discount
-      const deliveryFee = 1000; // Example delivery fee
-      const deliveryDiscount = 125; // Example delivery discount
+      const deliveryFee = 120; // Example delivery fee
+      const deliveryDiscount = 90; // Example delivery discount
 
       // Function to calculate and update the grand total
       function calculateGrandTotal(subtotal) {
@@ -433,11 +454,15 @@ document.querySelector('[data-field="proceed-checkout"]').addEventListener('clic
                         <p>Fulfilled by <b>QETAH</b></p>
                     </div>
                     <hr />
+
+
+
                     <div class="cart-card">
                         <div class="card-head">
                             <div class="cart-conent">
                                 <img src="${item.image}" alt="${item.title}" class="image" id="product_title" />
                                 <div class="card-desc">
+                                    <p class="text-ellipsis text-ellipsis-2"> <span> ${item.title}</span></p>
                                     <p class="text-ellipsis text-ellipsis-2">${item.desc}</p>
                                     
                                    ${item.brand ? `<span>${item.brand}</span>` : ''}
@@ -448,8 +473,8 @@ document.querySelector('[data-field="proceed-checkout"]').addEventListener('clic
                             <div class="prices">
                                 <p class="price" id="product_price" > ${item.price}</p>
                                 ${item.discount ? `<span>${item.discount}</span>` : ''}
-                                <div class="icon-group">
-                                    <span class="wishlist delete-item" data-title="${item.title}">
+                                <div class="icon-group" id="title-item">
+                                    <span class="wishlist delete-item" data-title=${item.title}">
                                     <i class="bx bx-trash"></i>
                                     </span>
                                 </div>
@@ -458,8 +483,10 @@ document.querySelector('[data-field="proceed-checkout"]').addEventListener('clic
                         <div class="card-foot">
                             <div class="qty">
                                 <span>Qty:</span>
-                                <span>1</span>
+                                <span>${items.length}</span>
                             </div>
+  
+                        <div id="item-list"></div>
                         </div>
                     </div>
                 </div>
@@ -531,19 +558,48 @@ document.querySelector('[data-field="proceed-checkout"]').addEventListener('clic
       // Recalculate the grand total after page load
       const grandTotal = calculateGrandTotal(parseFloat(storedSubtotal));
       document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
-
-
-      const proceedButton = document.querySelector('button[data-field="proceed-checkout"]');
-      console.log(proceedButton);
-      
-      // Add click event listener to the button
-      proceedButton.addEventListener('click', function() {
-          on_proceed();
-      });
-
-
       
     });
-
   </script>
+      <script>
+        // Example items array
+        const items = [
+            { title: 'Item A', quantity: 2 },
+            { title: 'Item B', quantity: 1 },
+            { title: 'Item A', quantity: 3 },
+            { title: 'Item C', quantity: 4 },
+        ];
+
+        // Create a map to store combined quantities by title
+        const itemMap = {};
+
+        // Loop through items and group them by title
+        items.forEach(item => {
+            if (itemMap[item.title]) {
+                // If the item already exists, add the quantity
+                itemMap[item.title] += item.quantity;
+            } else {
+                // If the item does not exist, add it to the map
+                itemMap[item.title] = item.quantity;
+            }
+        });
+
+        // Convert the map back to an array for easier rendering
+        const groupedItems = Object.keys(itemMap).map(title => ({
+            title: title,
+            quantity: itemMap[title],
+        }));
+
+        // Display the items in the DOM
+        const itemList = document.getElementById('item-list');
+        groupedItems.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('qty');
+            itemDiv.innerHTML = `
+                <span>Title: ${item.title}</span>
+                <span>Qty: ${item.quantity}</span>
+            `;
+            itemList.appendChild(itemDiv);
+        });
+    </script>
   {% endblock %}

@@ -24,11 +24,14 @@
   {
    "fieldname": "full_name",
    "fieldtype": "Data",
-   "label": "Full Name"
+   "in_list_view": 1,
+   "label": "Full Name",
+   "reqd": 1
   },
   {
    "fieldname": "phone_no",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Phone No"
   },
   {
@@ -39,6 +42,7 @@
   {
    "fieldname": "email",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Email"
   },
   {
@@ -64,7 +68,9 @@
   {
    "fieldname": "address",
    "fieldtype": "Text",
-   "label": "Address"
+   "in_list_view": 1,
+   "label": "Address",
+   "reqd": 1
   },
   {
    "fieldname": "naming_series",
@@ -90,7 +96,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-13 21:11:04.314090",
+ "modified": "2024-09-14 11:48:56.360505",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Proceed Checkout",

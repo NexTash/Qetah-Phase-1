@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "Checkout-.#####",
+ "autoname": "format:Order-{######}",
  "creation": "2024-08-28 11:37:26.689989",
  "default_view": "List",
  "doctype": "DocType",
@@ -13,7 +13,7 @@
   "address",
   "column_break_iaejv",
   "city",
-  "province",
+  "state",
   "order_number",
   "items_section",
   "order_items"
@@ -22,6 +22,7 @@
   {
    "fieldname": "full_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Full Name"
   },
   {
@@ -30,18 +31,15 @@
    "label": "City"
   },
   {
-   "fieldname": "province",
-   "fieldtype": "Data",
-   "label": "State"
-  },
-  {
    "fieldname": "phone",
    "fieldtype": "Int",
+   "in_list_view": 1,
    "label": "Phone"
   },
   {
    "fieldname": "address",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Address"
   },
   {
@@ -63,15 +61,20 @@
    "fieldtype": "Table",
    "label": "Order Items",
    "options": "Order Items"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-13 22:30:03.846543",
+ "modified": "2024-09-14 15:37:57.020986",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Delivery Information",
- "naming_rule": "Expression (old style)",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
