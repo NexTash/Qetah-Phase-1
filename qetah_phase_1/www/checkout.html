@@ -93,7 +93,7 @@
       <div class="stripe-card">
         <div class="card inner-card " tabindex="0" data-radio-id="stripe">
           <div class="card-head">
-            <label class="check check-disable"> <input type="radio" id="stripe" name="pm" checked=""/></label>
+            <label class="check check-disable"> <input type="radio" id="stripe" name="pm" checked="" /></label>
             <div class="stripe" id="stripe">Stripe</div>
           </div>
           <div class="card-body">
@@ -102,7 +102,7 @@
         </div>
         <div class="card inner-card " tabindex="0" data-radio-id="cod">
           <div class="card-head">
-            <label class="check check-disable"> <input type="radio" id="cod"  name="pm"  checked=""/></label>
+            <label class="check check-disable"> <input type="radio" id="cod" name="pm" checked="" /></label>
             <div class="COD">Cash on Delivery</div>
           </div>
         </div>
@@ -122,8 +122,8 @@
       <h5>Order Summary</h5>
       <div class="order-info">
         <div class="order-detail">
-          <div class="item">Total (<span id="item-count" ></span> items)</div>
-           <!-- Item count goes here -->
+          <div class="item">Total (<span id="item-count"></span> items)</div>
+          <!-- Item count goes here -->
           <div class="">$ <span id="subtotal">0</span></div> <!-- Subtotal goes here -->
         </div>
         <div class="order-detail">
@@ -137,7 +137,7 @@
         <hr>
         <div class="total">
           <div class="sum">Total:</div>
-          <div class="price" id="grand-total" ></div>
+          <div class="price" id="grand-total"></div>
         </div>
         <!-- <p>Subtotal: Rs. <span id="subtotal">0.00</span></p>
         <p>Grand Total (including delivery): Rs. <span id="grand-total">0.00</span></p>
@@ -148,13 +148,30 @@
         <button id="apply-code">Apply Promo Code</button> -->
 
         <div class="taxes">Taxes included, where applicable</div>
-        <input type="button" class="btn btn-dark btn-block" data-field="proceed-checkout" onclick="on_proceed()" value="Proceed to Pay"></input>
+        <input type="button" class="btn btn-dark btn-block" data-field="proceed-checkout" onclick="on_proceed()"
+          value="Proceed to Pay"></input>
       </div>
-    </form>
+      <br><br><br>
+    <h2>Latest Order Details</h2>
+    {% if latest_delivery %}
+    <div class="delivery-info">
+      <h3>Customer: {{ latest_delivery.full_name }}</h3>
+      <p>Phone: {{ latest_delivery.phone }}</p>
+      <p>Address: {{ latest_delivery.address }}, {{ latest_delivery.city }}, {{ latest_delivery.state }}</p>
 
+      <h4>Order Items:</h4>
+      {% for child in latest_delivery.order_items %}
+      <div class="child-item">
+        <p>Product: <b>{{ child.title }}</b></p>
+        <p>Quantity: <b>{{ child.qty }}</b></p>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>No delivery information available.</p>
+    {% endif %}
   </div>
-
-
+  </form>
   <div class="container checkout-items">
     <!-- Cart items will be dynamically added here by JavaScript -->
   </div>
@@ -162,140 +179,9 @@
     <!-- Wishlist items will be dynamically added here by JavaScript -->
   </div>
 
-<script>
-function on_proceed() {
-  console.log("working");
-  
-  // Retrieve form input values
-  let fullname = "";
-  let state = "";
-  let city = "";
-  let phone = "";
-  let address = "";
-  let code = "";
-  let email = "";
-  let stripe = 0;
-  let cod = 0;
-  // let cod = document.getElementById("cod").value;
-  let item_count1 = 0;
-  let grand_total1 = "";
-  let title = " shoes";
-
-  console.log("variables created");
-
-  fullname = document.getElementById("fullname").value;
-  console.log(fullname);
-  state = document.getElementById("state").value;
-  console.log(state);
-  
-  city = document.getElementById("city").value;
-  
-  console.log(city);
-  phone = document.getElementById("phone").value;
-  console.log(phone);
-  
-  address = document.getElementById("address").value;
-  console.log(address);
-  
-  code = document.getElementById("code").value;
-  console.log(code);
-  
-  email = document.getElementById("email").value;
-  console.log(email);
-  
-  stripe = document.getElementById("stripe").value;
-  cod = document.getElementById("cod").value;
-  // let cod = document.getElementById("cod").value;
-  console.log(stripe);
-  
-  item_count1 = document.getElementById("item-count");
-
-  // Retrieve and log the innerHTML of the element
-  item_count1 = item_count1.innerHTML; 
-
-  console.log("item_count",item_count1);
-  
-  grand_total1 = document.getElementById("grand-total");
-  grand_total1 = grand_total1.innerHTML;
-  console.log(grand_total1);
-
-  console.log("values added");
-
-  // Hardcoded values
-  //  title = document.getElementById("title-item").value;
-  // console.log(title);
-  console.log("call started");
-
-  // Proceed with Frappe call
-  frappe.call({
-    method: 'qetah_phase_1.events.proceed_checkout.poceed_to_checkout',
-    args: {
-        fullname: fullname,
-        phone: phone,
-        address: address,
-        city: city,
-        state: state,
-        code: code,
-        email: email,
-        stripe: 0,   // Defaulted stripe to 0
-        cod: cod,
-        item_count1: item_count1,
-        grand_total1: grand_total1,
-        title:title,
-      },
-    callback(r) {
-      console.log("Frappe response:", r.message);
-      if (r.message == "Created") {
-        // Perform any success action
-      }
-      document.getElementById("messages").innerHTML = r.message;
-
-      // // Clear form fields after submission
-      // document.getElementById("fullname").value = "";
-      // document.getElementById("phone").value = "";
-      // document.getElementById("address").value = "";
-      // document.getElementById("city").value = "";
-      // document.getElementById("state").value = "";
-      // document.getElementById("code").value = "";
-      // document.getElementById("email").value = "";
-      // document.getElementById("stripe").value = "";
-    }
-  });
-
-  // Clear cart data from localStorage
-  localStorage.removeItem('cart');
-}
-
-</script>
-
-<script>
-function showOrderSummary(items) {
-    let popupContent = '<h3>Your Selected Items:</h3><ul>';
-    items.forEach(item => {
-        popupContent += `<li>${item.title} - Quantity: ${item.qty} </li>`;
-    });
-    popupContent += '</ul>';
-
-    // Display the popup (you can use any modal/popup library or HTML-based modal)
-    let popup = document.createElement('div');
-    popup.id = 'order-summary-popup';
-    popup.innerHTML = popupContent;
-    popup.style.position = 'fixed';
-    popup.style.top = '50%';
-    popup.style.left = '50%';
-    popup.style.transform = 'translate(-50%, -50%)';
-    popup.style.backgroundColor = 'white';
-    popup.style.padding = '20px';
-    popup.style.border = '1px solid black';
-    document.body.appendChild(popup);
-}
-
-</script>  
+  <div id="messages"></div>
 
 
- 
-
-  
 
   <script>
     // Function to display data from localStorage
@@ -303,7 +189,7 @@ function showOrderSummary(items) {
       const data = JSON.parse(localStorage.getItem('shippingDetails'));
 
       // Log the retrieved data to the console
-      console.log('Retrieved data from localStorage:', data);
+      //console.log('Retrieved data from localStorage:', data);
 
       if (data) {
         const displayDiv = document.getElementById('displayData');
@@ -348,7 +234,7 @@ function showOrderSummary(items) {
         document.getElementById("address").value = data.address;
         document.getElementById("code").value = data.postalcode;
       } else {
-        console.log('No data found in localStorage');
+        //console.log('No data found in localStorage');
       }
     }
     document.addEventListener('DOMContentLoaded', function () {
@@ -370,11 +256,11 @@ function showOrderSummary(items) {
         radios.forEach(r => r.removeAttribute('checked'));
         // Add focus class to the clicked card
         this.classList.add('focus');
-        
+
         // Get the associated radio input using the data attribute
         const radioId = this.getAttribute('data-radio-id');
         const radio = document.getElementById(radioId);
-        
+
         // Set the checked attribute on the associated radio input
         if (radio) {
           radio.setAttribute('checked', 'checked');
@@ -382,41 +268,41 @@ function showOrderSummary(items) {
       });
     });
     function handleRadioChange(event) {
-        const target = event.target;
+      const target = event.target;
 
-        // Check if the target is a radio button or a parent div
-        let radioId = '';
+      // Check if the target is a radio button or a parent div
+      let radioId = '';
 
-        if (target.type === 'radio') {
-            // If clicked on a radio button, use its id
-            radioId = target.id;
-        } else {
-            // If clicked on a parent div, get the data-radio-id
-            const parentDiv = target.closest('.card.inner-card');
-            radioId = parentDiv ? parentDiv.getAttribute('data-radio-id') : '';
+      if (target.type === 'radio') {
+        // If clicked on a radio button, use its id
+        radioId = target.id;
+      } else {
+        // If clicked on a parent div, get the data-radio-id
+        const parentDiv = target.closest('.card.inner-card');
+        radioId = parentDiv ? parentDiv.getAttribute('data-radio-id') : '';
+      }
+
+      // Uncheck all radio buttons
+      document.querySelectorAll('input[type="radio"][name="pm"]').forEach(radio => {
+        radio.checked = false;
+      });
+
+      // Check the selected radio button
+      if (radioId) {
+        const selectedRadio = document.querySelector(`input[type="radio"][id="${radioId}"]`);
+        if (selectedRadio) {
+          selectedRadio.checked = true;
         }
-
-        // Uncheck all radio buttons
-        document.querySelectorAll('input[type="radio"][name="pm"]').forEach(radio => {
-            radio.checked = false;
-        });
-
-        // Check the selected radio button
-        if (radioId) {
-            const selectedRadio = document.querySelector(`input[type="radio"][id="${radioId}"]`);
-            if (selectedRadio) {
-                selectedRadio.checked = true;
-            }
-        }
+      }
     }
 
     // Attach event listeners to all radio buttons and their parent divs
     document.querySelectorAll('input[type="radio"][name="pm"]').forEach(radio => {
-        radio.addEventListener('click', handleRadioChange);
+      radio.addEventListener('click', handleRadioChange);
     });
 
     document.querySelectorAll('.card.inner-card').forEach(div => {
-        div.addEventListener('click', handleRadioChange);
+      div.addEventListener('click', handleRadioChange);
     });
 
 
@@ -462,7 +348,7 @@ function showOrderSummary(items) {
                             <div class="cart-conent">
                                 <img src="${item.image}" alt="${item.title}" class="image" id="product_title" />
                                 <div class="card-desc">
-                                    <p class="text-ellipsis text-ellipsis-2"> <span> ${item.title}</span></p>
+                                    <p class="text-ellipsis text-ellipsis-2" > <span id="item-title"> ${item.title}</span></p>
                                     <p class="text-ellipsis text-ellipsis-2">${item.desc}</p>
                                     
                                    ${item.brand ? `<span>${item.brand}</span>` : ''}
@@ -473,7 +359,7 @@ function showOrderSummary(items) {
                             <div class="prices">
                                 <p class="price" id="product_price" > ${item.price}</p>
                                 ${item.discount ? `<span>${item.discount}</span>` : ''}
-                                <div class="icon-group" id="title-item">
+                                <div class="icon-group" >
                                     <span class="wishlist delete-item" data-title=${item.title}">
                                     <i class="bx bx-trash"></i>
                                     </span>
@@ -485,8 +371,6 @@ function showOrderSummary(items) {
                                 <span>Qty:</span>
                                 <span>${items.length}</span>
                             </div>
-  
-                        <div id="item-list"></div>
                         </div>
                     </div>
                 </div>
@@ -558,48 +442,120 @@ function showOrderSummary(items) {
       // Recalculate the grand total after page load
       const grandTotal = calculateGrandTotal(parseFloat(storedSubtotal));
       document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
-      
+
     });
   </script>
-      <script>
-        // Example items array
-        const items = [
-            { title: 'Item A', quantity: 2 },
-            { title: 'Item B', quantity: 1 },
-            { title: 'Item A', quantity: 3 },
-            { title: 'Item C', quantity: 4 },
-        ];
 
-        // Create a map to store combined quantities by title
-        const itemMap = {};
+  <script>
+    function on_proceed() {
+      //console.log("working");
 
-        // Loop through items and group them by title
-        items.forEach(item => {
-            if (itemMap[item.title]) {
-                // If the item already exists, add the quantity
-                itemMap[item.title] += item.quantity;
-            } else {
-                // If the item does not exist, add it to the map
-                itemMap[item.title] = item.quantity;
-            }
-        });
+      // Retrieve form input values
+      let fullname = "";
+      let state = "";
+      let city = "";
+      let phone = "";
+      let address = "";
+      let code = "";
+      let email = "";
+      let stripe = 0;
+      let cod = 0;
+      // let cod = document.getElementById("cod").value;
+      let item_count1 = 0;
+      let grand_total1 = "";
+      let title = "";
 
-        // Convert the map back to an array for easier rendering
-        const groupedItems = Object.keys(itemMap).map(title => ({
-            title: title,
-            quantity: itemMap[title],
-        }));
+      //console.log("variables created");
 
-        // Display the items in the DOM
-        const itemList = document.getElementById('item-list');
-        groupedItems.forEach(item => {
-            const itemDiv = document.createElement('div');
-            itemDiv.classList.add('qty');
-            itemDiv.innerHTML = `
-                <span>Title: ${item.title}</span>
-                <span>Qty: ${item.quantity}</span>
-            `;
-            itemList.appendChild(itemDiv);
-        });
-    </script>
+      fullname = document.getElementById("fullname").value;
+      //console.log(fullname);
+      state = document.getElementById("state").value;
+      //console.log(state);
+
+      city = document.getElementById("city").value;
+
+      //console.log(city);
+      phone = document.getElementById("phone").value;
+      //console.log(phone);
+
+      address = document.getElementById("address").value;
+      //console.log(address);
+
+      code = document.getElementById("code").value;
+      //console.log(code);
+
+      email = document.getElementById("email").value;
+      //console.log(email);
+
+      stripe = document.getElementById("stripe").value;
+      cod = document.getElementById("cod").value;
+      // cod = document.getElementById("cod").value;
+      //console.log(stripe);
+
+      item_count1 = document.getElementById("item-count");
+
+      // Retrieve and log the innerHTML of the element
+      item_count1 = item_count1.innerHTML;
+
+      //console.log("item_count", item_count1);
+
+      grand_total1 = document.getElementById("grand-total");
+      grand_total1 = grand_total1.innerHTML;
+      //console.log(grand_total1);
+
+      //console.log("values added");
+
+      title = document.getElementById("item-title");
+      title = title.innerHTML;
+
+      //console.log(title);
+
+      // Hardcoded values
+      //console.log("call started");
+
+
+      // Proceed with Frappe call
+      frappe.call({
+        method: 'qetah_phase_1.events.proceed_checkout.poceed_to_checkout',
+        args: {
+          fullname: fullname,
+          phone: phone,
+          address: address,
+          city: city,
+          state: state,
+          code: code,
+          email: email,
+          stripe: 0,   // Defaulted stripe to 0
+          cod: cod,
+          item_count1: item_count1,
+          grand_total1: grand_total1,
+          title: title,
+        },
+        callback(r) {
+          //console.log("Frappe response:", r.message);
+          if (r.message == "Created") {
+
+            // Perform any success action
+            alert("Item Buy succfully")
+
+          }
+          document.getElementById("messages").innerHTML = r.message;
+
+          // // Clear form fields after submission
+          // document.getElementById("fullname").value = "";
+          // document.getElementById("phone").value = "";
+          // document.getElementById("address").value = "";
+          // document.getElementById("city").value = "";
+          // document.getElementById("state").value = "";
+          // document.getElementById("code").value = "";
+          // document.getElementById("email").value = "";
+          // document.getElementById("stripe").value = "";
+        }
+      });
+
+      // Clear cart data from localStorage
+      localStorage.removeItem('cart');
+    }
+
+  </script>
   {% endblock %}

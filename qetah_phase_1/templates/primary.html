@@ -238,7 +238,7 @@
 
       targets.forEach(target => {
         target.addEventListener("mouseenter", function () {
-          console.log("Tooltip hovered: ", target);
+          //console.log("Tooltip hovered: ", target);
 
           const tooltipText = target.getAttribute("data-title");
           let tooltip = document.createElement("div");
@@ -246,7 +246,7 @@
           tooltip.innerText = tooltipText;
 
           document.body.appendChild(tooltip);
-          console.log("Tooltip created: ", tooltip);
+          //console.log("Tooltip created: ", tooltip);
 
           const targetRect = target.getBoundingClientRect();
           const tooltipRect = tooltip.getBoundingClientRect();
@@ -260,7 +260,7 @@
 
         target.addEventListener("mouseleave", function () {
           if (target._tooltip) {
-            console.log("Tooltip removed");
+            //console.log("Tooltip removed");
             document.body.removeChild(target._tooltip);
             target._tooltip = null;
           }

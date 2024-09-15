@@ -802,7 +802,7 @@
             // Get all checked item checkboxes within the offcanvas
             const checkedItems = document.querySelectorAll('.offcanvas .item-checkbox:checked');
 
-            console.log(`Number of checked items: ${checkedItems.length}`);
+            //console.log(`Number of checked items: ${checkedItems.length}`);
 
             // Iterate over each checked item
             checkedItems.forEach((checkbox) => {
@@ -822,20 +822,20 @@
                         // Get the quantity value and parse it to a number
                         const quantity = parseInt(quantityInput.value, 10);
 
-                        console.log(`Price per item: ${pricePerItem} (Type: ${typeof pricePerItem})`);
-                        console.log(`Quantity: ${quantity} (Type: ${typeof quantity})`);
+                        //console.log(`Price per item: ${pricePerItem} (Type: ${typeof pricePerItem})`);
+                        //console.log(`Quantity: ${quantity} (Type: ${typeof quantity})`);
 
                         if (!isNaN(pricePerItem) && !isNaN(quantity)) {
                             // Add the subtotal for this item to the total
                             subtotal += pricePerItem * quantity;
                         } else {
-                            console.log('Invalid price or quantity for item');
+                            //console.log('Invalid price or quantity for item');
                         }
                     } else {
-                        console.log('Price or quantity input not found for item card');
+                        //console.log('Price or quantity input not found for item card');
                     }
                 } else {
-                    console.log('Item card not found for checkbox');
+                    //console.log('Item card not found for checkbox');
                 }
             });
 

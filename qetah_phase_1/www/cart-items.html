@@ -110,7 +110,7 @@
                 const data = JSON.parse(localStorage.getItem('shippingDetails'));
 
                 // Log the retrieved data to the console
-                console.log('Retrieved data from localStorage:', data);
+                //console.log('Retrieved data from localStorage:', data);
 
                 if (data) {
                   const displayDiv = document.getElementById('displayData');
@@ -125,7 +125,7 @@
                 ${data.address}
                 </h6>`;
                 } else {
-                  console.log('No data found in localStorage');
+                  //console.log('No data found in localStorage');
                 }
               }
 
@@ -263,7 +263,7 @@
           postalcode: postalcode,
         },
         callback(r) {
-          // console.log(r.message)
+          // //console.log(r.message)
           document.getElementById("messages").innerHTML = r.message;
 
           document.getElementById('phone').value = ""
@@ -387,7 +387,7 @@
 
       localStorage.setItem('shippingDetails', JSON.stringify(shippingDetails));
 
-      console.log('Data saved to localStorage:', shippingDetails);
+      //console.log('Data saved to localStorage:', shippingDetails);
       displayData();
     });
 

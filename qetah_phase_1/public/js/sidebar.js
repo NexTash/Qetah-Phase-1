@@ -7,8 +7,8 @@
 //         var href = link.getAttribute('href').replace(/\/$/, '') || '/';
 
 //         // Debugging outputs
-//         console.log('Current Path:', currentPath);
-//         console.log('Href:', href);
+//         //console.log('Current Path:', currentPath);
+//         //console.log('Href:', href);
 
 //         // Check if the href matches the current path
 //         if (currentPath === href) {
