@@ -185,8 +185,7 @@
                                                 </div>
                                             </div>
                                             <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill btn-cart"
-                                                    onclick="cart()"><i class="bx bx-cart icon-pre"></i> Buy
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i class="bx bx-cart icon-pre"></i> Buy
                                                     Now</button>
                                                 <button
                                                     class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
@@ -421,32 +420,6 @@
         </div>
     </div>
 </div>
-</div>
-<script>
-    function cart() {
-        var fullname = document.getElementById("fullname").value;
-        var email = document.getElementById("email").value;
-        var phone = document.getElementById("phone").value;
-        var message = document.getElementById("message").value;
-
-        frappe.call({
-            method: 'qetah_phase_1.events.contact_us.contacts',
-            args: {
-                fullname: fullname,
-                email: email,
-                phone: phone,
-                message: message,
-            },
-            callback(r) {
-                document.getElementById("messages").innerHTML = r.message;
-                document.getElementById("fullname").value = ""
-                document.getElementById("email").value = ""
-                document.getElementById("phone").value = ""
-                document.getElementById("message").value = ""
-            }
-        });
-    }
-</script>
 {% endblock %}
 {% block scripts %}
 <script>
@@ -459,8 +432,6 @@
         const queryString = new URLSearchParams(filters).toString();
         window.location.href = `/product?${queryString}`;
     }
-</script>
-<script>
     function applyFilters(event) {
         if (event) event.preventDefault(); // Prevent the form from submitting normally
 
@@ -476,8 +447,7 @@
         const queryString = new URLSearchParams(filters).toString();
         window.location.href = `/product?${queryString}`;
     }
-</script>
-<script>
+
     function getVals() {
         // Get slider values
         let parent = this.parentNode;
@@ -494,13 +464,6 @@
         displayElement.innerHTML = "$" + slide1 + " - $" + slide2;
     }
 
-    // Initialize sliders after the DOM content is fully loaded
-    document.addEventListener('DOMContentLoaded', function () {
-        // Initialize sliders for both types of sliders
-        initializeSliders('range-slider');
-        initializeSliders('model-range-slider');
-    });
-
     function initializeSliders(className) {
         let sliderSections = document.getElementsByClassName(className);
         for (let x = 0; x < sliderSections.length; x++) {
@@ -514,13 +477,38 @@
             }
         }
     }
-</script>
-<!-- cart -->
-<script>
+
+    // Check if the product already exists in the list
+    function addOrUpdateProduct(productList, newProduct) {
+        for (let product of productList) {
+            if (product.desc === newProduct.desc &&
+                product.image === newProduct.image &&
+                product.price === newProduct.price &&
+                product.title === newProduct.title) {
+                // If exists, add or update the qty key
+                if (product.qty) {
+                    product.qty += 1;
+                } else {
+                    product.qty = 1;
+                }
+                return true; // Indicates that the product was updated
+            }
+        }
+
+        // If the product does not exist, add it to the list
+        newProduct.qty = 1;
+        productList.push(newProduct);
+        return false; // Indicates that a new product was added
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
+        // Initialize sliders after the DOM content is fully loaded
+        initializeSliders('range-slider');
+        initializeSliders('model-range-slider');
+
         const offcanvas = document.getElementById('offcanvas-cart');
-        const offcanvasBody = offcanvas.querySelector('.offcanvas-body-cart'); // Add this line to get the offcanvas body
-        const badge = document.querySelector('.cart-badge'); // Update this selector if needed
+        const offcanvasBody = offcanvas.querySelector('.offcanvas-body-cart');
+        const badge = document.querySelector('.cart-badge');
         const deleteSelectedBtn = document.getElementById('del-cart');
 
         let wishlist = [];
@@ -534,38 +522,67 @@
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'items d-flex';
                 itemDiv.innerHTML = `
-                <div class="check-item" >
-                    <label class="check check-secondary">
-                        <input type="checkbox" class="item-checkbox" data-index="${index}" />
-                    </label>
-                </div>
-                <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
-                <div class="text">
-                    <p class="offcanvas-title text-ellipsis">${item.title}</p>
-                    <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;}">${item.desc}</div>
-                     <div class="quantity-counter">
-                    <p class="price update-price" data-price-per-item="${item.price}">${item.price}</p> 
+                    <div class="check-item">
+                        <label class="check check-secondary">
+                            <input type="checkbox" class="item-checkbox" data-index="${index}" />
+                        </label>
+                    </div>
+                    <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
+                    <div class="text">
+                        <p class="offcanvas-title text-ellipsis">${item.title}</p>
+                        <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;">${item.desc}</div>
+                        <div class="quantity-counter">
+                            <p class="price update-price" data-price-per-item="${item.price}">${item.price}</p>
                             <div class="counter">
-            <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement"></button>
-            <input class="counter-value value" type="number" value="1" min="0" />
-            <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment "></button>
-        </div> 
-        </div>
-                    
-        </div>
-            `;
+                                <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement" data-index="${index}" id="selectAll2"></button>
+                                <input class="counter-value value" type="number" value="${item.qty}" min="0" data-index="${index}" />
+                                <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment" data-index="${index}" id="selectAll2" ></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
                 offcanvasBody.appendChild(itemDiv);
             });
 
             // Update badge number
             badge.textContent = wishlist.length;
+
+            // Attach event listeners to the quantity buttons
+            document.querySelectorAll('.counter-increment').forEach(button => {
+                button.addEventListener('click', () => {
+                    const index = button.getAttribute('data-index');
+                    updateQuantity(index, 1);
+                });
+            });
+
+            document.querySelectorAll('.counter-decrement').forEach(button => {
+                button.addEventListener('click', () => {
+                    const index = button.getAttribute('data-index');
+                    updateQuantity(index, -1);
+                });
+            });
         }
 
-        function addToWishlist(product) {
-            // Add the product to the wishlist array
-            wishlist.push(product);
+        function updateQuantity(index, delta) {
+            const item = wishlist[index];
+            if (item) {
+                item.qty = Math.max(0, (item.qty || 0) + delta); // Prevent negative quantity
+                // Update the quantity input field and the offcanvas
+                updateOffcanvas();
+            }
+        }
+
+        function addTowishlist(product) {
+            // Add or update the product in the wishlist array
+            const updated = addOrUpdateProduct(wishlist, product);
             // Update the offcanvas display
             updateOffcanvas();
+            
+            if (updated) {
+                console.log('Product quantity updated:', product);
+            } else {
+                console.log('New product added:', product);
+            }
         }
 
         document.querySelectorAll('.btn-cart').forEach(button => {
@@ -582,7 +599,7 @@
                 };
 
                 // Add product to wishlist
-                addToWishlist(product);
+                addTowishlist(product);
             });
         });
 
@@ -601,95 +618,8 @@
             updateOffcanvas();
         });
     });
-</script>
-<!-- wishlist -->
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const offcanvas = document.getElementById('offcanvas');
-        const offcanvasBody = offcanvas.querySelector('.offcanvas-body'); // Add this line to get the offcanvas body
-        const badge = document.querySelector('.noti-badge'); // Update this selector if needed
-        const deleteSelectedBtn = document.getElementById('deleteSelectedBtn');
-
-        let wishlist = [];
-
-        function updateOffcanvas() {
-            // Clear the current items
-            offcanvasBody.innerHTML = '';
-
-            // Add each item in the wishlist to the offcanvas
-            wishlist.forEach((item, index) => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'items d-flex';
-                itemDiv.innerHTML = `
-            <div class="check-item">
-                <label class="check check-secondary">
-                    <input type="checkbox" class="item-checkbox" data-index="${index}" />
-                </label>
-            </div>
-            <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
-            <div class="text">
-                  <p class="offcanvas-title text-ellipsis">${item.title}</p>
-                <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;}">${item.desc}</div>
-                    <div class="quantity-counter">
-                            <p class="price update-price" data-price-per-item="${item.price}">${item.price}</p> 
-                        <div class="counter">
-                            <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement"></button>
-                            <input class="counter-value value" type="number" value="1" min="0" />
-                            <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment"></button>
-                        </div> 
-                     </div>
-                  </div>
-        `;
-                offcanvasBody.appendChild(itemDiv);
-            });
-            badge.textContent = wishlist.length;
-        }
-
-        function addToWishlist(product) {
-            // Add the product to the wishlist array
-            wishlist.push(product);
-            // Update the offcanvas display
-            updateOffcanvas();
-        }
-
-        document.querySelectorAll('.btn-heart').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const productCard = e.target.closest('.product-card');
-                if (!productCard) return;
-
-                // Get product details from the card
-                const product = {
-                    title: productCard.querySelector('.card-title').innerText,
-                    image: productCard.querySelector('.card-image').src,
-                    desc: productCard.querySelector('.card-desc').innerText,
-                    price: productCard.querySelector('.card-price').innerText,
-                };
-                addToWishlist(product);
-            });
-        });
-
-        deleteSelectedBtn.addEventListener('click', () => {
-            const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
-            // Iterate backward to safely remove items
-            for (let i = checkboxes.length - 1; i >= 0; i--) {
-                const checkbox = checkboxes[i];
-                if (checkbox.checked) {
-                    const index = parseInt(checkbox.getAttribute('data-index'), 10);
-                    wishlist.splice(index, 1);
-                    checkbox.closest('.items').remove();
-                }
-            }
-            updateOffcanvas();
-        });
-
-    });
 
 
-
-</script>
-
-<!-- quanitity -->
-<script>
     document.addEventListener('DOMContentLoaded', () => {
         const selectAll1 = document.getElementById("selectAll1");
         const offcanvasBody1 = document.getElementById("offcanvasBody");
@@ -724,7 +654,7 @@
             selectAll2.addEventListener('change', () => {
                 const checkboxes = offcanvasBody2.querySelectorAll(".item-checkbox");
                 checkboxes.forEach(checkbox => checkbox.checked = selectAll2.checked);
-                updateQuantity(offcanvasBody2, quantity2);
+                updateQuantity(offcanvasBody2,quantity2);
             });
 
             offcanvasBody2.addEventListener('change', () => {
@@ -735,10 +665,7 @@
         }
     });
 
-</script>
 
-<!-- quanity ===========>>>>>> price -->
-<script>
     document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('click', (event) => {
             const target = event.target;
@@ -789,9 +716,7 @@
             }
         });
     });
-</script>
 
-<script>
     function updateSubtotal() {
         let subtotal = 0;
 
@@ -868,10 +793,7 @@
 
     // Initialize the subtotal calculation
     updateSubtotal();
-</script>
 
-
-<script>
     function addToWishlist(product) {
         // Add the product to the wishlist array
         wishlist.push(product);
@@ -995,7 +917,8 @@
 
                 // Get current cart from localStorage or initialize an empty array
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
+                console.log(cart);
+                
                 // Add the new product to the cart
                 cart.push(product);
 
