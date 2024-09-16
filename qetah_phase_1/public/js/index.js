@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sidebar.classList.toggle("open");
     sidebar.style.display = sidebar.classList.contains("open")
       ? "block"
-      : "none"; // Use display none/block based on the toggle state
+      : "none";
   }
 
   function closeSidebarOnClickOutside(event) {
@@ -57,54 +57,31 @@ document.addEventListener("DOMContentLoaded", () => {
       !toggleButton.contains(event.target)
     ) {
       sidebar.classList.remove("open");
-      sidebar.style.display = "none"; // Ensure sidebar closes when clicking outside
+      sidebar.style.display = "none";
     }
   }
 
   function updateSidebarBehavior() {
     const toggleButton = document.getElementById("toggleButton");
-    const sidebar = document.getElementById("sidebar");
     const mediaQuery = window.matchMedia("(max-width: 1024px)");
 
     if (mediaQuery.matches) {
-      // On small screens, initialize sidebar as hidden and wait for toggle
-      sidebar.style.display = "none"; // Set to none when screen is resized to 1024px or less
       toggleButton.addEventListener("click", handleSidebarToggle);
       document.addEventListener("click", closeSidebarOnClickOutside);
     } else {
-      // On larger screens, ensure the sidebar is always visible
       toggleButton.removeEventListener("click", handleSidebarToggle);
       document.removeEventListener("click", closeSidebarOnClickOutside);
-      sidebar.style.display = "block"; // Ensure the sidebar is visible on larger screens
-      sidebar.classList.remove("open"); // Reset the sidebar to non-toggled state
+      const sidebar = document.getElementById("sidebar");
+      sidebar.style.display = "block";
+      sidebar.classList.remove("open");
     }
   }
-
   function handleSidebarToggle(event) {
     event.stopPropagation();
-    toggleSidebar(); // Toggle sidebar visibility on button click
+    toggleSidebar();
   }
-
   updateSidebarBehavior();
-  window.addEventListener("resize", updateSidebarBehavior); // Handle resizing
-});
-
-// Sidebar content JS (for toggling sidebar content area)
-document.addEventListener("DOMContentLoaded", function () {
-  const toggler = document.querySelector(".sidebar-toggler");
-  const sidebar = document.getElementById("sidebar");
-  const contentArea = document.querySelector(".content-area");
-
-  toggler.addEventListener("click", function (event) {
-    event.stopPropagation();
-    contentArea.classList.toggle("sidebar-area-content");
-  });
-
-  document.addEventListener("click", function (event) {
-    if (!sidebar.contains(event.target) && !toggler.contains(event.target)) {
-      contentArea.classList.remove("sidebar-area-content");
-    }
-  });
+  window.addEventListener("resize", updateSidebarBehavior);
 });
 
 // sideebar content js
