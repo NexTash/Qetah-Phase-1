@@ -23,7 +23,8 @@
 </style>
 
 
-<aside id="sidebar" class="sidebar-header transition-transform duration-300" :class="{'static-sidebar': isStatic},{ '-translate-x-full': !sidebarOpen, 'translate-x-0': sidebarOpen }" x-data="{ sidebarOpen: false }" style="z-index: 9999;">
+<aside id="sidebar"  class="sidebar-header transition-transform duration-300"
+    style="z-index: 9999;">
   <!-- Course Sidebar Header -->
   <header class="program-sidebar">
     <div class="program-sidebar-brand">
@@ -31,7 +32,7 @@
         <!-- Large Logo -->
         <a href="#" class="lg-logo" x-show="isStatic">
           <img src="/assets/qetah_phase_1/images/black-qetah-removebg-preview.png" width="100px" class="lg-img"
-            alt="Logo" />
+            alt="Logo" style="display: none;"/>
         </a>
         <!-- Small Logo -->
         <a href="#" class="sm-logo">
