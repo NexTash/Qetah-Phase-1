@@ -4,6 +4,9 @@
       rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     overflow: auto;
   transition: all 5s ease-in-out;
+  @media(max-width:1024px){
+    display: none;
+  }
     .sidebar-auth {
       gap: 0px;
       display: flex;

@@ -39,52 +39,7 @@ document.addEventListener("click", closeMenuOnClickOutside);
 
 // sidebar js
 
-document.addEventListener("DOMContentLoaded", () => {
-  function toggleSidebar() {
-    const sidebar = document.getElementById("sidebar");
-    sidebar.classList.toggle("open");
-    sidebar.style.display = sidebar.classList.contains("open")
-      ? "block"
-      : "none";
-  }
-
-  function closeSidebarOnClickOutside(event) {
-    const sidebar = document.getElementById("sidebar");
-    const toggleButton = document.getElementById("toggleButton");
-
-    if (
-      !sidebar.contains(event.target) &&
-      !toggleButton.contains(event.target)
-    ) {
-      sidebar.classList.remove("open");
-      sidebar.style.display = "none";
-    }
-  }
-
-  function updateSidebarBehavior() {
-    const toggleButton = document.getElementById("toggleButton");
-    const mediaQuery = window.matchMedia("(max-width: 1024px)");
-
-    if (mediaQuery.matches) {
-      toggleButton.addEventListener("click", handleSidebarToggle);
-      document.addEventListener("click", closeSidebarOnClickOutside);
-    } else {
-      toggleButton.removeEventListener("click", handleSidebarToggle);
-      document.removeEventListener("click", closeSidebarOnClickOutside);
-      const sidebar = document.getElementById("sidebar");
-      sidebar.style.display = "block";
-      sidebar.classList.remove("open");
-    }
-  }
-  function handleSidebarToggle(event) {
-    event.stopPropagation();
-    toggleSidebar();
-  }
-  updateSidebarBehavior();
-  window.addEventListener("resize", updateSidebarBehavior);
-});
-
-// sideebar content js
+// Sidebar content JS (for toggling sidebar content area)
 document.addEventListener("DOMContentLoaded", function () {
   const toggler = document.querySelector(".sidebar-toggler");
   const sidebar = document.getElementById("sidebar");
@@ -96,14 +51,15 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   document.addEventListener("click", function (event) {
-    if (
-      !sidebar.contains(event.target) &&
-      !toggler.contains(event.target)
-    ) {
+    if (!sidebar.contains(event.target) && !toggler.contains(event.target)) {
       contentArea.classList.remove("sidebar-area-content");
     }
   });
 });
+
+
+
+
 // ripple
 function createRipple(event) {
   const button = event.target;
@@ -114,13 +70,13 @@ function createRipple(event) {
   const rippleY = event.offsetY;
   const rippleDiameter = Math.sqrt(
     button.offsetWidth * button.offsetWidth +
-    button.offsetHeight * button.offsetHeight
+      button.offsetHeight * button.offsetHeight
   );
 
-  ripple.style.top = `${rippleY - rippleDiameter / 2}px`;
-  ripple.style.left = `${rippleX - rippleDiameter / 2}px`;
-  ripple.style.width = `${rippleDiameter}px`;
-  ripple.style.height = `${rippleDiameter}px`;
+  ripple.style.top = ${rippleY - rippleDiameter / 2}px;
+  ripple.style.left = ${rippleX - rippleDiameter / 2}px;
+  ripple.style.width = ${rippleDiameter}px;
+  ripple.style.height = ${rippleDiameter}px;
 
   button.appendChild(ripple);
 
@@ -132,55 +88,31 @@ function createRipple(event) {
 window.Alpine = {
   createRipple: createRipple,
 };
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.btn.ripple').forEach(button => {
-    button.addEventListener('click', function (e) {
-      // Remove any existing ripple effect
-      const existingRipple = this.querySelector('.ripple-effect');
-      if (existingRipple) {
-        existingRipple.remove();
-      }
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.btn.ripple').forEach(button => {
+          button.addEventListener('click', function (e) {
+            // Remove any existing ripple effect
+            const existingRipple = this.querySelector('.ripple-effect');
+            if (existingRipple) {
+              existingRipple.remove();
+            }
 
-      const rect = button.getBoundingClientRect();
-      const ripple = document.createElement('span');
-      ripple.classList.add('ripple-effect');
-      const size = Math.max(rect.width, rect.height);
-      const x = e.clientX - rect.left - size / 2;
-      const y = e.clientY - rect.top - size / 2;
+            const rect = button.getBoundingClientRect();
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple-effect');
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
 
-      ripple.style.width = ripple.style.height = `${size}px`;
-      ripple.style.left = `${x}px`;
-      ripple.style.top = `${y}px`;
+            ripple.style.width = ripple.style.height = ${size}px;
+            ripple.style.left = ${x}px;
+            ripple.style.top = ${y}px;
 
-      this.appendChild(ripple);
+            this.appendChild(ripple);
 
-      ripple.addEventListener('animationend', () => {
-        ripple.remove();
+            ripple.addEventListener('animationend', () => {
+              ripple.remove();
+            });
+          });
+        });
       });
-    });
-  });
-});
-
-
-
-// Add to Cart button functionality
-document.getElementById('addToCartBtn')?.addEventListener('click', function () {
-  var badge = document.getElementById('cartBadge');
-  var currentValue = parseInt(badge.textContent, 10);
-  badge.textContent = currentValue + 1;
-});
-
-// Handle counter increments
-// document.querySelectorAll('.counter-increment').forEach(button => {
-//   button.addEventListener('click', function () {
-//     var counter = this.previousElementSibling;
-//     var value = parseInt(counter.value, 10);
-//     counter.value = value + 1;
-
-//     // Update cart badge count
-//     updateCartBadge(1);
-//   });
-// });
-
-
-

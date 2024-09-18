@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* ../../../../../tmp/tmp-8953-LSCRz392I7Ij/qetah_phase_1/qetah_phase_1/public/scss/style.bundle.css */
+/* ../../../../../tmp/tmp-9924-7DEYSPWwktp5/qetah_phase_1/qetah_phase_1/public/scss/style.bundle.css */
 [x-cloak] {
   display: none !important;
 }
@@ -649,6 +649,11 @@ footer .quote i {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   overflow: auto;
   transition: all 5s ease-in-out;
+}
+@media (max-width: 1024px) {
+  .sidebar-header {
+    display: none;
+  }
 }
 .sidebar-header .sidebar-auth {
   gap: 0px;
@@ -4314,4 +4319,4 @@ input[type=number] {
   margin-left: -60px;
   border-radius: 100%;
 }
-/*# sourceMappingURL=style.bundle.YO5OXWYE.css.map */
+/*# sourceMappingURL=style.bundle.UNQH6ICL.css.map */
