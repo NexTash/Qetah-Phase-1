@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* ../../../../../tmp/tmp-3922-UxsXHS9Pyg15/qetah_phase_1/qetah_phase_1/public/scss/style.bundle.css */
+/* ../../../../../tmp/tmp-4449-6qjbMuX8itjJ/qetah_phase_1/qetah_phase_1/public/scss/style.bundle.css */
 [x-cloak] {
   display: none !important;
 }
@@ -405,7 +405,7 @@
 }
 @media (max-width: 1024px) {
   .program-header .sm-logo {
-    display: block;
+    display: none;
   }
 }
 @media (max-width: 425px) {
@@ -1379,6 +1379,12 @@ footer .quote i {
     height: 50px;
     border: 1px solid #EDEDED;
   }
+  .second-breadcrumb {
+    display: none;
+  }
+  .nxt-header .navbar-brand {
+    top: 8px;
+  }
   .cart .select-items button {
     z-index: 0;
   }
@@ -1534,6 +1540,9 @@ footer .quote i {
   .Joining .qetah-family .card-head .card-title {
     font-size: 46px;
   }
+  .second-breadcrumb {
+    display: flex;
+  }
   .our-story {
     gap: 50px;
   }
@@ -1566,7 +1575,7 @@ footer .quote i {
     --divider-m: 5px 0px !important;
   }
   .icon-dropdown {
-    margin-left: 780px;
+    margin-left: 666px;
   }
   .mobile-desktop {
     margin-left: -28px;
@@ -1583,7 +1592,7 @@ footer .quote i {
     width: 100%;
   }
   .icon-dropdown {
-    margin-left: 558px;
+    margin-left: 445px;
   }
   .cart .select-items button {
     z-index: 0;
@@ -1640,6 +1649,11 @@ footer .quote i {
   .mySwiper .swiper-wrapper .swiper-slide .image img {
     width: 300px;
     height: 390px;
+  }
+}
+@media (max-width: 540px) {
+  .icon-dropdown {
+    margin-left: 230px;
   }
 }
 @media (max-width: 425px) {
@@ -1737,7 +1751,7 @@ footer .quote i {
   }
   .main-crospo {
     position: relative;
-    right: -270px;
+    right: -160px;
   }
   .icon-dropdown {
     left: 169px;
@@ -1895,7 +1909,7 @@ footer .quote i {
     margin-left: 4px;
   }
   .main-crospo {
-    right: -215px;
+    right: -105px;
   }
   .icon-dropdown {
     left: 120px;
@@ -1972,7 +1986,7 @@ footer .quote i {
     margin: 20px 33%;
   }
   .main-crospo {
-    right: -161px;
+    right: -50px;
   }
   .icon-dropdown {
     left: 68px;
@@ -3997,8 +4011,7 @@ input[type=number] {
   box-shadow: none;
 }
 .breadcrumb .active {
-  font-weight: 700;
-  color: black;
+  color: #707070;
 }
 .main-crospo {
   display: flex;
@@ -4319,4 +4332,4 @@ input[type=number] {
   margin-left: -60px;
   border-radius: 100%;
 }
-/*# sourceMappingURL=style.bundle.DAJRRXEP.css.map */
+/*# sourceMappingURL=style.bundle.RCXPECLC.css.map */

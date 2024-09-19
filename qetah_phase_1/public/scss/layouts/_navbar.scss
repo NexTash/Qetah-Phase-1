@@ -357,7 +357,7 @@
     .sm-logo {
       display: none;
       @media (max-width: 1024px) {
-        display: block;
+        display: none;
       }
       @media (max-width: 425px) {
         margin: 0 auto;

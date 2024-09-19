@@ -707,6 +707,12 @@
         height: 50px;
         border: 1px solid #EDEDED;
       }
+      .second-breadcrumb{
+        display: none;
+      }
+      .nxt-header .navbar-brand {
+    top: 8px;
+      }
       .cart .select-items button {
         z-index:0;
       }
@@ -864,6 +870,10 @@ z-index: 0;
       .Joining .qetah-family .card-head .card-title {
         font-size: 46px;
         }
+
+      .second-breadcrumb{
+        display: flex;
+      }
         .our-story{
           gap: 50px;
         }
@@ -896,7 +906,7 @@ z-index: 0;
     --divider-m: 5px 0px !important;
     }
     .icon-dropdown {
-      margin-left: 780px;
+      margin-left: 666px;
     }
     .mobile-desktop{
       margin-left: -28px;
@@ -913,7 +923,7 @@ z-index: 0;
         width: 100%;
       }
           .icon-dropdown {
-        margin-left: 558px;
+        margin-left: 445px;
     }
       .cart .select-items button {
         z-index:0;
@@ -974,6 +984,11 @@ footer .social .links ul {
   width: 300px;
   height: 390px;
 }
+    }
+    @media (max-width: 540px) {
+    .icon-dropdown {
+        margin-left: 230px;
+    }
     }
     @media(max-width:425px){
     .our-story{
@@ -1070,7 +1085,7 @@ z-index: 0;
     }
 .main-crospo {
   position: relative;
-  right: -270px;
+  right: -160px;
 }
 .icon-dropdown{
   left: 169px;
@@ -1228,7 +1243,7 @@ z-index: 0;
         margin-left: 4px;
     }
     .main-crospo {
-      right: -215px;
+      right: -105px;
   }
   .icon-dropdown {
     left: 120px;
@@ -1307,7 +1322,7 @@ z-index: 0;
       margin: 20px 33%;
   }
   .main-crospo {
-    right: -161px;
+    right: -50px;
 }
 .icon-dropdown {
   left: 68px;
