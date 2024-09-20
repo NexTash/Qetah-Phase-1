@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* ../../../../../tmp/tmp-4449-6qjbMuX8itjJ/qetah_phase_1/qetah_phase_1/public/scss/style.bundle.css */
+/* ../../../../../tmp/tmp-8556-26u6h0bXKfGs/qetah_phase_1/qetah_phase_1/public/scss/style.bundle.css */
 [x-cloak] {
   display: none !important;
 }
@@ -3458,6 +3458,7 @@ footer .quote i {
 }
 .card-summary .card-head .media {
   padding: 0;
+  margin-top: 20px;
 }
 .card-summary .card-head .media .media-head {
   padding-left: 0px;
@@ -4332,4 +4333,4 @@ input[type=number] {
   margin-left: -60px;
   border-radius: 100%;
 }
-/*# sourceMappingURL=style.bundle.RCXPECLC.css.map */
+/*# sourceMappingURL=style.bundle.J225CGL7.css.map */

@@ -48,7 +48,7 @@
   },
   {
    "fieldname": "order_number",
-   "fieldtype": "Int",
+   "fieldtype": "Autocomplete",
    "label": "Order Number"
   },
   {
@@ -70,7 +70,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-14 15:37:57.020986",
+ "modified": "2024-09-20 10:05:34.935810",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Delivery Information",
