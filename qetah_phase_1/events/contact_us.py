@@ -7,10 +7,6 @@ def contacts(fullname,email,phone,message):
     doc.email = email
     doc.phone = phone
     doc.message = message
-   
-    # doc.append("email_ids", {
-    #         'email_id' : email
-    #     })
     doc.insert()
 
     return "Created"

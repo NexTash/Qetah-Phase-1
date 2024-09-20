@@ -4,7 +4,7 @@ import csv
 @frappe.whitelist(allow_guest=True)
 def get_translations(lang):
     translations = {}
-    path = frappe.get_app_path('smart_cloud_v2', 'translations', 'ar.csv')
+    path = frappe.get_app_path('qetah_phase_1', 'translations', 'ar.csv')
 
     with open(path, mode='r', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -16,7 +16,7 @@ def get_translations(lang):
 @frappe.whitelist(allow_guest=True)
 def get_footer(language):
     footer_translations = {}
-    path = frappe.get_app_path('smart_cloud_v2', 'translations', 'ar.csv') 
+    path = frappe.get_app_path('qetah_phase_1', 'translations', 'ar.csv') 
 
     with open(path, mode='r', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
