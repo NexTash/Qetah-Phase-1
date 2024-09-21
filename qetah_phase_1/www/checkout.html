@@ -1,6 +1,6 @@
 {% extends "templates/primary.html" %}
 
-{% block title %} QETAH | Checkout {% endblock %}
+{% block title %} Checkout {% endblock %}
 
 {% block content %}
 <style>
@@ -151,25 +151,10 @@
         <input type="button" class="btn btn-dark btn-block" data-field="proceed-checkout" onclick="on_proceed()"
           value="Proceed to Pay"></input>
       </div>
-      <br><br><br>
-    <h2>Latest Order Details</h2>
-    {% if latest_delivery %}
-    <div class="delivery-info">
-      <h3>Customer: {{ latest_delivery.full_name }}</h3>
-      <p>Phone: {{ latest_delivery.phone }}</p>
-      <p>Address: {{ latest_delivery.address }}, {{ latest_delivery.city }}, {{ latest_delivery.state }}</p>
-
-      <h4>Order Items:</h4>
-      {% for child in latest_delivery.order_items %}
-      <div class="child-item">
-        <p>Product: <b>{{ child.title }}</b></p>
-        <p>Quantity: <b>{{ child.qty }}</b></p>
-      </div>
-      {% endfor %}
-    </div>
-    {% else %}
-    <p>No delivery information available.</p>
-    {% endif %}
+      <br><br>
+      <div id="messages"></div>
+      <!-- Create a container where the products will be displayed -->
+      <div id="product-list"></div>
   </div>
   </form>
   <div class="container checkout-items">
@@ -179,8 +164,10 @@
     <!-- Wishlist items will be dynamically added here by JavaScript -->
   </div>
 
-  <div id="messages"></div>
-  
+
+
+
+
   <script>
     // Function to display data from localStorage
     function displayData() {
@@ -307,9 +294,33 @@
   </script>
 
   <script>
+
     document.addEventListener('DOMContentLoaded', () => {
       const cartContainer = document.querySelector('.checkout-items');
       let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+      //for dynamic delivery-fee and discount-fee 
+      // var products = {{ products | tojson }};
+      // console.log("Products from template:", products);
+      // // Check if products data exists
+      // if (products && products.length > 0) {
+      //   console.log("Products from template:", products);
+
+      //   // Get the product list container
+      //   var productList = document.getElementById('product-list');
+
+      //   // Loop through products and dynamically append to the container
+      //   products.forEach(function (product) {
+      //     var productItem = document.createElement('div');
+      //     productItem.innerHTML = `
+      //             <p>Delivery Fee: ${product.delivery_fee}</p>
+      //             <p>Delivery Discount: ${product.delivery_disc}</p>
+      //         `;
+      //     productList.appendChild(productItem);
+      //   });
+      // } else {
+      //   console.log("No products found");
+      // }
 
       // Define delivery fee and discount
       const deliveryFee = 120; // Example delivery fee
@@ -354,6 +365,7 @@
                             </div>
                         </div>
                         <div class="card-body">
+                        
                             <div class="prices">
                                 <p class="price" id="product_price" > ${item.price}</p>
                                 ${item.discount ? `<span>${item.discount}</span>` : ''}
@@ -443,7 +455,27 @@
 
     });
   </script>
-
+  <style>
+    /* Style for the success message */
+    #messages {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #d4edda;
+      /* Light green background */
+      color: #155724;
+      /* Dark green text color */
+      border: 1px solid #c3e6cb;
+      /* Green border */
+      border-radius: 5px;
+      /* Rounded corners */
+      font-size: 16px;
+      /* Increase font size */
+      display: none;
+      /* Initially hidden */
+      width: 100%;
+      /* Full width */
+    }
+  </style>
   <script>
     function on_proceed() {
       //console.log("working");
@@ -530,15 +562,11 @@
           title: title,
         },
         callback(r) {
-          //console.log("Frappe response:", r.message);
-          if (r.message == "Created") {
-
-            // Perform any success action
-            // alert("Item Buy succfully")
-
-          }
-          document.getElementById("messages").innerHTML = r.message;
-
+          // Get the 'messages' div and show the success message
+          var messageBox = document.getElementById("messages");
+          messageBox.innerHTML = r.message;
+          messageBox.style.display = 'block';
+        
           // Clear form fields after submission
           document.getElementById("fullname").value = "";
           document.getElementById("phone").value = "";
@@ -552,6 +580,11 @@
           document.getElementById("item_count").value = "";
           document.getElementById("grand_total").value = "";
           document.getElementById("item-title").value = "";
+
+          // Hide the message after 5 seconds
+          setTimeout(function () {
+            messageBox.style.display = 'none';
+          }, 5000);
         }
       });
 
@@ -560,4 +593,7 @@
     }
 
   </script>
+
   {% endblock %}
+
+  h${Heading $}*

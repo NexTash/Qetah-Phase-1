@@ -2,15 +2,14 @@ import frappe
 
 @frappe.whitelist(allow_guest=True)
 def poceed_to_checkout(fullname, phone, address, city, state, code, email, stripe, cod, item_count1, grand_total1,title):
-   
     # Check for duplicates in the Proceed Checkout doctype
-   
     if frappe.db.exists("Proceed Checkout", {"full_name": fullname, "phone_no": phone, "address": address}):
-       
+        # If user exists in Proceed Checkout, display a warning message
         frappe.throw("This user with the given name, phone, and address already exists in Proceed Checkout.")
-  
+    
+    # Check for duplicates in the Delivery Information doctype
     if frappe.db.exists("Delivery Information", {"full_name": fullname, "phone": phone, "address": address}):
-       
+        # If user exists in Delivery Information, display a warning message
         frappe.throw("This user with the given name, phone, and address already exists in Delivery Information.")
 
     # Create new record in Proceed Checkout if no duplicate found
@@ -57,4 +56,5 @@ def poceed_to_checkout(fullname, phone, address, city, state, code, email, strip
 
     delivery_doc.save()
     frappe.db.commit()
-    return "Created"
+   
+    return f"Dear {fullname},\n\nThank you for your purchase!\n\nYou bought: {title}\n,Quantity: {item_count1}\n\nWe appreciate your visit and hope to see you again soon!"

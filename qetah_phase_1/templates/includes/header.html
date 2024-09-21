@@ -6,15 +6,29 @@
         width="150px" />
     </a>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/index" class="breadcrumb-link">Qetah</a></li>
-      <li class="breadcrumb-item active">Home</li>
+      <li class="breadcrumb-item">
+        <a href="/index" class="breadcrumb-link">Qetah</a>
+      </li>
+      <li class="breadcrumb-item active" id="current-page"></li>
     </ol>
+
+    <script>
+      // JavaScript to dynamically set the current page name in the breadcrumb
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get the current page title or URL and set it as the breadcrumb's current page
+        const currentPage = document.title || window.location.pathname.split("/").pop().replace(/-/g, " ").replace(".html", "");
+
+        // Update the breadcrumb with the current page name
+        document.getElementById("current-page").textContent = currentPage;
+      });
+    </script>
+
   </div>
   <div class="navbar-brand-lt">
     <button class="navbar-toggler d-xl-none navbarDropToggler" type="button" data-target="#mobileMenu"
       aria-controls="mobileMenu" style="display: none"></button>
-    <button class="navbar-toggler sidebar-toggler d-xl-none navbarDropToggler mobile-desktop" id="toggleButton" type="button"
-      data-target="#mobileMenu" @click="sidebarOpen = !sidebarOpen"  aria-controls="sidebarMenu">
+    <button class="navbar-toggler sidebar-toggler d-xl-none navbarDropToggler mobile-desktop" id="toggleButton"
+      type="button" data-target="#mobileMenu" @click="sidebarOpen = !sidebarOpen" aria-controls="sidebarMenu">
       <i class='bx bxs-grid'></i>
     </button>
     <ol class="breadcrumb second-breadcrumb" style="margin:0;">
@@ -24,22 +38,22 @@
     <nav class="no-collapse">
       <ul>
         <div class="main-crospo">
-         <li class="nav-drop-wrap">
-         <div class="icon-dropdown" x-data="{ isOpen: false }" @click.away="isOpen = false">
-  <i class='bx bx-globe' @click="isOpen = !isOpen"></i>
-  <ul class="dropdown-menu" :class="{ 'show': isOpen }" style="flex-direction: column; display: none;"
-      x-show="isOpen" x-transition>
-    <li>
-      <img src="/assets/qetah_phase_1/images/eng.png" style="width: 50px; height: 25px;" alt="">
-      <a href="#">ENG</a>
-    </li>
-    <li>
-      <img src="/assets/qetah_phase_1/images/ara.webp" style="width: 50px; height: 25px;" alt="">
-      <a href="#">ARA</a>
-    </li>
-  </ul>
-</div>
-         </li>
+          <li class="nav-drop-wrap">
+            <div class="icon-dropdown" x-data="{ isOpen: false }" @click.away="isOpen = false">
+              <i class='bx bx-globe' @click="isOpen = !isOpen"></i>
+              <ul class="dropdown-menu" :class="{ 'show': isOpen }" style="flex-direction: column; display: none;"
+                x-show="isOpen" x-transition>
+                <li>
+                  <img src="/assets/qetah_phase_1/images/eng.png" style="width: 50px; height: 25px;" alt="">
+                  <a href="#">ENG</a>
+                </li>
+                <li>
+                  <img src="/assets/qetah_phase_1/images/ara.webp" style="width: 50px; height: 25px;" alt="">
+                  <a href="#">ARA</a>
+                </li>
+              </ul>
+            </div>
+          </li>
           <li class="nav-drop-wrap res-link">
             <a class="nav-icon-link has-ripple drop-indicator navDropToggler" href="javascript:void(0)">
               <span class="badge badge-secondary badge-pill noti-badge">0</span>
@@ -53,8 +67,8 @@
                   <div class="select-all" style="padding: 16px 16px 0px 16px;">
                     <label class="check check-secondary">
                       <input type="checkbox" id="selectAll1" />Select All
-                  </label>
-                  <hr style="margin: 5px 0px;
+                    </label>
+                    <hr style="margin: 5px 0px;
                   border: none;
                   width: 100%;
                   color: black;
@@ -67,7 +81,7 @@
                   </div>
 
                   <div class="offcanvas-foot">
-                    
+
                     <div class="btn-grp">
                       <button class="btn btn-remove" id="deleteSelectedBtn">Delete</button>
                       <button class="btn btn-cart">Add to cart</button>
@@ -79,30 +93,18 @@
             </a>
           </li>
           <li class="nav-drop-wrap res-link">
-              <a
-                class="nav-icon-link has-ripple drop-indicator navDropToggler"
-                href="javascript:void(0)"
-              >
-                <span class="badge badge-secondary badge-pill noti-badge cart-badge"
-                  >0</span
-                >
-                 <div x-data="{ isOpenRight: false }">
-                  <i class="bx bx-cart" @click="isOpenRight = true"></i>
-                  <div
-                    class="offcanvas offcanvas-right"
-                    :class="{ 'open': isOpenRight }"
-                    id="offcanvas-cart" 
-                  >
-                    <div class="offcanvas-header">
-                      Add to Cart
-                      <button
-                        class="btn-close"
-                        @click="isOpenRight = false"
-                      ></button>
-                    </div>
-                    <div class="select-all" style="padding: 16px 16px 0px 16px;">
-                      <label class="check check-secondary">
-                        <input type="checkbox" id="selectAll2"/>Select All
+            <a class="nav-icon-link has-ripple drop-indicator navDropToggler" href="javascript:void(0)">
+              <span class="badge badge-secondary badge-pill noti-badge cart-badge">0</span>
+              <div x-data="{ isOpenRight: false }">
+                <i class="bx bx-cart" @click="isOpenRight = true"></i>
+                <div class="offcanvas offcanvas-right" :class="{ 'open': isOpenRight }" id="offcanvas-cart">
+                  <div class="offcanvas-header">
+                    Add to Cart
+                    <button class="btn-close" @click="isOpenRight = false"></button>
+                  </div>
+                  <div class="select-all" style="padding: 16px 16px 0px 16px;">
+                    <label class="check check-secondary">
+                      <input type="checkbox" id="selectAll2" />Select All
                     </label>
                     <hr style="margin: 5px 0px;
                     border: none;
@@ -111,35 +113,31 @@
                     padding: 0;
                     background: darkgrey;
                     height: 1px;">
-                    </div>
-                    <div class="offcanvas-body offcanvas-body-cart" id="offcanvasBody-cart">
-                    </div>
-                    <div class="offcanvas-foot">
-                      <div class="card-title">Summary :-</div>
+                  </div>
+                  <div class="offcanvas-body offcanvas-body-cart" id="offcanvasBody-cart">
+                  </div>
+                  <div class="offcanvas-foot">
+                    <div class="card-title">Summary :-</div>
                     <div class="subtotal">
                       <p>Items :</p>
                       <p>Qty : <b class="quantity-cart">0</b></p>
                     </div>
                     <div class="subtotal">
                       <p>Subtotal : </p>
-                      <p style="font-weight: 600;" id="subTotal"></p> 
+                      <p style="font-weight: 600;" id="subTotal"></p>
                     </div>
                     <div class="btn-grp">
-                      <button class="btn btn-remove" id="del-cart" >Delete</button>
+                      <button class="btn btn-remove" id="del-cart">Delete</button>
                       <a href="/cart-items">
-                      <button class="btn btn-cart" id="goToCart">Go to Cart</button>
+                        <button class="btn btn-cart" id="goToCart">Go to Cart</button>
                       </a>
                     </div>
-                    </div>
                   </div>
-                  <div
-                    class="overlay"
-                    :class="{ 'show': isOpenRight }"
-                    @click="isOpenRight = false"
-                  ></div>
                 </div>
-              </a>
-            </li>
+                <div class="overlay" :class="{ 'show': isOpenRight }" @click="isOpenRight = false"></div>
+              </div>
+            </a>
+          </li>
           <li class="nav-drop-wrap nav-drop-user" title="Account">
             <a class="has-ripple drop-indicator navDropToggler" href="javascript:void(0)">
               <div class="img-no-pp">
@@ -155,124 +153,124 @@
 
 <!-- Student Header -->
 <script>
-document.getElementById('goToCart').addEventListener('click', () => {
+  document.getElementById('goToCart').addEventListener('click', () => {
     // Redirect to the cart page
     window.location.href = 'cart-items.html';  // Replace with the correct path if needed
-});
+  });
 
-document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     const cartButton = document.querySelectorAll('.btn-cart'); // Select all 'Add to Cart' buttons
 
     cartButton.forEach(button => {
-        button.addEventListener('click', (e) => {
-            const productCard = e.target.closest('.product-card');
-            if (!productCard) return;
+      button.addEventListener('click', (e) => {
+        const productCard = e.target.closest('.product-card');
+        if (!productCard) return;
 
-            // Get product details
-            const product = {
-                title: productCard.querySelector('.card-title').innerText,
-                image: productCard.querySelector('.card-image').src,
-                desc: productCard.querySelector('.card-desc').innerText,
-                price: productCard.querySelector('.card-price').innerText,
-            };
+        // Get product details
+        const product = {
+          title: productCard.querySelector('.card-title').innerText,
+          image: productCard.querySelector('.card-image').src,
+          desc: productCard.querySelector('.card-desc').innerText,
+          price: productCard.querySelector('.card-price').innerText,
+        };
 
-            // Get current cart from localStorage or initialize an empty array
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        // Get current cart from localStorage or initialize an empty array
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            // Add new product to the cart
-            cart.push(product);
+        // Add new product to the cart
+        cart.push(product);
 
-            // Save the updated cart back to localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
+        // Save the updated cart back to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
 
-            // Show a message or confirmation (optional)
-            // alert('Product added to cart!');
-        });
+        // Show a message or confirmation (optional)
+        // alert('Product added to cart!');
+      });
     });
-});
+  });
 
 </script>
 <script>
-// main js
+  // main js
 
-function toggleMenu() {
-  const mobileMenu = document.getElementById("mobileMenu");
-  mobileMenu.classList.toggle("show");
-}
-document
-  .querySelector(".navbar-toggler")
-  .addEventListener("click", (e) => {
-    e.stopPropagation();
-    toggleMenu();
-  });
-
-// sidebar js
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  function toggleSidebar() {
-    const sidebar = document.getElementById("sidebar");
-    sidebar.classList.toggle("open");
-    sidebar.style.display = sidebar.classList.contains("open")
-      ? "block"
-      : "none";
+  function toggleMenu() {
+    const mobileMenu = document.getElementById("mobileMenu");
+    mobileMenu.classList.toggle("show");
   }
+  document
+    .querySelector(".navbar-toggler")
+    .addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
 
-  function closeSidebarOnClickOutside(event) {
-    const sidebar = document.getElementById("sidebar");
-    const toggleButton = document.getElementById("toggleButton");
+  // sidebar js
 
-    if (
-      !sidebar.contains(event.target) &&
-      !toggleButton.contains(event.target)
-    ) {
-      sidebar.classList.remove("open");
-      sidebar.style.display = "none";
-    }
-  }
+  document.addEventListener("DOMContentLoaded", () => {
 
-  function updateSidebarBehavior() {
-    const toggleButton = document.getElementById("toggleButton");
-    const mediaQuery = window.matchMedia("(max-width: 1024px)");
-
-    if (mediaQuery.matches) {
-      sidebar.style.display = "none";
-      toggleButton.addEventListener("click", handleSidebarToggle);
-      document.addEventListener("click", closeSidebarOnClickOutside);
-    } else {
-      toggleButton.removeEventListener("click", handleSidebarToggle);
-      document.removeEventListener("click", closeSidebarOnClickOutside);
+    function toggleSidebar() {
       const sidebar = document.getElementById("sidebar");
-      sidebar.style.display = "block";
-      sidebar.classList.remove("open");
+      sidebar.classList.toggle("open");
+      sidebar.style.display = sidebar.classList.contains("open")
+        ? "block"
+        : "none";
     }
-  }
-  function handleSidebarToggle(event) {
-    event.stopPropagation();
-    toggleSidebar();
-  }
-  updateSidebarBehavior();
-  window.addEventListener("resize", updateSidebarBehavior);
-});
 
-// sideebar content js
-document.addEventListener("DOMContentLoaded", function () {
-  const toggler = document.querySelector(".sidebar-toggler");
-  const sidebar = document.getElementById("sidebar");
-  const contentArea = document.querySelector(".content-area");
+    function closeSidebarOnClickOutside(event) {
+      const sidebar = document.getElementById("sidebar");
+      const toggleButton = document.getElementById("toggleButton");
 
-  toggler.addEventListener("click", function (event) {
-    event.stopPropagation();
-    contentArea.classList.toggle("sidebar-area-content");
+      if (
+        !sidebar.contains(event.target) &&
+        !toggleButton.contains(event.target)
+      ) {
+        sidebar.classList.remove("open");
+        sidebar.style.display = "none";
+      }
+    }
+
+    function updateSidebarBehavior() {
+      const toggleButton = document.getElementById("toggleButton");
+      const mediaQuery = window.matchMedia("(max-width: 1024px)");
+
+      if (mediaQuery.matches) {
+        sidebar.style.display = "none";
+        toggleButton.addEventListener("click", handleSidebarToggle);
+        document.addEventListener("click", closeSidebarOnClickOutside);
+      } else {
+        toggleButton.removeEventListener("click", handleSidebarToggle);
+        document.removeEventListener("click", closeSidebarOnClickOutside);
+        const sidebar = document.getElementById("sidebar");
+        sidebar.style.display = "block";
+        sidebar.classList.remove("open");
+      }
+    }
+    function handleSidebarToggle(event) {
+      event.stopPropagation();
+      toggleSidebar();
+    }
+    updateSidebarBehavior();
+    window.addEventListener("resize", updateSidebarBehavior);
   });
 
-  document.addEventListener("click", function (event) {
-    if (
-      !sidebar.contains(event.target) &&
-      !toggler.contains(event.target)
-    ) {
-      contentArea.classList.remove("sidebar-area-content");
-    }
+  // sideebar content js
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggler = document.querySelector(".sidebar-toggler");
+    const sidebar = document.getElementById("sidebar");
+    const contentArea = document.querySelector(".content-area");
+
+    toggler.addEventListener("click", function (event) {
+      event.stopPropagation();
+      contentArea.classList.toggle("sidebar-area-content");
+    });
+
+    document.addEventListener("click", function (event) {
+      if (
+        !sidebar.contains(event.target) &&
+        !toggler.contains(event.target)
+      ) {
+        contentArea.classList.remove("sidebar-area-content");
+      }
+    });
   });
-});
 </script>
