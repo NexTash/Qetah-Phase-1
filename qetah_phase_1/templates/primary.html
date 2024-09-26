@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <link rel="shortcut icon" type="x-icon" href="/assets/qetah_phase_1/images/qetah-browser-removebg-preview.png" />
@@ -86,13 +87,98 @@
   <!-- csrf_token -->
   {%- block body_include %}{{ body_include or "" }}{% endblock -%}
 
+  <script>
+
+
+
+    function switchLanguage(language) {
+
+      const body = document.body;
+
+      if (language === 'ar') {
+        body.setAttribute('dir', 'rtl');
+      } else if (language === 'en') {
+        body.removeAttribute('dir');
+      }
+
+      localStorage.setItem('selectedLanguage', language);
+      frappe.call({
+        method: 'qetah_phase_1.events.language_switcher.get_translations',
+        args: { lang: language },
+        callback: function (response) {
+          const translations = response.message;
+
+          updatePageContent(translations);
+          updateFooterContent(translations);
+          updateHeaderContent(translations);
+
+
+        }
+
+      });
+      
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const emailInput = document.getElementById('email-address');
+      // const placeholderTextEmail = translations['email-address'];
+      const fullnameInput = document.getElementById('fullname');
+      // const placeholderTextFullname = translations['fullname'];
+      const emailInput2 = document.getElementById('email');
+      // const placeholderTextEmail2 = translations['email'];
+      const phoneInput = document.getElementById('phone');
+      // const placeholderTextPhone = translations['phone'];
+      const messageInput = document.getElementById('message');
+      // const code = document.getElementById('code');
+      // // const proceed_to_pay = document.getElementById('proceed_to_pay');
+      // // const placeholderTextMessage = translations['message'];
+      // // Setting placeholders
+      // // emailInput.setAttribute('placeholder', placeholderTextEmail);
+      // // fullnameInput.setAttribute('placeholder', placeholderTextFullname);
+      // // emailInput2.setAttribute('placeholder', placeholderTextEmail2);
+      // // phoneInput.setAttribute('placeholder', placeholderTextPhone);
+      // // messageInput.setAttribute('placeholder', placeholderTextMessage);
+
+    });
+
+
+    //local storage variable 
+    document.addEventListener('DOMContentLoaded', function () {
+      switchLanguage(localStorage.getItem('selectedLanguage'));
+    });
+    var selectedLanguage = localStorage.getItem('selectedLanguage');
+
+    if (selectedLanguage === 'ar') {
+      $('[data-field="en"]').css("visibility", "hidden");
+      $('[data-field="ar"]').css("visibility", "visible");
+    } else {
+      $('[data-field="ar"]').css("visibility", "hidden");  // Optionally hide Arabic content if the language is not 'ar'
+      $('[data-field="en"]').css("visibility", "visible"); // Ensure English content is shown in case of other languages
+    }
+
+    function noice() {
+      // Check the selected language from localStorage
+      var selectedLanguage = localStorage.getItem('selectedLanguage');
+      // If the selected language is 'ar', hide elements with data-field="en"
+      if (selectedLanguage === 'ar') {
+        $('[data-field="en"]').css("visibility", "hidden");
+        $('[data-field="ar"]').css("visibility", "visible");  // Optionally show Arabic content
+      } else {
+        $('[data-field="ar"]').css("visibility", "hidden");  // Optionally hide Arabic content if the language is not 'ar'
+        $('[data-field="en"]').css("visibility", "visible");  // Ensure English content is shown in case of other languages
+      }
+    }
+    console.log(sidebar_eng);
+
+  </script>
+
 
   <!-- SCRIPTS -->
   <script src="/assets/qetah_phase_1/js/sidebar.js"></script>
   <!-- Initialize Swiper -->
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <!-- THIRD PARTY JS -->
- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <!-- SCRIPTS -->
   <script>
@@ -281,4 +367,5 @@
   <!-- SCRIPTS-->
 
 </body>
+
 </html>

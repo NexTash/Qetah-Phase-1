@@ -1,6 +1,6 @@
 {% extends "templates/primary.html" %}
 
-{% block title %}  Cart Items {% endblock %}
+{% block title %} Cart Items {% endblock %}
 
 {% block content %}
 <style>
@@ -34,6 +34,7 @@
         border-radius: 10px 10px 0px 0px;
         background-color: #ffffff;
         box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+
         h5 {
           margin: 10px 0px;
           font-size: 16px;
@@ -79,102 +80,109 @@
       }
     }
   }
+
   @media (max-width: 425px) {
     .address-modal {
       .modal-content {
         width: 90%;
-       }
+      }
 
       .modal-body {
-            height: 460px !important;
-            max-height: 460px !important;
-        .grp{
-        flex-direction: column;
-        gap: 0 !important;
-.form-field{
-  width: 100% !important;
-}
+        height: 460px !important;
+        max-height: 460px !important;
+
+        .grp {
+          flex-direction: column;
+          gap: 0 !important;
+
+          .form-field {
+            width: 100% !important;
+          }
         }
-      } 
+      }
     }
   }
 
 
-      .noti {
-           visibility: hidden;
-          min-width: 250px;
-          margin-left: -125px;
-          background-color: white;
-          /* color: #fff; */
-          text-align: center;
-          border-radius: 5px;
-          padding: 16px;
-          position: fixed;
-          display: flex;
-          z-index: 9999;
-          left: 50%;
-          top: 65px;
-          font-size: 14px;
-          font-weight: 530;
-          gap: 10px;
-          /* box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; */
-          box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
-          align-items: center;
-          i{
-            font-size: 20px;
-          }
-      }
+  .noti {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: white;
+    /* color: #fff; */
+    text-align: center;
+    border-radius: 5px;
+    padding: 16px;
+    position: fixed;
+    display: flex;
+    z-index: 9999;
+    left: 50%;
+    top: 65px;
+    font-size: 14px;
+    font-weight: 530;
+    gap: 10px;
+    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; */
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+    align-items: center;
 
-      .noti.show {
-        visibility: visible;
-        -webkit-animation: fadein 1.5s, fadeout 1.5s 2.5s;
-        animation: fadein 1.5s, fadeout 1.5s 2.5s;
-      }
+    i {
+      font-size: 20px;
+    }
+  }
 
-      @-webkit-keyframes fadein {
-        from {
-          top: 0;
-          opacity: 0;
-        }
-        to {
-          top: 65px;
-          opacity: 1;
-        }
-      }
+  .noti.show {
+    visibility: visible;
+    -webkit-animation: fadein 1.5s, fadeout 1.5s 2.5s;
+    animation: fadein 1.5s, fadeout 1.5s 2.5s;
+  }
 
-      @keyframes fadein {
-        from {
-          top: 0;
-          opacity: 0;
-        }
-        to {
-          top: 65px;
-          opacity: 1;
-        }
-      }
+  @-webkit-keyframes fadein {
+    from {
+      top: 0;
+      opacity: 0;
+    }
 
-      @-webkit-keyframes fadeout {
-        from {
-          top: 65px;
-          opacity: 1;
-        }
-        to {
-          top: 0;
-          opacity: 0;
-        }
-      }
+    to {
+      top: 65px;
+      opacity: 1;
+    }
+  }
 
-      @keyframes fadeout {
-        from {
-          top: 65px;
-          opacity: 1;
-        }
-        to {
-          top: 0;
-          opacity: 0;
-        }
-      }
+  @keyframes fadein {
+    from {
+      top: 0;
+      opacity: 0;
+    }
 
+    to {
+      top: 65px;
+      opacity: 1;
+    }
+  }
+
+  @-webkit-keyframes fadeout {
+    from {
+      top: 65px;
+      opacity: 1;
+    }
+
+    to {
+      top: 0;
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeout {
+    from {
+      top: 65px;
+      opacity: 1;
+    }
+
+    to {
+      top: 0;
+      opacity: 0;
+    }
+  }
 </style>
 <!-- Student Header -->
 <div class="content-area" :class="{'shifted-content': isStatic}">
@@ -185,10 +193,11 @@
           <div class="card card-webinar">
             <div class="card-head select-items">
               <span>
-                <label class="check check-secondary"><input type="checkbox" /> Select All (Items)</label>
+                <label class="check check-secondary" id="selectAllLabel"><input type="checkbox" /> Select All
+                  (Items)</label>
               </span>
               <button class="btn btn-light btn-icon">
-                <i class="bx bx-trash icon-pre delete-item"></i> Delete
+                <i class="bx bx-trash icon-pre delete-item" id="deleteButton"></i>
               </button>
             </div>
           </div>
@@ -204,150 +213,88 @@
         <div class="card card-summary">
           <div class="card-head">
             <div class="location">
-              <span>Location</span>
+              <span id="locationLabel">Location</span>
             </div>
             <button class="btn btn-secondary btn-icon model-btn" id="openaddressModal"><i
-                class="bx bx-location-plus icon-pre"></i> Add Shipping Address </button>
+                class="bx bx-location-plus icon-pre"></i> <span id="address-modal-h"></span> </button>
             <div id="myModal" class="address-modal">
               <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
                   <span class="close">&times;</span>
-                  <h5>Add Address Here</h5>
+                  <h5 id="addAddressTitle">Add Address Here</h5>
                 </div>
                 <!-- Modal Body -->
                 <div class="modal-body">
                   <div class="grp d-flex">
                     <div class="form-field">
-                      <label class="field-label">First Name</label>
+                      <label class="field-label" id="firstNameLabel">First Name</label>
                       <div class="field">
-                        <input type="text" class="field-text" placeholder="Enter first name" id="firstname" />
+                        <input type="text" class="field-text" placeholder="" id="firstname" />
                       </div>
                     </div>
                     <div class="form-field">
-                      <label class="field-label">Last Name</label>
+                      <label class="field-label" id="lastNameLabel">Last Name</label>
                       <div class="field">
-                        <input type="text" class="field-text" placeholder="Enter last name" id="lastname" />
+                        <input type="text" class="field-text" placeholder="" id="lastname" />
                       </div>
                     </div>
                   </div>
                   <div class="grp d-flex">
                     <div class="form-field">
-                      <label class="field-label">Phone No</label>
+                      <label class="field-label" id="phoneLabel">Phone No</label>
                       <div class="field">
-                        <input type="text" class="field-text" placeholder="Enter your phone number" id="phone" />
+                        <input type="text" class="field-text" placeholder="" id="phone" />
                       </div>
                     </div>
                     <div class="form-field">
-                      <label class="field-label">Address</label>
+                      <label class="field-label" id="addressLabel">Address</label>
                       <div class="field">
-                        <input type="text" class="field-text" placeholder="Enter your Address" id="address" />
+                        <input type="text" class="field-text" placeholder="" id="address" />
                       </div>
                     </div>
 
                   </div>
                   <div class="grp d-flex">
                     <div class="form-field">
-                      <label class="field-label">Email</label>
+                      <label class="field-label" id="emailLabel">Email</label>
                       <div class="field">
-                        <input type="email" class="field-text" placeholder="Enter your email" id="email" />
+                        <input type="email" class="field-text" placeholder="" id="email" />
                       </div>
                     </div>
                     <div class="form-field">
-                      <label class="field-label">State</label>
+                      <label class="field-label" id="stateLabel">State</label>
                       <div class="field">
-                        <input type="text" class="field-text" placeholder="Enter your state" id="state" />
+                        <input type="text" class="field-text" placeholder="" id="state" />
                       </div>
                     </div>
                   </div>
                   <div class="grp d-flex">
                     <div class="form-field">
-                      <label class="field-label">City</label>
+                      <label class="field-label" id="cityLabel">City</label>
                       <div class="field">
-                        <input type="text" class="field-text" placeholder="Enter your City" id="city" />
+                        <input type="text" class="field-text" placeholder="" id="city" />
                       </div>
                     </div>
                     <div class="form-field">
-                      <label class="field-label">Zip / Postal code</label>
+                      <label class="field-label" id="postalCodeLabel">Zip / Postal code</label>
                       <div class="field">
-                        <input type="text" class="field-text" placeholder="Enter your Code" id="postalcode" />
+                        <input type="text" class="field-text" placeholder="" id="postalcode" />
                       </div>
                     </div>
                   </div>
                 </div>
                 <!-- Modal Footer -->
                 <div class="modal-footer">
-                  <button id="closeModal" class="btn btn-light">Close</button>
+                  <button id="closeModal" class="btn btn-light" > <h6 id="closeModalButton_h"> Close </h6> </button>
                   <button class="btn btn-secondary" id="saveButton" onclick="savebutton()">Submit</button>
                 </div>
               </div>
             </div>
-            <div id="toast" class="noti"><i class='bx bx-check-circle bx-tada' style="color: var(--success);"></i>Address Added Succesfully</div>
-            <!-- <div class="modal active" x-show="isOpen" x-transition style="display: none;">
-                <div class="modal-dialog" @click.away="isOpen = false">
-                  <div class="modal-content ">
-                    <div class="modal-head">
-                      <h3 class="modal-title">Add Shipping Details</h3>
-                    </div>
-                    <div class="modal-body">
-                      <div class="form-field">
-                        <label class="field-label">First Name</label>
-                        <div class="field">
-                          <input type="text" class="field-text" placeholder="Enter first name" id="firstname" />
-                        </div>
-                      </div>
-                      <div class="form-field">
-                        <label class="field-label">Last Name</label>
-                        <div class="field">
-                          <input type="text" class="field-text" placeholder="Enter last name" id="lastname" />
-                        </div>
-                      </div>
-                      <div class="form-field">
-                        <label class="field-label">Phone No</label>
-                        <div class="field">
-                          <input type="text" class="field-text" placeholder="Enter your phone number" id="phone" />
-                        </div>
-                      </div>
-                      <div class="form-field">
-                        <label class="field-label">Address</label>
-                        <div class="field">
-                          <input type="text" class="field-text" placeholder="Enter your Address" id="address" />
-                        </div>
-                      </div>
-                      <div class="form-field">
-                        <label class="field-label">Email</label>
-                        <div class="field">
-                          <input type="email" class="field-text" placeholder="Enter your email" id="email" />
-                        </div>
-                      </div>
+            <div id="toast" class="noti"><i class='bx bx-check-circle bx-tada' style="color: var(--success);"></i>
+              <h2 id="toastMessage">Address Added Succesfully</h2>
+            </div>
 
-                      <div class="form-field">
-                        <label class="field-label">State</label>
-                        <div class="field">
-                          <input type="text" class="field-text" placeholder="Enter your state" id="state" />
-                        </div>
-                      </div>
-                      <div class="form-field">
-                        <label class="field-label">City</label>
-                        <div class="field">
-                          <input type="text" class="field-text" placeholder="Enter your City" id="city" />
-                        </div>
-                      </div>
-                      <div class="form-field">
-                        <label class="field-label">Zip / Postal code</label>
-                        <div class="field">
-                          <input type="text" class="field-text" placeholder="Enter your Code" id="postalcode" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-foot">
-                      <button class="btn" x-on:click="isOpen = false">Cancel</button>
-                      <button class="btn btn-secondary" id="saveButton" onclick="savebutton()">Save</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
 
 
             <script>
@@ -385,19 +332,10 @@
                 <i class="bx bxs-user"></i>
               </div>
               <div class="media-body">
+
                 <!-- Target div where the data will be displayed -->
                 <div id="displayData"></div>
-                <!-- <p class="badge badge-sm badge-secondary badge-pill badge-sm">Home</p>
-                <p class="media-title">Ammar Shahid</p>
-                <p class="media-subtitle txt-sm fw-500">04165651763</p>
-                <h6 class="text-ellipsis text-ellipsis-2 txt-sm">
-                  <strong>Two Line Truncation</strong>text trancate loremThis component truncates text with an ellipsis
-                  (...)
-                  when it exceeds the width of its container, useful for displaying long text in a limited space.Lorem
-                  ipsum dolor
-                  sit amet, consectetur adipiscing elit. Quisque ut risus sit amet nisl suscipit condimentum.Lorem ipsum
-                  dolor sit amet, consectetur adipiscing elit. Quisque ut risus sit amet nisl suscipit condimentum.
-                </h6> -->
+
               </div>
               <div class="media-foot">
                 <label class="check check-dark"> <input type="checkbox" required /></label>
@@ -408,9 +346,9 @@
           <div class="card-body">
             <div class="card-summary">
               <div id="updateOffcanvas"></div>
-              <h2>Order Summary</h2>
+              <h2 id="order_summary">Order Summary</h2>
               <div class="summary-content">
-                <p class="summary-name">Subtotal <span id="item-count">0</span></p>
+                <p class="summary-name" id="subtotalLabel">Subtotal <span id="item-count">0</span></p>
                 <span class="summary-value">$ <span id="subtotal"></span></span>
               </div>
               <!-- <div class="summary-content">
@@ -420,9 +358,9 @@
               <div class="voucher">
                 <div class="voucher-input-control">
                   <span class="field">
-                    <input type="text" class="field-text" placeholder="Enter Voucher Code" />
+                    <input type="text" class="field-text" placeholder="Enter Voucher Code" id="voucherCode" />
                   </span>
-                  <button type="button" class="btn btn-secondary">
+                  <button type="button" class="btn btn-secondary" id="submitVoucherButton">
                     Submit
                   </button>
                 </div>
@@ -431,7 +369,7 @@
           </div>
           <div class="card-foot">
             <a href="/checkout" style="text-decoration: none;">
-              <button class="btn btn-secondary btn-sm btn-block">
+              <button class="btn btn-secondary btn-sm btn-block" id="proceedCheckoutButton">
                 Proceed To Checkout
               </button>
             </a>
@@ -441,7 +379,7 @@
     </div>
   </div>
   <div class="container products">
-    <h1>Just For You</h1>
+    <h1 id="justForYouTitle">Just For You</h1>
     <!-- Slider main container -->
     <div class="swiper product-slider">
       <!-- Additional required wrapper -->
@@ -452,7 +390,8 @@
         {% for variation in product.variations %}
         <div class="swiper-slide">
           <div class="products">
-            <div class="badge badge-primary badge-pill">{{ variation.title }}</div>
+            <div class="badge badge-primary badge-pill" data-field="en">{{ variation.title }}</div>
+            <div class="badge badge-primary badge-pill" data-field="ar">{{ variation.title_arabic }}</div>
             <div class="card product-card">
               <a href="/product">
                 <div class="card-head">
@@ -460,10 +399,12 @@
                     src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg">
                 </div>
                 <div class="card-body">
-                  <div class="card-title">{{ variation.intro }}</div>
-                  <div class="card-desc text-ellipsis text-ellipsis-2">
-                    {{ variation.description }}
-                  </div>
+                  <div class="card-title" data-field="en">{{ variation.intro }}</div>
+                  <div class="card-title" data-field="ar">{{ variation.intro_arabic }}</div>
+                  <div class="card-desc text-ellipsis text-ellipsis-2" data-field="en">{{
+                    variation.description }}</div>
+                  <div class="card-desc text-ellipsis text-ellipsis-2" data-field="ar">{{
+                    variation.description_arabic }}</div>
                   <div class="card-subtitle"><del>USD {{ variation.price }}</del></div>
                   <div class="card-title">USD {{ variation.discount }}</div>
                   <div class="card-rating">
@@ -473,8 +414,9 @@
                 </div>
               </a>
               <div class="card-foot">
-                <button class="btn btn-light btn-icon btn-pill"><i class="bx bx-cart icon-pre"></i> Buy Now</button>
-                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                <button class="btn btn-light btn-icon btn-pill"><i class="bx bx-cart icon-pre" id="buyNowButton"></i>
+                  </button>
+                <button class="btn btn-light btn-icon btn-circle bx bx-heart" id="wishlistButton"></button>
               </div>
             </div>
           </div>
@@ -482,11 +424,14 @@
         {% endfor %}
         {% endfor %}
       </div>
-      <button class="slide-next btn btn-secondary btn-sm bx bx-right-arrow-alt"></button>
-      <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
+      <button class="slide-next btn btn-secondary btn-sm bx bx-right-arrow-alt" id="slideNextButton"></button>
+      <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt" id="slidePrevButton"></button>
     </div>
   </div>
   {% endblock %}
+
+
+
   {% block scripts %}
   <script>
     function savebutton() {
@@ -873,6 +818,39 @@
         showToast(); // Show the toast
       });
     }
-
+  </script>
+  <script>
+    // arabic id
+    function updatePageContent(translations) {
+      //Cart Items
+      document.getElementById('selectAllLabel').textContent = translations['selectAllLabel'];
+      document.getElementById('deleteButton').textContent = translations['deleteButton'];
+      document.getElementById('address-modal-h').textContent = translations['address-modal-h'];
+      document.getElementById('addAddressTitle').textContent = translations['addAddressTitle'];
+      document.getElementById('firstNameLabel').textContent = translations['firstNameLabel'];
+      document.getElementById('lastNameLabel').textContent = translations['lastNameLabel'];
+      document.getElementById('phoneLabel').textContent = translations['phoneLabel'];
+      document.getElementById('addressLabel').textContent = translations['addressLabel'];
+      document.getElementById('emailLabel').textContent = translations['emailLabel'];
+      document.getElementById('stateLabel').textContent = translations['stateLabel'];
+      document.getElementById('cityLabel').textContent = translations['cityLabel'];
+      document.getElementById('postalCodeLabel').textContent = translations['postalCodeLabel'];
+      document.getElementById('postalCodeLabel').textContent = translations['postalCodeLabel'];
+      document.getElementById('closeModalButton_h').textContent = translations['closeModalButton_h'];
+      document.getElementById('saveButton').textContent = translations['saveButton'];
+      document.getElementById('toastMessage').textContent = translations['toastMessage'];
+      document.getElementById('locationLabel').textContent = translations['locationLabel'];
+      document.getElementById('order_summary').textContent = translations['order_summary'];
+      document.getElementById('subtotalLabel').textContent = translations['subtotalLabel'];
+      document.getElementById('voucherCode').placeholder = translations['voucherCode'];
+      document.getElementById('buyNowButton').textContent = translations['buy_now_button'];
+      document.getElementById('submitVoucherButton').textContent = translations['submitVoucherButton'];
+      document.getElementById('proceedCheckoutButton').textContent = translations['proceedCheckoutButton'];
+      document.getElementById('justForYouTitle').textContent = translations['justForYouTitle'];
+      document.getElementById('slideNextButton').textContent = translations['slideNextButton'];
+      document.getElementById('slidePrevButton').textContent = translations['slidePrevButton'];
+    }
+    console.log(address-modal-h);
+    
   </script>
   {% endblock %}

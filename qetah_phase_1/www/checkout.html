@@ -82,19 +82,21 @@
 
 <div class="content-area" :class="{'shifted-content': isStatic}">
   <div class="container checkout">
-    <form action="" method="POST" class="information" id="informationForm">
-      <h5>Delivery Information</h5>
+    <form action="" method="POST" class="information">
+      <h5 id="informationForm">Delivery Information</h5>
       <!-- Target div where the data will be displayed -->
       <div id="displayData"></div>
       <div
         style="margin: 0px;border: none;width: 100%;color: black;padding: 0;background: rgb(207, 207, 207);height: 1px;">
       </div>
-      <h5 class="card-title mt-3">Card Payment</h5>
+      <h5 class="card-title mt-3" id="card_payment">Card Payment</h5>
       <div class="stripe-card">
         <div class="card inner-card " tabindex="0" data-radio-id="stripe">
           <div class="card-head">
             <label class="check check-disable"> <input type="radio" id="stripe" name="pm" checked="" /></label>
-            <div class="stripe" id="stripe">Stripe</div>
+            <div class="stripe" id="stripe">
+              <h2 id="stripe_label">Stripe</h2>
+            </div>
           </div>
           <div class="card-body">
             <img class="stripe-logo" src="/assets/qetah_phase_1/images/stripe.svg" height="50px" width="50px">
@@ -103,40 +105,40 @@
         <div class="card inner-card " tabindex="0" data-radio-id="cod">
           <div class="card-head">
             <label class="check check-disable"> <input type="radio" id="cod" name="pm" checked="" /></label>
-            <div class="COD">Cash on Delivery</div>
+            <div class="COD" id="cash_on_delivery">Cash on Delivery</div>
           </div>
         </div>
       </div>
     </form>
 
     <form action="" method="" class="payment" id="paymentForm">
-      <h5>Promotion</h5>
+      <h5 id="promotion_heading">Promotion</h5>
       <div class="grp">
         <div class="form-field">
           <div class="field field-dark">
             <input type="text" class="field-text" placeholder="Enter Code" id="code" name="code" />
           </div>
         </div>
-        <button type="button" class="btn btn-secondary btn-apply" onclick="on_chek()">Apply</button>
+        <button type="button" class="btn btn-secondary btn-apply" onclick="on_chek()" id="apply_button">Apply</button>
       </div>
-      <h5>Order Summary</h5>
+      <h5 id="order_summary">Order Summary</h5>
       <div class="order-info">
         <div class="order-detail">
-          <div class="item">Total (<span id="item-count"></span> items)</div>
+          <div class="item" id="total_items"><span id="item-count"></span></div>
           <!-- Item count goes here -->
           <div class="">$ <span id="subtotal">0</span></div> <!-- Subtotal goes here -->
         </div>
         <div class="order-detail">
-          <div class="item">Delivery Fee</div>
+          <div class="item" id="delivery_fee_ar">Delivery Fee</div>
           <div class="price" id="delivery-fee">USD. 0.00</div>
         </div>
         <div class="order-detail">
-          <div class="item">Delivery Discount</div>
+          <div class="item" id="delivery_discount_ar">Delivery Discount</div>
           <div class="price" id="delivery-discount">USD. 0.00</div>
         </div>
         <hr>
         <div class="total">
-          <div class="sum">Total:</div>
+          <div class="sum" id="grand_total_label">Total:</div>
           <div class="price" id="grand-total"></div>
         </div>
         <!-- <p>Subtotal: Rs. <span id="subtotal">0.00</span></p>
@@ -147,7 +149,7 @@
         <input type="text" id="code" placeholder="Enter Promo Code">
         <button id="apply-code">Apply Promo Code</button> -->
 
-        <div class="taxes">Taxes included, where applicable</div>
+        <div class="taxes" id="taxes_included">Taxes included, where applicable</div>
         <input type="button" class="btn btn-dark btn-block" data-field="proceed-checkout" onclick="on_proceed()"
           value="Proceed to Pay"></input>
       </div>
@@ -163,11 +165,6 @@
   <div class="container wishlist-items">
     <!-- Wishlist items will be dynamically added here by JavaScript -->
   </div>
-
-
-
-
-
   <script>
     // Function to display data from localStorage
     function displayData() {
@@ -181,31 +178,31 @@
         displayDiv.innerHTML = `
         <div class="badge badge-secondary m-2">Office</div>
         <div class="grp">
-        <h6 class="title">Full Name :</h6>
+        <h6 class="title" id="fullname_h" >Full Name :</h6>
         <div class="subtitle" id="fullname">${data.firstname}${data.lastname}</div>
         </div>
         <div class="grp">
-        <h6 class="title">Phone No :</h6>
+        <h6 class="title" id="phoneLabel">Phone No :</h6>
         <div class="subtitle"id="phone">${data.phone}</div>
         </div>
         <div class="grp">
-        <h6 class="address">Address :</h6>
+        <h6 class="address" id="addressLabel">Address :</h6>
         <div class="subtitle" id="address" >${data.address}.</div>
         </div>
         <div class="grp">
-        <h6 class="title">E-mail :</h6>
+        <h6 class="title" id="emailLabel">E-mail :</h6>
         <p class="subtitle" id="email">${data.email}</p>
         </div>
         <div class="grp">
-        <h6 class="title">State :</h6>
+        <h6 class="title" id="stateLabel">State :</h6>
         <div class="subtitle" id="state">${data.state}</div>
         </div>
         <div class="grp">
-        <h6 class="title">City :</h6>
+        <h6 class="title" id="cityLabel">City :</h6>
         <div class="subtitle" id="city">${data.city}</div>
         </div>
         <div class="grp">
-        <h6 class="title">Zip / Postal Code :</h6>
+        <h6 class="title" id="postalCodeLabel">Zip / Postal Code :</h6>
         <div class="subtitle" id="code">${data.postalcode}</div>
         </div>
       `;
@@ -291,36 +288,10 @@
     });
 
 
-  </script>
-
-  <script>
 
     document.addEventListener('DOMContentLoaded', () => {
       const cartContainer = document.querySelector('.checkout-items');
       let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-
-      //for dynamic delivery-fee and discount-fee 
-      // var products = {{ products | tojson }};
-      // console.log("Products from template:", products);
-      // // Check if products data exists
-      // if (products && products.length > 0) {
-      //   console.log("Products from template:", products);
-
-      //   // Get the product list container
-      //   var productList = document.getElementById('product-list');
-
-      //   // Loop through products and dynamically append to the container
-      //   products.forEach(function (product) {
-      //     var productItem = document.createElement('div');
-      //     productItem.innerHTML = `
-      //             <p>Delivery Fee: ${product.delivery_fee}</p>
-      //             <p>Delivery Discount: ${product.delivery_disc}</p>
-      //         `;
-      //     productList.appendChild(productItem);
-      //   });
-      // } else {
-      //   console.log("No products found");
-      // }
 
       // Define delivery fee and discount
       const deliveryFee = 120; // Example delivery fee
@@ -339,52 +310,49 @@
         let subtotal = 0;
         let itemCount = items.length;
 
+        console.log("Items length: ", items.length); // Check item count in the console
+
         items.forEach((item, index) => {
           const price = parseFloat(item.price.replace(/[^0-9.-]/g, '')); // Convert price string to a number
           subtotal += price;
           const itemHTML = `
-                <div class="card card-webinar cart-product-card">
-                    <div class="card-head">
-                        <span>Package ${index + 1} of ${items.length}</span>
-                        <p>Fulfilled by <b>QETAH</b></p>
-                    </div>
-                    <hr />
-
-
-
-                    <div class="cart-card">
-                        <div class="card-head">
-                            <div class="cart-conent">
-                                <img src="${item.image}" alt="${item.title}" class="image" id="product_title" />
-                                <div class="card-desc">
-                                    <p class="text-ellipsis text-ellipsis-2" > <span id="item-title"> ${item.title}</span></p>
-                                    <p class="text-ellipsis text-ellipsis-2">${item.desc}</p>
-                                    
-                                   ${item.brand ? `<span>${item.brand}</span>` : ''}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                        
-                            <div class="prices">
-                                <p class="price" id="product_price" > ${item.price}</p>
-                                ${item.discount ? `<span>${item.discount}</span>` : ''}
-                                <div class="icon-group" >
-                                    <span class="wishlist delete-item" data-title=${item.title}">
-                                    <i class="bx bx-trash"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-foot">
-                            <div class="qty">
-                                <span>Qty:</span>
-                                <span>${items.length}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
+      <div class="card card-webinar cart-product-card">
+        <div class="card-head">
+          <span>Package ${index + 1} of ${items.length}</span>
+          <p>Fulfilled by <b>QETAH</b></p>
+        </div>
+        <hr />
+        <div class="cart-card">
+          <div class="card-head">
+            <div class="cart-conent">
+              <img src="${item.image}" alt="${item.title}" class="image"/>
+              <div class="card-desc">
+                <p class="text-ellipsis text-ellipsis-2"><span id="item-title">${item.title}</span></p>
+                <p class="text-ellipsis text-ellipsis-2">${item.desc}</p>
+                ${item.brand ? `<span>${item.brand}</span>` : ''}
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="prices">
+              <p class="price">${item.price}</p>
+              ${item.discount ? `<span>${item.discount}</span>` : ''}
+              <div class="icon-group">
+                <span class="wishlist delete-item" data-title="${item.title}">
+                  <i class="bx bx-trash"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <div class="qty">
+              <span id="qtyText">Qty:</span>
+              <span>${items.length}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
           cartContainer.innerHTML += itemHTML; // Append the item to the cart container
         });
 
@@ -403,7 +371,7 @@
         // Add event listeners to all delete buttons (trash icons)
         document.querySelectorAll('.delete-item').forEach((trashIcon, index) => {
           trashIcon.addEventListener('click', function () {
-            deleteCartItem(index);  // Use index from forEach to delete item
+            deleteCartItem(index); // Use index from forEach to delete item
           });
         });
       }
@@ -415,45 +383,19 @@
         renderCartItems(cartItems); // Re-render the updated cart
       }
 
-      // Call renderCartItems on page load
-      renderCartItems(cartItems);
-
-      // Promo code logic
-      document.getElementById('apply-code').addEventListener('click', function () {
-        const promoCode = document.getElementById('code').value;
-        let subtotal = parseFloat(document.getElementById('subtotal').textContent);
-
-        if (isNaN(subtotal)) {
-          document.getElementById('messages').textContent = "Subtotal is invalid!";
-          return;
-        }
-
-        if (promoCode === 'DISCOUNT10') {
-          const discount = subtotal * 0.10;
-          const newSubtotal = subtotal - discount;
-          document.getElementById('subtotal').textContent = newSubtotal.toFixed(2);
-          localStorage.setItem('subtotal', newSubtotal.toFixed(2));
-          document.getElementById('messages').textContent = `Promo code applied! You saved Rs. ${discount.toFixed(2)}.`;
-
-          // Update the grand total after applying the promo code
-          const grandTotal = calculateGrandTotal(newSubtotal);
-          document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
-        } else {
-          document.getElementById('messages').textContent = "Invalid promo code.";
-        }
-      });
-
       // Retrieve subtotal and item count from localStorage on page load
+      const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+      renderCartItems(storedCart); // Render cart on page load
+
       const storedSubtotal = localStorage.getItem('subtotal') || '0.00';
-      const itemCount = (JSON.parse(localStorage.getItem('cart')) || []).length;
+      const itemCount = storedCart.length;
       document.getElementById('subtotal').textContent = storedSubtotal;
       document.getElementById('item-count').textContent = itemCount;
 
       // Recalculate the grand total after page load
       const grandTotal = calculateGrandTotal(parseFloat(storedSubtotal));
       document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
-
-    });
+    })
   </script>
   <style>
     /* Style for the success message */
@@ -477,123 +419,167 @@
     }
   </style>
   <script>
-    function on_proceed() {
-      //console.log("working");
+      function on_proceed() {
+        //console.log("working");
 
-      // Retrieve form input values
-      let fullname = "";
-      let state = "";
-      let city = "";
-      let phone = "";
-      let address = "";
-      let code = "";
-      let email = "";
-      let stripe = 0;
-      let cod = 0;
-      // let cod = document.getElementById("cod").value;
-      let item_count1 = 0;
-      let grand_total1 = "";
-      let title = "";
+        // Retrieve form input values
+        let fullname = "";
+        let state = "";
+        let city = "";
+        let phone = "";
+        let address = "";
+        let code = "";
+        let email = "";
+        let stripe = 0;
+        let cod = 0;
+        // let cod = document.getElementById("cod").value;
+        let item_count1 = 0;
+        let grand_total1 = "";
+        let title = "";
 
-      //console.log("variables created");
+        //console.log("variables created");
 
-      fullname = document.getElementById("fullname").value;
-      //console.log(fullname);
-      state = document.getElementById("state").value;
-      //console.log(state);
+        fullname = document.getElementById("fullname").value;
+        //console.log(fullname);
+        state = document.getElementById("state").value;
+        //console.log(state);
 
-      city = document.getElementById("city").value;
+        city = document.getElementById("city").value;
 
-      //console.log(city);
-      phone = document.getElementById("phone").value;
-      //console.log(phone);
+        //console.log(city);
+        phone = document.getElementById("phone").value;
+        //console.log(phone);
 
-      address = document.getElementById("address").value;
-      //console.log(address);
+        address = document.getElementById("address").value;
+        //console.log(address);
 
-      code = document.getElementById("code").value;
-      //console.log(code);
+        code = document.getElementById("code").value;
+        //console.log(code);
 
-      email = document.getElementById("email").value;
-      //console.log(email);
+        email = document.getElementById("email").value;
+        //console.log(email);
 
-      stripe = document.getElementById("stripe").value;
-      cod = document.getElementById("cod").value;
-      // cod = document.getElementById("cod").value;
-      //console.log(stripe);
+        stripe = document.getElementById("stripe").value;
+        cod = document.getElementById("cod").value;
+        // cod = document.getElementById("cod").value;
+        //console.log(stripe);
 
-      item_count1 = document.getElementById("item-count");
+        item_count1 = document.getElementById("item-count");
 
-      // Retrieve and log the innerHTML of the element
-      item_count1 = item_count1.innerHTML;
+        // Retrieve and log the innerHTML of the element
+        // item_count1 = item_count1.innerHTML;
 
-      //console.log("item_count", item_count1);
+        // console.log("item_count", item_count1);
+        console.log(item_count1);
 
-      grand_total1 = document.getElementById("grand-total");
-      grand_total1 = grand_total1.innerHTML;
-      //console.log(grand_total1);
+        grand_total1 = document.getElementById("grand-total");
+        grand_total1 = grand_total1.innerHTML;
+        //console.log(grand_total1);
 
-      //console.log("values added");
+        //console.log("values added");
 
-      title = document.getElementById("item-title");
-      title = title.innerHTML;
+        title = document.getElementById("item-title");
+        title = title.innerHTML;
 
-      //console.log(title);
+        console.log(title);
 
-      // Hardcoded values
-      //console.log("call started");
+        // Hardcoded values
+        console.log("call started");
 
 
-      // Proceed with Frappe call
-      frappe.call({
-        method: 'qetah_phase_1.events.proceed_checkout.poceed_to_checkout',
-        args: {
-          fullname: fullname,
-          phone: phone,
-          address: address,
-          city: city,
-          state: state,
-          code: code,
-          email: email,
-          stripe: 0,   // Defaulted stripe to 0
-          cod: cod,
-          item_count1: item_count1,
-          grand_total1: grand_total1,
-          title: title,
-        },
-        callback(r) {
-          // Get the 'messages' div and show the success message
-          var messageBox = document.getElementById("messages");
-          messageBox.innerHTML = r.message;
-          messageBox.style.display = 'block';
-        
-          // Clear form fields after submission
-          document.getElementById("fullname").value = "";
-          document.getElementById("phone").value = "";
-          document.getElementById("address").value = "";
-          document.getElementById("city").value = "";
-          document.getElementById("state").value = "";
-          document.getElementById("code").value = "";
-          document.getElementById("email").value = "";
-          document.getElementById("stripe").value = "";
-          document.getElementById("cod").value = "";
-          document.getElementById("item_count").value = "";
-          document.getElementById("grand_total").value = "";
-          document.getElementById("item-title").value = "";
+        // Proceed with Frappe call
+        frappe.call({
+          method: 'qetah_phase_1.events.proceed_checkout.poceed_to_checkout',
+          args: {
+            fullname: fullname,
+            phone: phone,
+            address: address,
+            city: city,
+            state: state,
+            code: code,
+            email: email,
+            stripe: 0,   // Defaulted stripe to 0
+            cod: cod,
+            item_count1: item_count1,
+            grand_total1: grand_total1,
+            title: title,
+          },
+          callback(r) {
+            // Get the 'messages' div and show the success message
+            var messageBox = document.getElementById("messages");
+            messageBox.innerHTML = r.message;
+            messageBox.style.display = 'block';
 
-          // Hide the message after 5 seconds
-          setTimeout(function () {
-            messageBox.style.display = 'none';
-          }, 5000);
-        }
-      });
+            // Clear form fields after submission
+            document.getElementById("fullname").value = "";
+            document.getElementById("phone").value = "";
+            document.getElementById("address").value = "";
+            document.getElementById("city").value = "";
+            document.getElementById("state").value = "";
+            document.getElementById("code").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("stripe").value = "";
+            document.getElementById("cod").value = "";
+            document.getElementById("item_count").value = "";
+            document.getElementById("grand_total").value = "";
+            document.getElementById("item-title").value = "";
 
-      // Clear cart data from localStorage
-      localStorage.removeItem('cart');
-    }
+            // Hide the message after 5 seconds
+            setTimeout(function () {
+              messageBox.style.display = 'none';
+            }, 5000);
+          }
+        });
+
+        // Clear cart data from localStorage
+        localStorage.removeItem('cart');
+      }
 
   </script>
-
   {% endblock %}
 
-  h${Heading $}*
+
+  {% block scripts %}
+  <script>
+
+      // arabic id
+      function updatePageContent(translations) {
+        //checkout
+
+
+        // Update item count and 
+        // document.getElementById('code').setAttribute('placeholder', translations['code']);
+        // document.getElementById('proceed_to_pay').setAttribute('placeholder', translations['proceed_to_pay']);
+        document.getElementById('subtotal').textContent = translations['subtotal'];
+        document.getElementById('delivery_fee_ar').textContent = translations['delivery_fee_ar'];
+        document.getElementById('delivery_discount_ar').textContent = translations['delivery_discount_ar'];
+        document.getElementById('taxes_included').textContent = translations['taxes_included'];
+        document.getElementById('phoneLabel').textContent = translations['phoneLabel'];
+        document.getElementById('addressLabel').textContent = translations['addressLabel'];
+        document.getElementById('emailLabel').textContent = translations['emailLabel'];
+        document.getElementById('stateLabel').textContent = translations['stateLabel'];
+        document.getElementById('cityLabel').textContent = translations['cityLabel'];
+        document.getElementById('postalCodeLabel').textContent = translations['postalCodeLabel'];
+        document.getElementById('fullname_h').textContent = translations['fullname_h'];
+        document.getElementById('total_items').textContent = translations['total_items'];
+            document.getElementById('qtyText').textContent = translations['qtyText'];
+
+        // document.getElementById('subtotal').textContent = translations['subtotal'];
+        document.getElementById('informationForm').textContent = translations['delivery_information'];
+
+        // Update grand total
+        document.getElementById('grand-total').textContent = translations['grand-total'];
+
+        // Update promotion and tax messages
+        document.getElementById('messages').textContent = translations['messages'];
+        // document.getElementById('promo-code').placeholder = translations['promo-code'];
+
+        // Update order summary headers
+        document.getElementById('promotion_heading').textContent = translations['promotion_heading'];
+        document.getElementById('order_summary').textContent = translations['order_summary'];
+        document.getElementById('grand_total_label').textContent = translations['grand_total_label'];
+      }
+      console.log(code);
+
+  </script>
+  {% endblock %}

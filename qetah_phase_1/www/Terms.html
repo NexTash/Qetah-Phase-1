@@ -1,18 +1,35 @@
 {% extends "templates/primary.html" %}
 
-{% block title %}  Terms {% endblock %}
+{% block title %} Terms {% endblock %}
 
 {% block content %}
 
 <div class="content-area" :class="{'shifted-content': isStatic}">
     <!-- CONTENT -->
     <main class="container terms-condition content">
-        <h1 class="heading">Terms & Conditions</h1>
+        <h1 class="heading" id="terms_conditions_heading">Terms & Conditions</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="./index.html" class="breadcrumb-link">Home</a></li>
-            <li class="breadcrumb-item active">Terms & Conditions</li>
+            <li class="breadcrumb-item"><a href="/index" class="breadcrumb-link" id="breadcrumb_home">Home</a>
+            </li>
+            <li class="breadcrumb-item active" id="breadcrumb_terms">Terms & Conditions</li>
         </ol>
-        {{privacy.terms_of_use}}
+        <div id="terms_conditions_content" data-field ="en">{{privacy.terms_of_use}}</div>
+        <div id="terms_conditions_content" data-field ="ar">{{privacy.terms_of_use_arabic}}</div>
     </main>
-    <!-- CONTENT -->
-    {% endblock %}
+    <!-- CONTENT -->
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // arabic id
+    function updatePageContent(translations) {
+        //Terms
+        document.getElementById('terms_conditions_heading').textContent = translations['terms_conditions_heading'];
+        document.getElementById('breadcrumb_home').textContent = translations['breadcrumb_home'];
+        document.getElementById('breadcrumb_terms').textContent = translations['breadcrumb_terms'];
+    }
+
+</script>
+{% endblock %}

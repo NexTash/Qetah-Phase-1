@@ -1,19 +1,41 @@
 {% extends "templates/primary.html" %}
 
-{% block title %}  Refunds {% endblock %}
+{% block title %} Refunds {% endblock %}
 
 {% block content %}
 
 <div class="content-area" :class="{'shifted-content': isStatic}">
     <!-- CONTENT -->
     <main class="container terms-condition content">
-        <h1 class="heading">Refunds & Exchange</h1>
+        <h1 class="heading" id="refunds_exchange_title">Refunds & Exchange</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="./index.html" class="breadcrumb-link">Home</a></li>
-            <li class="breadcrumb-item active">Refunds & Exchange</li>
+            <li class="breadcrumb-item">
+                <a href="/index" class="breadcrumb-link" id="home_link">Home</a>
+            </li>
+            <li class="breadcrumb-item active" id="refunds_exchange_breadcrumb">Refunds & Exchange</li>
         </ol>
-        {{privacy.refunds_policy}}
-
+        <!-- This will render the content dynamically based on the selected language -->
+        <div data-field="en">
+            {{ privacy.refunds_policy }}
+        </div>
+        <div data-field="ar">
+            {{ privacy.refunds_policy_arabic }}
+        </div>
     </main>
+
     <!-- CONTENT -->
+    {% endblock %}
+
+    {% block scripts %}
+    <script>
+        // arabic id
+        function updatePageContent(translations) {
+            //refunds
+            document.getElementById('refunds_exchange_title').textContent = translations['refunds_exchange_title'];
+            document.getElementById('home_link').textContent = translations['home_link'];
+            document.getElementById('refunds_exchange_breadcrumb').textContent = translations['refunds_exchange_breadcrumb'];
+
+        }    
+    </script>
+
     {% endblock %}

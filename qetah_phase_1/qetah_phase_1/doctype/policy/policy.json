@@ -9,9 +9,11 @@
  "engine": "InnoDB",
  "field_order": [
   "terms_of_use",
+  "terms_of_use_arabic",
   "privacy_policy",
+  "privacy_policy_arabic",
   "refunds_policy",
-  "cookies_policy"
+  "refunds_policy_arabic"
  ],
  "fields": [
   {
@@ -30,15 +32,25 @@
    "label": "Refunds Policy"
   },
   {
-   "fieldname": "cookies_policy",
+   "fieldname": "terms_of_use_arabic",
    "fieldtype": "Text Editor",
-   "label": "Cookies Policy"
+   "label": "Terms of use Arabic"
+  },
+  {
+   "fieldname": "privacy_policy_arabic",
+   "fieldtype": "Text Editor",
+   "label": "Privacy Policy Arabic"
+  },
+  {
+   "fieldname": "refunds_policy_arabic",
+   "fieldtype": "Text Editor",
+   "label": "Refunds Policy Arabic"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-06-22 19:32:43.592325",
+ "modified": "2024-09-24 17:19:44.886177",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Policy",

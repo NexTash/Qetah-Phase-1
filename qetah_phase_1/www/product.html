@@ -1,23 +1,28 @@
 {% extends "templates/primary.html" %}
-{% block title %}  product {% endblock %}
+{% block title %} Product {% endblock %}
 {% block content %}
 <div class="content-area" :class="{'shifted-content': isStatic}">
     <div class="container section-products">
         <div class="filters">
 
             <div class="category-filters">
-                <h5>Category</h5>
+                <h5 id="category_title">Category</h5>
                 <hr>
                 <label class="check check-dark mt-2">
-                    <input type="checkbox" name="category" value="Men's Collection" /> Men's Collection
+                    <input type="checkbox" name="category" value="Men's Collection" />
+                    <h6 id="category_mens">Men's Collection</h6>
+
                 </label>
                 <label class="check check-dark">
-                    <input type="checkbox" name="category" value="Women's Collection" /> Women's Collection
+                    <input type="checkbox" name="category" value="Women's Collection" />
+                    <h6 id="category_womens_h">Women's
+                        Collection</h6>
                 </label>
                 <label class="check check-dark">
-                    <input type="checkbox" name="category" value="Services" /> Services
+                    <input type="checkbox" name="category" value="Services" id="category_services" />
+                    <h6 id="category_services_h">Services</h6>
                 </label>
-                <h5>Price Range</h5>
+                <h5 id="price_range_title">Price Range</h5>
                 <hr>
                 <div class="range-slider">
                     <span class="rangeValues"></span>
@@ -26,7 +31,7 @@
                     <input value="50000" min="1000" max="50000" step="500" id="price-range-max" name="max_price"
                         type="range">
                 </div>
-                <h5 class="mt-3">By Rating</h5>
+                <h5 class="mt-3" id="by_rating_title">By Rating</h5>
                 <hr>
                 <div class="field-rating">
                     <input type="radio" id="star5" name="rating" value="5">
@@ -40,45 +45,54 @@
                     <input type="radio" id="star1" name="rating" value="1">
                     <label for="star1" title="1 star"></label>
                 </div>
-                <h5>Discounts</h5>
+                <h5 id="discounts_title_h">Discounts</h5>
                 <hr>
                 <label class="check check-dark mt-2">
-                    <input type="checkbox" name="discount" value="35" /> Sale 35% OFF
+                    <input type="checkbox" name="discount" value="35" />
+                    <h6 id="discount_h_35">Sale 35% OFF</h6>
                 </label>
                 <label class="check check-dark">
-                    <input type="checkbox" name="discount" value="50" /> Sale 50% OFF
+                    <input type="checkbox" name="discount" value="50" />
+                    <h6 id="discount_h_50"> Sale 50% OFF</h6>
                 </label>
                 <label class="check check-dark">
-                    <input type="checkbox" name="discount" value="75" /> Sale 75% OFF
+                    <input type="checkbox" name="discount" value="75" />
+                    <h6 id="discount_h_75">Sale 75% OFF</h6>
                 </label>
-                <button type="button" class="btn btn-secondary" onclick="applyFilters()">Apply</button>
+                <button type="button" class="btn btn-secondary" onclick="applyFilters()"
+                    id="apply_button">Apply</button>
             </div>
         </div>
         <div class="filtered-cards">
             <div class="container model-container" x-data="{ isOpen: false }">
-                <button class="btn btn-light btn-icon btn-model" x-on:click="isOpen = true">Filters</button>
+                <button class="btn btn-light btn-icon btn-model" x-on:click="isOpen = true"
+                    id="filter_title">Filters</button>
                 <div class="modal active" x-show="isOpen" x-transition>
                     <div class="modal-dialog">
                         <div class="modal-content" @click.away="isOpen = false">
                             <div class="modal-head">
-                                <h3 class="modal-title">Filter</h3>
+                                <h3 class="modal-title" id="filter_title">Filter</h3>
                                 <button x-on:click="isOpen = false"
                                     class="btn btn-danger btn-icon btn-circle btn-circle-sm bx bx-x"></button>
                             </div>
+
                             <div class="modal-body">
                                 <div class="filters-model-body">
                                     <div class="category-filters">
-                                        <h5>Category</h5>
+                                        <h5 id="category_title">Category</h5>
                                         <hr>
                                         <label class="check check-dark mt-2"><input type="checkbox"
-                                                value="Men's Collection" /> Men's Collection
+                                                value="Men's Collection" />
+                                            <h2 id="category_mens">Men's Collection</h2>
                                         </label>
+
                                         <label class="check check-dark"><input type="checkbox"
-                                                value="Women's Collection" /> Women's Collection
+                                                value="Women's Collection" id="category_womens" /> Women's Collection
                                         </label>
-                                        <label class="check check-dark"><input type="checkbox" value="Services" />
+                                        <label class="check check-dark"><input type="checkbox" value="Services"
+                                                id="category_services" />
                                             Services </label>
-                                        <h5>Price Range</h5>
+                                        <h5 id="price_range_title">Price Range</h5>
                                         <hr>
                                         <div class="range-slider"></div>
                                         <span class="rangeValues"></span>
@@ -88,7 +102,7 @@
                                             name="max_price" type="range">
                                     </div>
 
-                                    <h5 class="mt-3">By Rating</h5>
+                                    <h5 class="mt-3" id="by_rating_title">By Rating</h5>
                                     <hr>
                                     <div class="field-rating">
                                         <input type="radio" id="star5" name="rating" value="5">
@@ -105,20 +119,24 @@
                                     <h5>Discounts</h5>
                                     <hr>
                                     <label class="check check-dark mt-2">
-                                        <input type="checkbox" name="discount" value="35" /> Sale 35% OFF
+                                        <input type="checkbox" name="discount" value="35" id="discount_35" /> Sale 35%
+                                        OFF
                                     </label>
                                     <label class="check check-dark">
-                                        <input type="checkbox" name="discount" value="50" /> Sale 50% OFF
+                                        <input type="checkbox" name="discount" value="50" id="discount_50" /> Sale 50%
+                                        OFF
                                     </label>
                                     <label class="check check-dark">
-                                        <input type="checkbox" name="discount" value="75" /> Sale 75% OFF
+                                        <input type="checkbox" name="discount" value="75" id="discount_75" /> Sale 75%
+                                        OFF
                                     </label>
 
                                 </div>
                             </div>
                             <div class="modal-foot">
-                                <button class="btn" x-on:click="isOpen = false">Cancel</button>
-                                <button class="btn btn-primary" onclick="applyFilters()">Apply</button>
+                                <button class="btn" x-on:click="isOpen = false" id="cancel_button">Cancel</button>
+                                <button class="btn btn-primary" onclick="applyFilters()"
+                                    id="apply_button">Apply</button>
                             </div>
                         </div>
                     </div>
@@ -126,8 +144,8 @@
             </div>
 
             <form class="field field-inline" onsubmit="applyFilters(event)">
-                <input type="text" class="field-text" id="search-query" placeholder="Search..." name="q" />
-                <button type="submit" class="field-icon bx bx-search"></button>
+                <input type="text" class="field-text" id="search-query" name="q" />
+                <button type="submit" class="field-icon bx bx-search" id="search_placeholder"></button>
             </form>
             <div class="cards">
                 <div class="boxed">
@@ -136,18 +154,20 @@
                         <!-- Tabs -->
                         <div class="tabs-items">
                             <!-- Tab Buttons -->
-                            <button class="tab-item" :class="OpenTab == 1 ? 'active' : 'inactive'"
+                            <button id="tab_all" class="tab-item" :class="OpenTab == 1 ? 'active' : 'inactive'"
                                 @click="OpenTab = 1">All</button>
-                            <button class="tab-item" :class="OpenTab == 2 ? 'active' : 'inactive'"
+                            <button id="tab_unstitched" class="tab-item" :class="OpenTab == 2 ? 'active' : 'inactive'"
                                 @click="OpenTab = 2">Un-stitched</button>
-                            <button class="tab-item" :class="OpenTab == 3 ? 'active' : 'inactive'"
+                            <button id="tab_readymade" class="tab-item" :class="OpenTab == 3 ? 'active' : 'inactive'"
                                 @click="OpenTab = 3">ReadyMade</button>
-                            <button class="tab-item" :class="OpenTab == 4 ? 'active' : 'inactive'"
+                            <button id="tab_accessories" class="tab-item" :class="OpenTab == 4 ? 'active' : 'inactive'"
                                 @click="OpenTab = 4">Accessories</button>
-                            <button class="tab-item" :class="OpenTab == 5 ? 'active' : 'inactive'"
+                            <button id="tab_perfumes" class="tab-item" :class="OpenTab == 5 ? 'active' : 'inactive'"
                                 @click="OpenTab = 5">Perfumes</button>
-                            <button class="tab-item" :class="OpenTab == 6 ? 'active' : 'inactive'"
-                                @click="OpenTab = 6">Cutting & Stitching</button>
+                            <button id="tab_cutting_stitching" class="tab-item"
+                                :class="OpenTab == 6 ? 'active' : 'inactive'" @click="OpenTab = 6">Cutting &
+                                Stitching</button>
+
                         </div>
 
                         <!-- Tab Panes -->
@@ -158,7 +178,12 @@
                                 <div class="row">
                                     {% for product in products %}
                                     <div class="products">
-                                        <div class="badge badge-primary badge-pill">{{ product.title }}</div>
+                                        <div class="badge badge-primary badge-pill" data-field="en">{{ product.title }}
+                                        </div>
+                                        <div class="badge badge-primary badge-pill" data-field="ar">{{
+                                            product.title_arabic }}
+                                        </div>
+
                                         <div class="card product-card">
                                             <a href="/product-detail?id={{product.name}}">
                                                 <div class="card-head">
@@ -170,9 +195,16 @@
 
                                                 {% for variation in product.variations %}
                                                 <div class="variation">
-                                                    <div class="card-title">{{ variation.title }}</div>
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2">{{
+                                                    <div class="card-title" data-field="en">{{ variation.title }}</div>
+                                                    <div class="card-title" data-field="ar">{{ variation.title_arabic }}
+                                                    </div>
+
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                        data-field="en">{{
                                                         variation.description }}</div>
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                        data-field="ar">{{
+                                                        variation.description_arabic }}</div>
                                                     <div class="card-subtitle"><del>{{ variation.discount}}</del>
                                                     </div>
                                                     <div class="card-title card-price">$ {{ variation.price }}</div>
@@ -185,7 +217,8 @@
                                                 </div>
                                             </div>
                                             <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i class="bx bx-cart icon-pre"></i> Buy
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"
+                                                    id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
                                                     Now</button>
                                                 <button
                                                     class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
@@ -201,7 +234,12 @@
                                 <div class="row">
                                     {% for product in products if product.category == 'Un-stitched' %}
                                     <div class="products">
-                                        <div class="badge badge-primary badge-pill">{{ product.title }}</div>
+                                        <div class="badge badge-primary badge-pill" data-field="en">{{ product.title }}
+                                        </div>
+                                        <div class="badge badge-primary badge-pill" data-field="ar">{{
+                                            product.title_arabic }}
+                                        </div>
+
                                         <div class="card product-card">
                                             <a href="/product-detail?id={{product.name}}">
                                                 <div class="card-head">
@@ -210,32 +248,40 @@
                                                 </div>
                                             </a>
                                             <div class="card-body">
-                                                {% if product.variations %}
+
                                                 {% for variation in product.variations %}
                                                 <div class="variation">
-                                                    <div class="card-title">{{ variation.title }}</div>
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2">{{
-                                                        variation.description }}</div>
-                                                    <div class="card-subtitle"><del>{{ variation.price }}</del>
+                                                    <div class="card-title" data-field="en">{{ variation.title }}</div>
+                                                    <div class="card-title" data-field="ar">{{ variation.title_arabic }}
                                                     </div>
-                                                    <div class="card-title">USD {{ variation.discount }}</div>
+
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                        data-field="en">{{
+                                                        variation.description }}</div>
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                        data-field="ar">{{
+                                                        variation.description_arabic }}</div>
+                                                    <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                    </div>
+                                                    <div class="card-title card-price">$ {{ variation.price }}</div>
                                                 </div>
                                                 {% endfor %}
-                                                {% else %}
-                                                <p>No variations available</p>
-                                                {% endif %}
+
                                                 <div class="card-rating">
                                                     <i class="bx bxs-star"></i>
-                                                    <span>{{ product.rating_count }}</span> (12.3k) Sold
+                                                    <span>{{ product.rating }}</span> ({{product.sold}}) Sold
                                                 </div>
                                             </div>
                                             <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
-                                                        class="bx bx-cart icon-pre"></i> Buy Now</button>
-                                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"
+                                                    id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
+                                                    Now</button>
+                                                <button
+                                                    class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
                                             </div>
                                         </div>
-                                    </div> {% endfor %}
+                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
 
@@ -244,7 +290,12 @@
                                 <div class="row">
                                     {% for product in products if product.category == 'ReadyMade' %}
                                     <div class="products">
-                                        <div class="badge badge-primary badge-pill">{{ product.title }}</div>
+                                        <div class="badge badge-primary badge-pill" data-field="en">{{ product.title }}
+                                        </div>
+                                        <div class="badge badge-primary badge-pill" data-field="ar">{{
+                                            product.title_arabic }}
+                                        </div>
+
                                         <div class="card product-card">
                                             <a href="/product-detail?id={{product.name}}">
                                                 <div class="card-head">
@@ -253,32 +304,40 @@
                                                 </div>
                                             </a>
                                             <div class="card-body">
-                                                {% if product.variations %}
+
                                                 {% for variation in product.variations %}
                                                 <div class="variation">
-                                                    <div class="card-title">{{ variation.title }}</div>
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2">{{
-                                                        variation.description }}</div>
-                                                    <div class="card-subtitle"><del>{{ variation.price }}</del>
+                                                    <div class="card-title" data-field="en">{{ variation.title }}</div>
+                                                    <div class="card-title" data-field="ar">{{ variation.title_arabic }}
                                                     </div>
-                                                    <div class="card-title">USD {{ variation.discount }}</div>
+
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                        data-field="en">{{
+                                                        variation.description }}</div>
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                        data-field="ar">{{
+                                                        variation.description_arabic }}</div>
+                                                    <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                    </div>
+                                                    <div class="card-title card-price">$ {{ variation.price }}</div>
                                                 </div>
                                                 {% endfor %}
-                                                {% else %}
-                                                <p>No variations available</p>
-                                                {% endif %}
+
                                                 <div class="card-rating">
                                                     <i class="bx bxs-star"></i>
-                                                    <span>{{ product.rating_count }}</span> (12.3k) Sold
+                                                    <span>{{ product.rating }}</span> ({{product.sold}}) Sold
                                                 </div>
                                             </div>
                                             <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
-                                                        class="bx bx-cart icon-pre"></i> Buy Now</button>
-                                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"
+                                                    id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
+                                                    Now</button>
+                                                <button
+                                                    class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
                                             </div>
                                         </div>
-                                    </div> {% endfor %}
+                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
 
@@ -287,7 +346,12 @@
                                 <div class="row">
                                     {% for product in products if product.category == 'Accessories' %}
                                     <div class="products">
-                                        <div class="badge badge-primary badge-pill">{{ product.title }}</div>
+                                        <div class="badge badge-primary badge-pill" data-field="en">{{ product.title }}
+                                        </div>
+                                        <div class="badge badge-primary badge-pill" data-field="ar">{{
+                                            product.title_arabic }}
+                                        </div>
+
                                         <div class="card product-card">
                                             <a href="/product-detail?id={{product.name}}">
                                                 <div class="card-head">
@@ -296,32 +360,40 @@
                                                 </div>
                                             </a>
                                             <div class="card-body">
-                                                {% if product.variations %}
+
                                                 {% for variation in product.variations %}
                                                 <div class="variation">
-                                                    <div class="card-title">{{ variation.title }}</div>
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2">{{
-                                                        variation.description }}</div>
-                                                    <div class="card-subtitle"><del>{{ variation.price }}</del>
+                                                    <div class="card-title" data-field="en">{{ variation.title }}</div>
+                                                    <div class="card-title" data-field="ar">{{ variation.title_arabic }}
                                                     </div>
-                                                    <div class="card-title">USD {{ variation.discount }}</div>
+
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                        data-field="en">{{
+                                                        variation.description }}</div>
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                        data-field="ar">{{
+                                                        variation.description_arabic }}</div>
+                                                    <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                    </div>
+                                                    <div class="card-title card-price">$ {{ variation.price }}</div>
                                                 </div>
                                                 {% endfor %}
-                                                {% else %}
-                                                <p>No variations available</p>
-                                                {% endif %}
+
                                                 <div class="card-rating">
                                                     <i class="bx bxs-star"></i>
-                                                    <span>{{ product.rating_count }}</span> (12.3k) Sold
+                                                    <span>{{ product.rating }}</span> ({{product.sold}}) Sold
                                                 </div>
                                             </div>
                                             <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
-                                                        class="bx bx-cart icon-pre"></i> Buy Now</button>
-                                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"
+                                                    id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
+                                                    Now</button>
+                                                <button
+                                                    class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
                                             </div>
                                         </div>
-                                    </div> {% endfor %}
+                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
 
@@ -330,7 +402,12 @@
                                 <div class="row">
                                     {% for product in products if product.category == 'Perfumes' %}
                                     <div class="products">
-                                        <div class="badge badge-primary badge-pill">{{ product.title }}</div>
+                                        <div class="badge badge-primary badge-pill" data-field="en">{{ product.title }}
+                                        </div>
+                                        <div class="badge badge-primary badge-pill" data-field="ar">{{
+                                            product.title_arabic }}
+                                        </div>
+
                                         <div class="card product-card">
                                             <a href="/product-detail?id={{product.name}}">
                                                 <div class="card-head">
@@ -339,32 +416,40 @@
                                                 </div>
                                             </a>
                                             <div class="card-body">
-                                                {% if product.variations %}
+
                                                 {% for variation in product.variations %}
                                                 <div class="variation">
-                                                    <div class="card-title">{{ variation.title }}</div>
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2">{{
-                                                        variation.description }}</div>
-                                                    <div class="card-subtitle"><del>{{ variation.price }}</del>
+                                                    <div class="card-title" data-field="en">{{ variation.title }}</div>
+                                                    <div class="card-title" data-field="ar">{{ variation.title_arabic }}
                                                     </div>
-                                                    <div class="card-title">USD {{ variation.discount }}</div>
+
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                        data-field="en">{{
+                                                        variation.description }}</div>
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                        data-field="ar">{{
+                                                        variation.description_arabic }}</div>
+                                                    <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                    </div>
+                                                    <div class="card-title card-price">$ {{ variation.price }}</div>
                                                 </div>
                                                 {% endfor %}
-                                                {% else %}
-                                                <p>No variations available</p>
-                                                {% endif %}
+
                                                 <div class="card-rating">
                                                     <i class="bx bxs-star"></i>
-                                                    <span>{{ product.rating_count }}</span> (12.3k) Sold
+                                                    <span>{{ product.rating }}</span> ({{product.sold}}) Sold
                                                 </div>
                                             </div>
                                             <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
-                                                        class="bx bx-cart icon-pre"></i> Buy Now</button>
-                                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"
+                                                    id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
+                                                    Now</button>
+                                                <button
+                                                    class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
                                             </div>
                                         </div>
-                                    </div> {% endfor %}
+                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
 
@@ -373,7 +458,12 @@
                                 <div class="row">
                                     {% for product in products if product.category == 'Cutting & Stitching' %}
                                     <div class="products">
-                                        <div class="badge badge-primary badge-pill">{{ product.title }}</div>
+                                        <div class="badge badge-primary badge-pill" data-field="en">{{ product.title }}
+                                        </div>
+                                        <div class="badge badge-primary badge-pill" data-field="ar">{{
+                                            product.title_arabic }}
+                                        </div>
+
                                         <div class="card product-card">
                                             <a href="/product-detail?id={{product.name}}">
                                                 <div class="card-head">
@@ -382,37 +472,45 @@
                                                 </div>
                                             </a>
                                             <div class="card-body">
-                                                {% if product.variations %}
+
                                                 {% for variation in product.variations %}
                                                 <div class="variation">
-                                                    <div class="card-title">{{ variation.title }}</div>
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2">{{
-                                                        variation.description }}</div>
-                                                    <div class="card-subtitle"><del>{{ variation.price }}</del>
+                                                    <div class="card-title" data-field="en">{{ variation.title }}</div>
+                                                    <div class="card-title" data-field="ar">{{ variation.title_arabic }}
                                                     </div>
-                                                    <div class="card-title">USD {{ variation.discount }}</div>
+
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                        data-field="en">{{
+                                                        variation.description }}</div>
+                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                        data-field="ar">{{
+                                                        variation.description_arabic }}</div>
+                                                    <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                    </div>
+                                                    <div class="card-title card-price">$ {{ variation.price }}</div>
                                                 </div>
                                                 {% endfor %}
-                                                {% else %}
-                                                <p>No variations available</p>
-                                                {% endif %}
+
                                                 <div class="card-rating">
                                                     <i class="bx bxs-star"></i>
-                                                    <span>{{ product.rating_count }}</span> (12.3k) Sold
+                                                    <span>{{ product.rating }}</span> ({{product.sold}}) Sold
                                                 </div>
                                             </div>
                                             <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
-                                                        class="bx bx-cart icon-pre"></i> Buy Now</button>
-                                                <button class="btn btn-light btn-icon btn-circle bx bx-heart"></button>
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"
+                                                    id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
+                                                    Now</button>
+                                                <button
+                                                    class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
                                             </div>
                                         </div>
-                                    </div> {% endfor %}
+                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
-                            
+
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -577,7 +675,7 @@
             const updated = addOrUpdateProduct(wishlist, product);
             // Update the offcanvas display
             updateOffcanvas();
-            
+
             if (updated) {
                 console.log('Product quantity updated:', product);
             } else {
@@ -654,7 +752,7 @@
             selectAll2.addEventListener('change', () => {
                 const checkboxes = offcanvasBody2.querySelectorAll(".item-checkbox");
                 checkboxes.forEach(checkbox => checkbox.checked = selectAll2.checked);
-                updateQuantity(offcanvasBody2,quantity2);
+                updateQuantity(offcanvasBody2, quantity2);
             });
 
             offcanvasBody2.addEventListener('change', () => {
@@ -918,7 +1016,7 @@
                 // Get current cart from localStorage or initialize an empty array
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
                 console.log(cart);
-                
+
                 // Add the new product to the cart
                 cart.push(product);
 
@@ -932,6 +1030,47 @@
     });
 
 </script>
+<script>
+    // arabic id
+    function updatePageContent(translations) {
+        //product
+        document.getElementById('filter_title').textContent = translations['filter_title'];
+        document.getElementById('category_title').textContent = translations['category_title'];
+        document.getElementById('price_range_title').textContent = translations['price_range_title'];
+        document.getElementById('by_rating_title').textContent = translations['by_rating_title'];
+        document.getElementById('discount_35').textContent = translations['discount_35'];
+        document.getElementById('discount_h_35').textContent = translations['discount_h_35'];
+        document.getElementById('discount_50').textContent = translations['discount_50'];
+        document.getElementById('discount_h_50').textContent = translations['discount_h_50'];
+        document.getElementById('discount_75').textContent = translations['discount_75'];
+        document.getElementById('discount_h_75').textContent = translations['discount_h_75'];
+        document.getElementById('tab_all').textContent = translations['tab_all'];
+        document.getElementById('discounts_title_h').textContent = translations['discounts_title_h'];
+        document.getElementById('tab_unstitched').textContent = translations['tab_unstitched'];
+        document.getElementById('tab_readymade').textContent = translations['tab_readymade'];
+        document.getElementById('tab_accessories').textContent = translations['tab_accessories'];
+        document.getElementById('tab_perfumes').textContent = translations['tab_perfumes'];
+        document.getElementById('tab_cutting_stitching').textContent = translations['tab_cutting_stitching'];
+        //   document.getElementById('tab_sale').textContent = translations['tab_sale'];
+        //   document.getElementById('tab_new_arrivals').textContent = translations['tab_new_arrivals'];
+        //   document.getElementById('buy_now_button').textContent = translations['buy_now_button'];
+        //   document.getElementById('no_variations_available').textContent = translations['no_variations_available'];
+        //   document.getElementById('add_to_cart_button').textContent = translations['add_to_cart_button'];
+        //   document.getElementById('save_to_wishlist_button').textContent = translations['save_to_wishlist_button'];
+        //   document.getElementById('related_products_title').textContent = translations['related_products_title'];
+        //   document.getElementById('buy_now_button').textContent = translations['buy_now_button'];
+        //   document.getElementById('customer_reviews_title').textContent = translations['customer_reviews_title'];
+        //   document.getElementById('reviewer_name').textContent = translations['reviewer_name'];
+        //   document.getElementById('review_feedback').textContent = translations['review_feedback'];
+        //   document.getElementById('review_designation').textContent = translations['review_designation'];
+        document.getElementById('search_placeholder').textContent = translations['search_placeholder'];
+        document.getElementById('category_mens').textContent = translations['category_mens'];
+        document.getElementById('category_womens').textContent = translations['category_womens'];
+        document.getElementById('category_womens_h').textContent = translations['category_womens_h'];
+        document.getElementById('category_services_h').textContent = translations['category_services_h'];
+        document.getElementById('category_services').textContent = translations['category_services'];
+        document.getElementById('apply_button').textContent = translations['apply_button'];
+    }
 
-
+</script>
 {% endblock %}

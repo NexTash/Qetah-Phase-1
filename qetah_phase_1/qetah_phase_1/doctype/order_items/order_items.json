@@ -15,6 +15,7 @@
   {
    "fieldname": "item",
    "fieldtype": "Data",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Item"
   },
@@ -34,7 +35,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-09-15 18:55:33.226847",
+ "modified": "2024-09-21 15:10:23.840982",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Order Items",

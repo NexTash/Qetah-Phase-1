@@ -2,17 +2,17 @@
 <div class="container Joining">
   <div class="card qetah-family">
     <div class="card-head">
-      <p class="card-title text-center">Join Qetah Family</p>
-      <p class="card-desc">
+      <p class="card-title text-center" id="footer-subscribe-title">Join Qetah Family</p>
+      <p class="card-desc" id="footer-subscribe-desc">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor
         repudiandae odio qui veniam vero modi officia natus quo,
         temporibus amet dolorem dignissimos neque eveniet nemo rem error
         placeat fuga quisquam.
       </p>
-      <div class="field">
-        <input type="email" class="field-text" placeholder="Email Address" />
+      <div class="field" >
+        <input type="email" class="field-text" placeholder=""  id="email-address"/>
       </div>
-      <button class="btn btn-secondary btn-pill text-center">
+      <button id="subscribe-button" class="btn btn-secondary btn-pill text-center">
         SUBMIT
       </button>
     </div>
@@ -25,35 +25,35 @@
 <footer>
   <div class="container social">
     <div class="logo">
-      <img src="/assets/qetah_phase_1/images/black-qetah-removebg-preview.png" alt="" width="100px" />
+      <img src="/assets/qetah_phase_1/images/black-qetah-removebg-preview.png" alt="" width="100px" id="footer-logo" />
     </div>
     <div class="links">
       <ul>
-        <li><a href="./refunds.html">Exchange & Refund</a></li>
-        <li><a href="./Terms.html">Terms & Conditions</a></li>
-        <li><a href="./privacy.html">Privacy Policy</a></li>
+        <li><a id="footer-privacy-policy" href="/privacy">Privacy Policy</a></li>
+        <li><a href="/refunds" id="about-refunds-policy">Exchange & Refund</a></li>
+        <li><a href="/Terms" id="about-terms">Terms & Conditions</a></li>
       </ul>
     </div>
     <div class="information">
       <div class="p-info">
-        <p class="desc"><i class="bx bxs-phone"></i>+97450455909</p>
-        <p class="desc"><i class="bx bxl-gmail"></i>info@qetah.qa</p>
+        <p class="desc"><i class="bx bxs-phone"></i><span id="tooltip-phone">+97450455909</span></p>
+        <p class="desc"><i class="bx bxl-gmail"></i><span id="tooltip-email">info@qetah.qa</span></p>
       </div>
       <div class="social-logo">
-        <button class="btn btn-light btn-icon btn-circle btn-circle-sm bx bxl-facebook"></button>
-        <button class="btn btn-light btn-icon btn-circle btn-circle-sm bx bxl-twitter"></button>
-        <button class="btn btn-light btn-icon btn-circle btn-circle-sm bx bxl-google"></button>
+        <button id="connect-facebook" class="btn btn-light btn-icon btn-circle btn-circle-sm bx bxl-facebook"></button>
+        <button id="connect-twitter" class="btn btn-light btn-icon btn-circle btn-circle-sm bx bxl-twitter"></button>
+        <button id="connect-google" class="btn btn-light btn-icon btn-circle btn-circle-sm bx bxl-google"></button>
       </div>
     </div>
     <div class="quote">
       <i class="bx bxs-quote-alt-left"></i>
-      The only way to do great work is to love what you do. - Steve Jobs
+      <span id="footer-description">The only way to do great work is to love what you do. - Steve Jobs</span>
       <i class="bx bxs-quote-alt-right"></i>
     </div>
   </div>
 </footer>
 <hr class="copy-right-hr" />
-<div class="copy-right text-center">
+<div class="copy-right text-center" id="footer-copyright">
   &copy; 2022 Qetah.Qa All Rights Reserved
 </div>
 
@@ -67,3 +67,66 @@
     </div>
   </a>
 </div>
+<script>
+  function language(language) {
+    localStorage.setItem('selectedLanguage', language);
+    frappe.call({
+      method: 'qetah_phase_1.events.language_switcher.get_footer',
+      args: { language: language },
+      callback: function (response) {
+        if (response.message) {
+          const footer_translations = response.message;
+          updateFooterContent(footer_translations);
+          
+          console.log(footer_translations);
+          console.log("this is for testing for footer");
+          
+        } else {
+          console.error('No translations found');
+        }
+      },
+      error: function (error) {
+        console.error('Error fetching translations:', error);
+      }
+    });
+    //  location.reload();
+  }
+
+  // Function to update the page content based on translations
+  function updateFooterContent(footer_translations) {
+    // Update the subscribe card
+    console.log(footer_translations['footer-subscribe-title']);
+    
+    document.getElementById('footer-subscribe-title').textContent = footer_translations['footer-subscribe-title']|| 'Default Title';
+    document.getElementById('footer-subscribe-desc').textContent = footer_translations['footer-subscribe-desc'];
+    document.getElementById('subscribe-button').textContent = footer_translations['subscribe-button'];
+
+    // Update the footer links
+    document.getElementById('footer-privacy-policy').textContent = footer_translations['footer-privacy-policy'];
+    document.getElementById('about-refunds-policy').textContent = footer_translations['about-refunds-policy'];
+    document.getElementById('about-terms').textContent = footer_translations['about-terms'];
+
+    // Update the footer information
+    document.getElementById('tooltip-phone').textContent = footer_translations['phone-number'];
+    document.getElementById('email-address').setAttribute('placeholder', footer_translations['email-address']);
+
+    // Update social buttons (if needed for tooltip or alt text)
+    document.getElementById('connect-facebook').title = footer_translations['connect-facebook'];
+    document.getElementById('connect-twitter').title = footer_translations['connect-twitter'];
+    document.getElementById('connect-google').title = footer_translations['connect-google'];
+
+    // Update footer quote and other text
+    document.getElementById('footer-description').textContent = footer_translations['footer-description'];
+    document.getElementById('footer-copyright').textContent = footer_translations['footer-copyright'];
+
+    // Update WhatsApp button (if title needs translation)
+    document.getElementById('WhatsApp-button').title = footer_translations['WhatsApp-button'];
+  }
+
+//  document.addEventListener('DOMContentLoaded', function () {
+//     const selectedLanguage = localStorage.getItem('selectedLanguage');
+//     language(selectedLanguage);
+//   });
+  
+
+</script>

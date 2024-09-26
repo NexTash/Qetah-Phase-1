@@ -7,7 +7,7 @@
     </a>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="/index" class="breadcrumb-link">Qetah</a>
+        <a href="/index" class="breadcrumb-link" id="title_qetah_h">Qetah</a>
       </li>
       <li class="breadcrumb-item active" id="current-page"></li>
     </ol>
@@ -32,8 +32,8 @@
       <i class='bx bxs-grid'></i>
     </button>
     <ol class="breadcrumb second-breadcrumb" style="margin:0;">
-      <li class="breadcrumb-item"><a href="/index" class="breadcrumb-link">Qetah</a></li>
-      <li class="breadcrumb-item active">Home</li>
+      <li class="breadcrumb-item"><a href="/index" class="breadcrumb-link" id="title_qetah_h">Qetah</a></li>
+      <li class="breadcrumb-item active" id="current-page">Home</li>
     </ol>
     <nav class="no-collapse">
       <ul>
@@ -44,12 +44,16 @@
               <ul class="dropdown-menu" :class="{ 'show': isOpen }" style="flex-direction: column; display: none;"
                 x-show="isOpen" x-transition>
                 <li>
-                  <img src="/assets/qetah_phase_1/images/eng.png" style="width: 50px; height: 25px;" alt="">
-                  <a href="#">ENG</a>
+                  <a onclick="switchLanguage('en');noice()">
+                    <img src="/assets/qetah_phase_1/images/eng.png" style="width: 50px; height: 25px;" alt="">
+                    <a href="#" id="sidebar_eng">ENG</a>
+                  </a>
                 </li>
                 <li>
-                  <img src="/assets/qetah_phase_1/images/ara.webp" style="width: 50px; height: 25px;" alt="">
-                  <a href="#">ARA</a>
+                  <a onclick="switchLanguage('ar');noice()">
+                    <img src="/assets/qetah_phase_1/images/ara.webp" style="width: 50px; height: 25px;" alt="">
+                    <a href="#" id="sidebar_ara">ARA</a>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -66,7 +70,7 @@
                   </div>
                   <div class="select-all" style="padding: 16px 16px 0px 16px;">
                     <label class="check check-secondary">
-                      <input type="checkbox" id="selectAll1" />Select All
+                      <input type="checkbox" id="selectAll1" /><span id="select_All_h"></span> 
                     </label>
                     <hr style="margin: 5px 0px;
                   border: none;
@@ -84,7 +88,7 @@
 
                     <div class="btn-grp">
                       <button class="btn btn-remove" id="deleteSelectedBtn">Delete</button>
-                      <button class="btn btn-cart">Add to cart</button>
+                      <button class="btn btn-cart" id="addToCartBtnM">Add to cart</button>
                     </div>
                   </div>
                 </div>
@@ -98,14 +102,15 @@
               <div x-data="{ isOpenRight: false }">
                 <i class="bx bx-cart" @click="isOpenRight = true"></i>
                 <div class="offcanvas offcanvas-right" :class="{ 'open': isOpenRight }" id="offcanvas-cart">
-                  <div class="offcanvas-header">
+                  <div class="offcanvas-header" id="addToCartBtnH">
                     Add to Cart
                     <button class="btn-close" @click="isOpenRight = false"></button>
                   </div>
                   <div class="select-all" style="padding: 16px 16px 0px 16px;">
-                    <label class="check check-secondary">
-                      <input type="checkbox" id="selectAll2" />Select All
+                    <label class="check check-secondary" >
+                      <input type="checkbox" id="selectAll2"/> <span id="select_All_m"> </span> 
                     </label>
+
                     <hr style="margin: 5px 0px;
                     border: none;
                     width: 100%;
@@ -117,13 +122,13 @@
                   <div class="offcanvas-body offcanvas-body-cart" id="offcanvasBody-cart">
                   </div>
                   <div class="offcanvas-foot">
-                    <div class="card-title">Summary :-</div>
+                    <div class="card-title" id="cartSummary">Summary :-</div>
                     <div class="subtotal">
-                      <p>Items :</p>
-                      <p>Qty : <b class="quantity-cart">0</b></p>
+                      <p id="itemsText"> Items :</p><b class="quantity-cart">0</b></p>
+                        
                     </div>
                     <div class="subtotal">
-                      <p>Subtotal : </p>
+                      <p id="subTotalText">Subtotal : </p>
                       <p style="font-weight: 600;" id="subTotal"></p>
                     </div>
                     <div class="btn-grp">
@@ -138,6 +143,7 @@
               </div>
             </a>
           </li>
+      
           <li class="nav-drop-wrap nav-drop-user" title="Account">
             <a class="has-ripple drop-indicator navDropToggler" href="javascript:void(0)">
               <div class="img-no-pp">
@@ -152,6 +158,32 @@
 </header>
 
 <!-- Student Header -->
+
+
+<script>
+  // Function to update the page content based on translations
+  function updateHeaderContent(translations) {
+    // Update the logo alt text
+    // document.getElementById('smallLogoImg').textContent = translations['logo_alt'];
+    document.getElementById('title_qetah_h').textContent = translations['title_qetah_home'];
+    document.getElementById('addToCartBtnH').textContent = translations['addToCartBtnH'];
+    document.getElementById('select_All_h').textContent = translations['select_All_h'];
+    document.getElementById('select_All_m').textContent = translations['select_All_m'];
+    document.getElementById('addToCartBtnM').textContent = translations['addToCartBtnM'];
+    document.getElementById('qtyText').textContent = translations['qtyText'];
+    document.getElementById('itemsText').textContent = translations['itemsText'];
+    document.getElementById('subTotalText').textContent = translations['subTotalText'];
+    document.getElementById('cartSummary').textContent = translations['cartSummary'];
+    document.getElementById('del-cart').textContent = translations['deleteSelectedBtn'];
+    document.getElementById('goToCart').textContent = translations['goToCartBtn'];
+    document.getElementById('deleteSelectedBtn').textContent = translations['deleteSelectedBtn'];
+    // Update the language options
+    document.getElementById('sidebar_eng').textContent = translations['sidebar_eng'];
+    document.getElementById('sidebar_ara').textContent = translations['sidebar_ara'];
+  }
+
+</script>
+
 <script>
   document.getElementById('goToCart').addEventListener('click', () => {
     // Redirect to the cart page

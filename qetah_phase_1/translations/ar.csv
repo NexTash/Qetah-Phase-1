@@ -1,1 +1,301 @@
 "id","en","ar"
+//contact us
+contact_title,Contact Us,اتصل بنا
+contact_us_paragraph,"At Qetah, we value your feedback and inquiries. Whether you have questions about our products, need assistance with an order, or want to share your thoughts, our dedicated team is here to assist you. You can reach us via email at support@example.com or by phone at (123) 456-7890. For more personalized assistance, feel free to visit our office located at 123 Main Street, Your City, Your State, 12345. Your satisfaction is our priority, and we look forward to helping you make the most of your shopping experience with us!","في قيتاح، نحن نقدر ملاحظاتك واستفساراتك. سواء كان لديك أسئلة حول منتجاتنا، أو تحتاج إلى مساعدة في طلبك، أو ترغب في مشاركة أفكارك، فإن فريقنا المخصص هنا لمساعدتك. يمكنك التواصل معنا عبر البريد الإلكتروني على support@example.com أو عبر الهاتف على (123) 456-7890. لمزيد من المساعدة الشخصية، لا تتردد في زيارة مكتبنا الواقع في 123 الشارع الرئيسي، مدينتك، ولايتك، 12345. رضاك هو أولويتنا، ونتطلع إلى مساعدتك في الاستفادة القصوى من تجربتك التسوق معنا!"
+offices_title,Offices,المكاتب
+office_1,"Akshya Nagar 1st Block 1st Cross, Rammurthy nagar, Bangalore-560016","عنوان المكتب الأول باللغة العربية"
+office_2,"Akshya Nagar 1st Block 10th Cross, Rammurthy nagar, Bangalore-560016","عنوان المكتب الثاني باللغة العربية"
+email_title,Email,البريد الإلكتروني
+email_1,info@gmail.com,البريد الأول
+email_2,qetah@gmail.com,البريد الثاني
+get_in_touch,Get in Touch,ابقى على تواصل
+get_in_touch_paragraph","We are here to help! If you have any questions, concerns, or feedback, please dont hesitate to reach out. You can contact us through our email at support@example.com or call us at (123) 456-7890. Our team is available to assist you from 9 AM to 5 PM, Monday through Friday. For any urgent inquiries, feel free to visit us at our office located at 123 Main Street, Your City, Your State, 12345. Your input is invaluable, and we look forward to connecting with you soon!","نحن هنا للمساعدة! إذا كان لديك أي أسئلة أو استفسارات أو ملاحظات، فلا تتردد في التواصل معنا. يمكنك الاتصال بنا عبر البريد الإلكتروني على support@example.com أو الاتصال بنا على (123) 456-7890. فريقنا متاح لمساعدتك من الساعة 9 صباحًا حتى 5 مساءً، من الإثنين إلى الجمعة. لأي استفسارات عاجلة، لا تتردد في زيارتنا في مكتبنا الواقع في 123 الشارع الرئيسي، مدينتك، ولايتك، 12345. مدخلاتك لا تقدر بثمن، ونتطلع إلى التواصل معك قريبًا!"
+terms_label,"Checkout our Terms and Conditions and Privacy Policy.","راجع شروطنا وسياسات الخصوصية."
+terms_link,Terms and Conditions,الشروط والأحكام
+privacy_link,Privacy Policy,سياسة الخصوصية
+fullname,Full Name*,الاسم الكامل*
+fullname_h,Full Name:,الاسم الكامل:
+email,Email*,بريد إلكتروني*
+phone,Phone No*,رقم الهاتف*
+message,Messgae*,رسالة*
+submit_btn,Submit,إرسال
+
+privacy_policy_title,Privacy Policy,سياسة الخصوصية
+home_link,Home,الصفحة الرئيسية
+privacy_policy_breadcrumb,Privacy Policy,سياسة الخصوصية
+our_privacy_policy,Our Privacy Policy,سياسة الخصوصية الخاصة بنا
+// refunds policy
+refunds_exchange_title,Refunds & Exchange,سياسة الاسترداد والتبادل
+home_link,Home,الصفحة الرئيسية
+refunds_exchange_breadcrumb,Refunds & Exchange,سياسة الاسترداد والتبادل
+// about us //story 
+about_us_title, About Us , عنا
+customer_importance_heading,Customer Importance,أهمية العميل
+customer_importance_text,We know how important it is to make a meaningful connection with your customer or consumer and that the right promotional product is part of the equation. The Swag Team at Active International is your dedicated resource for branded premiums corporate gifts and promotional items.,نحن نعلم مدى أهمية إجراء اتصال مفيد مع عميلك أو مستهلككوأن المنتج الترويجي المناسب هو جزء من المعادلة. فريق Swag في Active الدولية هي مصدرك المخصص للأقساط ذات العلامات التجارية، وهدايا الشركات، والعناصر الترويجية.
+our_goal_heading,Our Goal,هدفنا
+our_goal_text, With more than a decade of experience working with media companies retailers and manufacturers our goal is to make sure your experience is exceptional whether we’re recommending new ideas managing creative or ensuring fulfillment.,مع أكثر من عقد من الخبرة في العمل مع شركات الإعلام وتجار التجزئة و المصنعين، هدفنا هو التأكد من أن تجربتك استثنائية، سواء كنا كذلك التوصية بأفكار جديدة، أو إدارة الإبداع، أو ضمان الوفاء بها.
+our_vision_heading,Our Vision,رؤيتنا
+our_vision_text,Our vision for the eCommerce website is to create a platform that prioritizes the needs of our customers by offering a seamless and personalized shopping experience. We aim to provide a vast selection of high-quality products ensuring that every customer can find exactly what they’re looking for.,رؤيتنا لموقع التجارة الإلكترونية هي إنشاء منصة تعطي الأولوية لاحتياجات عملائنا من خلال تقديم تجربة تسوق سلسة وشخصية. ونحن نهدف إلى توفير مجموعة واسعة من المنتجات عالية الجودة، مما يضمن أن كل عميل يمكنه العثور عليها بالضبط ما يبحثون عنه.
+//terms
+terms_conditions_heading,Terms & Conditions,الشروط والأحكام
+breadcrumb_home,Home,الرئيسية
+breadcrumb_terms,Terms & Conditions,الشروط والأحكام
+terms_conditions_content,Your terms of use go here...,هنا تكون شروط الاستخدام الخاصة بك...
+//Blogs
+blogs_heading,Blogs,المدونات
+breadcrumb_home,Home,الرئيسية
+breadcrumb_blogs,Blogs,المدونات
+load_more_button,Load More,تحميل المزيد
+//Blog Details
+blog_details_heading,Blog Details,تفاصيل المدونة
+breadcrumb_blogs,Blogs,المدونات
+breadcrumb_blog_detail,Blog Detail,تفاصيل المدونة
+follow_us,Follow us,تابعنا
+//footer2
+footer-subscribe-title,Join Qetah Family,انضم إلى عائلة قطة
+footer-subscribe-desc,We'll send you a nice letter once a week. No spam.,سوف نرسل لك رسالة لطيفة مرة في الأسبوع. لا بريد مزعج.
+subscribe-button,SUBMIT,إرسال
+footer-subscribe-title,Join Qetah Family,انضم إلى عائلة قطة
+footer-subscribe-desc,We'll send you a nice letter once a week. No spam.,سوف نرسل لك رسالة لطيفة مرة في الأسبوع. لا بريد مزعج.
+subscribe-button,SUBMIT,إرسال
+email-address,Email Address,عنوان البريد الإلكتروني
+footer-logo,Logo,شعار
+footer-description,The only way to do great work is to love what you do.,الطريقة الوحيدة لإنجاز عمل رائع هي أن تحب ما تفعله.
+footer-privacy-policy,Privacy Policy,سياسة الخصوصية
+about-refunds-policy,Exchange & Refund,استبدال ورد
+about-terms,Terms & Conditions,الشروط والأحكام
+tooltip-phone,+97450455909,٩٧٤٥٠٤٥٥٩٠٩
+tooltip-email,info@qetah.qa,info@qetah.qa
+footer-copyright,© 2022 Qetah.Qa All Rights Reserved,جميع الحقوق محفوظة © ٢٠٢٢
+connect-facebook,Facebook,فيسبوك
+connect-twitter,Twitter,تويتر
+connect-google,Google,جوجل
+
+related_tags,Related Tags,العلامات ذات الصلة
+related_blogs,Related Blogs,مدونات ذات صلة
+badge_html5,HTML 5,إتش تي إم إل 5
+badge_css3,CSS 3,سي إس إس 3
+badge_scss,SCSS,إس سي إس إس
+badge_javascript,JAVASCRIPT,جافا سكريبت
+badge_jquery,JQuery,جي كويري
+badge_bootstrap5,Bootstrap 5,بوتستراب 5
+badge_uikit,Uikit,يو أي كيت
+see_more,See more,شاهد المزيد
+// Cart items
+"selectAllLabel","Select All (Items)","اختر الكل (العناصر)"
+"deleteButton","Delete","حذف"
+"locationLabel","Location","الموقع"
+"address-modal-h","Add Shipping Address","أضف عنوان الشحن"
+"addAddressTitle","Add Address Here","أضف العنوان هنا"
+"firstNameLabel","First Name","الاسم الأول"
+"lastNameLabel","Last Name","الاسم الأخير"
+"phoneLabel","Phone No","رقم الهاتف"
+"addressLabel","Address","العنوان"
+"emailLabel","Email","البريد الإلكتروني"
+"stateLabel","State","الولاية"
+"cityLabel","City","المدينة"
+"closeModalButton_h","Close","إغلاق"
+"postalCodeLabel","Zip / Postal code","الرمز البريدي"
+"saveButton","Submit","إرسال"
+"toastMessage","Address Added Successfully","تم إضافة العنوان بنجاح"
+"userIcon","User Icon","أيقونة المستخدم"
+"displayData","Display Data","عرض البيانات"
+"subtotalLabel","Subtotal","المجموع الفرعي"
+"voucherCode","Enter Voucher Code","أدخل رمز القسيمة"
+"submitVoucherButton","Submit","إرسال"
+"proceedCheckoutButton","Proceed To Checkout","المتابعة إلى الدفع"
+"justForYouTitle","Just For You","فقط من أجلك"
+"variationTitle","Variation Title","عنوان المتغير"
+"productImage","Product Image","صورة المنتج"
+"variationIntro","Variation Introduction","مقدمة المتغير"
+"variationDescription","Variation Description","وصف المتغير"
+"originalPrice","Original Price","السعر الأصلي"
+"discountedPrice","Discounted Price","سعر الخصم"
+"productRating","Product Rating","تقييم المنتج"
+"buyNowButton","Buy Now","اشتري الآن"
+"wishlistButton","Add to Wishlist","أضف إلى قائمة الأمنيات"
+"slideNextButton","Next Slide","الشريحة التالية"
+"slidePrevButton","Previous Slide","الشريحة السابقة"
+// product
+
+"filter_title","Filters","فلتر"
+"category_title","Category","فئة"
+"price_range_title","Price Range","نطاق السعر"
+"by_rating_title","By Rating","بواسطة التقييم"
+"discounts_title","Discounts","الخصومات"
+"discounts_title_h","Discounts","الخصومات"
+"apply_button","Apply","تطبيق"
+"cancel_button","Cancel","إلغاء"
+"search_placeholder","Search...","بحث..."
+"category_mens","Men's Collection","مجموعة الرجال"
+"category_womens","Women's Collection","مجموعة النساء"
+"category_womens_h","Women's Collection","مجموعة النساء"
+"category_services","Services","خدمات"
+"category_services_h","Services","خدمات"
+"discount_35","Sale 35% OFF","%خصم %٣٥"
+"discount_h_35","Sale 35% OFF","%خصم ٣٥"
+"discount_50","Sale 50% OFF","%خصم ٥٠"
+"discount_h_50","Sale 50% OFF","%خصم ٥٠"
+"discount_75","Sale 75% OFF","%خصم ٧٥"
+"discount_h_75","Sale 75% OFF","%خصم ٧٥"
+"tab_all","All","الكل"
+"tab_unstitched","Un-stitched","غير مخيط"
+"tab_readymade","ReadyMade","جاهز"
+"tab_accessories","Accessories","إكسسوارات"
+"tab_perfumes","Perfumes","عطور"
+"tab_cutting_stitching","Cutting & Stitching","قص وخياطة"
+"tab_sale","Sale","تخفيضات"
+"tab_new_arrivals","New Arrivals","وصول جديدة"
+
+"buy_now_button","Buy Now","اشتر الآن"
+"no_variations_available","No variations available","لا توجد تنويعات متاحة"
+"usd","USD","دولار"
+"card_sold","Sold","مباع"
+"product_image_alt","Product Image","صورة المنتج"
+// product details
+
+"product_title","{{ product.title }}","{{ product.title_ar }}"
+"product_intro","{{ variation.intro }}","{{ variation.intro_ar }}"
+"product_variation_title","{{ variation.title }}","{{ variation.title_ar }}"
+"product_price","$ {{ variation.price }}","{{ variation.price_ar }}"
+"category_badge","{{ product.category }}","{{ product.category_ar }}"
+"no_variations_available","No variations available","لا توجد تنويعات متاحة"
+"add_to_cart_button","Add To Cart","أضف إلى السلة"
+"save_to_wishlist_button","Save To Wishlist","احفظ في قائمة الرغبات"
+"related_products_title","Related Product","المنتجات ذات الصلة"
+"buy_now_button","Buy Now","اشتر الآن"
+"customer_reviews_title","What Our Customers Say","ماذا يقول عملاؤنا"
+"reviewer_name","{{ testimonil.full_name }}","{{ testimonil.full_name_ar }}"
+"review_feedback","{{ testimonil.feedback }}","{{ testimonil.feedback_ar }}"
+"review_designation","{{ testimonil.designation }}","{{ testimonil.designation_ar }}"
+
+
+//index page 
+"discover_new_arrivals_title","Discover Our New Arrivals!","اكتشف منتجاتنا الجديدة!"
+"discover_new_arrivals_subtitle","Fresh Finds Just for You","أشياء جديدة فقط من أجلك"
+"discover_new_arrivals_text","Stay ahead of the trends with our latest collection. We've handpicked the newest styles and must-have products just for you. Whether you're updating your wardrobe or looking for the perfect gift, our new arrivals offer something for everyone. Don't miss out on these fresh additions—shop now and be the first to own them!","ابقَ في المقدمة مع أحدث تشكيلتنا. لقد اخترنا لك أنماطًا جديدة ومنتجات لا بد من اقتنائها. سواء كنت تحدث خزانة ملابسك أو تبحث عن الهدية المثالية، تقدم منتجاتنا الجديدة شيئًا للجميع. لا تفوت هذه الإضافات الجديدة - تسوق الآن وكن الأول في امتلاكها!"
+"exclusive_discount_title","Exclusive Discount Offer","عرض خصم حصري"
+"exclusive_discount_subtitle","Save Big on Your Favorite Products.","وفر الكثير على منتجاتك المفضلة."
+"exclusive_discount_text","Take advantage of our limited-time discounts and enjoy up to 50% off on selected items. Whether you're shopping for fashion, electronics, or home essentials, there's something for everyone. Hurry, these deals won't last long!","استفد من خصوماتنا المحدودة الزمن واستمتع بخصم يصل إلى 50% على العناصر المختارة. سواء كنت تتسوق للأزياء أو الإلكترونيات أو المستلزمات المنزلية، هناك شيء للجميع. أسرع، هذه العروض لن تدوم طويلاً!"
+"best_products_title","Our Best Products","أفضل منتجاتنا"
+"best_products_subtitle","Top Picks Just for You","أفضل الاختيارات فقط من أجلك"
+"best_products_text","Discover our most popular products, handpicked by our customers. From cutting-edge gadgets to stylish apparel, these top-rated items are loved for their quality, innovation, and value. Don't miss out on the best of the best!","اكتشف منتجاتنا الأكثر شعبية، التي اختارها عملاؤنا. من الأجهزة الحديثة إلى الملابس الأنيقة، تحظى هذه العناصر ذات التقييم العالي بإعجاب لفضلها في الجودة والابتكار والقيمة. لا تفوت الأفضل من الأفضل!"
+"happy_shopping_title","Happy Shopping, Happy You!","تسوق سعيد، وسعادة لك!"
+"happy_shopping_subtitle","Keep Smiling","استمر في الابتسامة"
+"happy_shopping_text","Your happiness is our priority. We strive to bring you an exceptional shopping experience with every purchase. From seamless transactions to top-quality products, our customers leave with smiles and satisfaction. Shop with confidence, knowing that your joy is our success!","سعادتك هي أولويتنا. نسعى جاهدين لتقديم تجربة تسوق استثنائية مع كل عملية شراء. من المعاملات السلسة إلى المنتجات عالية الجودة، يغادر عملاؤنا مبتسمين وراضين. تسوق بثقة، علمًا أن فرحتك هي نجاحنا!"
+"spring_sale_title","Spring Sale","تخفيضات الربيع"
+"spring_sale_text","Don't miss the sale", "لا تفوت البيع"
+"spring_sale_text_up_to_30","Get Up To 30% OFF","احصل على خصم يصل إلى 30%"
+"why_choose_us_title","Why Choose Us?","لماذا تختارنا؟"
+"why_choose_us_text","At Qetah, we are dedicated to offering an unparalleled shopping experience that combines quality, variety, and convenience. Our carefully curated selection of products caters to diverse tastes and lifestyles, ensuring that there’s something for everyone. We prioritize sustainability by sourcing eco-friendly items that not only meet high standards of quality but also contribute positively to the environment. When you choose Qetah, you’re not just selecting a product; you’re embracing a commitment to responsible consumerism.","في Qetah، نحن ملتزمون بتقديم تجربة تسوق لا مثيل لها تجمع بين الجودة والتنوع والراحة. تشكيلة منتجاتنا المختارة بعناية تلبي الأذواق وأنماط الحياة المتنوعة، مما يضمن وجود شيء للجميع. نحن نولي أهمية للاستدامة من خلال مصادر المنتجات الصديقة للبيئة التي لا تلتزم فقط بالمعايير العالية للجودة، بل تساهم أيضًا بشكل إيجابي في البيئة. عند اختيارك لـ Qetah، أنت لا تختار منتجًا فحسب؛ بل تحتضن التزامًا بالاستهلاك المسؤول."
+"customer_satisfaction_message","Customer satisfaction is at the heart of everything we do. Our intuitive online platform makes it easy to find exactly what you need, while our responsive customer service team is always ready to assist you. We believe in providing value, which is why we offer competitive pricing and exclusive promotions that help you save without compromising on quality. With Qetah, you can shop with confidence, knowing that you’re getting the best products and service in the market.","رضا العملاء هو محور كل ما نقوم به. منصتنا الإلكترونية السهلة تجعل من السهل العثور على ما تحتاجه بالضبط، في حين أن فريق خدمة العملاء المستجيب لدينا دائمًا على استعداد لمساعدتك. نحن نؤمن بتقديم القيمة، ولهذا نقدم أسعارًا تنافسية وعروضًا حصرية تساعدك على التوفير دون المساومة على الجودة. مع قطاه، يمكنك التسوق بثقة، مع العلم أنك تحصل على أفضل المنتجات والخدمات في السوق."
+"get_notified_title","Get Notified","كن على اطلاع"
+"get_notified_text","Get Notified <i class='bx bx-right-arrow-alt'></i>","كن على اطلاع <i class='bx bx-right-arrow-alt'></i>"
+"more_about_us_title","More About Us","المزيد عنا"
+
+"products_heading","Products","المنتجات"
+"top_selling_product","Top Selling Product","أفضل منتج مبيعًا"
+"badge_no_variations","No variations available","لا تتوفر أي تغييرات"
+"card_rating_count","Rating Count","عدد التقييمات"
+"card_sold","Sold","تم البيع"
+"btn_buy_now","Buy Now","اشتري الآن"
+"btn_explore_more","Explore More","استكشف المزيد"
+"our_story_heading","Our Story","قصتنا"
+"our_story_heading_h","Our Story","قصتنا"
+"our_story_paragraph_1","At Qetah, we believe that shopping should be a delightful experience filled with inspiration and convenience. Our journey began with a simple idea: to bring the best products to customers around the globe, making it easier than ever to find exactly what they need. With a passion for quality and a commitment to customer satisfaction, we carefully curate each item, ensuring that it meets our high standards.","في قيتاح، نعتقد أن التسوق يجب أن يكون تجربة مبهجة مليئة بالإلهام والراحة. بدأت رحلتنا بفكرة بسيطة: تقديم أفضل المنتجات للعملاء في جميع أنحاء العالم، مما يسهل عليهم العثور على ما يحتاجون إليه. مع شغف بالجودة والتزام برضا العملاء، نقوم بعناية باختيار كل عنصر، لضمان مطابقته لمعاييرنا العالية."
+"our_story_paragraph_2","As we continue to grow, our mission remains the same: to empower our customers with exceptional products and unparalleled service. We understand the importance of trust in the online shopping world, and we strive to build lasting relationships with our community. Together, let's redefine the way you shop and celebrate the joy of discovering new favorites.","بينما نستمر في النمو، تبقى مهمتنا كما هي: تمكين عملائنا بمنتجات استثنائية وخدمة لا مثيل لها. نحن نفهم أهمية الثقة في عالم التسوق عبر الإنترنت، ونسعى لبناء علاقات دائمة مع مجتمعنا. دعونا معًا نعيد تعريف طريقة تسوقكم ونحتفل بفرحة اكتشاف المفضلات الجديدة."
+"btn_read_more","Read More","اقرأ المزيد"
+"appointment_heading","Book An Appointment","احجز موعدًا"
+"appointment_intro","Just book your appointment now and get your dress done","احجز موعدك الآن واحصل على فستانك جاهزًا"
+"btn_click_here","Click Here!","انقر هنا!"
+"related_blogs_heading","Related Blogs","المدونات ذات الصلة"
+"btn_see_more","See more","رؤية المزيد"
+"btn_see_more_h","See more","رؤية المزيد"
+"btn_see_more_1","See more","رؤية المزيد"
+"btn_see_more_2","See more","رؤية المزيد"
+"btn_see_more_3","See more","رؤية المزيد"
+"review_ar","Reviews","التعليقات"
+"get_started_intro","Get started by reading our blogs","ابدأ بقراءة مدوناتنا"
+"reviews_heading","What Our Customers Say","ماذا يقول عملائنا"
+
+//checkout
+"delivery_information","Delivery Information","معلومات التوصيل"
+"display_data","Target div where the data will be displayed","الجزء المستهدف حيث ستظهر البيانات"
+"card_payment","Card Payment","دفع عن طريق البطاقة"
+"stripe_label","Stripe","سترايب"
+"stripe_logo_alt","Stripe Logo","شعار سترايب"
+"cash_on_delivery","Cash on Delivery","الدفع عند التسليم"
+"promotion_heading","Promotion","ترويج"
+"code","Enter Code","أدخل الرمز"
+"apply_button","Apply","تطبيق"
+"order_summary","Order Summary","ملخص الطلب"
+"total_items","Total (items)","الإجمالي ( عنصر)"
+"subtotal_label","Subtotal: $","المجموع الفرعي: $"
+"delivery_fee_ar","Delivery Fee","رسوم التوصيل"
+"delivery_discount_ar","Delivery Discount","خصم التوصيل"
+"grand_total_label","Total:","الإجمالي:"
+"taxes_included","Taxes included, where applicable","الضرائب مشمولة، حيثما ينطبق"
+"proceed_to_pay","Proceed to Pay","المتابعة للدفع"
+"messages","Messages","الرسائل"
+"product_list_container","Create a container where the products will be displayed","إنشاء حاوية حيث ستظهر المنتجات"
+"checkout_items_container","Cart items will be dynamically added here by JavaScript","سيتم إضافة عناصر السلة ديناميكيًا هنا بواسطة JavaScript"
+"wishlist_items_container","Wishlist items will be dynamically added here by JavaScript","سيتم إضافة عناصر قائمة الرغبات ديناميكيًا هنا بواسطة JavaScript"
+
+
+//sidebar
+
+"sidebar_home","Home","الرئيسية"
+"sidebar_about","ABOUT","عن"
+"sidebar_story","Story","القصة"
+"sidebar_blogs","Blogs","المدونات"
+"sidebar_blogs_h","Blogs","المدونات"
+"sidebar_contact_us","Contact Us","اتصل بنا"
+"sidebar_store","STORE","المتجر"
+"sidebar_shop","Shop","تسوق"
+"sidebar_mens_collection","Men's Collection","مجموعة الرجال"
+"sidebar_unstitched_mens","Unstitched","غير مخيط"
+"sidebar_readymade_mens","Readymade Clothes","ملابس جاهزة"
+"sidebar_accessories_mens","Accessories","إكسسوارات"
+"sidebar_perfumes_mens","Perfumes","عطور"
+"sidebar_cutting_stitching_mens","Cutting, Stitching","قص وخياطة"
+"sidebar_womens_collection","Women's Collection","مجموعة النساء"
+"sidebar_unstitched_womens","Unstitched","غير مخيط"
+"sidebar_readymade_womens","Readymade Clothes","ملابس جاهزة"
+"sidebar_accessories_womens","Accessories","إكسسوارات"
+"sidebar_perfumes_womens","Perfumes","عطور"
+"sidebar_cutting_stitching_womens","Cutting, Stitching","قص وخياطة"
+"sidebar_cart","Cart","عربة التسوق"
+"sidebar_languages","LANGUAGES","اللغات"
+"sidebar_eng","ENG","إنجليزي"
+"sidebar_ara","ARA","عربي"
+
+//header
+
+current-page,Home,الصفحة الرئيسية
+select_All_h,Select All,اختر الكل
+select_All_m,Select All,اختر الكل
+deleteSelectedBtn,Delete,حذف
+addToCartBtnH,Add to cart,أضف إلى السلة
+addToCartBtnM,Add to cart,أضف إلى السلة
+cartSummary,Summary :-,الملخص :-
+itemsText,Items :,العناصر :
+qtyText,Qty :,الكمية :
+subTotalText,Subtotal :,المجموع الفرعي :
+goToCartBtn,Go to Cart,الذهاب إلى السلة
+
+//page title
+
+"title_blog_details","Blog Details","تفاصيل المدونة"
+"title_blogs","Blogs","المدونات"
+"title_cart_items","Cart Items","عناصر السلة"
+"title_checkout","Checkout","الدفع"
+"title_contact_us","Contact Us","اتصل بنا"
+"title_home","Home","الرئيسية"
+"title_privacy","Privacy","الخصوصية"
+"title_product_details","Product Details","تفاصيل المنتج"
+"title_product","Product","المنتج"
+"title_refunds","Refunds","رد المبالغ"
+"title_story","Story","القصة"
+"title_terms","Terms","الشروط"
+"title_qetah","Qetah","قتاح"
+"title_qetah_home","Qetah","قتاح"

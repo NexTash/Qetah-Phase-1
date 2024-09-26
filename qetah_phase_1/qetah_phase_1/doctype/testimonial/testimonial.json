@@ -9,13 +9,16 @@
  "engine": "InnoDB",
  "field_order": [
   "full_name",
+  "full_name_arabic",
   "designation",
+  "designation_arabic",
   "column_break_xo7pz",
   "featured",
   "rating",
   "feedback_image",
   "section_break_m1zd3",
-  "feedback"
+  "feedback",
+  "feedback_arabic"
  ],
  "fields": [
   {
@@ -56,15 +59,29 @@
    "fieldname": "feedback_image",
    "fieldtype": "Attach Image",
    "label": "Feedback Image"
+  },
+  {
+   "fieldname": "full_name_arabic",
+   "fieldtype": "Data",
+   "label": "Full Name Arabic"
+  },
+  {
+   "fieldname": "designation_arabic",
+   "fieldtype": "Data",
+   "label": "Designation Arabic"
+  },
+  {
+   "fieldname": "feedback_arabic",
+   "fieldtype": "Text",
+   "label": "Feedback Arabic"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-25 08:06:11.697081",
+ "modified": "2024-09-24 20:04:44.820556",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Testimonial",
- "name_case": "Title Case",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [

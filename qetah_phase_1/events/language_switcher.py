@@ -12,7 +12,7 @@ def get_translations(lang):
             translations[row['id']] = row[lang]
 
     return translations
-
+ 
 @frappe.whitelist(allow_guest=True)
 def get_footer(language):
     footer_translations = {}

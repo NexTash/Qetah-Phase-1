@@ -1,18 +1,17 @@
 {% extends "templates/primary.html" %}
 
-{% block title %}  Blogs {% endblock %}
+{% block title %} Blogs {% endblock %}
 
 {% block content %}
 <div class="content-area" :class="{'shifted-content': isStatic}">
   <main class="container boxed blogs">
-    <h1 class="heading">{{_("Blogs")}}</h1>
+    <h1 class="heading" id="blogs_heading">Blogs</h1>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/index" class="breadcrumb-link">{{_("Home")}}</a></li>
-      <li class="breadcrumb-item active">{{_("Blogs")}}</li>
+      <li class="breadcrumb-item"><a href="/index" class="breadcrumb-link" id="breadcrumb_home">Home</a></li>
+      <li class="breadcrumb-item active" id="breadcrumb_blogs">Blogs</li>
     </ol>
     <section class="row">
       {% for blog in blogs %}
-
       <div class="col blog-section">
         <article class="card card-blog" data-aos-duration="1000" data-aos="fade-up" data-aos-once="true"
           data-aos-easing="ease-in-out">
@@ -20,21 +19,38 @@
             <img src="{{ blog.meta_image }}" class="image" loading="lazy" alt="" />
           </a>
           <div class="card-body">
-            <span class="card-badge">{{ blog.title }}</span>
+            <span class="card-badge" data-field="en">{{ blog.title }}</span>
+            <span class="card-badge" data-field="ar">{{ blog.custom_title_in_arabic }}</span>
             <h3 class="card-title">
-              <a href="/blog-detail?id={{blog.name}}" class="text-ellipsis text-ellipsis-2">{{blog.blog_intro}}</a>
+              <a href="/blog-detail?id={{blog.name}}" class="text-ellipsis text-ellipsis-2" data-field="en">{{blog.blog_intro}}</a>
+              <a href="/blog-detail?id={{blog.name}}" class="text-ellipsis text-ellipsis-2" data-field="ar">{{blog.custom_blog_intro_in_arabic}}</a>
             </h3>
             <p class="card-subtitle">{{ blog.published_on }}</p>
           </div>
         </article>
       </div>
       {% endfor %}
-
     </section>
     <section class="pagination load-more">
-      <button class="btn btn-secondary btn-pill">{{_("Load More")}}</button>
+      <button class="btn btn-secondary btn-pill" id="load_more_button">Load More</button>
     </section>
   </main>
+</div>
 
-  {% endblock %}
-  <!-- header-fixed
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+    // arabic id
+    function updatePageContent(translations) {
+      //blogs
+      document.getElementById("blogs_heading").textContent = translations.blogs_heading;
+      document.getElementById("breadcrumb_home").textContent = translations.breadcrumb_home;
+      document.getElementById("breadcrumb_blogs").textContent = translations.breadcrumb_blogs;
+      document.getElementById("load_more_button").textContent = translations.load_more_button;
+    }
+
+</script>
+
+{% endblock %}

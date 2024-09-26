@@ -1,30 +1,37 @@
 <!-- sidebar start -->
 <style>
-#sidebar {
-  transition: width 0.3s ease; /* Smooth width transition */
-}
-#overlay {
+  #sidebar {
+    transition: width 0.3s ease;
+    /* Smooth width transition */
+  }
+
+  #overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background-color: rgba(73, 73, 73, 0.2);
-    opacity: 0; /* Initially hidden */
+    opacity: 0;
+    /* Initially hidden */
     transition: opacity 0.3s ease;
-    z-index: 10; /* Ensure it appears above other content */
-    display: none; /* Initially hidden */
-}
-#overlay.show {
-    display: block; /* Show when the class is added */
+    z-index: 10;
+    /* Ensure it appears above other content */
+    display: none;
+    /* Initially hidden */
+  }
+
+  #overlay.show {
+    display: block;
+    /* Show when the class is added */
     opacity: 1;
-    z-index:99; /* Fully visible when the class is added */
-}
+    z-index: 99;
+    /* Fully visible when the class is added */
+  }
 </style>
 
 
-<aside id="sidebar"  class="sidebar-header transition-transform duration-300"
-    style="z-index: 9999;">
+<aside id="sidebar" class="sidebar-header transition-transform duration-300" style="z-index: 9999;">
   <!-- Course Sidebar Header -->
   <header class="program-sidebar">
     <div class="program-sidebar-brand">
@@ -32,7 +39,7 @@
         <!-- Large Logo -->
         <a href="#" class="lg-logo" x-show="isStatic">
           <img src="/assets/qetah_phase_1/images/black-qetah-removebg-preview.png" width="100px" class="lg-img"
-            alt="Logo" style="display: none;"/>
+            alt="Logo" style="display: none;" />
         </a>
         <!-- Small Logo -->
         <a href="#" class="sm-logo">
@@ -41,8 +48,8 @@
         </a>
       </div>
     </div>
-    <div class="sidebar-auth" >
-      <a href="/index" class="side-logo" data-target="sidebar-tooltip" data-title="Home" style="height: 32px;">
+    <div class="sidebar-auth">
+      <a href="/index" class="side-logo" style="height: 32px;">
         <img src="/assets/qetah_phase_1/images/black-qetah-removebg-preview.png" class="logo-header" width="20px"
           height="20px" alt="" srcset="">
         <br>
@@ -51,19 +58,19 @@
         <div class="auth-media">
           <i class="bx bx-home"></i>
           <div class="auth-intro" x-show="isStatic" x-cloak>
-            <h3 class="heading"><a href="/index">Home</a></h3>
+            <h3 class="heading"><a href="/index" id="sidebar_home">Home</a></h3>
           </div>
         </div>
       </a>
       <a href="">
         <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
-        <span class="divider divider-text divider-secondary">ABOUT</span>
+        <span class="divider divider-text divider-secondary" id="sidebar_about">ABOUT</span>
       </a>
       <a href="/story" data-target="sidebar-tooltip" data-title="Story">
         <div class="auth-media">
           <i class="bx bx-book"></i>
           <div class="auth-intro" x-show="isStatic" x-cloak>
-            <h3 class="heading"><a href="/story">Story</a></h3>
+            <h3 class="heading"><a href="/story" id="sidebar_story">Story</a></h3>
           </div>
         </div>
       </a>
@@ -71,7 +78,7 @@
         <div class="auth-media">
           <i class="bx bx-spreadsheet"></i>
           <div class="auth-intro" x-show="isStatic" x-cloak>
-            <h3 class="heading"><a href="/Blogs">Blogs</a></h3>
+            <h3 class="heading"><a href="/Blogs" id="sidebar_blogs">Blogs</a></h3>
           </div>
         </div>
       </a>
@@ -80,20 +87,20 @@
           <i class="bx bx-phone"></i>
           <div class="auth-intro" x-show="isStatic" x-cloak>
             <h3 class="heading">
-              <a href="/contact-us">Contact Us</a>
+              <a href="/contact-us" id="sidebar_contact_us">Contact Us</a>
             </h3>
           </div>
         </div>
       </a>
       <a href="">
         <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
-        <span class="divider divider-text divider-secondary">STORE</span>
+        <span class="divider divider-text divider-secondary" id="sidebar_store">STORE</span>
       </a>
       <a href="/product" data-page="shop" data-target="sidebar-tooltip" data-title="Shop">
         <div class="auth-media" id="shop-link">
           <i class="bx bx-store"></i>
           <div class="auth-intro" x-show="isStatic" x-cloak>
-            <h3 class="heading"><a href="/product">Shop</a></h3>
+            <h3 class="heading"><a href="/product" id="sidebar_shop">Shop</a></h3>
           </div>
         </div>
       </a>
@@ -106,18 +113,21 @@
         <div class="auth-intro" x-show="isStatic" x-cloak>
           <div x-data="{ open: false }">
             <div @click="open = !open" class="cursor-pointer">
-              <h6 class="text-center text-dark side-coll" style="cursor: pointer;font-size: 14px;">
+              <h6 class="text-center text-dark side-coll" style="cursor: pointer;font-size: 14px;"
+                id="sidebar_mens_collection">
                 Men's Collection
               </h6>
               <i class="bx bx-chevron-down"></i>
             </div>
             <div class="drops" x-show="open" x-cloak>
               <ul class="ml-4">
-                <li><a href="/product?category=mens&sub=unstitched">Unstitched</a></li>
-                <li><a href="/product?category=mens&sub=readymade">Readymade Clothes</a></li>
-                <li><a href="/product?category=mens&sub=accessories">Accessories</a></li>
-                <li><a href="/product?category=mens&sub=perfumes">Perfumes</a></li>
-                <li><a href="/product?category=mens&sub=cutting-stitching">Cutting, Stitching</a></li>
+                <li><a href="/product?category=mens&sub=unstitched" id="sidebar_unstitched_mens">Unstitched</a></li>
+                <li><a href="/product?category=mens&sub=readymade" id="sidebar_readymade_mens">Readymade Clothes</a>
+                </li>
+                <li><a href="/product?category=mens&sub=accessories" id="sidebar_accessories_mens">Accessories</a></li>
+                <li><a href="/product?category=mens&sub=perfumes" id="sidebar_perfumes_mens">Perfumes</a></li>
+                <li><a href="/product?category=mens&sub=cutting-stitching" id="sidebar_cutting_stitching_mens">Cutting,
+                    Stitching</a></li>
               </ul>
             </div>
           </div>
@@ -133,18 +143,22 @@
         <div class="auth-intro" x-show="isStatic" x-cloak>
           <div x-data="{ open: false }">
             <div @click="open = !open" class="cursor-pointer">
-              <h6 class="text-center text-dark side-coll" style="cursor: pointer;font-size: 14px;">
+              <h6 class="text-center text-dark side-coll" style="cursor: pointer;font-size: 14px;"
+                id="sidebar_womens_collection">
                 Women's Collection
               </h6>
               <i class="bx bx-chevron-down"></i>
             </div>
             <div class="drops" x-show="open" x-cloak>
               <ul class="list ml-4">
-                <li><a href="/product?category=womens&sub=unstitched">Unstitched</a></li>
-                <li><a href="/product?category=womens&sub=readymade">Readymade Clothes</a></li>
-                <li><a href="/product?category=womens&sub=accessories">Accessories</a></li>
-                <li><a href="/product?category=womens&sub=perfumes">Perfumes</a></li>
-                <li><a href="/product?category=womens&sub=cutting-stitching">Cutting, Stitching</a></li>
+                <li><a href="/product?category=womens&sub=unstitched" id="sidebar_unstitched_womens">Unstitched</a></li>
+                <li><a href="/product?category=womens&sub=readymade" id="sidebar_readymade_womens">Readymade Clothes</a>
+                </li>
+                <li><a href="/product?category=womens&sub=accessories" id="sidebar_accessories_womens">Accessories</a>
+                </li>
+                <li><a href="/product?category=womens&sub=perfumes" id="sidebar_perfumes_womens">Perfumes</a></li>
+                <li><a href="/product?category=womens&sub=cutting-stitching"
+                    id="sidebar_cutting_stitching_womens">Cutting, Stitching</a></li>
               </ul>
             </div>
           </div>
@@ -152,14 +166,14 @@
       </div>
       <a href="">
         <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
-        <span class="divider divider-text divider-secondary">CART</span>
+        <span class="divider divider-text divider-secondary" id="sidebar_cart">CART</span>
       </a>
       <a href="/cart-items" data-target="sidebar-tooltip" data-title="Cart">
         <div class="auth-media">
           <i class="bx bx-cart"></i>
           <div class="auth-intro" x-show="isStatic" x-cloak>
             <h3 class="heading">
-              <a href="/cart-items">Cart</a>
+              <a href="/cart-items" id="sidebar_cart">Cart</a>
             </h3>
           </div>
         </div>
@@ -167,13 +181,13 @@
       <div class="language">
         <a href="">
           <hr style="height: 2px;border: none; background-color: rgb(150, 150, 150);">
-          <span class="divider divider-text divider-secondary">LANGUAGES</span>
+          <span class="divider divider-text divider-secondary" id="sidebar_languages">LANGUAGES</span>
         </a>
         <div class="field field-inline field-light" style="margin: 10px 0px;">
-          <select name="" id="" class="field-select" style="background-image: none !important;">
-            <option value="Option">ENG</option>
-            <option value="Option">ARA</option>
-          </select>
+          <ul name="" id="" class="field-select" style="background-image: none !important;">
+            <li value="Option" id="sidebar_eng" onclick="switchLanguage('en');noice()">ENG</li>
+            <li value="Option" id="sidebar_ara" onclick="switchLanguage('ar');noice()">ARA</li>
+          </ul>
         </div>
         <!-- Additional Sidebar Items -->
       </div>
@@ -183,6 +197,35 @@
 </aside>
 <!--/ Course Sidebar End -->
 
+<script>
+  function updatePageContent(translations) {
+    // Updating sidebar elements based on translations object
+    document.getElementById('sidebar_home').textContent = translations['sidebar_home'];
+    document.getElementById('sidebar_about').textContent = translations['sidebar_about'];
+    document.getElementById('sidebar_story').textContent = translations['sidebar_story'];
+    document.getElementById('sidebar_blogs').textContent = translations['sidebar_blogs'];
+    document.getElementById('sidebar_contact_us').textContent = translations['sidebar_contact_us'];
+    document.getElementById('sidebar_store').textContent = translations['sidebar_store'];
+    document.getElementById('sidebar_shop').textContent = translations['sidebar_shop'];
+    document.getElementById('sidebar_mens_collection').textContent = translations['sidebar_mens_collection'];
+    document.getElementById('sidebar_unstitched_mens').textContent = translations['sidebar_unstitched_mens'];
+    document.getElementById('sidebar_readymade_mens').textContent = translations['sidebar_readymade_mens'];
+    document.getElementById('sidebar_accessories_mens').textContent = translations['sidebar_accessories_mens'];
+    document.getElementById('sidebar_perfumes_mens').textContent = translations['sidebar_perfumes_mens'];
+    document.getElementById('sidebar_cutting_stitching_mens').textContent = translations['sidebar_cutting_stitching_mens'];
+    document.getElementById('sidebar_womens_collection').textContent = translations['sidebar_womens_collection'];
+    document.getElementById('sidebar_unstitched_womens').textContent = translations['sidebar_unstitched_womens'];
+    document.getElementById('sidebar_readymade_womens').textContent = translations['sidebar_readymade_womens'];
+    document.getElementById('sidebar_accessories_womens').textContent = translations['sidebar_accessories_womens'];
+    document.getElementById('sidebar_perfumes_womens').textContent = translations['sidebar_perfumes_womens'];
+    document.getElementById('sidebar_cutting_stitching_womens').textContent = translations['sidebar_cutting_stitching_womens'];
+    document.getElementById('sidebar_cart').textContent = translations['sidebar_cart'];
+    document.getElementById('sidebar_languages').textContent = translations['sidebar_languages'];
+    document.getElementById('sidebar_eng').textContent = translations['sidebar_eng'];
+    document.getElementById('sidebar_ara').textContent = translations['sidebar_ara'];
+  }
+
+</script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     // Get the current path and query string
@@ -214,27 +257,27 @@
   });
 </script>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('overlay');
     const toggleButton = document.getElementById('toggleButton');
 
     // Function to toggle overlay visibility
     function toggleOverlay() {
-        if (overlay.classList.contains('show')) {
-            overlay.classList.remove('show');
-        } else {
-            overlay.classList.add('show');
-        }
+      if (overlay.classList.contains('show')) {
+        overlay.classList.remove('show');
+      } else {
+        overlay.classList.add('show');
+      }
     }
 
     // Add click event listener to the toggle button
     toggleButton.addEventListener('click', () => {
-        toggleOverlay();
+      toggleOverlay();
     });
 
     // Optionally, you might want to hide the overlay when clicking on it
     overlay.addEventListener('click', () => {
-        overlay.classList.remove('show');
+      overlay.classList.remove('show');
     });
-});
+  });
 </script>

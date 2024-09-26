@@ -1,6 +1,6 @@
 {% extends "templates/primary.html" %}
 
-{% block title %}  Product Detail {% endblock %}
+{% block title %} Product Details {% endblock %}
 
 {% block content %}
 <div class="content-area" :class="{'shifted-content': isStatic}">
@@ -10,22 +10,25 @@
         {% for product in products %}
         <div class="col product-image-area">
           <div class="images">
-          
+
             <div class="product-image-group" id="thumbnails">
               {% for image in product.images %}
-              <img src="{{ image.images }}" alt="Product Image" class="img thumbnail" data-target="img{{ loop.index }}" data-full="{{ image.images }}" />
+              <img src="{{ image.images }}" alt="Product Image" class="img thumbnail" data-target="img{{ loop.index }}"
+                data-full="{{ image.images }}" />
               {% endfor %}
             </div>
 
             <div class="product-image img-magnifier-container">
               {% for image in product.images %}
-              <img id="img{{ loop.index }}" src="{{ image.images }}" alt="Main Product Image" class="img main-img detail-img magnify-image" style="display: {{ 'block' if loop.first else 'none' }}"/>
-                 <div id="magnifierGlass" class="img-magnifier-glass"></div>
+              <img id="img{{ loop.index }}" src="{{ image.images }}" alt="Main Product Image"
+                class="img main-img detail-img magnify-image"
+                style="display: {{ 'block' if loop.first else 'none' }}" />
+              <div id="magnifierGlass" class="img-magnifier-glass"></div>
               {% endfor %}
             </div>
 
-  
-<!-- 
+
+            <!-- 
 <div class="img-magnifier-container">
     <img class="magnify-image" src="https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" width="600" height="400" alt="Image 2">
 </div> -->
@@ -38,17 +41,21 @@
             <div class="product-head">
               {% if product.variations %}
               {% for variation in product.variations %}
-              <p>{{ variation.intro }}</p>
-              <h1 class="p-title">{{ variation.title }}</h1>
+              <p id="product_intro" data-field="en">{{ variation.intro }}</p>
+              <p id="product_intro" data-field="ar">{{ variation.intro_arabic }}</p>
+              <h1 class="p-title" id="product_variation_title" data-field="en">{{ variation.title }}</h1>
+              <h1 class="p-title" id="product_variation_title" data-field="ar">{{ variation.title_arabic }}</h1>
               <div class="product-body">
                 <div class="content-body">
-                  <h2 class="price-head"><span class="p-price">
-                    $ {{ variation.price }}
-                  </span><span class="hori">|</span>
-                    <div class="badge badge-danger badge-pill">{{ product.category }}</div>
+                  <h2 class="price-head" id="product_price"><span class="p-price">
+                      $ {{ variation.price }}
+                    </span><span class="hori">|</span>
+                    <div class="badge badge-danger badge-pill" id="category_badge" data-field="en">{{ product.category }}</div>
+                    <div class="badge badge-danger badge-pill" id="category_badge" data-field="ar">{{ product.category_in_arabic }}</div>
                   </h2>
                   <div class="content">
-                    <div class="content-desc text-ellipsis text-ellipsis-3">{{ variation.description }}</div>
+                    <div class="content-desc text-ellipsis text-ellipsis-3" data-field="en">{{ variation.description }}</div>
+                    <div class="content-desc text-ellipsis text-ellipsis-3" data-field="ar">{{ variation.description_arabic }}</div>
                   </div>
                   <div class="sizes">
                     <button class="btn btn-light btn-sm">sm</button>
@@ -59,7 +66,8 @@
                   </div>
                   <div class="icon">
                     <i class="bx bx-cart"></i>
-                    <p>{{ product.title }}</p>
+                    <p data-field="en">{{ product.title }}</p>
+                    <p data-field="ar">{{ product.title_arabic }}</p>
                   </div>
                 </div>
               </div>
@@ -71,10 +79,10 @@
             <div class="product-foot">
               <div class="btn-group">
                 <button id="addToCartBtn" class="btn btn-secondary btn-lg btn-icon">
-                  <i class="bx bx-cart icon-pre"></i>Add To Cart
+                  <i class="bx bx-cart icon-pre" id="add_to_cart_button"></i>
                 </button>
                 <button class="btn btn-light btn-lg btn-icon btn-heart">
-                  <i class="bx bx-heart icon-pre"></i>Save To Wishlist
+                  <i class="bx bx-heart icon-pre" id="save_to_wishlist_button"></i>
                 </button>
               </div>
               <div class="icon-group">
@@ -97,147 +105,156 @@
             </div>
           </div>
         </div>
-        <div class="product-details-content">
+        <div class="product-details-content" data-field="en">
           {{ product.description }}
+        </div>
+        <div class="product-details-content" data-field="ar">
+          {{ product.description_arabic }}
         </div>
         {% endfor %}
       </div>
-</div>
-      <div class="container products">
-        <h1 class="text-start">Related Product</h1>
-        <!-- Slider main container -->
-        <div class="swiper product-slider">
-          <!-- Additional required wrapper -->
-          <div class="swiper-wrapper">
-            <!-- Slides -->
-            {% for product in products %}
+    </div>
+    <div class="container products">
+      <h1 class="text-start" id="related_products_title">Related Product</h1>
+      <!-- Slider main container -->
+      <div class="swiper product-slider">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          {% for product in products %}
 
-            {% for variation in product.variations %}
-            <div class="swiper-slide">
-              <div class="products">
-                <div class="badge badge-primary badge-pill">{{ variation.title }}</div>
-                <div class="card product-card">
-                  <a href="/product-detail?id={{product.name}}">
-                    <div class="card-head">
-                      <img class="card-image"
-                        src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg">
-                    </div>
-                    <div class="card-body">
-                      <div class="card-title">{{ variation.intro }}</div>
-                      <div class="card-desc text-ellipsis text-ellipsis-2">
-                        {{ variation.description }}
-                      </div>
-                      <div class="card-subtitle"><del>USD {{ variation.price }}</del></div>
-                      <div class="card-title">USD {{ variation.discount }}</div>
-                      <div class="card-rating">
-                        <i class="bx bxs-star"></i>
-                        <span>{{ product.rating_count }}</span> ({{ product.sold }} Sold)
-                      </div>
-                    </div>
-                  </a>
-                  <div class="card-foot">
-                    <button class="btn btn-light btn-icon btn-pill"><i class="bx bx-cart icon-pre"></i> Buy Now</button>
-                    <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
+          {% for variation in product.variations %}
+          <div class="swiper-slide">
+            <div class="products">
+              <div class="badge badge-primary badge-pill" data-field="en">{{ variation.title }}</div>
+              <div class="badge badge-primary badge-pill" data-field="ar">{{ variation.title_arabic }}</div>
+              <div class="card product-card">
+                <a href="/product-detail?id={{product.name}}">
+                  <div class="card-head">
+                    <img class="card-image"
+                      src="https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg">
                   </div>
+                  <div class="card-body">
+                    <div class="card-title" id="product_intro" data-field="en">{{ variation.intro }}</div>
+                    <div class="card-title" id="product_intro" data-field="ar">{{ variation.intro_arabic }}</div>
+                    <div class="card-desc text-ellipsis text-ellipsis-2" data-field="en">
+                      {{ variation.description }}
+                    </div>
+                    <div class="card-desc text-ellipsis text-ellipsis-2" data-field="ar">
+                      {{ variation.description_arabic }}
+                    </div>
+                    <div class="card-subtitle"><del>USD {{ variation.price }}</del></div>
+                    <div class="card-title">USD {{ variation.discount }}</div>
+                    <div class="card-rating">
+                      <i class="bx bxs-star"></i>
+                      <span>{{ product.rating_count }}</span> ({{ product.sold }} Sold)
+                    </div>
+                  </div>
+                </a>
+                <div class="card-foot">
+                  <button class="btn btn-light btn-icon btn-pill" id="buy_now_button"><i
+                      class="bx bx-cart icon-pre"></i> Buy Now</button>
+                  <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
                 </div>
-
-
               </div>
+
+
             </div>
-
-            {% endfor %}
-
-
-            {% endfor %}
-
           </div>
-          <button class="slide-next btn btn-secondary btn-sm bx bx-right-arrow-alt"></button>
-          <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
+
+          {% endfor %}
+
+
+          {% endfor %}
+
         </div>
+        <button class="slide-next btn btn-secondary btn-sm bx bx-right-arrow-alt"></button>
+        <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
       </div>
-      <div class="container customer-reviews">
-        <div class="badge badge-o-dark badge-pill">Reviews</div>
-        <h1 class="text-center" data-aos="fade-up" data-aos-anchor-placement="center-center">What Our Customers Say</h1>
-        <div class="border text-center"></div>
-        <div class="slide-container text-center">
-          <div class="swiper-wrapper">
-            {% for testimonil in testimonils %}
-            <div class="swiper-slide review-content">
-              <p>{{testimonil.feedback}}</p>
-              <h2 class="fw-bold reviewer-name">{{testimonil.full_name}}</h2>
-              <i class="company-name">{{testimonil.designation}}</i>
-            </div>
-            {% endfor %}
+    </div>
+    <div class="container customer-reviews">
+      <div class="badge badge-o-dark badge-pill" id="review_ar">Reviews</div>
+      <h1 class="text-center" data-aos="fade-up" data-aos-anchor-placement="center-center" id="customer_reviews_title">
+        What Our Customers Say</h1>
+      <div class="border text-center"></div>
+      <div class="slide-container text-center">
+        <div class="swiper-wrapper">
+          {% for testimonil in testimonils %}
+          <div class="swiper-slide review-content">
+            <p id="review_feedback" data-field="en">{{testimonil.feedback}}</p>
+            <p id="review_feedback" data-field="ar">{{testimonil.feedback_arabic}}</p>
+            <h2 class="fw-bold reviewer-name" id="reviewer_name" data-field="en">{{testimonil.full_name}}</h2>
+            <h2 class="fw-bold reviewer-name" id="reviewer_name" data-field="ar">{{testimonil.full_name_arabic}}</h2>
+            <i class="company-name" id="review_designation" data-field="en">{{testimonil.designation}}</i>
+            <i class="company-name" id="review_designation" data-field="ar">{{testimonil.designation_arabic}}</i>
           </div>
-          <!-- Navigation buttons -->
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
+          {% endfor %}
         </div>
+        <!-- Navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
       </div>
+    </div>
 
-      {% endblock %}
-
-
-
-
-      {% block scripts %}
+    {% endblock %}
+    {% block scripts %}
 
 
 
-      <!-- product -->
-      <script>
-        const thumbnails = document.querySelectorAll('.product-image-group .img');
-        const largeImages = document.querySelectorAll('.product-image .main-img');
+    <!-- product -->
+    <script>
+      const thumbnails = document.querySelectorAll('.product-image-group .img');
+      const largeImages = document.querySelectorAll('.product-image .main-img');
 
-        thumbnails.forEach((thumbnail) => {
-          thumbnail.addEventListener('click', function () {
-            // Hide all large images
-            largeImages.forEach((img) => {
-              img.style.display = 'none';
-            });
-
-            // Show the large image that matches the clicked thumbnail's data-target
-            const targetId = this.getAttribute('data-target');
-            const targetImage = document.getElementById(targetId);
-            if (targetImage) {
-              targetImage.style.display = 'block';
-            }
+      thumbnails.forEach((thumbnail) => {
+        thumbnail.addEventListener('click', function () {
+          // Hide all large images
+          largeImages.forEach((img) => {
+            img.style.display = 'none';
           });
-        });
-      </script>
-      <!-- sizes -->
-      <script>
-        const sizeButtons = document.querySelectorAll('.sizes .btn');
 
-        sizeButtons.forEach((button) => {
-          button.addEventListener('click', function () {
-            // Remove the 'active' class from all buttons
-            sizeButtons.forEach((btn) => btn.classList.remove('active'));
-
-            // Add the 'active' class to the clicked button
-            this.classList.add('active');
-          });
+          // Show the large image that matches the clicked thumbnail's data-target
+          const targetId = this.getAttribute('data-target');
+          const targetImage = document.getElementById(targetId);
+          if (targetImage) {
+            targetImage.style.display = 'block';
+          }
         });
-      </script>
+      });
+    </script>
+    <!-- sizes -->
+    <script>
+      const sizeButtons = document.querySelectorAll('.sizes .btn');
+
+      sizeButtons.forEach((button) => {
+        button.addEventListener('click', function () {
+          // Remove the 'active' class from all buttons
+          sizeButtons.forEach((btn) => btn.classList.remove('active'));
+
+          // Add the 'active' class to the clicked button
+          this.classList.add('active');
+        });
+      });
+    </script>
     <!-- cart -->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-      const offcanvas = document.getElementById('offcanvas-cart');
-      const offcanvasBody = offcanvas.querySelector('.offcanvas-body-cart'); // Add this line to get the offcanvas body
-      const badge = document.querySelector('.cart-badge'); // Update this selector if needed
-      const deleteSelectedBtn = document.getElementById('del-cart');
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const offcanvas = document.getElementById('offcanvas-cart');
+        const offcanvasBody = offcanvas.querySelector('.offcanvas-body-cart'); // Add this line to get the offcanvas body
+        const badge = document.querySelector('.cart-badge'); // Update this selector if needed
+        const deleteSelectedBtn = document.getElementById('del-cart');
 
-      let wishlist = [];
+        let wishlist = [];
 
-      function updateOffcanvas() {
+        function updateOffcanvas() {
           // Clear the current items
           offcanvasBody.innerHTML = '';
 
           // Add each item in the wishlist to the offcanvas
           wishlist.forEach((item, index) => {
-              const itemDiv = document.createElement('div');
-              itemDiv.className = 'items d-flex';
-              itemDiv.innerHTML = `
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'items d-flex';
+            itemDiv.innerHTML = `
               <div class="check-item">
                   <label class="check check-secondary">
                       <input type="checkbox" class="item-checkbox" data-index="${index}" />
@@ -258,76 +275,76 @@
                   
               </div>
           `;
-              offcanvasBody.appendChild(itemDiv);
+            offcanvasBody.appendChild(itemDiv);
           });
 
           // Update badge number
           badge.textContent = wishlist.length;
-      }
+        }
 
-      function addToWishlist(product) {
+        function addToWishlist(product) {
           // Add the product to the wishlist array
           wishlist.push(product);
           // Update the offcanvas display
           updateOffcanvas();
-      }
+        }
 
-      document.querySelectorAll('.btn-cart').forEach(button => {
+        document.querySelectorAll('.btn-cart').forEach(button => {
           button.addEventListener('click', (e) => {
-              const productCard = e.target.closest('.product-card');
-              if (!productCard) return;
+            const productCard = e.target.closest('.product-card');
+            if (!productCard) return;
 
-              // Get product details from the card
-              const product = {
-                  title: productCard.querySelector('.card-title').innerText,
-                  image: productCard.querySelector('.card-image').src,
-                  desc: productCard.querySelector('.card-desc').innerText,
-                  price: productCard.querySelector('.card-price').innerText,
-              };
+            // Get product details from the card
+            const product = {
+              title: productCard.querySelector('.card-title').innerText,
+              image: productCard.querySelector('.card-image').src,
+              desc: productCard.querySelector('.card-desc').innerText,
+              price: productCard.querySelector('.card-price').innerText,
+            };
 
-              // Add product to wishlist
-              addToWishlist(product);
+            // Add product to wishlist
+            addToWishlist(product);
           });
-      });
+        });
 
-      deleteSelectedBtn.addEventListener('click', () => {
+        deleteSelectedBtn.addEventListener('click', () => {
           const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
 
           // Iterate backward to safely remove items
           for (let i = checkboxes.length - 1; i >= 0; i--) {
-              const checkbox = checkboxes[i];
-              if (checkbox.checked) {
-                  const index = parseInt(checkbox.getAttribute('data-index'), 10);
-                  wishlist.splice(index, 1);
-                  checkbox.closest('.items').remove();
-              }
+            const checkbox = checkboxes[i];
+            if (checkbox.checked) {
+              const index = parseInt(checkbox.getAttribute('data-index'), 10);
+              wishlist.splice(index, 1);
+              checkbox.closest('.items').remove();
+            }
           }
 
           updateOffcanvas();
+        });
       });
-  });
-</script>
-<!-- wishlist -->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-      const offcanvas = document.getElementById('offcanvas');
-      const offcanvasBody = offcanvas.querySelector('.offcanvas-body'); // Add this line to get the offcanvas body
-      const badge = document.querySelector('.noti-badge'); // Update this selector if needed
-      // const deleteSelectedBtn = document.getElementById('deleteSelectedBtn');
+    </script>
+    <!-- wishlist -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const offcanvas = document.getElementById('offcanvas');
+        const offcanvasBody = offcanvas.querySelector('.offcanvas-body'); // Add this line to get the offcanvas body
+        const badge = document.querySelector('.noti-badge'); // Update this selector if needed
+        // const deleteSelectedBtn = document.getElementById('deleteSelectedBtn');
 
 
 
-      let wishlist = [];
+        let wishlist = [];
 
-      function updateOffcanvas() {
+        function updateOffcanvas() {
           // Clear the current items
           offcanvasBody.innerHTML = '';
 
           // Add each item in the wishlist to the offcanvas
           wishlist.forEach((item, index) => {
-              const itemDiv = document.createElement('div');
-              itemDiv.className = 'items d-flex';
-              itemDiv.innerHTML = `
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'items d-flex';
+            itemDiv.innerHTML = `
               <div class="check-item">
                   <label class="check check-secondary">
                       <input type="checkbox" class="item-checkbox" data-index="${index}" />
@@ -349,194 +366,210 @@
                   
               </div>
           `;
-              offcanvasBody.appendChild(itemDiv);
+            offcanvasBody.appendChild(itemDiv);
           });
           badge.textContent = wishlist.length;
-      }
+        }
 
-      function addToWishlist(product) {
+        function addToWishlist(product) {
           // Add the product to the wishlist array
           wishlist.push(product);
           // Update the offcanvas display
           updateOffcanvas();
-      }
+        }
 
-      document.querySelectorAll('.btn-heart').forEach(button => {
+        document.querySelectorAll('.btn-heart').forEach(button => {
           button.addEventListener('click', (e) => {
-              const productCard = e.target.closest('.product-details');
-              if (!productCard) return;
+            const productCard = e.target.closest('.product-details');
+            if (!productCard) return;
 
-              // Get product details from the card
-              const product = {
-                  title: productCard.querySelector('.p-title').innerText,
-                  image: productCard.querySelector('.detail-img').src,
-                  desc: productCard.querySelector('.content-desc').innerText,
-                  size: productCard.querySelector('.active').innerText,
-                  price: productCard.querySelector('.p-price').innerText,
-              };
+            // Get product details from the card
+            const product = {
+              title: productCard.querySelector('.p-title').innerText,
+              image: productCard.querySelector('.detail-img').src,
+              desc: productCard.querySelector('.content-desc').innerText,
+              size: productCard.querySelector('.active').innerText,
+              price: productCard.querySelector('.p-price').innerText,
+            };
 
-              // Add product to wishlist
-              addToWishlist(product);
+            // Add product to wishlist
+            addToWishlist(product);
           });
+        });
+
+        // deleteSelectedBtn.addEventListener('click', () => {
+        //     const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
+        //     const indicesToRemove = new Set();
+
+        //     // Collect indices of checked checkboxes
+        //     checkboxes.forEach(checkbox => {
+        //         if (checkbox.checked) {
+        //             const index = parseInt(checkbox.getAttribute('data-index'), 10);
+        //             if (!isNaN(index)) {
+        //                 indicesToRemove.add(index);
+        //             }
+        //         }
+        //     });
+
+        //     // Remove items from wishlist based on collected indices
+        //     indicesToRemove.forEach(index => {
+        //         if (index >= 0 && index < wishlist.length) {
+        //             wishlist.splice(index, 1);
+        //         }
+        //     });
+
+        //     // Remove items from the DOM
+        //     checkboxes.forEach(checkbox => {
+        //         if (checkbox.checked) {
+        //             const itemElement = checkbox.closest('.items');
+        //             if (itemElement) {
+        //                 itemElement.remove();
+        //             }
+        //         }
+        //     });
+
+        //     // Reindex wishlist and update data-index attributes
+        //     updateOffcanvas();
+        // });
+
+
       });
-
-      // deleteSelectedBtn.addEventListener('click', () => {
-      //     const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
-      //     const indicesToRemove = new Set();
-
-      //     // Collect indices of checked checkboxes
-      //     checkboxes.forEach(checkbox => {
-      //         if (checkbox.checked) {
-      //             const index = parseInt(checkbox.getAttribute('data-index'), 10);
-      //             if (!isNaN(index)) {
-      //                 indicesToRemove.add(index);
-      //             }
-      //         }
-      //     });
-
-      //     // Remove items from wishlist based on collected indices
-      //     indicesToRemove.forEach(index => {
-      //         if (index >= 0 && index < wishlist.length) {
-      //             wishlist.splice(index, 1);
-      //         }
-      //     });
-
-      //     // Remove items from the DOM
-      //     checkboxes.forEach(checkbox => {
-      //         if (checkbox.checked) {
-      //             const itemElement = checkbox.closest('.items');
-      //             if (itemElement) {
-      //                 itemElement.remove();
-      //             }
-      //         }
-      //     });
-
-      //     // Reindex wishlist and update data-index attributes
-      //     updateOffcanvas();
-      // });
-
-
-  });
-</script>
-<!-- zoomer img -->
-<script>
-    function magnify(imgClass, glassID, zoom) {
+    </script>
+    <!-- zoomer img -->
+    <script>
+      function magnify(imgClass, glassID, zoom) {
         var imgs = document.querySelectorAll(imgClass);
         var glass = document.getElementById(glassID);
 
-        imgs.forEach(function(img) {
-            img.addEventListener("mousemove", function(e) {
-                if (glass.style.display === 'block') {
-                    moveMagnifier(e, img, glass, zoom);
-                }
-            });
+        imgs.forEach(function (img) {
+          img.addEventListener("mousemove", function (e) {
+            if (glass.style.display === 'block') {
+              moveMagnifier(e, img, glass, zoom);
+            }
+          });
 
-            img.addEventListener("touchmove", function(e) {
-                if (glass.style.display === 'block') {
-                    moveMagnifier(e, img, glass, zoom);
-                }
-            });
+          img.addEventListener("touchmove", function (e) {
+            if (glass.style.display === 'block') {
+              moveMagnifier(e, img, glass, zoom);
+            }
+          });
         });
 
         function moveMagnifier(e, img, glass, zoom) {
-            var pos = getCursorPos(e, img);
-            var x = pos.x;
-            var y = pos.y;
-            var w = glass.offsetWidth / 2;
-            var h = glass.offsetHeight / 2;
+          var pos = getCursorPos(e, img);
+          var x = pos.x;
+          var y = pos.y;
+          var w = glass.offsetWidth / 2;
+          var h = glass.offsetHeight / 2;
 
-            if (x > img.width - (w / zoom)) { x = img.width - (w / zoom); }
-            if (x < w / zoom) { x = w / zoom; }
-            if (y > img.height - (h / zoom)) { y = img.height - (h / zoom); }
-            if (y < h / zoom) { y = h / zoom; }
+          if (x > img.width - (w / zoom)) { x = img.width - (w / zoom); }
+          if (x < w / zoom) { x = w / zoom; }
+          if (y > img.height - (h / zoom)) { y = img.height - (h / zoom); }
+          if (y < h / zoom) { y = h / zoom; }
 
-            glass.style.left = (x - w) + "px";
-            glass.style.top = (y - h) + "px";
-            glass.style.backgroundPosition = "-" + ((x * zoom) - w) + "px -" + ((y * zoom) - h) + "px";
+          glass.style.left = (x - w) + "px";
+          glass.style.top = (y - h) + "px";
+          glass.style.backgroundPosition = "-" + ((x * zoom) - w) + "px -" + ((y * zoom) - h) + "px";
         }
 
         function getCursorPos(e, img) {
-            var a, x = 0, y = 0;
-            e = e || window.event;
-            a = img.getBoundingClientRect();
-            x = e.pageX - a.left;
-            y = e.pageY - a.top;
-            x = x - window.pageXOffset;
-            y = y - window.pageYOffset;
-            return { x: x, y: y };
+          var a, x = 0, y = 0;
+          e = e || window.event;
+          a = img.getBoundingClientRect();
+          x = e.pageX - a.left;
+          y = e.pageY - a.top;
+          x = x - window.pageXOffset;
+          y = y - window.pageYOffset;
+          return { x: x, y: y };
         }
-    }
+      }
 
-    function updateLargeImage(src, id) {
+      function updateLargeImage(src, id) {
         var largeImgs = document.querySelectorAll(".main-img");
         var glass = document.getElementById('magnifierGlass');
 
         // Hide all large images and magnifier glass
-        largeImgs.forEach(function(img) {
-            img.style.display = 'none';
+        largeImgs.forEach(function (img) {
+          img.style.display = 'none';
         });
         glass.style.display = 'none';
 
         // Show the selected large image
         var selectedImg = document.getElementById(id);
         if (selectedImg) {
-            selectedImg.style.display = 'block';
-            glass.style.display = 'block'; // Show magnifier glass for the selected image
-            glass.style.backgroundImage = "url('" + selectedImg.src + "')";
-            glass.style.backgroundSize = (selectedImg.width * 1.5) + "px " + (selectedImg.height * 1.5) + "px"; // Update the background size of the magnifier glass
-            magnify(".main-img", 'magnifierGlass', 1.5); // Reinitialize magnifier
+          selectedImg.style.display = 'block';
+          glass.style.display = 'block'; // Show magnifier glass for the selected image
+          glass.style.backgroundImage = "url('" + selectedImg.src + "')";
+          glass.style.backgroundSize = (selectedImg.width * 1.5) + "px " + (selectedImg.height * 1.5) + "px"; // Update the background size of the magnifier glass
+          magnify(".main-img", 'magnifierGlass', 1.5); // Reinitialize magnifier
         }
-    }
+      }
 
-    // Attach event listeners to thumbnails
-    document.querySelectorAll(".thumbnail").forEach(function(thumbnail) {
-        thumbnail.addEventListener("click", function() {
-            var targetId = thumbnail.getAttribute("data-target");
-            updateLargeImage(thumbnail.getAttribute("data-full"), targetId);
+      // Attach event listeners to thumbnails
+      document.querySelectorAll(".thumbnail").forEach(function (thumbnail) {
+        thumbnail.addEventListener("click", function () {
+          var targetId = thumbnail.getAttribute("data-target");
+          updateLargeImage(thumbnail.getAttribute("data-full"), targetId);
         });
-    });
+      });
 
-    // Initialize magnifier for the initial image
-    magnify(".main-img", 'magnifierGlass', 1.5);
-</script>
+      // Initialize magnifier for the initial image
+      magnify(".main-img", 'magnifierGlass', 1.5);
+    </script>
 
-<!-- quanitity -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const selectAll1 = document.getElementById("selectAll1");
-    const offcanvasBody1 = document.getElementById("offcanvasBody");
-    const selectAll2 = document.getElementById("selectAll2");
-    const offcanvasBody2 = document.getElementById("offcanvasBody-cart");
+    <!-- quanitity -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const selectAll1 = document.getElementById("selectAll1");
+        const offcanvasBody1 = document.getElementById("offcanvasBody");
+        const selectAll2 = document.getElementById("selectAll2");
+        const offcanvasBody2 = document.getElementById("offcanvasBody-cart");
 
-    // Function to update 'Select All' checkbox based on individual checkboxes
-    function updateSelectAll(selectAll, container) {
-        const checkboxes = container.querySelectorAll(".item-checkbox");
-        selectAll.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
-    }
+        // Function to update 'Select All' checkbox based on individual checkboxes
+        function updateSelectAll(selectAll, container) {
+          const checkboxes = container.querySelectorAll(".item-checkbox");
+          selectAll.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+        }
 
-    // Handling 'Select All' functionality
-    if (selectAll1 && offcanvasBody1) {
-        selectAll1.addEventListener('change', () => {
+        // Handling 'Select All' functionality
+        if (selectAll1 && offcanvasBody1) {
+          selectAll1.addEventListener('change', () => {
             const checkboxes = offcanvasBody1.querySelectorAll(".item-checkbox");
             checkboxes.forEach(checkbox => checkbox.checked = selectAll1.checked);
-        });
+          });
 
-        offcanvasBody1.addEventListener('change', () => {
+          offcanvasBody1.addEventListener('change', () => {
             updateSelectAll(selectAll1, offcanvasBody1);
-        });
-    }
+          });
+        }
 
-    if (selectAll2 && offcanvasBody2) {
-        selectAll2.addEventListener('change', () => {
+        if (selectAll2 && offcanvasBody2) {
+          selectAll2.addEventListener('change', () => {
             const checkboxes = offcanvasBody2.querySelectorAll(".item-checkbox");
             checkboxes.forEach(checkbox => checkbox.checked = selectAll2.checked);
-        });
+          });
 
-        offcanvasBody2.addEventListener('change', () => {
+          offcanvasBody2.addEventListener('change', () => {
             updateSelectAll(selectAll2, offcanvasBody2);
-        });
-    }
-});
-</script>
+          });
+        }
+      });
 
-{% endblock %}
+
+
+    </script>
+
+    <script>
+
+      // arabic id
+      function updatePageContent(translations) {
+        //product detail
+        document.getElementById('add_to_cart_button').textContent = translations['add_to_cart_button'];
+        document.getElementById('save_to_wishlist_button').textContent = translations['save_to_wishlist_button'];
+        document.getElementById('related_products_title').textContent = translations['related_products_title'];
+        document.getElementById('review_ar').textContent = translations['review_ar'];
+        document.getElementById('customer_reviews_title').textContent = translations['customer_reviews_title'];
+
+      }
+    </script>
+    {% endblock %}
