@@ -116,7 +116,7 @@
       <div class="grp">
         <div class="form-field">
           <div class="field field-dark">
-            <input type="text" class="field-text" placeholder="Enter Code" id="code" name="code" />
+            <input type="text" class="field-text" placeholder="Enter Code" id="enter_code" name="code" />
           </div>
         </div>
         <button type="button" class="btn btn-secondary btn-apply" onclick="on_chek()" id="apply_button">Apply</button>
@@ -151,7 +151,7 @@
 
         <div class="taxes" id="taxes_included">Taxes included, where applicable</div>
         <input type="button" class="btn btn-dark btn-block" data-field="proceed-checkout" onclick="on_proceed()"
-          value="Proceed to Pay"></input>
+          id="proceed_to_pay_he">
       </div>
       <br><br>
       <div id="messages"></div>
@@ -419,121 +419,121 @@
     }
   </style>
   <script>
-      function on_proceed() {
-        //console.log("working");
+    function on_proceed() {
+      //console.log("working");
 
-        // Retrieve form input values
-        let fullname = "";
-        let state = "";
-        let city = "";
-        let phone = "";
-        let address = "";
-        let code = "";
-        let email = "";
-        let stripe = 0;
-        let cod = 0;
-        // let cod = document.getElementById("cod").value;
-        let item_count1 = 0;
-        let grand_total1 = "";
-        let title = "";
+      // Retrieve form input values
+      let fullname = "";
+      let state = "";
+      let city = "";
+      let phone = "";
+      let address = "";
+      let code = "";
+      let email = "";
+      let stripe = 0;
+      let cod = 0;
+      // let cod = document.getElementById("cod").value;
+      let item_count1 = 0;
+      let grand_total1 = "";
+      let title = "";
 
-        //console.log("variables created");
+      //console.log("variables created");
 
-        fullname = document.getElementById("fullname").value;
-        //console.log(fullname);
-        state = document.getElementById("state").value;
-        //console.log(state);
+      fullname = document.getElementById("fullname").value;
+      //console.log(fullname);
+      state = document.getElementById("state").value;
+      //console.log(state);
 
-        city = document.getElementById("city").value;
+      city = document.getElementById("city").value;
 
-        //console.log(city);
-        phone = document.getElementById("phone").value;
-        //console.log(phone);
+      //console.log(city);
+      phone = document.getElementById("phone").value;
+      //console.log(phone);
 
-        address = document.getElementById("address").value;
-        //console.log(address);
+      address = document.getElementById("address").value;
+      //console.log(address);
 
-        code = document.getElementById("code").value;
-        //console.log(code);
+      code = document.getElementById("code").value;
+      //console.log(code);
 
-        email = document.getElementById("email").value;
-        //console.log(email);
+      email = document.getElementById("email").value;
+      //console.log(email);
 
-        stripe = document.getElementById("stripe").value;
-        cod = document.getElementById("cod").value;
-        // cod = document.getElementById("cod").value;
-        //console.log(stripe);
+      stripe = document.getElementById("stripe").value;
+      cod = document.getElementById("cod").value;
+      // cod = document.getElementById("cod").value;
+      //console.log(stripe);
 
-        item_count1 = document.getElementById("item-count");
+      item_count1 = document.getElementById("item-count");
 
-        // Retrieve and log the innerHTML of the element
-        // item_count1 = item_count1.innerHTML;
+      // Retrieve and log the innerHTML of the element
+      // item_count1 = item_count1.innerHTML;
 
-        // console.log("item_count", item_count1);
-        console.log(item_count1);
+      // console.log("item_count", item_count1);
+      console.log(item_count1);
 
-        grand_total1 = document.getElementById("grand-total");
-        grand_total1 = grand_total1.innerHTML;
-        //console.log(grand_total1);
+      grand_total1 = document.getElementById("grand-total");
+      grand_total1 = grand_total1.innerHTML;
+      //console.log(grand_total1);
 
-        //console.log("values added");
+      //console.log("values added");
 
-        title = document.getElementById("item-title");
-        title = title.innerHTML;
+      title = document.getElementById("item-title");
+      title = title.innerHTML;
 
-        console.log(title);
+      console.log(title);
 
-        // Hardcoded values
-        console.log("call started");
+      // Hardcoded values
+      console.log("call started");
 
 
-        // Proceed with Frappe call
-        frappe.call({
-          method: 'qetah_phase_1.events.proceed_checkout.poceed_to_checkout',
-          args: {
-            fullname: fullname,
-            phone: phone,
-            address: address,
-            city: city,
-            state: state,
-            code: code,
-            email: email,
-            stripe: 0,   // Defaulted stripe to 0
-            cod: cod,
-            item_count1: item_count1,
-            grand_total1: grand_total1,
-            title: title,
-          },
-          callback(r) {
-            // Get the 'messages' div and show the success message
-            var messageBox = document.getElementById("messages");
-            messageBox.innerHTML = r.message;
-            messageBox.style.display = 'block';
+      // Proceed with Frappe call
+      frappe.call({
+        method: 'qetah_phase_1.events.proceed_checkout.poceed_to_checkout',
+        args: {
+          fullname: fullname,
+          phone: phone,
+          address: address,
+          city: city,
+          state: state,
+          code: code,
+          email: email,
+          stripe: 0,   // Defaulted stripe to 0
+          cod: cod,
+          item_count1: item_count1,
+          grand_total1: grand_total1,
+          title: title,
+        },
+        callback(r) {
+          // Get the 'messages' div and show the success message
+          var messageBox = document.getElementById("messages");
+          messageBox.innerHTML = r.message;
+          messageBox.style.display = 'block';
 
-            // Clear form fields after submission
-            document.getElementById("fullname").value = "";
-            document.getElementById("phone").value = "";
-            document.getElementById("address").value = "";
-            document.getElementById("city").value = "";
-            document.getElementById("state").value = "";
-            document.getElementById("code").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("stripe").value = "";
-            document.getElementById("cod").value = "";
-            document.getElementById("item_count").value = "";
-            document.getElementById("grand_total").value = "";
-            document.getElementById("item-title").value = "";
+          // Clear form fields after submission
+          document.getElementById("fullname").value = "";
+          document.getElementById("phone").value = "";
+          document.getElementById("address").value = "";
+          document.getElementById("city").value = "";
+          document.getElementById("state").value = "";
+          document.getElementById("code").value = "";
+          document.getElementById("email").value = "";
+          document.getElementById("stripe").value = "";
+          document.getElementById("cod").value = "";
+          document.getElementById("item_count").value = "";
+          document.getElementById("grand_total").value = "";
+          document.getElementById("item-title").value = "";
 
-            // Hide the message after 5 seconds
-            setTimeout(function () {
-              messageBox.style.display = 'none';
-            }, 5000);
-          }
-        });
+          // Hide the message after 5 seconds
+          setTimeout(function () {
+            messageBox.style.display = 'none';
+          }, 5000);
+        }
+      });
 
-        // Clear cart data from localStorage
-        localStorage.removeItem('cart');
-      }
+      // Clear cart data from localStorage
+      localStorage.removeItem('cart');
+    }
 
   </script>
   {% endblock %}
@@ -542,44 +542,47 @@
   {% block scripts %}
   <script>
 
-      // arabic id
-      function updatePageContent(translations) {
-        //checkout
+    // arabic id
+    function updatePageContent(translations) {
+      //checkout
+      document.getElementById('subtotal').textContent = translations['subtotal'];
+      document.getElementById('delivery_fee_ar').textContent = translations['delivery_fee_ar'];
+      document.getElementById('delivery_discount_ar').textContent = translations['delivery_discount_ar'];
+      document.getElementById('taxes_included').textContent = translations['taxes_included'];
+      document.getElementById('phoneLabel').textContent = translations['phoneLabel'];
+      document.getElementById('addressLabel').textContent = translations['addressLabel'];
+      document.getElementById('emailLabel').textContent = translations['emailLabel'];
+      document.getElementById('stateLabel').textContent = translations['stateLabel'];
+      document.getElementById('cityLabel').textContent = translations['cityLabel'];
+      document.getElementById('postalCodeLabel').textContent = translations['postalCodeLabel'];
+      document.getElementById('fullname_h').textContent = translations['fullname_h'];
+      document.getElementById('total_items').textContent = translations['total_items'];
+      document.getElementById('qtyText').textContent = translations['qtyText'];
+      document.getElementById('apply_button').textContent = translations['apply_button'];
 
+      // document.getElementById('subtotal').textContent = translations['subtotal'];
+      document.getElementById('informationForm').textContent = translations['delivery_information'];
 
-        // Update item count and 
-        // document.getElementById('code').setAttribute('placeholder', translations['code']);
-        // document.getElementById('proceed_to_pay').setAttribute('placeholder', translations['proceed_to_pay']);
-        document.getElementById('subtotal').textContent = translations['subtotal'];
-        document.getElementById('delivery_fee_ar').textContent = translations['delivery_fee_ar'];
-        document.getElementById('delivery_discount_ar').textContent = translations['delivery_discount_ar'];
-        document.getElementById('taxes_included').textContent = translations['taxes_included'];
-        document.getElementById('phoneLabel').textContent = translations['phoneLabel'];
-        document.getElementById('addressLabel').textContent = translations['addressLabel'];
-        document.getElementById('emailLabel').textContent = translations['emailLabel'];
-        document.getElementById('stateLabel').textContent = translations['stateLabel'];
-        document.getElementById('cityLabel').textContent = translations['cityLabel'];
-        document.getElementById('postalCodeLabel').textContent = translations['postalCodeLabel'];
-        document.getElementById('fullname_h').textContent = translations['fullname_h'];
-        document.getElementById('total_items').textContent = translations['total_items'];
-            document.getElementById('qtyText').textContent = translations['qtyText'];
+      // Update grand total
+      document.getElementById('grand-total').textContent = translations['grand-total'];
 
-        // document.getElementById('subtotal').textContent = translations['subtotal'];
-        document.getElementById('informationForm').textContent = translations['delivery_information'];
+      // Update promotion and tax messages
+      document.getElementById('messages').textContent = translations['messages'];
+      // document.getElementById('promo-code').placeholder = translations['promo-code'];
 
-        // Update grand total
-        document.getElementById('grand-total').textContent = translations['grand-total'];
+      // Update order summary headers
+      document.getElementById('promotion_heading').textContent = translations['promotion_heading'];
+      document.getElementById('card_payment').textContent = translations['card_payment'];
+      document.getElementById('stripe_label').textContent = translations['stripe_label'];
+      document.getElementById('cash_on_delivery').textContent = translations['cash_on_delivery'];
+      document.getElementById('order_summary').textContent = translations['order_summary'];
+      document.getElementById('grand_total_label').textContent = translations['grand_total_label'];
+      document.getElementById('grand_total_label').textContent = translations['grand_total_label'];
+      document.getElementById('proceed_to_pay_he').setAttribute('value', translations['proceed_to_pay']);
+      document.getElementById('enter_code').setAttribute('value', translations['enter_code']);
 
-        // Update promotion and tax messages
-        document.getElementById('messages').textContent = translations['messages'];
-        // document.getElementById('promo-code').placeholder = translations['promo-code'];
-
-        // Update order summary headers
-        document.getElementById('promotion_heading').textContent = translations['promotion_heading'];
-        document.getElementById('order_summary').textContent = translations['order_summary'];
-        document.getElementById('grand_total_label').textContent = translations['grand_total_label'];
-      }
-      console.log(code);
+    }
+    console.log(code);
 
   </script>
   {% endblock %}

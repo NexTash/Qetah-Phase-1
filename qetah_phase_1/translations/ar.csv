@@ -282,7 +282,8 @@ itemsText,Items :,العناصر :
 qtyText,Qty :,الكمية :
 subTotalText,Subtotal :,المجموع الفرعي :
 goToCartBtn,Go to Cart,الذهاب إلى السلة
-
+proceed_to_pay,Proceed to Pay,المضي قدما في الدفع
+enter_code,Enter Code,أدخل الرمز
 //page title
 
 "title_blog_details","Blog Details","تفاصيل المدونة"

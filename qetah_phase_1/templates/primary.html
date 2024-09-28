@@ -106,14 +106,14 @@
         args: { lang: language },
         callback: function (response) {
           const translations = response.message;
-
           updatePageContent(translations);
           updateFooterContent(translations);
           updateHeaderContent(translations);
+          updateSideBarContent(translations);
         }
 
       });
-
+ 
     }
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -126,6 +126,8 @@
       const phoneInput = document.getElementById('phone');
       // const placeholderTextPhone = translations['phone'];
       const messageInput = document.getElementById('message');
+      const proceed_to_pay = document.getElementById('proceed_to_pay_he');
+      const enter_code = document.getElementById('enter_code');
       // const code = document.getElementById('code');
       // // const proceed_to_pay = document.getElementById('proceed_to_pay');
       // // const placeholderTextMessage = translations['message'];
