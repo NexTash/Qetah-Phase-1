@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* ../../../../../tmp/tmp-5253-94ZzGa7bcpEY/qetah_phase_1/qetah_phase_1/public/scss/style.bundle.css */
+/* ../../../../../tmp/tmp-5236-RoHVKpUOYHxT/qetah_phase_1/qetah_phase_1/public/scss/style.bundle.css */
 [x-cloak] {
   display: none !important;
 }
@@ -1352,6 +1352,7 @@ footer .quote i {
   border-radius: 4px;
   white-space: nowrap;
   font-size: 14px;
+  left: 58px !important;
   z-index: 1000;
   pointer-events: none;
   opacity: 0;
@@ -1660,6 +1661,9 @@ footer .quote i {
   .our-story {
     margin-top: 50px;
   }
+  .our-story .heading h2 {
+    margin: 30px 0px !important;
+  }
   .cart .select-items button {
     z-index: 0;
   }
@@ -1738,10 +1742,7 @@ footer .quote i {
   .nxt-header .navbar-brand-lt .no-collapse ul .nav-drop-wrap .nav-icon-link span {
     padding: 2px;
     border-radius: 50%;
-    position: absolute;
-    top: -3px;
     font-size: 9px;
-    right: 5px;
   }
   .nxt-header .navbar-brand-lt .no-collapse .nav-drop-user .navDropToggler .img-no-pp img {
     width: 30px;
@@ -2219,6 +2220,9 @@ footer .quote i {
     font-size: 20px;
     margin: 20px 0px 5px 0;
   }
+}
+.our-story .heading h2 {
+  margin: 60px 0px;
 }
 .our-story figure.snip0078 {
   font-family:
@@ -3475,6 +3479,11 @@ footer .quote i {
 .card-summary .card-head .media .media-foot .check {
   --check-br:50%;
 }
+@media (max-width: 375px) {
+  .card-summary .card-body {
+    padding-bottom: 0px !important;
+  }
+}
 .card-summary .card-body .card-summary .summary-content {
   display: flex;
   align-items: center;
@@ -3526,6 +3535,9 @@ footer .quote i {
 }
 .card-summary .card-foot .summary-content span {
   margin-left: auto;
+}
+.card-summary .card-foot #proceedCheckoutButton {
+  padding: 13px;
 }
 .checkout {
   margin-top: 100px;
@@ -3962,10 +3974,85 @@ footer .quote i {
     margin-left: 20px;
   }
 }
+.white-text {
+  color: white !important;
+}
 body {
   width: 100%;
   height: auto;
   background-color: white;
+}
+body[dir=rtl] .Joining .qetah-family .card-body {
+  border-radius: 7px 150px 150px 7px;
+}
+body[dir=rtl] .sidebar-header {
+  right: 0;
+  left: auto;
+}
+body[dir=rtl] .phone-call {
+  left: 0;
+  right: auto;
+}
+body[dir=rtl] #header {
+  padding: 0 75px 0px 0px;
+}
+body[dir=rtl] .custom-tooltip {
+  left: auto !important;
+  right: 65px;
+}
+body[dir=rtl] .custom-tooltip::after {
+  left: auto !important;
+  right: -15px !important;
+  transform: translateY(-50%) rotate(270deg) !important;
+}
+body[dir=rtl] .About .container .images img {
+  border-radius: 0px 0px 200px 0px;
+}
+body[dir=rtl] .Story .container .images img {
+  border-radius: 0px 0px 0px 200px;
+}
+body[dir=rtl] .mySwiper .swiper-wrapper .swiper-slide .s1 {
+  text-align: right;
+  padding-right: 100px;
+  padding-left: 0px;
+}
+body[dir=rtl] .offcanvas-right {
+  left: 0;
+  right: auto;
+  transform: translateX(0%);
+}
+body[dir=rtl] .offcanvas-right {
+  transform: translateX(-100%);
+}
+body[dir=rtl] .offcanvas-right.open {
+  transform: translateX(0%);
+}
+body[dir=rtl] .detailed-product .row .product-content-area .product-detail-content .product-body .icon p {
+  height: auto !important;
+}
+body[dir=rtl] .badge {
+  height: 25px !important;
+}
+body[dir=rtl] .tabs .tab-panes .row {
+  align-items: baseline;
+}
+body[dir=rtl] .products .swiper .swiper-wrapper .swiper-slide .products .badge,
+body[dir=rtl] .section-products .filtered-cards .cards .products .badge {
+  width: 100px;
+  left: -10px;
+}
+.products .swiper .swiper-wrapper .swiper-slide .products .badge,
+.section-products .filtered-cards .cards .products .badge {
+  width: 100px;
+}
+body[dir=ltr] .product-card .card-body [data-field=en] {
+  height: 0px !important;
+}
+body[dir=rtl] .swiper-wrapper .product-card .card-desc {
+  margin-top: 40px;
+}
+body[dir=rtl] .product-card .card-desc {
+  height: auto !important;
 }
 html {
   overflow-x: hidden;
@@ -4336,4 +4423,4 @@ input[type=number] {
   margin-left: -60px;
   border-radius: 100%;
 }
-/*# sourceMappingURL=style.bundle.DOJKYLWO.css.map */
+/*# sourceMappingURL=style.bundle.3Q262IN2.css.map */

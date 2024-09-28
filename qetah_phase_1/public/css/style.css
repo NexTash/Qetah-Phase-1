@@ -212,9 +212,10 @@
 .nxt-header .navbar-brand-lt .no-collapse ul .nav-drop-wrap .nav-icon-link span {
   padding: 2px;
   border-radius: 50%;
-  position: absolute;
-  top: -5px;
-  right: 5px;
+  background-color: var(--text);
+  position: relative;
+  top: -15px;
+  right: 0; 
 }
 @media (max-width: 375px) {
   .nxt-header .navbar-brand-lt .no-collapse ul .nav-drop-wrap .nav-icon-link span {
@@ -1887,10 +1888,7 @@ footer .quote i {
   .nxt-header .navbar-brand-lt .no-collapse ul .nav-drop-wrap .nav-icon-link span {
     padding: 2px;
     border-radius: 50%;
-    position: absolute;
-    top: -3px;
     font-size: 9px;
-    right: 5px;
   }
   .nxt-header .navbar-brand-lt .no-collapse .nav-drop-user .navDropToggler .img-no-pp img {
     width: 30px;

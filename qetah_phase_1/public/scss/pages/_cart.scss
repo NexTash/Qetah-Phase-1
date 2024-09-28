@@ -270,6 +270,9 @@
   }
 
   .card-body {
+    @media(max-width:375px){
+        padding-bottom: 0px !important;
+    }
     .card-summary {
       .summary-content {
         display: flex;
@@ -331,6 +334,9 @@
       span {
         margin-left: auto;
       }
+    }
+    #proceedCheckoutButton{
+      padding: 13px;
     }
   }
 }

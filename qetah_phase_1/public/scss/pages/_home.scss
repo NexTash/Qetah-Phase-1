@@ -659,7 +659,6 @@
             margin-left: 40%;
           }
         }
-
         .card-body {
           width: 30%;
           background-image: url("/assets/qetah_phase_1/images/home\ 1.jpg");
@@ -680,6 +679,7 @@
       border-radius: 4px;
       white-space: nowrap;
       font-size: 14px;
+      left: 58px !important;
       z-index: 1000;
       pointer-events: none;
       opacity: 0;
@@ -993,7 +993,11 @@ footer .social .links ul {
     @media(max-width:425px){
     .our-story{
       margin-top: 50px;
+
     }
+  .our-story .heading h2 {
+    margin: 30px 0px !important;
+  }
     .cart .select-items button {
         z-index:0;
       }
@@ -1072,10 +1076,7 @@ z-index: 0;
 .nxt-header .navbar-brand-lt .no-collapse ul .nav-drop-wrap .nav-icon-link span {
   padding: 2px;
   border-radius: 50%;
-  position: absolute;
-  top: -3px;
   font-size: 9px;
-  right: 5px;
 }
       .nxt-header .navbar-brand-lt .no-collapse .nav-drop-user .navDropToggler .img-no-pp img {
         width: 30px;

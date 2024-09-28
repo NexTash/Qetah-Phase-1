@@ -1,10 +1,102 @@
 @import "./layouts/_layouts";
 @import "./pages/_pages";
+.white-text{
+color: white !important;
+}
+// [data-field="ar"] {
+//     height: 0px; /* Set height to 0 pixels */
+// }
 body {
   width: 100%;
   height: auto;
   background-color: white;
 }
+body[dir="rtl"]  .Joining .qetah-family .card-body {
+ border-radius: 7px 150px 150px 7px;
+}
+body[dir="rtl"]  .sidebar-header {
+ right: 0;
+ left: auto;
+}
+body[dir="rtl"]  .phone-call {
+ left: 0;
+ right: auto;
+}
+
+body[dir="rtl"]  #header {
+    padding: 0 75px 0px 0px;
+ }
+ body[dir="rtl"]  .custom-tooltip {
+    left: auto !important;
+    right: 65px;
+ }
+ body[dir="rtl"]  .custom-tooltip::after{
+  left: auto !important;
+  right: -15px !important;
+  transform: translateY(-50%) rotate(270deg) !important;
+ }
+ body[dir="rtl"] .About .container .images img {
+    border-radius: 0px 0px 200px 0px;
+ }
+
+ body[dir="rtl"] .Story .container .images img {
+    border-radius: 0px 0px 0px 200px;
+}
+
+body[dir="rtl"] .mySwiper .swiper-wrapper .swiper-slide .s1 {
+  text-align: right;
+  padding-right: 100px;
+  padding-left: 0px;
+}
+
+body[dir="rtl"] .offcanvas-right{
+  left: 0;
+  right: auto;
+  transform: translateX(0%);
+}
+
+body[dir="rtl"] .offcanvas-right {
+  transform: translateX(-100%);
+}
+
+body[dir="rtl"] .offcanvas-right.open {
+  transform: translateX(0%);
+}
+
+body[dir="rtl"] .detailed-product .row .product-content-area .product-detail-content .product-body .icon p{
+  height: auto !important;
+}
+
+body[dir="rtl"] .badge{
+  height: 25px !important;
+
+}
+
+body[dir="rtl"] .tabs .tab-panes .row{
+  align-items: baseline;
+}
+
+body[dir="rtl"] .products .swiper .swiper-wrapper .swiper-slide .products .badge,
+body[dir="rtl"] .section-products .filtered-cards .cards .products .badge {
+  width: 100px;
+  left: -10px;
+}
+.products .swiper .swiper-wrapper .swiper-slide .products .badge,
+.section-products .filtered-cards .cards .products .badge {
+  width: 100px;
+}
+
+body[dir="ltr"] .product-card .card-body [data-field="en"]{
+  height: 0px !important;
+}
+
+body[dir="rtl"] .swiper-wrapper .product-card .card-desc{
+  margin-top: 40px;
+}
+body[dir="rtl"] .product-card .card-desc{
+  height: auto !important;
+}
+
 html {
   overflow-x: hidden;
 }

@@ -193,11 +193,13 @@
           <div class="card card-webinar">
             <div class="card-head select-items">
               <span>
-                <label class="check check-secondary" id="selectAllLabel"><input type="checkbox" /> Select All
-                  (Items)</label>
+                      <label class="check check-secondary" >
+                          <input type="checkbox" class="item-checkbox" data-title="Cloths"><span id="selectAllLabel">Select All (Items)</span> 
+                      </label>
               </span>
               <button class="btn btn-light btn-icon">
-                <i class="bx bx-trash icon-pre delete-item" id="deleteButton"></i>
+                <i class="bx bx-trash icon-pre delete-item" ></i>
+                <span id="deleteButton">DELETE</span>
               </button>
             </div>
           </div>
@@ -847,10 +849,8 @@
       document.getElementById('submitVoucherButton').textContent = translations['submitVoucherButton'];
       document.getElementById('proceedCheckoutButton').textContent = translations['proceedCheckoutButton'];
       document.getElementById('justForYouTitle').textContent = translations['justForYouTitle'];
-      document.getElementById('slideNextButton').textContent = translations['slideNextButton'];
-      document.getElementById('slidePrevButton').textContent = translations['slidePrevButton'];
-    }
-    console.log(address-modal-h);
-    
+      //document.getElementById('slideNextButton').textContent = translations['slideNextButton'];
+     // document.getElementById('slidePrevButton').textContent = translations['slidePrevButton'];
+    }    
   </script>
   {% endblock %}

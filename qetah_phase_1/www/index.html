@@ -173,7 +173,7 @@
         <div class="swiper-slide">
           <div class="products">
             <div class="badge badge-primary badge-pill" data-field="en"> {{ product.title }}</div>
-            <div class="badge badge-primary badge-pill" data-field="ar">{{ product.title_arabic }}</div>
+            <!-- <div class="badge badge-primary badge-pill" data-field="ar">{{ product.title_arabic }}</div> -->
             <div class="card product-card">
               <a href="/product-detail?id={{ product.name }}">
                 <div class="card-head">
@@ -184,8 +184,12 @@
                 {% if product.variations %}
                 {% for variation in product.variations %}
                 <div class="variation">
-                  <div class="badge badge-primary badge-pill" data-field="en">{{ variation.title }}</div>
-                  <div class="badge badge-primary badge-pill" data-field="ar">{{ variation.title_arabic }}</div>
+                  <div class="card-title" data-field="en">{{ variation.title }}</div>
+                  <div class="card-desc text-ellipsis text-ellipsis-2" data-field="en">{{ variation.description }}</div>
+
+                  <div class="card-title" data-field="ar">{{ variation.title_arabic }}</div>
+                  <div class="card-desc text-ellipsis text-ellipsis-2" data-field="ar">{{ variation.description_arabic}}</div>
+
                   <div class="card-subtitle"><del>USD {{ variation.discount }}</del></div>
                   <div class="card-title p-price">USD {{ variation.price }}</div>
                 </div>
@@ -193,9 +197,9 @@
                 {% else %}
                 <!-- <p id="badge_no_variations">No variations available</p> -->
                 {% endif %}
-                <div class="card-rating" id="card_sold">
+                <div class="card-rating">
                   <i class="bx bxs-star"></i>
-                  <span>{{ product.rating_count }}</span> ({{ product.sold }}) Sold
+                  <span>{{ product.rating_count }}</span> ({{ product.sold }}) <span id="card_sold"></span>
                 </div>
               </div>
               <div class="card-foot">
@@ -214,7 +218,7 @@
       <button class="slide-next btn btn-secondary btn-sm bx bx-right-arrow-alt"></button>
       <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
     </div>
-
+  </div>
     <div class="container Story">
       <div class="badge badge-o-dark badge-pill fw-bold" id="our_story_heading_h">Our Story</div>
       <div class="container d-flex our-story">
@@ -259,8 +263,8 @@
     </div>
     <div class="container Appointment" style="background-image: url('/assets/qetah_phase_1/images/bg-swirl-1.webp')">
       <div class="text">
-        <h1 id="appointment_heading">Book An Appointment</h1>
-        <p id="appointment_intro">Just book your appointment now and get your dress done</p>
+        <h1 id="appointment_heading" class="white-text">Book An Appointment</h1>
+        <p id="appointment_intro" class="white-text">Just book your appointment now and get your dress done</p>
       </div>
       <div class="button">
         <button class="btn btn-pill">
@@ -283,7 +287,7 @@
             <article class="card card-blog" data-aos-duration="1000" data-aos="fade-up" data-aos-once="true"
               data-aos-easing="ease-in-out">
               <a class="card-image image-zoom" href="/blog-detail?id={{blog.name}}">
-                <img src="{{ blog.meta_image }}" data-field="en" class="image" loading="lazy" alt="" />
+                <img src="{{ blog.meta_image }}"  class="image" loading="lazy" alt="" />
               </a>
               <div class="card-body">
                 <span class="card-badge" data-field="en">{{ blog.title }}</span>
@@ -326,7 +330,7 @@
         <div class="swiper-button-next"></div>
       </div>
     </div>
-  </div>
+
   {% endblock %}
 
   {% block scripts %}

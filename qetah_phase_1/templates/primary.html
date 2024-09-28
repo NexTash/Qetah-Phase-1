@@ -86,7 +86,6 @@
   {%- endblock %}
   <!-- csrf_token -->
   {%- block body_include %}{{ body_include or "" }}{% endblock -%}
-
   <script>
 
 
@@ -111,12 +110,10 @@
           updatePageContent(translations);
           updateFooterContent(translations);
           updateHeaderContent(translations);
-
-
         }
 
       });
-      
+
     }
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -149,11 +146,11 @@
     var selectedLanguage = localStorage.getItem('selectedLanguage');
 
     if (selectedLanguage === 'ar') {
-      $('[data-field="en"]').css("visibility", "hidden");
-      $('[data-field="ar"]').css("visibility", "visible");
+      $('[data-field="en"]').css("display", "none");
+      $('[data-field="ar"]').css("display", "block");
     } else {
-      $('[data-field="ar"]').css("visibility", "hidden");  // Optionally hide Arabic content if the language is not 'ar'
-      $('[data-field="en"]').css("visibility", "visible"); // Ensure English content is shown in case of other languages
+      $('[data-field="ar"]').css("display", "none");  // Optionally hide Arabic content if the language is not 'ar'
+      $('[data-field="en"]').css("display", "block"); // Ensure English content is shown in case of other languages
     }
 
     function noice() {
@@ -161,17 +158,20 @@
       var selectedLanguage = localStorage.getItem('selectedLanguage');
       // If the selected language is 'ar', hide elements with data-field="en"
       if (selectedLanguage === 'ar') {
-        $('[data-field="en"]').css("visibility", "hidden");
-        $('[data-field="ar"]').css("visibility", "visible");  // Optionally show Arabic content
+        $('[data-field="en"]').css("display", "none");
+        $('[data-field="en"]').css({
+          "display": "none",
+        });
+        $('[data-field="ar"]').css("display", "block");  // Optionally show Arabic content
       } else {
-        $('[data-field="ar"]').css("visibility", "hidden");  // Optionally hide Arabic content if the language is not 'ar'
-        $('[data-field="en"]').css("visibility", "visible");  // Ensure English content is shown in case of other languages
+        $('[data-field="ar"]').css("display", "none");  // Optionally hide Arabic content if the language is not 'ar'
+        $('[data-field="en"]').css("display", "block");  // Ensure English content is shown in case of other languages
       }
     }
     console.log(sidebar_eng);
+    
 
   </script>
-
 
   <!-- SCRIPTS -->
   <script src="/assets/qetah_phase_1/js/sidebar.js"></script>
@@ -181,98 +181,218 @@
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <!-- SCRIPTS -->
+
   <script>
-    new Swiper(".product-slider", {
-      loop: true,
-      slidesPerView: 4,
-      spaceBetween: 30,
-      navigation: {
-        nextEl: ".slide-next",
-        prevEl: ".slide-prev",
-      },
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-      },
-      breakpoints: {
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 20,
-        },
-        375: {
-          slidesPerView: 1,
-          spaceBetween: 20,
-        },
-        425: {
-          slidesPerView: 1,
-          spaceBetween: 20,
-        },
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 40,
-        },
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 50,
-        },
-      },
+  document.addEventListener('DOMContentLoaded', function () {
+    function initializeSwiper(isRTL) {
+        return new Swiper(".product-slider", {
+            slidesPerView: 6,
+            spaceBetween: 15,
+            loop: true,
+            direction: 'horizontal',
+            rtl: isRTL,
+            navigation: {
+                nextEl: ".slide-next",
+                prevEl: ".slide-prev",
+            },
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                },
+                375: {
+                    slidesPerView: 1,
+                },
+                425: {
+                    slidesPerView: 1,
+                },
+                576: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+                1440: {
+                    slidesPerView: 3,
+                },
+                1920: {
+                    slidesPerView: 3,
+                },
+                2560: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+    }
+
+    var isRTL = document.body.dir === 'rtl';
+    var swiperContainer = document.querySelector('.product-slider');
+    swiperContainer.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+    var swiper = initializeSwiper(isRTL);
+
+    function updateLanguage(isArabic) {
+        var newDirection = isArabic ? 'rtl' : 'ltr';
+
+        if (newDirection !== document.body.dir) {
+            location.reload();
+        } else {
+            localStorage.setItem('language', isArabic ? 'arabic' : 'english');
+            swiperContainer.setAttribute('dir', newDirection);
+            swiper.destroy();
+            swiper = initializeSwiper(isArabic);
+        }
+    }
+
+    document.querySelector('.ar').addEventListener('click', function () {
+        var currentDirection = document.body.dir;
+        if (currentDirection !== 'rtl') {
+            updateLanguage(true);
+        } else {
+            localStorage.setItem('language', 'arabic');
+            swiperContainer.setAttribute('dir', 'rtl');
+            swiper.destroy();
+            swiper = initializeSwiper(true);
+        }
     });
 
-    new Swiper(".mySwiper", {
-      loop: true,
-      spaceBetween: 40,
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        dynamicBullets: true,
-        clickable: true,
-      },
-      autoplay: {
-        delay: 2000,
-        disableOnInteraction: false,
-      },
+    document.querySelector('.eng').addEventListener('click', function () {
+        var currentDirection = document.body.dir;
+        if (currentDirection !== 'ltr') {
+            updateLanguage(false);
+        } else {
+            localStorage.setItem('language', 'english');
+            swiperContainer.setAttribute('dir', 'ltr');
+            swiper.destroy();
+            swiper = initializeSwiper(false);
+        }
+    });
+});
+
+    document.addEventListener('DOMContentLoaded', function () {
+      new Swiper(".mySwiper", {
+        loop: true,
+        spaceBetween: 40,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          dynamicBullets: true,
+          clickable: true,
+        },
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+        },
+      });
     });
 
-    new Swiper(".blog-slider", {
-      slidesPerView: 1,
-      pagination: true,
-      navigation: {
-        nextEl: ".slide-next",
-        prevEl: ".slide-prev",
-      },
-      breakpoints: {
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 20,
-        },
-        375: {
-          slidesPerView: 1,
-          spaceBetween: 20,
-        },
-        425: {
-          slidesPerView: 1,
-          spaceBetween: 20,
-        },
-        576: {
-          slidesPerView: 4,
-        },
-        768: {
-          slidesPerView: 3,
-          spaceBetween: 40,
-        },
-        992: {
-          slidesPerView: 4,
-        },
-      },
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-      },
-      loop: true,
+    document.addEventListener('DOMContentLoaded', function () {
+    function initializeSwiper(isRTL) {
+        return new Swiper(".blog-slider", {
+            slidesPerView: 6,
+            spaceBetween: 15,
+            loop: true,
+            direction: 'horizontal',
+            rtl: isRTL,
+            navigation: {
+                nextEl: ".slide-next",
+                prevEl: ".slide-prev",
+            },
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                },
+                375: {
+                    slidesPerView: 1,
+                },
+                425: {
+                    slidesPerView: 1,
+                },
+                576: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                992: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+                1280: {
+                    slidesPerView: 3,
+                },
+                1440: {
+                    slidesPerView: 4,
+                },
+                1920: {
+                    slidesPerView: 4,
+                },
+                2560: {
+                    slidesPerView: 4,
+                },
+            },
+        });
+    }
+
+    var isRTL = document.body.dir === 'rtl';
+    var swiperContainer = document.querySelector('.blog-slider');
+    swiperContainer.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+    var swiper = initializeSwiper(isRTL);
+
+    function updateLanguage(isArabic) {
+        var newDirection = isArabic ? 'rtl' : 'ltr';
+
+        if (newDirection !== document.body.dir) {
+            location.reload();
+        } else {
+            localStorage.setItem('language', isArabic ? 'arabic' : 'english');
+            swiperContainer.setAttribute('dir', newDirection);
+            swiper.destroy();
+            swiper = initializeSwiper(isArabic);
+        }
+    }
+
+    document.querySelector('.ar').addEventListener('click', function () {
+        var currentDirection = document.body.dir;
+        if (currentDirection !== 'rtl') {
+            updateLanguage(true);
+        } else {
+            localStorage.setItem('language', 'arabic');
+            swiperContainer.setAttribute('dir', 'rtl');
+            swiper.destroy();
+            swiper = initializeSwiper(true);
+        }
     });
+
+    document.querySelector('.eng').addEventListener('click', function () {
+        var currentDirection = document.body.dir;
+        if (currentDirection !== 'ltr') {
+            updateLanguage(false);
+        } else {
+            localStorage.setItem('language', 'english');
+            swiperContainer.setAttribute('dir', 'ltr');
+            swiper.destroy();
+            swiper = initializeSwiper(false);
+        }
+    });
+});
+
+
+
   </script>
   <script>
     var customerReviewSwiper = new Swiper(".slide-container", {

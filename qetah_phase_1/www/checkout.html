@@ -124,7 +124,7 @@
       <h5 id="order_summary">Order Summary</h5>
       <div class="order-info">
         <div class="order-detail">
-          <div class="item" id="total_items"><span id="item-count"></span></div>
+          <div class="item"><span id="item-count"></span> <span id="total_items"></span></div>
           <!-- Item count goes here -->
           <div class="">$ <span id="subtotal">0</span></div> <!-- Subtotal goes here -->
         </div>
@@ -310,7 +310,7 @@
         let subtotal = 0;
         let itemCount = items.length;
 
-        console.log("Items length: ", items.length); // Check item count in the console
+        // console.log("Items length: ", items.length); // Check item count in the console
 
         items.forEach((item, index) => {
           const price = parseFloat(item.price.replace(/[^0-9.-]/g, '')); // Convert price string to a number
