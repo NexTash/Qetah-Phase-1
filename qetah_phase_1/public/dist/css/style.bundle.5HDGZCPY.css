@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* ../../../../../tmp/tmp-5236-RoHVKpUOYHxT/qetah_phase_1/qetah_phase_1/public/scss/style.bundle.css */
+/* ../../../../../tmp/tmp-17829-8cw5sdLqsr7h/qetah_phase_1/qetah_phase_1/public/scss/style.bundle.css */
 [x-cloak] {
   display: none !important;
 }
@@ -4024,6 +4024,16 @@ body[dir=rtl] .offcanvas-right {
 body[dir=rtl] .offcanvas-right {
   transform: translateX(-100%);
 }
+body[dir=rtl] .offcanvas-body .check input {
+  margin-left: 23px;
+}
+body[dir=rtl] .section-products .filtered-cards .field {
+  right: 283px;
+}
+body[dir=rtl] .offcanvas-header .btn-close {
+  left: 10px;
+  right: auto;
+}
 body[dir=rtl] .offcanvas-right.open {
   transform: translateX(0%);
 }
@@ -4032,6 +4042,9 @@ body[dir=rtl] .detailed-product .row .product-content-area .product-detail-conte
 }
 body[dir=rtl] .badge {
   height: 25px !important;
+}
+body[dir=rtl] .btn-icon .icon-post {
+  transform: rotate(180deg);
 }
 body[dir=rtl] .tabs .tab-panes .row {
   align-items: baseline;
@@ -4423,4 +4436,4 @@ input[type=number] {
   margin-left: -60px;
   border-radius: 100%;
 }
-/*# sourceMappingURL=style.bundle.3Q262IN2.css.map */
+/*# sourceMappingURL=style.bundle.5HDGZCPY.css.map */

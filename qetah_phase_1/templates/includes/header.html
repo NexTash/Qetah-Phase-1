@@ -108,7 +108,8 @@
                   </div>
                   <div class="select-all" style="padding: 16px 16px 0px 16px;">
                     <label class="check check-secondary" >
-                      <input type="checkbox" id="selectAll2"/> <p class="m-0" id="select_All_m"> </p> 
+                     <p class="m-0" id="select_All_m"> </p>
+                      <input type="checkbox" id="selectAll2"/> 
                     </label>
 
                     <hr style="margin: 5px 0px;
@@ -193,32 +194,35 @@
   document.addEventListener('DOMContentLoaded', () => {
     const cartButton = document.querySelectorAll('.btn-cart'); // Select all 'Add to Cart' buttons
 
-    cartButton.forEach(button => {
-      button.addEventListener('click', (e) => {
-        const productCard = e.target.closest('.product-card');
-        if (!productCard) return;
+    // cartButton.forEach(button => {
+    //   button.addEventListener('click', (e) => {
+    //     const productCard = e.target.closest('.product-card');
+    //     console.log(productCard);
+        
+    //     if (!productCard) return;
 
-        // Get product details
-        const product = {
-          title: productCard.querySelector('.card-title').innerText,
-          image: productCard.querySelector('.card-image').src,
-          desc: productCard.querySelector('.card-desc').innerText,
-          price: productCard.querySelector('.card-price').innerText,
-        };
+    //     // Get product details
+    //     const product = {
+    //       title: productCard.querySelector('.card-title').innerText,
+    //       image: productCard.querySelector('.card-image').src,
+    //       desc: productCard.querySelector('.card-desc').innerText,
+    //       price: productCard.querySelector('.card-price').innerText,
+    //     };
 
-        // Get current cart from localStorage or initialize an empty array
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    //     // Get current cart from localStorage or initialize an empty array
+    //     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    //     console.log(product,cart);
+        
+    //     // Add new product to the cart
+    //     cart.push(product);
 
-        // Add new product to the cart
-        cart.push(product);
+    //     // Save the updated cart back to localStorage
+    //     localStorage.setItem('cart', JSON.stringify(cart));
 
-        // Save the updated cart back to localStorage
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-        // Show a message or confirmation (optional)
-        // alert('Product added to cart!');
-      });
-    });
+    //     // Show a message or confirmation (optional)
+    //     // alert('Product added to cart!');
+    //   });
+    // });
   });
 
 </script>
@@ -305,4 +309,28 @@
       }
     });
   });
+
+  //   document.addEventListener('DOMContentLoaded', () => {
+  //   const overlay = document.getElementById('overlay');
+  //   const toggleButton = document.getElementById('toggleButton');
+
+  //   // Function to toggle overlay visibility
+  //   function toggleOverlay() {
+  //     if (overlay.classList.contains('show')) {
+  //       overlay.classList.remove('show');
+  //     } else {
+  //       overlay.classList.add('show');
+  //     }
+  //   }
+
+  //   // Add click event listener to the toggle button
+  //   toggleButton.addEventListener('click', () => {
+  //     toggleOverlay();
+  //   });
+
+  //   // Optionally, you might want to hide the overlay when clicking on it
+  //   overlay.addEventListener('click', () => {
+  //     overlay.classList.remove('show');
+  //   });
+  // });
 </script>

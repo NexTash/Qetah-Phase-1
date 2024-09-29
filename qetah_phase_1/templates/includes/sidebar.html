@@ -37,12 +37,12 @@
     <div class="program-sidebar-brand">
       <div class="sidebar-brand">
         <!-- Large Logo -->
-        <a href="#" class="lg-logo" x-show="isStatic">
+        <a href="/index" class="lg-logo" x-show="isStatic">
           <img src="/assets/qetah_phase_1/images/black-qetah-removebg-preview.png" width="100px" class="lg-img"
             alt="Logo" style="display: none;" />
         </a>
         <!-- Small Logo -->
-        <a href="#" class="sm-logo">
+        <a href="/index" class="sm-logo">
           <img src="/assets/qetah_phase_1/images/WhatsApp_Image_2024-08-08_at_13.44.53_b31d506f-removebg-preview.png"
             class="sm-img" alt="Responsive Logo" width="30px" />
         </a>
@@ -257,27 +257,5 @@
   });
 </script>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const overlay = document.getElementById('overlay');
-    const toggleButton = document.getElementById('toggleButton');
 
-    // Function to toggle overlay visibility
-    function toggleOverlay() {
-      if (overlay.classList.contains('show')) {
-        overlay.classList.remove('show');
-      } else {
-        overlay.classList.add('show');
-      }
-    }
-
-    // Add click event listener to the toggle button
-    toggleButton.addEventListener('click', () => {
-      toggleOverlay();
-    });
-
-    // Optionally, you might want to hide the overlay when clicking on it
-    overlay.addEventListener('click', () => {
-      overlay.classList.remove('show');
-    });
-  });
 </script>

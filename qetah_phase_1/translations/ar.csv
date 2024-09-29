@@ -163,7 +163,6 @@ see_more,See more,شاهد المزيد
 "add_to_cart_button","Add To Cart","أضف إلى السلة"
 "save_to_wishlist_button","Save To Wishlist","احفظ في قائمة الرغبات"
 "related_products_title","Related Product","المنتجات ذات الصلة"
-"buy_now_button","Buy Now","اشتر الآن"
 "customer_reviews_title","What Our Customers Say","ماذا يقول عملاؤنا"
 "reviewer_name","{{ testimonil.full_name }}","{{ testimonil.full_name_ar }}"
 "review_feedback","{{ testimonil.feedback }}","{{ testimonil.feedback_ar }}"
@@ -284,6 +283,11 @@ subTotalText,Subtotal :,المجموع الفرعي :
 goToCartBtn,Go to Cart,الذهاب إلى السلة
 proceed_to_pay,Proceed to Pay,المضي قدما في الدفع
 enter_code,Enter Code,أدخل الرمز
+fulfilled_by_qetah,Fulfilled by Qetah,تم الوفاء بها من قبل قطة
+"qetah_title_qetah","Qetah","قتاح"
+"pakge_of","Pakge",حزمة 
+"of_v","of",من
+
 //page title
 
 "title_blog_details","Blog Details","تفاصيل المدونة"

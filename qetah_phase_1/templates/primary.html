@@ -235,9 +235,10 @@
 
     var isRTL = document.body.dir === 'rtl';
     var swiperContainer = document.querySelector('.product-slider');
-    swiperContainer.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+    if(swiperContainer){
+      swiperContainer.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+    }
     var swiper = initializeSwiper(isRTL);
-
     function updateLanguage(isArabic) {
         var newDirection = isArabic ? 'rtl' : 'ltr';
 
@@ -352,7 +353,10 @@
 
     var isRTL = document.body.dir === 'rtl';
     var swiperContainer = document.querySelector('.blog-slider');
-    swiperContainer.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+    if(swiperContainer){
+
+      swiperContainer.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+    }
     var swiper = initializeSwiper(isRTL);
 
     function updateLanguage(isArabic) {
@@ -367,18 +371,6 @@
             swiper = initializeSwiper(isArabic);
         }
     }
-
-    document.querySelector('.ar').addEventListener('click', function () {
-        var currentDirection = document.body.dir;
-        if (currentDirection !== 'rtl') {
-            updateLanguage(true);
-        } else {
-            localStorage.setItem('language', 'arabic');
-            swiperContainer.setAttribute('dir', 'rtl');
-            swiper.destroy();
-            swiper = initializeSwiper(true);
-        }
-    });
 
     document.querySelector('.eng').addEventListener('click', function () {
         var currentDirection = document.body.dir;

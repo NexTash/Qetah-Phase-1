@@ -59,6 +59,19 @@ body[dir="rtl"] .offcanvas-right {
   transform: translateX(-100%);
 }
 
+body[dir="rtl"] .offcanvas-body .check input{
+  margin-left: 23px;
+}
+
+body[dir="rtl"] .section-products .filtered-cards .field{
+  right: 283px;
+}
+
+body[dir="rtl"] .offcanvas-header .btn-close {
+  left: 10px;
+  right: auto;
+}
+
 body[dir="rtl"] .offcanvas-right.open {
   transform: translateX(0%);
 }
@@ -69,7 +82,10 @@ body[dir="rtl"] .detailed-product .row .product-content-area .product-detail-con
 
 body[dir="rtl"] .badge{
   height: 25px !important;
+}
 
+body[dir="rtl"] .btn-icon .icon-post {
+      transform: rotate(180deg);
 }
 
 body[dir="rtl"] .tabs .tab-panes .row{

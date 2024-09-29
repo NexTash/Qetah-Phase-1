@@ -194,12 +194,12 @@
             <div class="card-head select-items">
               <span>
                       <label class="check check-secondary" >
-                          <input type="checkbox" class="item-checkbox" data-title="Cloths"><span id="selectAllLabel">Select All (Items)</span> 
+                          <input type="checkbox" class="item-checkbox" data-title="Cloths" id="selectAllLabel"><span>Select All (Items)</span> 
                       </label>
               </span>
               <button class="btn btn-light btn-icon">
                 <i class="bx bx-trash icon-pre delete-item" ></i>
-                <span id="deleteButton">DELETE</span>
+                <span id="deleteButton" onclick="clearCart()">DELETE</span>
               </button>
             </div>
           </div>
@@ -351,7 +351,7 @@
               <h2 id="order_summary">Order Summary</h2>
               <div class="summary-content">
                 <p class="summary-name" id="subtotalLabel">Subtotal <span id="item-count">0</span></p>
-                <span class="summary-value">$ <span id="subtotal"></span></span>
+                <span class="summary-value">$ <span id="subtotal-cart">0</span></span>
               </div>
               <!-- <div class="summary-content">
                 <p class="summary-name">Subtotal (4 items)</p>
@@ -402,10 +402,10 @@
                 </div>
                 <div class="card-body">
                   <div class="card-title" data-field="en">{{ variation.intro }}</div>
-                  <div class="card-title" data-field="ar">{{ variation.intro_arabic }}</div>
+                  <div class=" card-title" data-field="ar" id="title-ar">{{ variation.intro_arabic }}</div>
                   <div class="card-desc text-ellipsis text-ellipsis-2" data-field="en">{{
                     variation.description }}</div>
-                  <div class="card-desc text-ellipsis text-ellipsis-2" data-field="ar">{{
+                  <div class=" card-desc text-ellipsis text-ellipsis-2" data-field="ar" id="desc-ar">{{
                     variation.description_arabic }}</div>
                   <div class="card-subtitle"><del>USD {{ variation.price }}</del></div>
                   <div class="card-title">USD {{ variation.discount }}</div>
@@ -480,6 +480,7 @@
 
       function updateOffcanvas() {
         // Clear the current items
+        console.log(title_ar);
         offcanvasBody.innerHTML = '';
 
         // Add each item in the wishlist to the offcanvas
@@ -494,8 +495,10 @@
                 </div>
                 <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
                 <div class="text">
-                    <p class="offcanvas-title text-ellipsis">${item.title}</p>
+                    <p class="offcanvas-title text-ellipsis" data-field="ar">${item.title}</p> <h2> arabic lorem </h2>
+                    <p class="offcanvas-title text-ellipsis" data-field="ar">${item.title_ar}</p>
                     <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;}">${item.desc}</div>
+                    <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;}">${item.desc_ar}</div>
                      <div class="quantity-counter">
                     <p class="price update-price" data-price-per-item="${item.price}">${item.price}</p> 
                             <div class="counter">
@@ -503,10 +506,9 @@
             <input class="counter-value value" type="number" value="1" min="0" />
             <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment"></button>
         </div> 
-         </div>
-                    
-                </div>
-            `;
+        </div>
+        </div>
+          `;
           offcanvasBody.appendChild(itemDiv);
         });
 
@@ -529,10 +531,19 @@
           // Get product details from the card
           const product = {
             title: productCard.querySelector('.card-title').innerText,
+            title_ar: productCard.document.getElementById('title-ar').innerHTML,
             image: productCard.querySelector('.card-image').src,
             desc: productCard.querySelector('.card-desc').innerText,
+            // desc_ar: productCard.querySelector('.desc-ar').innerText,
+            desc_ar: productCard.document.getElementById('desc-ar').innerHTML,
             price: productCard.querySelector('.card-price').innerText,
           };
+          console.log("desc-ar");
+          console.log("title-ar");
+          console.log(product);
+          
+          
+          
 
           // Add product to wishlist
           addToWishlist(product);
@@ -598,7 +609,12 @@
 
       // Retrieve cart items from localStorage, ensuring it's an array
       let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-
+      console.log(cartItems);
+      function clearCart() {
+        cartItems = [];
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+        renderCartItems(cartItems);
+      }
       // Function to render cart items
       function renderCartItems(items) {
         let subtotal = 0;
@@ -610,9 +626,9 @@
         items.forEach((item, index) => {
           // Convert price to a number
           const price = parseFloat(item.price.replace(/[^0-9.-]/g, ''));
-          const itemTotal = price * (item.quantity || 1);
+          const itemTotal = price * (item.qty || 1);
           subtotal += itemTotal;
-          itemCount += item.quantity || 1; // Increase itemCount by item quantity
+          itemCount += item.qty || 1; // Increase itemCount by item quantity
 
           // Create HTML for the cart item
           const itemHTML = `
@@ -650,7 +666,7 @@
                       <div class="quantity-counter">
                           <div class="counter">
                               <button class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement" data-index="`+ index + `" data-field="addition"></button>
-                              <input class="counter-value value" type="number" value="${item.quantity || 1}" min="1" data-index="` + index + `" />
+                              <input class="counter-value value" type="number" value="${item.qty || 1}" min="1" data-index="` + index + `" />
                               <button class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment" data-index="`+ index + `"></button>
                           </div>
                       </div>
@@ -752,11 +768,7 @@
       }
 
       // Clear the cart before adding new items (use when necessary)
-      function clearCart() {
-        cartItems = [];
-        localStorage.setItem('cart', JSON.stringify(cartItems));
-        renderCartItems(cartItems);
-      }
+      
     });
   </script>
   <!-- address model script -->
@@ -821,6 +833,64 @@
       });
     }
   </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const selectAllCheckbox = document.querySelector('input#selectAllLabel');
+        const itemCheckboxes = document.querySelectorAll('.cart-product-card .item-checkbox');
+        const subtotalElement = document.getElementById('subtotal-cart');
+
+        // Function to update the subtotal
+        function updateSubtotal() {
+            let subtotal = 0;
+
+            itemCheckboxes.forEach((checkbox) => {
+                if (checkbox.checked) {
+                    // Get the item associated with the checkbox
+                    const productCard = checkbox.closest('.cart-product-card');
+                    const priceElement = productCard.querySelector('.price');
+                    const quantityInput = productCard.querySelector('.counter-value.value');
+
+                    const price = parseFloat(priceElement.textContent.trim());
+                    const quantity = parseInt(quantityInput.value);
+
+                    // Add to subtotal
+                    subtotal += price * quantity;
+                }
+            });
+
+            // Update the subtotal in the DOM
+            subtotalElement.textContent = subtotal.toFixed(2);
+        }
+
+        // Handle individual item checkbox changes
+        itemCheckboxes.forEach((checkbox) => {
+            checkbox.addEventListener('change', () => {
+                updateSubtotal();
+                // If not all checkboxes are checked, uncheck "Select All"
+                if (!Array.from(itemCheckboxes).every((checkbox) => checkbox.checked)) {
+                    selectAllCheckbox.checked = false;
+                }
+            });
+        });
+
+        // Handle "Select All" checkbox
+        selectAllCheckbox.addEventListener('change', (e) => {
+            const isChecked = e.target.checked;
+
+            itemCheckboxes.forEach((checkbox) => {
+                checkbox.checked = isChecked;
+            });
+
+            updateSubtotal();
+        });
+
+        // Initial calculation of subtotal on page load
+        updateSubtotal();
+    });
+</script>
+
+  
   <script>
     // arabic id
     function updatePageContent(translations) {

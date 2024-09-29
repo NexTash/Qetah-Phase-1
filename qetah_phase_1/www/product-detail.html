@@ -78,7 +78,7 @@
             </div>
             <div class="product-foot">
               <div class="btn-group">
-                <button id="addToCartBtn" class="btn btn-secondary btn-lg btn-icon">
+                <button id="addToCartBtn"  class="btn btn-secondary btn-lg btn-icon btn-cart">
                   <i class="bx bx-cart icon-pre" id="add_to_cart_button"></i>
                 </button>
                 <button class="btn btn-light btn-lg btn-icon btn-heart">
@@ -152,7 +152,7 @@
                   </div>
                 </a>
                 <div class="card-foot">
-                  <button class="btn btn-light btn-icon btn-pill" id="buy_now_button"><i
+                  <button class="btn btn-light btn-icon btn-pill btn-cart" id="buy_now_button"><i
                       class="bx bx-cart icon-pre"></i> Buy Now</button>
                   <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
                 </div>
@@ -554,9 +554,6 @@
           });
         }
       });
-
-
-
     </script>
 
     <script>
@@ -572,4 +569,42 @@
 
       }
     </script>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const cartButtons = document.querySelectorAll('.btn-cart'); // Select all 'Add to Cart' buttons
+
+    cartButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const productCard = e.target.closest('.product-card');
+            if (!productCard) return;
+
+            // Get product details from the product card
+            const product = {
+                title: productCard.querySelector('.card-title').innerText,
+                image: productCard.querySelector('.card-image').src,
+                desc: productCard.querySelector('.card-desc').innerText,
+                brand: productCard.querySelector('.card-brand').innerText,
+                price: productCard.querySelector('.card-price').innerText,
+                discount: productCard.querySelector('.card-discount').innerText,
+            };
+
+            // Get current cart from localStorage or initialize an empty array
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Add the new product to the cart
+            cart.push(product);
+
+            // Save the updated cart back to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Optionally show a message (like a confirmation that the product was added)
+            alert('Product added to cart!');
+        });
+    });
+});
+
+    </script>
+
     {% endblock %}

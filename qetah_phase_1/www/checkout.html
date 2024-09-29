@@ -318,8 +318,8 @@
           const itemHTML = `
       <div class="card card-webinar cart-product-card">
         <div class="card-head">
-          <span>Package ${index + 1} of ${items.length}</span>
-          <p>Fulfilled by <b>QETAH</b></p>
+          <p><span id="pakge"> Package </span>${index + 1}<span id="of"> of </span>${items.length}</p>
+          <span><p id="fulfilled_by_qetah">Fulfilled by <b>QETAH</b></p></span>
         </div>
         <hr />
         <div class="cart-card">
@@ -346,7 +346,7 @@
           </div>
           <div class="card-foot">
             <div class="qty">
-              <span id="qtyText">Qty:</span>
+              <span id="qty-Text">Qty:</span>
               <span>${items.length}</span>
             </div>
           </div>
@@ -557,8 +557,12 @@
       document.getElementById('postalCodeLabel').textContent = translations['postalCodeLabel'];
       document.getElementById('fullname_h').textContent = translations['fullname_h'];
       document.getElementById('total_items').textContent = translations['total_items'];
-      document.getElementById('qtyText').textContent = translations['qtyText'];
+      document.getElementById('qty-Text').textContent = translations['qtyText'];
       document.getElementById('apply_button').textContent = translations['apply_button'];
+      document.getElementById('fulfilled_by_qetah').textContent = translations['fulfilled_by_qetah'];
+      document.getElementById('title_qetah_h').textContent = translations['title_qetah_h'];
+      document.getElementById('pakge').textContent = translations['pakge_of'];
+      document.getElementById('of').textContent = translations['of_v'];
 
       // document.getElementById('subtotal').textContent = translations['subtotal'];
       document.getElementById('informationForm').textContent = translations['delivery_information'];
@@ -582,7 +586,6 @@
       document.getElementById('enter_code').setAttribute('value', translations['enter_code']);
 
     }
-    console.log(code);
 
   </script>
   {% endblock %}
