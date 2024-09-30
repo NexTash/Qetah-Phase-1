@@ -95,9 +95,10 @@
     }
   
     .navbar-brand-lt {
+      width: 50%;
       display: flex;
-      align-items: center;
-      margin-left: 26px;
+      align-items: center;  
+      justify-content: end;
       @media (max-width: 425px) {
         margin: 10px;
         height: 14px;
@@ -467,4 +468,10 @@
 ::-webkit-scrollbar-thumb {
   background: #b3b3b3; 
   border-radius: 50px;
+}
+
+
+.bredcum-opert {
+  display: flex;
+  align-items: center;
 }

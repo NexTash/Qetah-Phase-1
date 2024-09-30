@@ -444,11 +444,12 @@
           }
           img {
             max-width: 436px;
-            max-height: 560px;
             height: 560px;
             width: 436px;
             @media (max-width: 425px) {
-              max-height: 320px;
+              max-width: 100%;
+              max-height: auto;
+              height: auto;
             }
           }
         }
@@ -584,7 +585,9 @@
 }
 @media (max-width:1024px){
   .tab-pane .row {
-    width: 110%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
 }
 
 .btn-model {
@@ -592,7 +595,7 @@ display: none;
 }
 .section-products .filtered-cards .field {
   position: absolute;
-  right: 11px;
+  right: 70px;
   top: 80px;
 }
 .section-products {
@@ -602,10 +605,13 @@ display: none;
   width: auto;
 }
 }
+
 @media (max-width:768px){
+
   .tab-pane .row {
-    width: 110%;
-}
+    grid-template-columns: auto;
+  }
+
 .btn-model {
   display: block;
   position: relative;
@@ -637,6 +643,17 @@ display: none;
   width: auto;
 }
 }
+@media (max-width: 650px){
+  .btn-model {
+    left: 50%;
+  }
+}
+@media (max-width: 576px){
+  .btn-model {
+    left: 40%;
+  }
+}
+
 @media (max-width:425px){
   .nxt-header{
     width: 100%;

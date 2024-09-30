@@ -5,6 +5,10 @@
 .offcanvas-right {
     width: 350px;
 
+    @media (max-width: 320px) {
+        width: 325px;
+    }
+
     .offcanvas-body {
         height: 81%;
         overflow-y: scroll;

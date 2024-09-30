@@ -220,7 +220,9 @@
     </div>
   </div>
     <div class="container Story">
-      <div class="badge badge-o-dark badge-pill fw-bold" id="our_story_heading_h">Our Story</div>
+        <div class="text-center">
+          <div class="badge badge-o-dark badge-pill fw-bold" id="our_story_heading_h">Our Story</div>
+        </div>
       <div class="container d-flex our-story">
         <div class="images">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMVSO5_Qnbe7v-DlXEcagBf8IxIBeieQ3eyA&s"
@@ -308,11 +310,11 @@
         <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
       </div>
     </div>
-    <div class="container customer-reviews">
+    <div class="container customer-reviews text-center">
       <div class="badge badge-o-dark badge-pill" id="review_ar">Reviews</div>
       <h1 class="text-center customer-say" id="reviews_heading">What Our Customers Say</h1>
       <div class="border text-center"></div>
-      <div class="slide-container text-center">
+      <div class="swiper slide-container text-center">
         <div class="swiper-wrapper">
           {% for testimonil in testimonials %}
           <div class="swiper-slide review-content">
@@ -325,9 +327,8 @@
           </div>
           {% endfor %}
         </div>
-        <!-- Navigation buttons -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+        <!-- pagination -->
+        <div class="swiper-pagination"></div>
       </div>
     </div>
 

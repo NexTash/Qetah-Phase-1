@@ -600,11 +600,35 @@
   </script>
   <!-- Cart Items  -->
   <script>
+
+     document.addEventListener('DOMContentLoaded', () => {
+        
+    });
+
+
+
+
+
     document.addEventListener('DOMContentLoaded', () => {
+
+      setTimeout(function() {
+        // Select all `li` elements with the classes `nav-drop-wrap` and `res-link`
+        const listItems = document.querySelectorAll('li.nav-drop-wrap.res-link');
+        
+        listItems.forEach(function(li) {
+            // Check if any child element of this `li` contains the class `bx-cart`
+            if (li.querySelector('.bx-cart')) {
+                // Hide the parent `li` by setting the display style to 'none'
+                li.style.display = 'none';
+            }
+        });
+    }, 100); 
+
+
       const cartContainer = document.querySelector('.cart-container');
-      const subtotalElement = document.getElementById('subtotal');
+      const subtotalElement = document.getElementById('subtotal-cart');
       const itemCountElement = document.getElementById('item-count');
-      const selectAllCheckbox = document.querySelector('.select-items input[type="checkbox"]');
+      const selectAllCheckbox = document.getElementById('selectAllLabel');
       const deleteSelectedButton = document.querySelector('.select-items .btn');
 
       // Retrieve cart items from localStorage, ensuring it's an array
@@ -617,6 +641,8 @@
       }
       // Function to render cart items
       function renderCartItems(items) {
+        console.log(items);
+        
         let subtotal = 0;
         let itemCount = 0;
 
@@ -629,94 +655,169 @@
           const itemTotal = price * (item.qty || 1);
           subtotal += itemTotal;
           itemCount += item.qty || 1; // Increase itemCount by item quantity
-
+          const isChecked = (selectAllCheckbox.checked)?1:0;
+          
+          
           // Create HTML for the cart item
-          const itemHTML = `
-          <div class="card card-webinar cart-product-card" data-index="`+ index + `">
-              <div class="card-head">
-                  <span>
-                      <label class="check check-secondary">
-                          <input type="checkbox" class="item-checkbox" data-title="${item.title}" />${item.title}
-                      </label>
-                  </span>
-              </div>
-              <hr />
-              <div class="cart-card">
-                  <div class="card-head">
-                      <div class="cart-content">
-                          <img src="${item.image}" alt="${item.title}" id="image" class="image" />
-                          <div class="card-desc">
-                              <p class="text-ellipsis text-ellipsis-2">${item.desc}</p>
-                              ${item.brand ? `<span>${item.brand}</span>` : ''}
+          const itemHTML = 
+          `<div class="card card-webinar cart-product-card" data-index="`+index+`">
+                <div class="card-head">
+                    <span>
+                        <label class="check check-secondary">
+                            <input type="checkbox" class="item-checkbox" data-title="${item.title}" ${isChecked ? 'checked' : ''}  data-index="`+ index + `"  value="`+isChecked+`"/>${item.title}
+                        </label>
+                    </span>
+                </div>
+                <hr />
+                <div class="cart-card">
+                    <div class="card-head">
+                        <div class="cart-content">
+                            <img src="${item.image}" alt="${item.title}" id="image" class="image" />
+                            <div class="card-desc">
+                                <p class="text-ellipsis text-ellipsis-2">${item.desc}</p>
+                                ${item.brand ? `<span>${item.brand}</span>` : ''}
 
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card-body">
-                      <div class="prices">
-                          <p class="price">${(itemTotal).toFixed(2)}</p>
-                        ${item.discount ? `<span>${item.discount}</span>` : ''}
-                          <div class="icon-group">
-                              <span class="wishlist"><i class="bx bx-heart"></i></span>
-                              <span class="wishlist delete-item" data-index="`+ index + `"><i class="bx bx-trash"></i></span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card-foot">
-                      <div class="quantity-counter">
-                          <div class="counter">
-                              <button class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement" data-index="`+ index + `" data-field="addition"></button>
-                              <input class="counter-value value" type="number" value="${item.qty || 1}" min="1" data-index="` + index + `" />
-                              <button class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment" data-index="`+ index + `"></button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        `;
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="prices">
+                            <p class="price">${(itemTotal).toFixed(2)}</p>
+                          ${item.discount ? `<span>${item.discount}</span>` : ''}
+                            <div class="icon-group">
+                                <span class="wishlist"><i class="bx bx-heart"></i></span>
+                                <span class="delete-item wishlist delete-item" data-index="`+ index + `"><i class="bx bx-trash"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-foot">
+                        <div class="quantity-counter">
+                            <div class="counter">
+                                <button class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-minus counter-decrement decrement" data-index="`+ index + `" data-field="addition"></button>
+                                <input class="counter-value value" type="number" value="${item.qty || 1}" min="1" data-index="` + index + `" />
+                                <button class="btn btn-light btn-icon btn-circle btn-circle-sm bx bx-plus counter-increment increment" data-index="`+ index + `" ></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          `;
 
           // Append the generated HTML to the cart container
           cartContainer.innerHTML += itemHTML;
         });
 
         // Update the subtotal
-        subtotalElement.textContent = `${subtotal.toFixed(2)}`;
         // Update the item count
         itemCountElement.textContent = itemCount;
       }
 
       // Call the function to render cart items initially
       renderCartItems(cartItems);
-
+      
       // Add event listener for the quantity increment and decrement
       cartContainer.addEventListener('click', function (event) {
         const target = event.target;
         const index = target.getAttribute('data-index');
-
+        console.log("working");
+        
         if (index !== null && !isNaN(index)) {
+          updateSubtotal();
           if (target.classList.contains('increment')) {
+            console.log("inc");
+            
             updateQuantity(index, 1);
+            updateSubtotal();
           } else if (target.classList.contains('decrement')) {
+            console.log("dec");
+            
             updateQuantity(index, -1);
-          } else if (target.classList.contains('delete-item')) {
-            deleteCartItem(index);
+            updateSubtotal();
           }
         }
       });
 
+      function updateSubtotal() {
+        let subtotal = 0;
+
+        // Get all item checkboxes
+        const checkboxes = document.querySelectorAll('.item-checkbox');
+        
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                // Get the parent card of the checkbox to find its price and quantity
+                const card = checkbox.closest('.cart-product-card');
+                if (card){
+                  const priceElement = card.querySelector('.price'); // Get the price element
+                  console.log(priceElement);
+                  
+                  const quantityInput = card.querySelector('.counter-value'); // Get the quantity input
+
+                  // Extract price and quantity
+                  const price = parseFloat(priceElement.textContent.replace(/[^0-9.-]+/g, '')); // Extract and convert price
+                  const quantity = parseInt(quantityInput.value, 10) || 1; // Extract quantity, default to 1 if empty
+
+                  subtotal += price; // Multiply price by quantity and add to subtotal
+                }
+            }
+        });
+        console.log(subtotal);
+        
+
+        // Update the subtotal display
+        const subtotalElement = document.querySelector('#subtotal-cart'); // Update with the correct selector for your subtotal display
+        subtotalElement.textContent = `${subtotal.toFixed(2)}`; // Format subtotal for display
+      }
+
+      // function updateSubtotal() {
+      //     let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+      //     let subtotal = 0;
+      //     console.log("working");
+          
+      //     // Loop through each cart item and calculate the subtotal based on the quantity and price
+      //     cartItems.forEach(item => {
+      //         // Extract the numeric part of the price from the "$ 1500.0" format
+      //         let itemPrice = parseFloat(item.price.replace('$', '').trim());
+
+      //         subtotal += item.qty * itemPrice; // Assuming each cart item has a price property
+      //     });
+      //     console.log(subtotal);
+          
+      //     // Update the subtotal display in the UI
+      //     document.querySelector('.subtotal').innerText = "$ " + subtotal.toFixed(2); // Assuming you have a .subtotal element
+      // }
       // Function to update the quantity and price
       function updateQuantity(index, change) {
-        const quantityInput = document.querySelector(`.counter-value[data-index="` + index + `"]`);
-        if (quantityInput) {
-          let quantity = parseInt(quantityInput.value) + change;
-          quantity = Math.max(quantity, 1); // Ensure quantity is at least 1
+        // Ensure the cart items are retrieved from localStorage and parsed
+        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        // Check if the item exists at the given index
+        if (cartItems[index]) {
+            // Find the corresponding input element for the quantity
+            const quantityInput = document.querySelector(`.counter-value[data-index="`+index+`"]`);
 
-          cartItems[index].quantity = quantity;
-          localStorage.setItem('cart', JSON.stringify(cartItems));
+            // If the input exists and we can change the quantity
+            if (quantityInput) {
+                let quantity = parseInt(quantityInput.value) + change;
 
-          renderCartItems(cartItems); // Re-render cart items with updated quantity
+                // Ensure the quantity is at least 1
+                quantity = Math.max(quantity, 1);
+
+                // Update the cart item's quantity
+                cartItems[index].qty = quantity;
+
+                // Update localStorage with the modified cart
+                localStorage.setItem('cart', JSON.stringify(cartItems));
+
+                // Update the input field with the new quantity value
+                quantityInput.value = quantity;
+
+                // Re-render cart items (optional)
+                renderCartItems(cartItems); // This ensures the UI reflects the changes
+            }
+        } else {
+            console.error('Item at the given index does not exist.');
         }
-      }
+    }
 
       // Delete individual items
       cartContainer.addEventListener('click', function (event) {
@@ -731,6 +832,7 @@
         cartItems.splice(index, 1); // Remove item from array using index
         localStorage.setItem('cart', JSON.stringify(cartItems)); // Save the updated cart to localStorage
         renderCartItems(cartItems); // Re-render the updated cart
+        
       }
 
       // Delete selected items
@@ -756,6 +858,7 @@
         itemCheckboxes.forEach(checkbox => {
           checkbox.checked = isChecked;
         });
+        updateSubtotal();
       });
 
       // Add new items to the cart
@@ -771,6 +874,80 @@
       
     });
   </script>
+  <script>
+  
+   function updateSubtotal() {
+        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        let subtotal = 0;
+
+        // Loop through each cart item and calculate the subtotal based on the quantity and price
+        cartItems.forEach(item => {
+            // Extract the numeric part of the price from the "$ 1500.0" format
+            let itemPrice = parseFloat(item.price.replace('$', '').trim());
+
+            subtotal += item.qty * itemPrice; // Assuming each cart item has a price property
+        });
+        console.log(subtotal);
+        
+        // Update the subtotal display in the UI
+        document.querySelector('.subtotal').innerText = "$ " + subtotal.toFixed(2); // Assuming you have a .subtotal element
+    }
+
+    // Function to update quantity when + or - buttons are clicked
+    // function updateQuantity(index, change) {
+    //     let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+    //     // Check if the item exists at the given index
+    //     if (cartItems[index]) {
+    //         const quantityInput = document.querySelector(`.counter-value[data-index="${index}"]`);
+    //         if (quantityInput) {
+    //             let quantity = parseInt(quantityInput.value) + change;
+    //             quantity = Math.max(quantity, 1); // Ensure quantity is at least 1
+
+    //             cartItems[index].qty = quantity;
+    //             localStorage.setItem('cart', JSON.stringify(cartItems));
+
+    //             quantityInput.value = quantity;
+
+    //             // Update the subtotal after quantity change
+    //             updateSubtotal();
+    //         }
+    //     } else {
+    //         console.error('Item at the given index does not exist.');
+    //     }
+    // }
+
+    // Event listeners for increment and decrement buttons
+    document.querySelectorAll('.counter-increment').forEach(button => {
+        button.addEventListener('click', function() {
+            const index = this.getAttribute('data-index');
+            updateQuantity(index, 1);
+        });
+    });
+
+    // document.querySelectorAll('.counter-decrement').forEach(button => {
+    //     button.addEventListener('click', function() {
+    //         const index = this.getAttribute('data-index');
+    //         updateQuantity(index, -1);
+    //     });
+    // });
+
+    // Event listener for checkboxes
+    
+
+    // Initialize subtotal when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        updateSubtotal();
+        document.querySelectorAll('.item-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                updateSubtotal(); // Optionally, you can update subtotal when checkboxes are selected/unselected
+            });
+        });
+    });
+  
+  </script>
+
+
   <!-- address model script -->
   <script>
     // Get modal and relevant buttons/elements
@@ -835,59 +1012,7 @@
   </script>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const selectAllCheckbox = document.querySelector('input#selectAllLabel');
-        const itemCheckboxes = document.querySelectorAll('.cart-product-card .item-checkbox');
-        const subtotalElement = document.getElementById('subtotal-cart');
-
-        // Function to update the subtotal
-        function updateSubtotal() {
-            let subtotal = 0;
-
-            itemCheckboxes.forEach((checkbox) => {
-                if (checkbox.checked) {
-                    // Get the item associated with the checkbox
-                    const productCard = checkbox.closest('.cart-product-card');
-                    const priceElement = productCard.querySelector('.price');
-                    const quantityInput = productCard.querySelector('.counter-value.value');
-
-                    const price = parseFloat(priceElement.textContent.trim());
-                    const quantity = parseInt(quantityInput.value);
-
-                    // Add to subtotal
-                    subtotal += price * quantity;
-                }
-            });
-
-            // Update the subtotal in the DOM
-            subtotalElement.textContent = subtotal.toFixed(2);
-        }
-
-        // Handle individual item checkbox changes
-        itemCheckboxes.forEach((checkbox) => {
-            checkbox.addEventListener('change', () => {
-                updateSubtotal();
-                // If not all checkboxes are checked, uncheck "Select All"
-                if (!Array.from(itemCheckboxes).every((checkbox) => checkbox.checked)) {
-                    selectAllCheckbox.checked = false;
-                }
-            });
-        });
-
-        // Handle "Select All" checkbox
-        selectAllCheckbox.addEventListener('change', (e) => {
-            const isChecked = e.target.checked;
-
-            itemCheckboxes.forEach((checkbox) => {
-                checkbox.checked = isChecked;
-            });
-
-            updateSubtotal();
-        });
-
-        // Initial calculation of subtotal on page load
-        updateSubtotal();
-    });
+   
 </script>
 
   

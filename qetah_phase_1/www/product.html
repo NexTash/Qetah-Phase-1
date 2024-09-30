@@ -10,17 +10,16 @@
                 <hr>
                 <label class="check check-dark mt-2">
                     <input type="checkbox" name="category" value="Men's Collection" />
-                    <h6 id="category_mens">Men's Collection</h6>
+                    Men's Collection
 
                 </label>
                 <label class="check check-dark">
                     <input type="checkbox" name="category" value="Women's Collection" />
-                    <h6 id="category_womens_h">Women's
-                        Collection</h6>
+                   Women's Collection
                 </label>
                 <label class="check check-dark">
                     <input type="checkbox" name="category" value="Services" id="category_services" />
-                    <h6 id="category_services_h">Services</h6>
+                    Services
                 </label>
                 <h5 id="price_range_title">Price Range</h5>
                 <hr>
@@ -82,15 +81,16 @@
                                         <h5 id="category_title">Category</h5>
                                         <hr>
                                         <label class="check check-dark mt-2"><input type="checkbox"
-                                                value="Men's Collection" />
+                                                value="Men's Collection" name="category" />
                                             <h2 id="category_mens">Men's Collection</h2>
                                         </label>
 
                                         <label class="check check-dark"><input type="checkbox"
-                                                value="Women's Collection" id="category_womens" /> Women's Collection
+                                                value="Women's Collection" id="category_womens" name="category" />
+                                            Women's Collection
                                         </label>
                                         <label class="check check-dark"><input type="checkbox" value="Services"
-                                                id="category_services" />
+                                                id="category_services" name="category" />
                                             Services </label>
                                         <h5 id="price_range_title">Price Range</h5>
                                         <hr>
@@ -143,9 +143,9 @@
                 </div>
             </div>
 
-            <form class="field field-inline" onsubmit="applyFilters(event)">
-                <input type="text" class="field-text" id="search-query" placeholder="Search" name="q" /><span id="search_placeholder"></span>
-                <button type="submit" class="field-icon bx bx-search" ></button>
+            <form class="field field-inline" onclick="applyFilters(event)">
+                <input type="text" class="field-text" id="search-query" placeholder="Search" name="q" />
+                <button type="button" class="field-icon bx bx-search"></button>
             </form>
             <div class="cards">
                 <div class="boxed">
@@ -190,32 +190,33 @@
                                                     <img class="card-image" src="{{ product.featured_image }}"
                                                         alt="Product Image">
                                                 </div>
+                                            
+                                                <div class="card-body">
+
+                                                    {% for variation in product.variations %}
+                                                    <div class="variation">
+                                                        <div class="card-title" data-field="en">{{ variation.title }}</div>
+                                                        <div class="card-title" data-field="ar">{{ variation.title_arabic }}
+                                                        </div>
+
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                            data-field="en">{{
+                                                            variation.description }}</div>
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                            data-field="ar">{{
+                                                            variation.description_arabic }}</div>
+                                                        <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                        </div>
+                                                        <div class="card-title card-price">$ {{ variation.price }}</div>
+                                                    </div>
+                                                    {% endfor %}
+
+                                                    <div class="card-rating">
+                                                        <i class="bx bxs-star"></i>
+                                                        <span>{{ product.rating }}</span> ({{product.sold}}) Sold
+                                                    </div>
+                                                </div>
                                             </a>
-                                            <div class="card-body">
-
-                                                {% for variation in product.variations %}
-                                                <div class="variation">
-                                                    <div class="card-title" data-field="en">{{ variation.title }}</div>
-                                                    <div class="card-title" data-field="ar">{{ variation.title_arabic }}
-                                                    </div>
-
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
-                                                        data-field="en">{{
-                                                        variation.description }}</div>
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
-                                                        data-field="ar">{{
-                                                        variation.description_arabic }}</div>
-                                                    <div class="card-subtitle"><del>{{ variation.discount}}</del>
-                                                    </div>
-                                                    <div class="card-title card-price">$ {{ variation.price }}</div>
-                                                </div>
-                                                {% endfor %}
-
-                                                <div class="card-rating">
-                                                    <i class="bx bxs-star"></i>
-                                                    <span>{{ product.rating }}</span> ({{product.sold}}) Sold
-                                                </div>
-                                            </div>
                                             <div class="card-foot">
                                                 <button class="btn btn-light btn-icon btn-pill btn-cart"
                                                     id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
@@ -223,6 +224,7 @@
                                                 <button
                                                     class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
                                             </div>
+                                            
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -246,39 +248,41 @@
                                                     <img class="card-image" src="{{ product.featured_image }}"
                                                         alt="Product Image">
                                                 </div>
-                                            </a>
-                                            <div class="card-body">
+                                            
+                                                <div class="card-body">
 
-                                                {% for variation in product.variations %}
-                                                <div class="variation">
-                                                    <div class="card-title" data-field="en">{{ variation.title }}</div>
-                                                    <div class="card-title" data-field="ar">{{ variation.title_arabic }}
+                                                    {% for variation in product.variations %}
+                                                    <div class="variation">
+                                                        <div class="card-title" data-field="en">{{ variation.title }}</div>
+                                                        <div class="card-title" data-field="ar">{{ variation.title_arabic }}
+                                                        </div>
+
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                            data-field="en">{{
+                                                            variation.description }}</div>
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                            data-field="ar">{{
+                                                            variation.description_arabic }}</div>
+                                                        <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                        </div>
+                                                        <div class="card-title card-price">$ {{ variation.price }}</div>
                                                     </div>
+                                                    {% endfor %}
 
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
-                                                        data-field="en">{{
-                                                        variation.description }}</div>
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
-                                                        data-field="ar">{{
-                                                        variation.description_arabic }}</div>
-                                                    <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                    <div class="card-rating">
+                                                        <i class="bx bxs-star"></i>
+                                                        <span>{{ product.rating }}</span> ({{product.sold}}) Sold
                                                     </div>
-                                                    <div class="card-title card-price">$ {{ variation.price }}</div>
                                                 </div>
-                                                {% endfor %}
-
-                                                <div class="card-rating">
-                                                    <i class="bx bxs-star"></i>
-                                                    <span>{{ product.rating }}</span> ({{product.sold}}) Sold
+                                                </a>
+                                                <div class="card-foot">
+                                                    <button class="btn btn-light btn-icon btn-pill btn-cart"
+                                                        id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
+                                                        Now</button>
+                                                    <button
+                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
                                                 </div>
-                                            </div>
-                                            <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill btn-cart"
-                                                    id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
-                                                    Now</button>
-                                                <button
-                                                    class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -302,39 +306,41 @@
                                                     <img class="card-image" src="{{ product.featured_image }}"
                                                         alt="Product Image">
                                                 </div>
-                                            </a>
-                                            <div class="card-body">
 
-                                                {% for variation in product.variations %}
-                                                <div class="variation">
-                                                    <div class="card-title" data-field="en">{{ variation.title }}</div>
-                                                    <div class="card-title" data-field="ar">{{ variation.title_arabic }}
+                                                <div class="card-body">
+
+                                                    {% for variation in product.variations %}
+                                                    <div class="variation">
+                                                        <div class="card-title" data-field="en">{{ variation.title }}</div>
+                                                        <div class="card-title" data-field="ar">{{ variation.title_arabic }}
+                                                        </div>
+
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                            data-field="en">{{
+                                                            variation.description }}</div>
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                            data-field="ar">{{
+                                                            variation.description_arabic }}</div>
+                                                        <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                        </div>
+                                                        <div class="card-title card-price">$ {{ variation.price }}</div>
                                                     </div>
+                                                    {% endfor %}
 
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
-                                                        data-field="en">{{
-                                                        variation.description }}</div>
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
-                                                        data-field="ar">{{
-                                                        variation.description_arabic }}</div>
-                                                    <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                    <div class="card-rating">
+                                                        <i class="bx bxs-star"></i>
+                                                        <span>{{ product.rating }}</span> ({{product.sold}}) Sold
                                                     </div>
-                                                    <div class="card-title card-price">$ {{ variation.price }}</div>
                                                 </div>
-                                                {% endfor %}
-
-                                                <div class="card-rating">
-                                                    <i class="bx bxs-star"></i>
-                                                    <span>{{ product.rating }}</span> ({{product.sold}}) Sold
+                                                </a>
+                                                <div class="card-foot">
+                                                    <button class="btn btn-light btn-icon btn-pill btn-cart"
+                                                        id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
+                                                        Now</button>
+                                                    <button
+                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
                                                 </div>
-                                            </div>
-                                            <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill btn-cart"
-                                                    id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
-                                                    Now</button>
-                                                <button
-                                                    class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -358,39 +364,40 @@
                                                     <img class="card-image" src="{{ product.featured_image }}"
                                                         alt="Product Image">
                                                 </div>
-                                            </a>
-                                            <div class="card-body">
+                                                <div class="card-body">
 
-                                                {% for variation in product.variations %}
-                                                <div class="variation">
-                                                    <div class="card-title" data-field="en">{{ variation.title }}</div>
-                                                    <div class="card-title" data-field="ar">{{ variation.title_arabic }}
+                                                    {% for variation in product.variations %}
+                                                    <div class="variation">
+                                                        <div class="card-title" data-field="en">{{ variation.title }}</div>
+                                                        <div class="card-title" data-field="ar">{{ variation.title_arabic }}
+                                                        </div>
+
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                            data-field="en">{{
+                                                            variation.description }}</div>
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                            data-field="ar">{{
+                                                            variation.description_arabic }}</div>
+                                                        <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                        </div>
+                                                        <div class="card-title card-price">$ {{ variation.price }}</div>
                                                     </div>
+                                                    {% endfor %}
 
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
-                                                        data-field="en">{{
-                                                        variation.description }}</div>
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
-                                                        data-field="ar">{{
-                                                        variation.description_arabic }}</div>
-                                                    <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                    <div class="card-rating">
+                                                        <i class="bx bxs-star"></i>
+                                                        <span>{{ product.rating }}</span> ({{product.sold}}) Sold
                                                     </div>
-                                                    <div class="card-title card-price">$ {{ variation.price }}</div>
                                                 </div>
-                                                {% endfor %}
-
-                                                <div class="card-rating">
-                                                    <i class="bx bxs-star"></i>
-                                                    <span>{{ product.rating }}</span> ({{product.sold}}) Sold
+                                                </a>
+                                                <div class="card-foot">
+                                                    <button class="btn btn-light btn-icon btn-pill btn-cart"
+                                                        id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
+                                                        Now</button>
+                                                    <button
+                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
                                                 </div>
-                                            </div>
-                                            <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill btn-cart"
-                                                    id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
-                                                    Now</button>
-                                                <button
-                                                    class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -414,39 +421,40 @@
                                                     <img class="card-image" src="{{ product.featured_image }}"
                                                         alt="Product Image">
                                                 </div>
-                                            </a>
-                                            <div class="card-body">
+                                                <div class="card-body">
 
-                                                {% for variation in product.variations %}
-                                                <div class="variation">
-                                                    <div class="card-title" data-field="en">{{ variation.title }}</div>
-                                                    <div class="card-title" data-field="ar">{{ variation.title_arabic }}
+                                                    {% for variation in product.variations %}
+                                                    <div class="variation">
+                                                        <div class="card-title" data-field="en">{{ variation.title }}</div>
+                                                        <div class="card-title" data-field="ar">{{ variation.title_arabic }}
+                                                        </div>
+
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                            data-field="en">{{
+                                                            variation.description }}</div>
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                            data-field="ar">{{
+                                                            variation.description_arabic }}</div>
+                                                        <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                        </div>
+                                                        <div class="card-title card-price">$ {{ variation.price }}</div>
                                                     </div>
+                                                    {% endfor %}
 
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
-                                                        data-field="en">{{
-                                                        variation.description }}</div>
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
-                                                        data-field="ar">{{
-                                                        variation.description_arabic }}</div>
-                                                    <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                    <div class="card-rating">
+                                                        <i class="bx bxs-star"></i>
+                                                        <span>{{ product.rating }}</span> ({{product.sold}}) Sold
                                                     </div>
-                                                    <div class="card-title card-price">$ {{ variation.price }}</div>
                                                 </div>
-                                                {% endfor %}
-
-                                                <div class="card-rating">
-                                                    <i class="bx bxs-star"></i>
-                                                    <span>{{ product.rating }}</span> ({{product.sold}}) Sold
+                                                </a>
+                                                <div class="card-foot">
+                                                    <button class="btn btn-light btn-icon btn-pill btn-cart"
+                                                        id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
+                                                        Now</button>
+                                                    <button
+                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
                                                 </div>
-                                            </div>
-                                            <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill btn-cart"
-                                                    id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
-                                                    Now</button>
-                                                <button
-                                                    class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -470,39 +478,41 @@
                                                     <img class="card-image" src="{{ product.featured_image }}"
                                                         alt="Product Image">
                                                 </div>
-                                            </a>
-                                            <div class="card-body">
+                                            
+                                                <div class="card-body">
 
-                                                {% for variation in product.variations %}
-                                                <div class="variation">
-                                                    <div class="card-title" data-field="en">{{ variation.title }}</div>
-                                                    <div class="card-title" data-field="ar">{{ variation.title_arabic }}
+                                                    {% for variation in product.variations %}
+                                                    <div class="variation">
+                                                        <div class="card-title" data-field="en">{{ variation.title }}</div>
+                                                        <div class="card-title" data-field="ar">{{ variation.title_arabic }}
+                                                        </div>
+
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                            data-field="en">{{
+                                                            variation.description }}</div>
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                            data-field="ar">{{
+                                                            variation.description_in_arabic }}</div>
+                                                        <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                        </div>
+                                                        <div class="card-title card-price">$ {{ variation.price }}</div>
                                                     </div>
+                                                    {% endfor %}
 
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
-                                                        data-field="en">{{
-                                                        variation.description }}</div>
-                                                    <div class="card-desc text-ellipsis text-ellipsis-2"
-                                                        data-field="ar">{{
-                                                        variation.description_in_arabic }}</div>
-                                                    <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                    <div class="card-rating">
+                                                        <i class="bx bxs-star"></i>
+                                                        <span>{{ product.rating }}</span> ({{product.sold}}) Sold
                                                     </div>
-                                                    <div class="card-title card-price">$ {{ variation.price }}</div>
                                                 </div>
-                                                {% endfor %}
-
-                                                <div class="card-rating">
-                                                    <i class="bx bxs-star"></i>
-                                                    <span>{{ product.rating }}</span> ({{product.sold}}) Sold
+                                                </a>
+                                                <div class="card-foot">
+                                                    <button class="btn btn-light btn-icon btn-pill btn-cart"
+                                                        id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
+                                                        Now</button>
+                                                    <button
+                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
                                                 </div>
-                                            </div>
-                                            <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill btn-cart"
-                                                    id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
-                                                    Now</button>
-                                                <button
-                                                    class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -544,6 +554,7 @@
 
         const queryString = new URLSearchParams(filters).toString();
         window.location.href = `/product?${queryString}`;
+        console.log(" for filters", min_price);
     }
 
     function getVals() {
@@ -579,13 +590,13 @@
     // Check if the product already exists in the list
     function addOrUpdateProduct(productList, newProduct) {
         let cart_list = []
-        if("cart_list" == JSON.parse(localStorage.getItem('cart'))){
+        if ("cart_list" == JSON.parse(localStorage.getItem('cart'))) {
             cart_list = [];
         }
-        else{
-            cart_list=JSON.parse(localStorage.getItem('cart'))
+        else {
+            cart_list = JSON.parse(localStorage.getItem('cart'))
         }
-        
+
         for (let product of productList) {
             if (product.desc === newProduct.desc &&
                 product.image === newProduct.image &&
@@ -594,7 +605,7 @@
                 // If exists, add or update the qty key
                 if (product.qty) {
                     product.qty += 1;
-                    if (cart_list){
+                    if (cart_list) {
                         for (let cart of cart_list) {
                             if (cart.desc === newProduct.desc &&
                                 cart.image === newProduct.image &&
@@ -614,36 +625,80 @@
                 } else {
                     product.qty = 1;
                 }
-                
+
                 return true; // Indicates that the product was updated
             }
         }
         console.log(cart_list);
-        
+
         // If the product does not exist, add it to the list
         newProduct.qty = 1;
         productList.push(newProduct);
         cart_list.push(newProduct)
         console.log(cart_list);
-        
+
         // console.log(productList);
         localStorage.setItem('cart', JSON.stringify(cart_list));
         console.log(localStorage.getItem('cart'));
-        
+
         return false; // Indicates that a new product was added
     }
+    function onrefreshupdateOffcanvas(offcanvasBody, badge) {
+        
+        // Clear the current items
+        offcanvasBody.innerHTML = '';
+
+        // Fetch the cart from localStorage
+        let doremon = JSON.parse(localStorage.getItem('cart')) || [];  // Default to an empty array if no cart is found
+        console.log(doremon);
+        
+        // Add each item in the wishlist to the offcanvas
+        doremon.forEach((item, index) => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'items d-flex';
+            itemDiv.innerHTML = `
+                <div class="check-item">
+                    <label class="check check-secondary">
+                        <input type="checkbox" class="item-checkbox" data-index="${index}" />
+                    </label>
+                </div>
+                <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
+                <div class="text">
+                    <p class="offcanvas-title text-ellipsis">${item.title}</p>
+                    <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;">${item.desc}</div>
+                    <div class="quantity-counter">
+                        <p class="price update-price" data-price-per-item="${item.price}">${item.price}</p>
+                        <div class="counter">
+                            <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement" data-index="${index}" id="selectAll2"></button>
+                            <input class="counter-value value" type="number" value="${item.qty}" min="0" data-index="${index}" />
+                            <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment" data-index="${index}" id="selectAll2"></button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            offcanvasBody.appendChild(itemDiv);
+            console.log(itemDiv);
+            
+        });
+        badge.textContent = doremon.length;
+    }
+
 
     document.addEventListener('DOMContentLoaded', () => {
-        // Initialize sliders after the DOM content is fully loaded
-        initializeSliders('range-slider');
-        initializeSliders('model-range-slider');
-
         const offcanvas = document.getElementById('offcanvas-cart');
         const offcanvasBody = offcanvas.querySelector('.offcanvas-body-cart');
         const badge = document.querySelector('.cart-badge');
         const deleteSelectedBtn = document.getElementById('del-cart');
+        setTimeout(function() {
+            onrefreshupdateOffcanvas(offcanvasBody,badge);
+        }, 1000); 
+        // Initialize sliders after the DOM content is fully loaded
+        initializeSliders('range-slider');
+        initializeSliders('model-range-slider');
 
-        let wishlist = [];
+       
+
+        let wishlist =JSON.parse(localStorage.getItem('cart')) || [];;
 
         function updateOffcanvas() {
             // Clear the current items
@@ -747,6 +802,8 @@
         });
 
         deleteSelectedBtn.addEventListener('click', () => {
+            console.log("delete");
+            
             const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
 
             // Iterate backward to safely remove items
@@ -937,26 +994,7 @@
     // Initialize the subtotal calculation
     updateSubtotal();
 
-    function addToWishlist(product) {
-        // Add the product to the wishlist array
-        wishlist.push(product);
-
-        // Save the updated wishlist to localStorage
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-
-        // Update the offcanvas display
-        updateOffcanvas();
-    }
-    function addToCart(product) {
-        // Add the product to the cart array
-        cart.push(product);
-
-        // Save the updated cart to localStorage
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-        // Update the offcanvas display
-        updateOffcanvas();
-    }
+    
     // document.addEventListener('DOMContentLoaded', () => {
     //     const cartContainer = document.querySelector('.cart-container'); // Add the correct container element
     //     const wishlistContainer = document.querySelector('.wishlist-container'); // Add the correct container element
@@ -1111,9 +1149,9 @@
         // document.getElementById('search_placeholder').textContent = translations['search_placeholder'];
         document.getElementById('category_mens').textContent = translations['category_mens'];
         document.getElementById('category_womens').textContent = translations['category_womens'];
-        document.getElementById('category_womens_h').textContent = translations['category_womens_h'];
-        document.getElementById('category_services_h').textContent = translations['category_services_h'];
-        document.getElementById('category_services').textContent = translations['category_services'];
+        // document.getElementById('category_womens_h').textContent = translations['category_womens_h'];
+        // document.getElementById('category_services_h').textContent = translations['category_services_h'];
+        // document.getElementById('category_services').textContent = translations['category_services'];
         document.getElementById('apply_button').textContent = translations['apply_button'];
     }
 
