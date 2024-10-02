@@ -41,21 +41,21 @@
             <div class="product-head">
               {% if product.variations %}
               {% for variation in product.variations %}
-              <p id="product_intro" data-field="en">{{ variation.intro }}</p>
-              <p id="product_intro" data-field="ar">{{ variation.intro_arabic }}</p>
-              <h1 class="p-title" id="product_variation_title" data-field="en">{{ variation.title }}</h1>
-              <h1 class="p-title" id="product_variation_title" data-field="ar">{{ variation.title_arabic }}</h1>
+              
+              <div class="card-title p-title" style="font-size: 2.5rem;font-weight: bold;" id="product_variation_title" data-field="en">{{ variation.title }}</div>
+              <div class="card-title p-title" style="font-size: 2.5rem;font-weight: bold" id="product_variation_title" data-field="ar">{{ variation.title_arabic }}</div>
               <div class="product-body">
                 <div class="content-body">
-                  <h2 class="price-head" id="product_price"><span class="p-price">
+                  <h2 class="price-head card-price" id="product_price"><span class="p-price">
                       $ {{ variation.price }}
                     </span><span class="hori">|</span>
+                    <img  class="card-image " style="display: none;"   src="{{ product.featured_image }}" >
                     <div class="badge badge-danger badge-pill" id="category_badge" data-field="en">{{ product.category }}</div>
                     <div class="badge badge-danger badge-pill" id="category_badge" data-field="ar">{{ product.category_in_arabic }}</div>
                   </h2>
-                  <div class="content">
-                    <div class="content-desc text-ellipsis text-ellipsis-3" data-field="en">{{ variation.description }}</div>
-                    <div class="content-desc text-ellipsis text-ellipsis-3" data-field="ar">{{ variation.description_arabic }}</div>
+                  <div class="content card-desc">
+                    <div class="card-desc" id="product_intro " data-field="en">{{ variation.intro }}</div>
+                    <div class="card-desc" id="product_intro card-desc" data-field="ar">{{ variation.intro_arabic }}</div>
                   </div>
                   <div class="sizes">
                     <button class="btn btn-light btn-sm">sm</button>
@@ -79,7 +79,7 @@
             <div class="product-foot">
               <div class="btn-group">
                 <button id="addToCartBtn"  class="btn btn-secondary btn-lg btn-icon btn-cart">
-                  <i class="bx bx-cart icon-pre" id="add_to_cart_button"></i>
+                  <i class="bx bx-cart icon-pre cart-btn" id="add_to_cart_button"></i>
                 </button>
                 <button class="btn btn-light btn-lg btn-icon btn-heart">
                   <i class="bx bx-heart icon-pre" id="save_to_wishlist_button"></i>
@@ -126,35 +126,34 @@
           {% for variation in product.variations %}
           <div class="swiper-slide">
             <div class="products">
-              <div class="badge badge-primary badge-pill" data-field="en">{{ variation.title }}</div>
-              <div class="badge badge-primary badge-pill" data-field="ar">{{ variation.title_arabic }}</div>
+              <div class="badge badge-primary badge-pill" data-field="en">{{ product.title }}</div>
+              <div class="badge badge-primary badge-pill" data-field="ar">{{ product.title }}</div>
               <div class="card product-card">
                 <a href="/product-detail?id={{product.name}}">
                   <div class="card-head">
-                    <img class="card-image"
-                      src="{{ product.featured_image }}">
+                    <img class="card-image"   src="{{ product.featured_image }}">
                   </div>
                   <div class="card-body">
-                    <div class="card-title" id="product_intro" data-field="en">{{ variation.intro }}</div>
-                    <div class="card-title" id="product_intro" data-field="ar">{{ variation.intro_arabic }}</div>
+                    <div class="card-title" id="product_intro" data-field="en">{{ variation.title }}</div>
+                    <div class="card-title" id="product_intro" data-field="ar">{{ variation.title_arabic }}</div>
                     <div class="card-desc text-ellipsis text-ellipsis-2" data-field="en">
-                      {{ variation.description }}
+                      {{ variation.intro }}
                     </div>
                     <div class="card-desc text-ellipsis text-ellipsis-2" data-field="ar">
-                      {{ variation.description_arabic }}
+                      {{ variation.intro_arabic }}
                     </div>
                     <div class="card-subtitle"><del>USD {{ variation.price }}</del></div>
-                    <div class="card-title">USD {{ variation.discount }}</div>
+                    <div class="card-price">USD {{ variation.discount }}</div>
                     <div class="card-rating">
                       <i class="bx bxs-star"></i>
-                      <span>{{ product.rating_count }}</span> ({{ product.sold }} Sold)
+                      <span>{{ product.rating }}</span> ({{ product.sold }} Sold)
                     </div>
                   </div>
                 </a>
                 <div class="card-foot">
                   <button class="btn btn-light btn-icon btn-pill btn-cart" id="buy_now_button"><i
                       class="bx bx-cart icon-pre"></i> Buy Now</button>
-                  <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
+                  <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart d-none"></button>
                 </div>
               </div>
 
@@ -235,204 +234,444 @@
       });
     </script>
     <!-- cart -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const offcanvas = document.getElementById('offcanvas-cart');
-        const offcanvasBody = offcanvas.querySelector('.offcanvas-body-cart'); // Add this line to get the offcanvas body
-        const badge = document.querySelector('.cart-badge'); // Update this selector if needed
-        const deleteSelectedBtn = document.getElementById('del-cart');
+   <script>
+    // Check if the product already exists in the list
+    function addOrUpdateProduct(productList, newProduct) {
+        let cart_list = JSON.parse(localStorage.getItem('cart'))
+        if(cart_list){
+          console.log("value");
+            for (let product of cart_list) {
+                if (product.desc === newProduct.desc &&
+                    product.image === newProduct.image &&
+                    product.price === newProduct.price &&
+                    product.title === newProduct.title) {
+                    // If exists, add or update the qty key
+                    console.log("fpung");
+                    if (product.qty) {
+                        product.qty += 1;
+                    } else {
+                        product.qty = 1;
+                    }
+                    localStorage.setItem('cart', JSON.stringify(cart_list))
+                    return true; // Indicates that the product was updated
+                }
+                console.log("not fpung");
 
-        let wishlist = [];
+            }
+        }   
+        // If the product does not exist, add it to the list
+        newProduct.qty = 1;
+        cart_list.push(newProduct)
+        localStorage.setItem('cart', JSON.stringify(cart_list));
+        return false; // Indicates that a new product was added
+    }
+    function onrefreshupdateOffcanvas(offcanvasBody, badge) {
+        // Clear the current items
+        offcanvasBody.innerHTML = '';
 
-        function updateOffcanvas() {
-          // Clear the current items
-          offcanvasBody.innerHTML = '';
-
-          // Add each item in the wishlist to the offcanvas
-          wishlist.forEach((item, index) => {
-            const itemDiv = document.createElement('div');
-            itemDiv.className = 'items d-flex';
-            itemDiv.innerHTML = `
+        // Fetch the cart from localStorage
+        // localStorage.setItem('cart', JSON.stringify([]))
+        let cartlist = JSON.parse(localStorage.getItem('cart')) || [];  // Default to an empty array if no cart is found
+      
+        
+        // Add each item in the wishlist to the offcanvas
+        cartlist.forEach((item, index) => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'items d-flex';
+          itemDiv.setAttribute('data-index', index);
+          
+          let itemprice = parseFloat(item.price.replace(/[^0-9.]/g, ''));
+          
+          let price = itemprice *item.qty
+          itemDiv.innerHTML = `
               <div class="check-item">
                   <label class="check check-secondary">
-                      <input type="checkbox" class="item-checkbox" data-index="${index}" />
+                      <input type="checkbox" class="item-checkbox" data-index="`+index+`" />
                   </label>
               </div>
-              <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
+              <img src="${item.image}" alt="${item.title}" class="offcanvas-image" data-elm ="img" />
               <div class="text">
-                  <p class="offcanvas-title text-ellipsis">${item.title}</p>
-                  <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;}">${item.desc}</div>
-                   <div class="quantity-counter">
-                  <p class="price">${item.price}</p>
-                          <div class="counter">
-          <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement"></button>
-          <input class="counter-value value" type="number" value="0" min="0" />
-          <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment"></button>
-      </div> 
-                        </div>
-                  
+                  <p class="offcanvas-title text-ellipsis" data-elm ="title">${item.title}</p>
+                  <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;" data-elm ="desc">${item.desc}</div>
+                  <div class="quantity-counter">
+                      <p class="price update-price" data-price-per-item="${item.price}" data-index="`+index+`" >$ ${(price).toFixed(2)}</p>
+                      <div class="counter">
+                          <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement" data-index="`+index+`" id="selectAll2"></button>
+                          <input class="counter-value value" type="number" value="${item.qty}" min="0" data-index="`+index+`" />
+                          <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment" data-index="`+index+`" id="selectAll2"></button>
+                      </div>
+                  </div>
               </div>
           `;
-            offcanvasBody.appendChild(itemDiv);
+          offcanvasBody.appendChild(itemDiv);
+            
+            
+        });
+        badge.textContent = cartlist.length;
+    }
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const offcanvas = document.getElementById('offcanvas-cart');
+      const offcanvasBody = offcanvas.querySelector('.offcanvas-body-cart');
+      const badge = document.querySelector('.cart-badge');
+      const deleteSelectedBtn = document.getElementById('del-cart');
+      const addToCartButtons = document.querySelectorAll('.addToCartBtn');
+      console.log("loaded");
+      
+      setTimeout(function() {
+          onrefreshupdateOffcanvas(offcanvasBody,badge);
+      }, 1000); 
+      // Initialize sliders after the DOM content is fully loaded
+      
+      let wishlist =JSON.parse(localStorage.getItem('cart')) || [];
+
+      function updateOffcanvas() {
+          // Clear the current items
+          wishlist=JSON.parse(localStorage.getItem('cart')) || [];
+          
+          offcanvasBody.innerHTML = '';
+          console.log(wishlist);
+          
+          // Add each item in the wishlist to the offcanvas
+          wishlist.forEach((item, index) => {
+              const itemDiv = document.createElement('div');
+              itemDiv.className = 'items d-flex';
+              itemDiv.setAttribute('data-index', index);
+              
+              let itemprice = parseFloat(item.price.replace(/[^0-9.]/g, ''));
+              
+              let price = itemprice *item.qty
+              itemDiv.innerHTML = `
+                  <div class="check-item">
+                      <label class="check check-secondary">
+                          <input type="checkbox" class="item-checkbox" data-index="`+index+`" />
+                      </label>
+                  </div>
+                  <img src="${item.image}" alt="${item.title}" class="offcanvas-image"  data-elm ="img"/>
+                  <div class="text">
+                      <p class="offcanvas-title text-ellipsis"  data-elm ="title" >${item.title}</p>
+                      <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;"  data-elm ="desc">${item.desc}</div>
+                      <div class="quantity-counter">
+                          <p class="price update-price" data-price-per-item="${item.price}" data-index="`+index+`" >$ ${(price).toFixed(2)}</p>
+                          <div class="counter">
+                              <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement" data-index="`+index+`" id="selectAll2"></button>
+                              <input class="counter-value value" type="number" value="${item.qty}" min="0" data-index="`+index+`" />
+                              <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment" data-index="`+index+`" id="selectAll2" ></button>
+                          </div>
+                      </div>
+                  </div>
+              `;
+              offcanvasBody.appendChild(itemDiv);
+          });
+
+          // Update badge number
+          badge.textContent = wishlist.length;
+
+          // Attach event listeners to the quantity buttons
+          document.querySelectorAll('.counter-increment').forEach(button => {
+              button.addEventListener('click', () => {
+                  const index = button.getAttribute('data-index');
+                  updateQuantity(index, 1);
+              });
+          });
+
+          document.querySelectorAll('.counter-decrement').forEach(button => {
+              button.addEventListener('click', () => {
+                  const index = button.getAttribute('data-index');
+                  updateQuantity(index, -1);
+              });
+          });
+      }
+
+      function updateQuantity(index, delta) {
+          const item = wishlist[index];
+          if (item) {
+              item.qty = Math.max(0, (item.qty || 0) + delta); // Prevent negative quantity
+              // Update the quantity input field and the offcanvas
+              updateOffcanvas();
+          }
+      }
+
+      function addTowishlist(product) {
+          // Add or update the product in the wishlist array
+          const updated = addOrUpdateProduct(wishlist, product);
+          // Update the offcanvas display
+          updateOffcanvas();
+      }
+
+      
+
+      // Attach the event listener to each button
+      document.addEventListener('click', function(e) {
+          // Check if the clicked button is the Add to Cart button in the product foot
+        if (e.target.closest('#addToCartBtn')) {
+          console.log("Add to Cart button clicked");
+          
+          // Prevent default behavior if needed
+          e.preventDefault();
+
+          // Find the product card by going up the DOM tree
+          const productCard = e.target.closest('.product-detail-content');
+          if (!productCard) {
+              console.error("No product card found");
+              return;
+          }
+
+          const selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+          // Determine which data-field to fetch based on the selected language
+          const titleSelector = selectedLanguage === 'ar' ? '[data-field="ar"]' : '[data-field="en"]';
+          const descSelector = selectedLanguage === 'ar' ? '[data-field="ar"]' : '[data-field="en"]';
+          console.log(productCard);
+          // Get product details from the card based on the selected language
+
+          const product = {
+              title: productCard.querySelector('.card-title' + titleSelector).innerText,
+              image: productCard.querySelector('.card-image').src,
+              desc: productCard.querySelector('.card-desc'+descSelector).innerText,
+              price: productCard.querySelector('.card-price').innerText, // Assuming price remains the same in both languages
+          };
+          
+          // const product = {
+          //     title: productTitle,
+          //     title_arabic: productTitleArabic,
+          //     image: productImage,
+          //     desc: productDesc,
+          //     price: productPrice,
+          //     qty: 1 // Default quantity
+          // };
+
+          console.log("Product added:", product);
+          addTowishlist(product); // Call function to add product
+        }
+
+        // Check if the clicked button is the Add to Wishlist button
+        if (e.target.closest('#save_to_wishlist_button')) {
+            console.log("Save to Wishlist button clicked");
+            // Implement wishlist functionality here
+        }
+      });
+
+      document.querySelectorAll(".btn-cart").forEach(button => {
+        console.log("working");
+        
+        button.addEventListener('click', (e) => {
+          
+          // Get the selected language from localStorage
+          const selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+
+          // Find the product card
+          const productCard = e.target.closest('.product-card');
+          if (!productCard) return;
+          
+          
+          // Determine which data-field to fetch based on the selected language
+          const titleSelector = selectedLanguage === 'ar' ? '[data-field="ar"]' : '[data-field="en"]';
+          const descSelector = selectedLanguage === 'ar' ? '[data-field="ar"]' : '[data-field="en"]';
+
+          // Get product details from the card based on the selected language
+          const product = {
+              title: productCard.querySelector('.card-title' + titleSelector).innerText,
+              image: productCard.querySelector('.card-image').src,
+              desc: productCard.querySelector('.card-desc' + descSelector).innerText,
+              price: productCard.querySelector('.card-price').innerText, // Assuming price remains the same in both languages
+          };
+          console.log(product);
+          
+          // Add product to wishlist
+          addTowishlist(product);
+          });
+      });
+
+      deleteSelectedBtn.addEventListener('click', () => {
+          
+          const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
+
+          // Iterate backward to safely remove items
+          for (let i = checkboxes.length - 1; i >= 0; i--) {
+              const checkbox = checkboxes[i];
+              if (checkbox.checked) {
+                  const index = parseInt(checkbox.getAttribute('data-index'), 10);
+                  wishlist.splice(index, 1);
+                  checkbox.closest('.items').remove();
+              }
+          }
+          updateOffcanvas();
+      });
+
+      function updateSubtotal() {
+          const checkboxes = document.querySelectorAll('.item-checkbox'); // Select all checkboxes
+          let subtotal = 0; // Initialize subtotal
+
+          checkboxes.forEach(checkbox => {
+              if (checkbox.checked) { // Check if the checkbox is checked
+                  const index = checkbox.getAttribute('data-index'); // Get the data-index
+                  const priceElement = document.querySelector(`.update-price[data-index="`+index+`"]`); // Select the corresponding price element
+                  
+                  if (priceElement) {
+                      const itemPrice = parseFloat(priceElement.textContent.replace('$', '').trim());
+                      subtotal += itemPrice; // Add the item's total price to the subtotal
+                  }
+              }
+          });
+
+          // Update the subtotal display
+          const subtotalElement = document.getElementById('subTotal');
+          subtotalElement.textContent = `$ ${(subtotal).toFixed(2)}`; // Format and display the subtotal
+      }
+
+      document.addEventListener('click', (event) => {
+          const target = event.target;
+
+          if (target.classList.contains('select-all-checkbox')) {
+              const checkboxes = document.querySelectorAll('.item-checkbox'); // Select all item checkboxes
+
+              // Check or uncheck all based on the "Select All" checkbox state
+              checkboxes.forEach(checkbox => {
+                  checkbox.checked = target.checked; // Set the checked state based on "Select All"
+              });
+
+              // Update the subtotal after changing the checkboxes
+              updateSubtotal();
+          }
+
+          // Check if the clicked element is an increment or decrement button
+          if (target.classList.contains('counter-increment') || target.classList.contains('counter-decrement')) {
+              const index = target.getAttribute('data-index'); // Get the data-index of the clicked button
+              const inputField = document.querySelector(`.counter-value[data-index="`+index+`"]`); // Select the corresponding input field
+
+              // Get the current quantity
+              let currentValue = parseInt(inputField.value);
+              let add=false
+              // Determine if we are incrementing or decrementing
+              if (target.classList.contains('counter-increment')) {
+                  currentValue++; // Increment the value
+                  add=true
+              } else if (target.classList.contains('counter-decrement')) {
+                  if (currentValue > 0) {
+                      add=false
+                      currentValue--; // Decrement the value, but don't go below 0
+                  }
+              }
+
+              inputField.value = currentValue; // Update the input field with the new quantity
+
+              // Update the displayed price
+              const priceElement = document.querySelector(`.update-price[data-index="`+index+`"]`);
+              const pricePerItem = parseFloat(priceElement.getAttribute('data-price-per-item').replace('$', '').trim());
+              const totalPrice = pricePerItem * currentValue;
+
+              // Update the price display
+              priceElement.textContent = `$ ${(totalPrice).toFixed(2)}`;
+
+              // Check if the corresponding checkbox is checked
+              const checkbox = document.querySelector(`.item-checkbox[data-index="`+index+`"]`);
+              if (checkbox && checkbox.checked) {
+                  updateSubtotal(); // Update the subtotal if the checkbox is checked
+              }
+
+              // Fetch the title, image, and description using data-elm attributes
+              // Update the cart in local storage
+              updateCartInLocalStorage(index, currentValue, add);
+          }
+
+          // Check if a checkbox was clicked
+          if (target.classList.contains('item-checkbox')) {
+              updateSubtotal(); // Call the function to update the subtotal when a checkbox is checked/unchecked
+          }
+      });
+
+        // Function to update the subtotal of checked items
+        
+
+        // Function to update the cart in local storage based on item properties
+        // Function to update the cart in local storage based on item quantity
+        function updateCartInLocalStorage(index, quantity, add) {
+          // Retrieve the cart from local storage or initialize an empty object
+          let cart = JSON.parse(localStorage.getItem('cart')) || {};
+          let deleted=[]
+          cart.forEach((item, index)=>{
+              cart[index]["index"] = index;
+              const checkbox = document.querySelector('.item-checkbox[data-index="'+index+'"]');
+              cart[index]["checked"] = checkbox.checked;
+          });
+              // If 'add' is true, increase the quantity
+          if (add === true) {
+              if (cart[index]) {
+                  cart[index]["qty"] = quantity; // Increment the quantity if item already exists
+              } else {
+                  // If the item doesn't exist, initialize it with the given quantity
+                  cart[index] = { qty: quantity };
+              }
+          } else {
+              // If 'add' is false, set the quantity directly (update the quantity)
+              if (cart[index]) {
+                  cart[index]["qty"] = quantity; // Update the quantity for existing item
+              } else {
+                  // If the item doesn't exist, add it to the cart with the given quantity
+                  cart[index] = { qty: quantity };
+              }
+          }
+          
+
+          // Clean up any undefined or null entries in the cart
+          
+          cart = cart.filter(item => item.qty > 0);
+          localStorage.setItem('cart', JSON.stringify(cart));
+          // Save the updated cart back to local storage
+          updateOffcanvas2(cart);
+          updateSubtotal();
+
+        }
+        function updateOffcanvas2(cart) {
+          // Clear the current items
+          
+          let wishlist = cart
+          offcanvasBody.innerHTML = '';
+          console.log(wishlist);
+          
+          // Add each item in the wishlist to the offcanvas
+          wishlist.forEach((item, index) => {
+              const itemDiv = document.createElement('div');
+              itemDiv.className = 'items d-flex';
+              itemDiv.setAttribute('data-index', index);
+              
+              let itemprice = parseFloat(item.price.replace(/[^0-9.]/g, ''));
+              
+              let price = itemprice *item.qty
+              itemDiv.innerHTML = `
+                  <div class="check-item">
+                      <label class="check check-secondary">
+                          <input type="checkbox" class="item-checkbox" ${item.checked ? 'checked' : ''} data-index="`+index+`" />
+                      </label>
+                  </div>
+                  <img src="${item.image}" alt="${item.title}" class="offcanvas-image"  data-elm ="img"/>
+                  <div class="text">
+                      <p class="offcanvas-title text-ellipsis"  data-elm ="title" >${item.title}</p>
+                      <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;"  data-elm ="desc">${item.desc}</div>
+                      <div class="quantity-counter">
+                          <p class="price update-price" data-price-per-item="${item.price}" data-index="`+index+`" >$ ${(price).toFixed(2)}</p>
+                          <div class="counter">
+                              <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement" data-index="`+index+`" id="selectAll2"></button>
+                              <input class="counter-value value" type="number" value="${item.qty}" min="0" data-index="`+index+`" />
+                              <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment" data-index="`+index+`" id="selectAll2" ></button>
+                          </div>
+                      </div>
+                  </div>
+              `;
+              offcanvasBody.appendChild(itemDiv);
           });
 
           // Update badge number
           badge.textContent = wishlist.length;
         }
+    });
 
-        function addToWishlist(product) {
-          // Add the product to the wishlist array
-          wishlist.push(product);
-          // Update the offcanvas display
-          updateOffcanvas();
-        }
 
-        document.querySelectorAll('.btn-cart').forEach(button => {
-          button.addEventListener('click', (e) => {
-            const productCard = e.target.closest('.product-card');
-            if (!productCard) return;
 
-            // Get product details from the card
-            const product = {
-              title: productCard.querySelector('.card-title').innerText,
-              image: productCard.querySelector('.card-image').src,
-              desc: productCard.querySelector('.card-desc').innerText,
-              price: productCard.querySelector('.card-price').innerText,
-            };
-
-            // Add product to wishlist
-            addToWishlist(product);
-          });
-        });
-
-        deleteSelectedBtn.addEventListener('click', () => {
-          const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
-
-          // Iterate backward to safely remove items
-          for (let i = checkboxes.length - 1; i >= 0; i--) {
-            const checkbox = checkboxes[i];
-            if (checkbox.checked) {
-              const index = parseInt(checkbox.getAttribute('data-index'), 10);
-              wishlist.splice(index, 1);
-              checkbox.closest('.items').remove();
-            }
-          }
-
-          updateOffcanvas();
-        });
-      });
-    </script>
+   </script>
     <!-- wishlist -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const offcanvas = document.getElementById('offcanvas');
-        const offcanvasBody = offcanvas.querySelector('.offcanvas-body'); // Add this line to get the offcanvas body
-        const badge = document.querySelector('.noti-badge'); // Update this selector if needed
-        // const deleteSelectedBtn = document.getElementById('deleteSelectedBtn');
-
-
-
-        let wishlist = [];
-
-        function updateOffcanvas() {
-          // Clear the current items
-          offcanvasBody.innerHTML = '';
-
-          // Add each item in the wishlist to the offcanvas
-          wishlist.forEach((item, index) => {
-            const itemDiv = document.createElement('div');
-            itemDiv.className = 'items d-flex';
-            itemDiv.innerHTML = `
-              <div class="check-item">
-                  <label class="check check-secondary">
-                      <input type="checkbox" class="item-checkbox" data-index="${index}" />
-                  </label>
-              </div>
-              <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
-              <div class="text">
-                  <p class="offcanvas-title text-ellipsis">${item.title}</p>
-                  <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;}">${item.desc}</div>
-                   <div class="badge badge-secondary mt-2">${item.size}</div>
-                   <div class="quantity-counter">
-                  <p class="price">${item.price}</p>
-                          <div class="counter">
-          <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement"></button>
-          <input class="counter-value value" type="number" value="0" min="0" />
-          <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment"></button>
-      </div> 
-                        </div>
-                  
-              </div>
-          `;
-            offcanvasBody.appendChild(itemDiv);
-          });
-          badge.textContent = wishlist.length;
-        }
-
-        function addToWishlist(product) {
-          // Add the product to the wishlist array
-          wishlist.push(product);
-          // Update the offcanvas display
-          updateOffcanvas();
-        }
-
-        document.querySelectorAll('.btn-heart').forEach(button => {
-          button.addEventListener('click', (e) => {
-            const productCard = e.target.closest('.product-details');
-            if (!productCard) return;
-
-            // Get product details from the card
-            const product = {
-              title: productCard.querySelector('.p-title').innerText,
-              image: productCard.querySelector('.detail-img').src,
-              desc: productCard.querySelector('.content-desc').innerText,
-              size: productCard.querySelector('.active').innerText,
-              price: productCard.querySelector('.p-price').innerText,
-            };
-
-            // Add product to wishlist
-            addToWishlist(product);
-          });
-        });
-
-        // deleteSelectedBtn.addEventListener('click', () => {
-        //     const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
-        //     const indicesToRemove = new Set();
-
-        //     // Collect indices of checked checkboxes
-        //     checkboxes.forEach(checkbox => {
-        //         if (checkbox.checked) {
-        //             const index = parseInt(checkbox.getAttribute('data-index'), 10);
-        //             if (!isNaN(index)) {
-        //                 indicesToRemove.add(index);
-        //             }
-        //         }
-        //     });
-
-        //     // Remove items from wishlist based on collected indices
-        //     indicesToRemove.forEach(index => {
-        //         if (index >= 0 && index < wishlist.length) {
-        //             wishlist.splice(index, 1);
-        //         }
-        //     });
-
-        //     // Remove items from the DOM
-        //     checkboxes.forEach(checkbox => {
-        //         if (checkbox.checked) {
-        //             const itemElement = checkbox.closest('.items');
-        //             if (itemElement) {
-        //                 itemElement.remove();
-        //             }
-        //         }
-        //     });
-
-        //     // Reindex wishlist and update data-index attributes
-        //     updateOffcanvas();
-        // });
-
-
-      });
-    </script>
+    
     <!-- zoomer img -->
     <script>
       function magnify(imgClass, glassID, zoom) {
@@ -516,43 +755,7 @@
     </script>
 
     <!-- quanitity -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const selectAll1 = document.getElementById("selectAll1");
-        const offcanvasBody1 = document.getElementById("offcanvasBody");
-        const selectAll2 = document.getElementById("selectAll2");
-        const offcanvasBody2 = document.getElementById("offcanvasBody-cart");
-
-        // Function to update 'Select All' checkbox based on individual checkboxes
-        function updateSelectAll(selectAll, container) {
-          const checkboxes = container.querySelectorAll(".item-checkbox");
-          selectAll.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
-        }
-
-        // Handling 'Select All' functionality
-        if (selectAll1 && offcanvasBody1) {
-          selectAll1.addEventListener('change', () => {
-            const checkboxes = offcanvasBody1.querySelectorAll(".item-checkbox");
-            checkboxes.forEach(checkbox => checkbox.checked = selectAll1.checked);
-          });
-
-          offcanvasBody1.addEventListener('change', () => {
-            updateSelectAll(selectAll1, offcanvasBody1);
-          });
-        }
-
-        if (selectAll2 && offcanvasBody2) {
-          selectAll2.addEventListener('change', () => {
-            const checkboxes = offcanvasBody2.querySelectorAll(".item-checkbox");
-            checkboxes.forEach(checkbox => checkbox.checked = selectAll2.checked);
-          });
-
-          offcanvasBody2.addEventListener('change', () => {
-            updateSelectAll(selectAll2, offcanvasBody2);
-          });
-        }
-      });
-    </script>
+    
 
     <script>
 
@@ -568,41 +771,5 @@
       }
     </script>
 
-
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-    const cartButtons = document.querySelectorAll('.btn-cart'); // Select all 'Add to Cart' buttons
-
-    cartButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            const productCard = e.target.closest('.product-card');
-            if (!productCard) return;
-
-            // Get product details from the product card
-            const product = {
-                title: productCard.querySelector('.card-title').innerText,
-                image: productCard.querySelector('.card-image').src,
-                desc: productCard.querySelector('.card-desc').innerText,
-                brand: productCard.querySelector('.card-brand').innerText,
-                price: productCard.querySelector('.card-price').innerText,
-                discount: productCard.querySelector('.card-discount').innerText,
-            };
-
-            // Get current cart from localStorage or initialize an empty array
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-            // Add the new product to the cart
-            cart.push(product);
-
-            // Save the updated cart back to localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
-
-            // Optionally show a message (like a confirmation that the product was added)
-            alert('Product added to cart!');
-        });
-    });
-});
-
-    </script>
 
     {% endblock %}

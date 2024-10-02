@@ -126,20 +126,20 @@
         <div class="order-detail">
           <div class="item"><span id="item-count"></span> <span id="total_items"></span></div>
           <!-- Item count goes here -->
-          <div class="">$ <span id="subtotal">0</span></div> <!-- Subtotal goes here -->
+          <div class="">$ <span id="item-subtotal"></span></div> <!-- Subtotal goes here -->
         </div>
         <div class="order-detail">
           <div class="item" id="delivery_fee_ar">Delivery Fee</div>
-          <div class="price" id="delivery-fee">USD. 0.00</div>
+          <div class="price" id="delivery-fee"></div>
         </div>
         <div class="order-detail">
           <div class="item" id="delivery_discount_ar">Delivery Discount</div>
-          <div class="price" id="delivery-discount">USD. 0.00</div>
+          <div class="price" id="delivery-discount"></div>
         </div>
         <hr>
         <div class="total">
           <div class="sum" id="grand_total_label">Total:</div>
-          <div class="price" id="grand-total"></div>
+          <div class="price" id="cart-grand-total"></div>
         </div>
         <!-- <p>Subtotal: Rs. <span id="subtotal">0.00</span></p>
         <p>Grand Total (including delivery): Rs. <span id="grand-total">0.00</span></p>
@@ -150,8 +150,7 @@
         <button id="apply-code">Apply Promo Code</button> -->
 
         <div class="taxes" id="taxes_included">Taxes included, where applicable</div>
-        <input type="button" class="btn btn-dark btn-block" data-field="proceed-checkout" onclick="on_proceed()"
-          id="proceed_to_pay_he">
+        <button class="btn btn-dark btn-block" data-field="proceed-checkout" onclick="on_proceed()" id="proceed_to_pay_he" > </button>
       </div>
       <br><br>
       <div id="messages"></div>
@@ -169,7 +168,8 @@
     // Function to display data from localStorage
     function displayData() {
       const data = JSON.parse(localStorage.getItem('shippingDetails'));
-
+      console.log(data);
+      
       // Log the retrieved data to the console
       //console.log('Retrieved data from localStorage:', data);
 
@@ -219,8 +219,26 @@
         //console.log('No data found in localStorage');
       }
     }
+    document.getElementById('proceed_to_pay_he').addEventListener('click', () => {
+      console.log("called");
+      
+        on_proceed();
+      });
     document.addEventListener('DOMContentLoaded', function () {
       displayData();
+      setTimeout(function () {
+      // Select all `li` elements with the classes `nav-drop-wrap` and `res-link`
+        const listItems = document.querySelectorAll('li.nav-drop-wrap.res-link');
+
+        listItems.forEach(function (li) {
+          // Check if any child element of this `li` contains the class `bx-cart`
+          if (li.querySelector('.bx-cart')) {
+            // Hide the parent `li` by setting the display style to 'none'
+            li.style.display = 'none';
+          }
+        });
+      })
+      
     });
   </script>
 
@@ -313,88 +331,90 @@
         // console.log("Items length: ", items.length); // Check item count in the console
 
         items.forEach((item, index) => {
-          const price = parseFloat(item.price.replace(/[^0-9.-]/g, '')); // Convert price string to a number
+          
+          let price = parseFloat(item.price.replace(/[^0-9.-]/g, '')); // Convert price string to a number
+          price = price * item.qty
           subtotal += price;
           const itemHTML = `
-      <div class="card card-webinar cart-product-card">
-        <div class="card-head">
-          <p><span id="pakge"> Package </span>${index + 1}<span id="of"> of </span>${items.length}</p>
-          <span><p id="fulfilled_by_qetah">Fulfilled by <b>QETAH</b></p></span>
-        </div>
-        <hr />
-        <div class="cart-card">
-          <div class="card-head">
-            <div class="cart-conent">
-              <img src="${item.image}" alt="${item.title}" class="image"/>
-              <div class="card-desc">
-                <p class="text-ellipsis text-ellipsis-2"><span id="item-title">${item.title}</span></p>
-                <p class="text-ellipsis text-ellipsis-2">${item.desc}</p>
-                ${item.brand ? `<span>${item.brand}</span>` : ''}
+            <div class="card card-webinar cart-product-card">
+              <div class="card-head">
+                <p><span id="pakge"> Package </span>${index + 1}<span id="of"> of </span>${items.length}</p>
+                <span><p id="fulfilled_by_qetah">Fulfilled by <b>QETAH</b></p></span>
+              </div>
+              <hr />
+              <div class="cart-card">
+                <div class="card-head">
+                  <div class="cart-conent">
+                    <img src="${item.image}" alt="${item.title}" class="image"/>
+                    <div class="card-desc">
+                      <p class="text-ellipsis text-ellipsis-2"><span id="item-title">${item.title}</span></p>
+                      <p class="text-ellipsis text-ellipsis-2">${item.desc}</p>
+                      ${item.brand ? `<span>${item.brand}</span>` : ''}
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="prices">
+                    <p class="price" style="margin:0">${item.price}</p>
+                    ${item.discount ? `<span>${item.discount}</span>` : ''}
+                    <div class="icon-group">
+                    </div>
+                  </div>
+                </div>
+                <div class="card-foot">
+                  <div class="qty">
+                    <span id="qty-Text">Qty:</span>
+                    <span>${item.qty}</span>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="card-body">
-            <div class="prices">
-              <p class="price">${item.price}</p>
-              ${item.discount ? `<span>${item.discount}</span>` : ''}
-              <div class="icon-group">
-                <span class="wishlist delete-item" data-title="${item.title}">
-                  <i class="bx bx-trash"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="card-foot">
-            <div class="qty">
-              <span id="qty-Text">Qty:</span>
-              <span>${items.length}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
+          `;
           cartContainer.innerHTML += itemHTML; // Append the item to the cart container
         });
-
+        
         // Update the subtotal and item count
-        document.getElementById('subtotal').textContent = subtotal.toFixed(2); // Display subtotal
+        localStorage.setItem('subtotal', JSON.stringify(subtotal.toFixed(2)));
+        document.getElementById('item-subtotal').textContent = subtotal.toFixed(2); // Display subtotal
+        
+        localStorage.setItem('itemCount', JSON.stringify(itemCount));
         document.getElementById('item-count').textContent = itemCount; // Display item count
 
         // Calculate and display the grand total
         const grandTotal = calculateGrandTotal(subtotal);
-        document.getElementById('grand-total').textContent = grandTotal.toFixed(2); // Display grand total
+        document.getElementById('item-count').textContent = itemCount; // Display item count
+        
+        localStorage.setItem('grandTotal', JSON.stringify(grandTotal.toFixed(2)));
+        document.getElementById('cart-grand-total').textContent = grandTotal.toFixed(2); // Display grand total
 
         // Update delivery fee and discount
+        localStorage.setItem('deliveryFee', JSON.stringify(grandTotal.toFixed(2)));
         document.getElementById('delivery-fee').textContent = deliveryFee.toFixed(2);
+        
+        localStorage.setItem('deliveryDiscount', JSON.stringify(grandTotal.toFixed(2)));
         document.getElementById('delivery-discount').textContent = deliveryDiscount.toFixed(2);
 
         // Add event listeners to all delete buttons (trash icons)
-        document.querySelectorAll('.delete-item').forEach((trashIcon, index) => {
-          trashIcon.addEventListener('click', function () {
-            deleteCartItem(index); // Use index from forEach to delete item
-          });
-        });
+       
       }
 
-      // Function to delete an item from the cart
-      function deleteCartItem(index) {
-        cartItems.splice(index, 1); // Remove item from array using index
-        localStorage.setItem('cart', JSON.stringify(cartItems)); // Save the updated cart to localStorage
-        renderCartItems(cartItems); // Re-render the updated cart
-      }
+      
 
       // Retrieve subtotal and item count from localStorage on page load
       const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
       renderCartItems(storedCart); // Render cart on page load
 
-      const storedSubtotal = localStorage.getItem('subtotal') || '0.00';
-      const itemCount = storedCart.length;
-      document.getElementById('subtotal').textContent = storedSubtotal;
-      document.getElementById('item-count').textContent = itemCount;
-
-      // Recalculate the grand total after page load
-      const grandTotal = calculateGrandTotal(parseFloat(storedSubtotal));
-      document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
+      let storedSubtotal = localStorage.getItem('subtotal') || '0.00';
+      let itemCount = localStorage.getItem('itemCount') || '0.00';
+      let grandTotal = localStorage.getItem('grandTotal') || '0.00';
+      
+      storedSubtotal = parseFloat(storedSubtotal.replace(/[^0-9.-]/g, ''));
+      itemCount = parseFloat(itemCount.replace(/[^0-9.-]/g, ''));
+      grandTotal = parseFloat(grandTotal.replace(/[^0-9.-]/g, ''));
+      
+      document.getElementById('item-subtotal').textContent = `${storedSubtotal.toFixed(2)}`
+      document.getElementById('item-count').textContent = `${itemCount}`
+      document.getElementById('cart-grand-total').textContent = `$ ${grandTotal.toFixed(2)}`
     })
   </script>
   <style>
@@ -472,7 +492,7 @@
       // console.log("item_count", item_count1);
       console.log(item_count1);
 
-      grand_total1 = document.getElementById("grand-total");
+      grand_total1 = document.getElementById("cart-grand-total");
       grand_total1 = grand_total1.innerHTML;
       //console.log(grand_total1);
 
@@ -486,7 +506,7 @@
       // Hardcoded values
       console.log("call started");
 
-
+    
       // Proceed with Frappe call
       frappe.call({
         method: 'qetah_phase_1.events.proceed_checkout.poceed_to_checkout',
@@ -545,7 +565,7 @@
     // arabic id
     function updatePageContent(translations) {
       //checkout
-      document.getElementById('subtotal').textContent = translations['subtotal'];
+      // document.getElementById('item-subtotal').textContent = translations['subtotal'];
       document.getElementById('delivery_fee_ar').textContent = translations['delivery_fee_ar'];
       document.getElementById('delivery_discount_ar').textContent = translations['delivery_discount_ar'];
       document.getElementById('taxes_included').textContent = translations['taxes_included'];
@@ -557,18 +577,43 @@
       document.getElementById('postalCodeLabel').textContent = translations['postalCodeLabel'];
       document.getElementById('fullname_h').textContent = translations['fullname_h'];
       document.getElementById('total_items').textContent = translations['total_items'];
-      document.getElementById('qty-Text').textContent = translations['qtyText'];
+      const qtyTextElement = document.getElementById('qty-Text');
+
+      // Check if the element exists
+      if (qtyTextElement) {
+        document.getElementById('qty-Text').textContent = translations['qtyText'];
+      }
+      
       document.getElementById('apply_button').textContent = translations['apply_button'];
-      document.getElementById('fulfilled_by_qetah').textContent = translations['fulfilled_by_qetah'];
+      const fulfilled_by_qetah = document.getElementById('fulfilled_by_qetah');
+
+      // Check if the element exists
+      if (fulfilled_by_qetah) {
+        document.getElementById('fulfilled_by_qetah').textContent = translations['fulfilled_by_qetah'];
+      }
+
       document.getElementById('title_qetah_h').textContent = translations['title_qetah_h'];
-      document.getElementById('pakge').textContent = translations['pakge_of'];
-      document.getElementById('of').textContent = translations['of_v'];
+
+      const pakge = document.getElementById('pakge');
+
+      // Check if the element exists
+      if (pakge) {
+        document.getElementById('pakge').textContent = translations['pakge_of'];
+      }
+      
+      const of = document.getElementById('of');
+
+      // Check if the element exists
+      if (pakge) {
+        document.getElementById('of').textContent = translations['of_v'];
+      }
+      
 
       // document.getElementById('subtotal').textContent = translations['subtotal'];
       document.getElementById('informationForm').textContent = translations['delivery_information'];
 
       // Update grand total
-      document.getElementById('grand-total').textContent = translations['grand-total'];
+      document.getElementById('grand_total_label').textContent = translations['grand-total'];
 
       // Update promotion and tax messages
       document.getElementById('messages').textContent = translations['messages'];
@@ -582,7 +627,10 @@
       document.getElementById('order_summary').textContent = translations['order_summary'];
       document.getElementById('grand_total_label').textContent = translations['grand_total_label'];
       document.getElementById('grand_total_label').textContent = translations['grand_total_label'];
-      document.getElementById('proceed_to_pay_he').setAttribute('value', translations['proceed_to_pay']);
+      // document.getElementById('proceed_to_pay_he').setAttribute('value', translations['proceed_to_pay']);
+      document.getElementById('proceed_to_pay_he').textContent = translations['proceed_to_pay'];
+      
+      
       document.getElementById('enter_code').setAttribute('value', translations['enter_code']);
 
     }

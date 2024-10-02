@@ -13,8 +13,8 @@
             </li>
             <li class="breadcrumb-item active" id="breadcrumb_terms">Terms & Conditions</li>
         </ol>
-        <div id="terms_conditions_content" data-field ="en">{{privacy.terms_of_use}}</div>
-        <div id="terms_conditions_content" data-field ="ar">{{privacy.terms_of_use_arabic}}</div>
+        <div id="terms_conditions_content" data-field="en">{{privacy.terms_of_use}}</div>
+        <div id="terms_conditions_content" data-field="ar">{{privacy.terms_of_use_arabic}}</div>
     </main>
     <!-- CONTENT -->
 </div>
@@ -30,6 +30,20 @@
         document.getElementById('breadcrumb_home').textContent = translations['breadcrumb_home'];
         document.getElementById('breadcrumb_terms').textContent = translations['breadcrumb_terms'];
     }
+    document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function () {
+            // Select all `li` elements with the classes `nav-drop-wrap` and `res-link`
+            const listItems = document.querySelectorAll('li.nav-drop-wrap.res-link');
 
+            listItems.forEach(function (li) {
+                // Check if any child element of this `li` contains the class `bx-cart`
+                if (li.querySelector('.bx-cart')) {
+                    // Hide the parent `li` by setting the display style to 'none'
+                    li.style.display = 'none';
+                }
+            });
+        })
+        displayData();
+    });
 </script>
 {% endblock %}

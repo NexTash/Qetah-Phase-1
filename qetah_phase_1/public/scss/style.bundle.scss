@@ -145,13 +145,7 @@ body[dir="rtl"] .tabs .tab-panes .row {
 
 body[dir="rtl"] .products .swiper .swiper-wrapper .swiper-slide .products .badge,
 body[dir="rtl"] .section-products .filtered-cards .cards .products .badge {
-  width: 100px;
   left: -10px;
-}
-
-.products .swiper .swiper-wrapper .swiper-slide .products .badge,
-.section-products .filtered-cards .cards .products .badge {
-  width: 100px;
 }
 
 body[dir="ltr"] .product-card .card-body [data-field="en"] {

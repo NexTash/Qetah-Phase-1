@@ -192,24 +192,21 @@
                                                 </div>
                                             
                                                 <div class="card-body">
-
-                                                    {% for variation in product.variations %}
                                                     <div class="variation">
-                                                        <div class="card-title" data-field="en">{{ variation.title }}</div>
-                                                        <div class="card-title" data-field="ar">{{ variation.title_arabic }}
+                                                        <div class="card-title" data-field="en">{{ product.variations["title"] }}</div>
+                                                        <div class="card-title" data-field="ar">{{ product.variations["title_arabic"] }}
                                                         </div>
-
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2" 
                                                             data-field="en">{{
-                                                            variation.description }}</div>
+                                                            product.variations["desc"] }}</div>
                                                         <div class="card-desc text-ellipsis text-ellipsis-2"
                                                             data-field="ar">{{
-                                                            variation.description_arabic }}</div>
-                                                        <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                            product.variations["desc_arabic"] }}</div>
+                                                        <div class="card-subtitle"><del>{{ product.variations["discount"]}}</del>
                                                         </div>
-                                                        <div class="card-title card-price">$ {{ variation.price }}</div>
+                                                        <div class="card-title card-price">$ {{ product.variations["price"] }}</div>
                                                     </div>
-                                                    {% endfor %}
+                                                    
 
                                                     <div class="card-rating">
                                                         <i class="bx bxs-star"></i>
@@ -222,7 +219,7 @@
                                                     id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
                                                     Now</button>
                                                 <button
-                                                    class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
+                                                    class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display: none;"></button>
                                             </div>
                                             
                                         </div>
@@ -234,7 +231,7 @@
                             <!-- Un-stitched Products Tab -->
                             <div x-show="OpenTab == 2" class="tab-pane">
                                 <div class="row">
-                                    {% for product in products if product.category == 'Un-stitched' %}
+                                    {% for product in products if product.category == 'Un-stiched' %}
                                     <div class="products">
                                         <div class="badge badge-primary badge-pill" data-field="en">{{ product.title }}
                                         </div>
@@ -251,23 +248,23 @@
                                             
                                                 <div class="card-body">
 
-                                                    {% for variation in product.variations %}
+                                                    
                                                     <div class="variation">
-                                                        <div class="card-title" data-field="en">{{ variation.title }}</div>
-                                                        <div class="card-title" data-field="ar">{{ variation.title_arabic }}
+                                                        <div class="card-title" data-field="en">{{ product.variations["title"] }}</div>
+                                                        <div class="card-title" data-field="ar">{{ product.variations["title_arabic"] }}
                                                         </div>
 
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2" 
                                                             data-field="en">{{
-                                                            variation.description }}</div>
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                            product.variations["desc"] }}</div>
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2" 
                                                             data-field="ar">{{
-                                                            variation.description_arabic }}</div>
-                                                        <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                            product.variations["desc_arabic"] }}</div>
+                                                        <div class="card-subtitle"><del>{{ product.variations["discount"]}}</del>
                                                         </div>
-                                                        <div class="card-title card-price">$ {{ variation.price }}</div>
+                                                        <div class="card-title card-price">$ {{ product.variations["price"] }}</div>
                                                     </div>
-                                                    {% endfor %}
+                                                    
 
                                                     <div class="card-rating">
                                                         <i class="bx bxs-star"></i>
@@ -280,7 +277,7 @@
                                                         id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
                                                         Now</button>
                                                     <button
-                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
+                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button>
                                                 </div>
                                             
                                         </div>
@@ -309,23 +306,23 @@
 
                                                 <div class="card-body">
 
-                                                    {% for variation in product.variations %}
+                                                   
                                                     <div class="variation">
-                                                        <div class="card-title" data-field="en">{{ variation.title }}</div>
-                                                        <div class="card-title" data-field="ar">{{ variation.title_arabic }}
+                                                        <div class="card-title" data-field="en">{{ product.variations["title"] }}</div>
+                                                        <div class="card-title" data-field="ar">{{ product.variations["title_arabic"] }}
                                                         </div>
 
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2" 
                                                             data-field="en">{{
-                                                            variation.description }}</div>
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                            product.variations["desc"] }}</div>
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2" 
                                                             data-field="ar">{{
-                                                            variation.description_arabic }}</div>
-                                                        <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                            product.variations["desc_arabic"] }}</div>
+                                                        <div class="card-subtitle"><del>{{ product.variations["discount"]}}</del>
                                                         </div>
-                                                        <div class="card-title card-price">$ {{ variation.price }}</div>
+                                                        <div class="card-title card-price">$ {{ product.variations["price"] }}</div>
                                                     </div>
-                                                    {% endfor %}
+                                                    
 
                                                     <div class="card-rating">
                                                         <i class="bx bxs-star"></i>
@@ -338,7 +335,7 @@
                                                         id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
                                                         Now</button>
                                                     <button
-                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
+                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button>
                                                 </div>
                                             
                                         </div>
@@ -366,23 +363,23 @@
                                                 </div>
                                                 <div class="card-body">
 
-                                                    {% for variation in product.variations %}
+                                                  
                                                     <div class="variation">
-                                                        <div class="card-title" data-field="en">{{ variation.title }}</div>
-                                                        <div class="card-title" data-field="ar">{{ variation.title_arabic }}
+                                                        <div class="card-title" data-field="en">{{ product.variations["title"] }}</div>
+                                                        <div class="card-title" data-field="ar">{{ product.variations["title_arabic"] }}
                                                         </div>
 
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2" 
                                                             data-field="en">{{
-                                                            variation.description }}</div>
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                            product.variations["desc"] }}</div>
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2" 
                                                             data-field="ar">{{
-                                                            variation.description_arabic }}</div>
-                                                        <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                            product.variations["desc_arabic"] }}</div>
+                                                        <div class="card-subtitle"><del>{{ product.variations["discount"]}}</del>
                                                         </div>
-                                                        <div class="card-title card-price">$ {{ variation.price }}</div>
+                                                        <div class="card-title card-price">$ {{ product.variations["price"] }}</div>
                                                     </div>
-                                                    {% endfor %}
+                                                    
 
                                                     <div class="card-rating">
                                                         <i class="bx bxs-star"></i>
@@ -395,7 +392,7 @@
                                                         id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
                                                         Now</button>
                                                     <button
-                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
+                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button>
                                                 </div>
                                             
                                         </div>
@@ -423,23 +420,23 @@
                                                 </div>
                                                 <div class="card-body">
 
-                                                    {% for variation in product.variations %}
+                                                   
                                                     <div class="variation">
-                                                        <div class="card-title" data-field="en">{{ variation.title }}</div>
-                                                        <div class="card-title" data-field="ar">{{ variation.title_arabic }}
+                                                        <div class="card-title" data-field="en">{{ product.variations["title"] }}</div>
+                                                        <div class="card-title" data-field="ar">{{ product.variations["title_arabic"] }}
                                                         </div>
 
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2" 
                                                             data-field="en">{{
-                                                            variation.description }}</div>
+                                                            product.variations["desc"] }}</div>
                                                         <div class="card-desc text-ellipsis text-ellipsis-2"
                                                             data-field="ar">{{
-                                                            variation.description_arabic }}</div>
-                                                        <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                            product.variations["desc_arabic"] }}</div>
+                                                        <div class="card-subtitle"><del>{{ product.variations["discount"]}}</del>
                                                         </div>
-                                                        <div class="card-title card-price">$ {{ variation.price }}</div>
+                                                        <div class="card-title card-price">$ {{ product.variations["price"] }}</div>
                                                     </div>
-                                                    {% endfor %}
+                                                    
 
                                                     <div class="card-rating">
                                                         <i class="bx bxs-star"></i>
@@ -452,7 +449,7 @@
                                                         id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
                                                         Now</button>
                                                     <button
-                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
+                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button>
                                                 </div>
                                             
                                         </div>
@@ -481,23 +478,23 @@
                                             
                                                 <div class="card-body">
 
-                                                    {% for variation in product.variations %}
+                                                    
                                                     <div class="variation">
-                                                        <div class="card-title" data-field="en">{{ variation.title }}</div>
-                                                        <div class="card-title" data-field="ar">{{ variation.title_arabic }}
+                                                        <div class="card-title" data-field="en">{{ product.variations["title"] }}</div>
+                                                        <div class="card-title" data-field="ar">{{ product.variations["title_arabic"] }}
                                                         </div>
 
                                                         <div class="card-desc text-ellipsis text-ellipsis-2"
                                                             data-field="en">{{
-                                                            variation.description }}</div>
+                                                            product.variations["desc"] }}</div>
                                                         <div class="card-desc text-ellipsis text-ellipsis-2"
                                                             data-field="ar">{{
-                                                            variation.description_in_arabic }}</div>
-                                                        <div class="card-subtitle"><del>{{ variation.discount}}</del>
+                                                            product.variations["description_in_arabic"] }}</div>
+                                                        <div class="card-subtitle"><del>{{ product.variations["discount"]}}</del>
                                                         </div>
-                                                        <div class="card-title card-price">$ {{ variation.price }}</div>
+                                                        <div class="card-title card-price">$ {{ product.variations["price"] }}</div>
                                                     </div>
-                                                    {% endfor %}
+                                                    
 
                                                     <div class="card-rating">
                                                         <i class="bx bxs-star"></i>
@@ -510,7 +507,7 @@
                                                         id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
                                                         Now</button>
                                                     <button
-                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
+                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button>
                                                 </div>
                                             
                                         </div>
@@ -554,7 +551,7 @@
 
         const queryString = new URLSearchParams(filters).toString();
         window.location.href = `/product?${queryString}`;
-        console.log(" for filters", min_price);
+        
     }
 
     function getVals() {
@@ -589,58 +586,29 @@
 
     // Check if the product already exists in the list
     function addOrUpdateProduct(productList, newProduct) {
-        let cart_list = []
-        if ("cart_list" == JSON.parse(localStorage.getItem('cart'))) {
-            cart_list = [];
-        }
-        else {
-            cart_list = JSON.parse(localStorage.getItem('cart'))
-        }
-
-        for (let product of productList) {
-            if (product.desc === newProduct.desc &&
-                product.image === newProduct.image &&
-                product.price === newProduct.price &&
-                product.title === newProduct.title) {
-                // If exists, add or update the qty key
-                if (product.qty) {
-                    product.qty += 1;
-                    if (cart_list) {
-                        for (let cart of cart_list) {
-                            if (cart.desc === newProduct.desc &&
-                                cart.image === newProduct.image &&
-                                cart.price === newProduct.price &&
-                                cart.title === newProduct.title) {
-                                // If exists, add or update the qty key
-                                if (cart.qty) {
-                                    cart.qty += 1;
-                                } else {
-                                    cart.qty = 1;
-                                }
-                                // Indicates that the product was updated
-                                localStorage.setItem('cart', JSON.stringify(cart_list))
-                            }
-                        }
+        let cart_list = JSON.parse(localStorage.getItem('cart')) || []
+        if(cart_list){
+            for (let product of cart_list) {
+                if (product.desc === newProduct.desc &&
+                    product.image === newProduct.image &&
+                    product.price === newProduct.price &&
+                    product.title === newProduct.title) {
+                    // If exists, add or update the qty key
+                    if (product.qty) {
+                        product.qty += 1;
+                    } else {
+                        product.qty = 1;
                     }
-                } else {
-                    product.qty = 1;
+                    
+                    localStorage.setItem('cart', JSON.stringify(cart_list));
+                    return true; // Indicates that the product was updated
                 }
-
-                return true; // Indicates that the product was updated
             }
-        }
-        console.log(cart_list);
-
+        }   
         // If the product does not exist, add it to the list
         newProduct.qty = 1;
-        productList.push(newProduct);
         cart_list.push(newProduct)
-        console.log(cart_list);
-
-        // console.log(productList);
         localStorage.setItem('cart', JSON.stringify(cart_list));
-        console.log(localStorage.getItem('cart'));
-
         return false; // Indicates that a new product was added
     }
     function onrefreshupdateOffcanvas(offcanvasBody, badge) {
@@ -649,42 +617,54 @@
         offcanvasBody.innerHTML = '';
 
         // Fetch the cart from localStorage
-        let doremon = JSON.parse(localStorage.getItem('cart')) || [];  // Default to an empty array if no cart is found
-        console.log(doremon);
+        // localStorage.setItem('cart', JSON.stringify([]))
+        let cartlist = JSON.parse(localStorage.getItem('cart')) || [];  // Default to an empty array if no cart is found
+      
         
         // Add each item in the wishlist to the offcanvas
-        doremon.forEach((item, index) => {
+        cartlist.forEach((item, index) => {
             const itemDiv = document.createElement('div');
             itemDiv.className = 'items d-flex';
+            itemDiv.setAttribute('data-index', index);
+            
+            let itemprice = parseFloat(item.price.replace(/[^0-9.]/g, ''));
+            
+            let price = itemprice *item.qty
             itemDiv.innerHTML = `
                 <div class="check-item">
                     <label class="check check-secondary">
-                        <input type="checkbox" class="item-checkbox" data-index="${index}" />
+                        <input type="checkbox" class="item-checkbox" data-index="`+index+`" />
                     </label>
                 </div>
-                <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
+                <img src="${item.image}" alt="${item.title}" class="offcanvas-image" data-elm ="img" />
                 <div class="text">
-                    <p class="offcanvas-title text-ellipsis">${item.title}</p>
-                    <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;">${item.desc}</div>
+                    <p class="offcanvas-title text-ellipsis" data-elm ="title">${item.title}</p>
+                    <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;" data-elm ="desc">${item.desc}</div>
                     <div class="quantity-counter">
-                        <p class="price update-price" data-price-per-item="${item.price}">${item.price}</p>
+                        <p class="price update-price" data-price-per-item="${item.price}" data-index="`+index+`" >$ ${(price).toFixed(2)}</p>
                         <div class="counter">
-                            <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement" data-index="${index}" id="selectAll2"></button>
-                            <input class="counter-value value" type="number" value="${item.qty}" min="0" data-index="${index}" />
-                            <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment" data-index="${index}" id="selectAll2"></button>
+                            <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement" data-index="`+index+`" id="selectAll2"></button>
+                            <input class="counter-value value" type="number" value="${item.qty}" min="0" data-index="`+index+`" />
+                            <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment" data-index="`+index+`" id="selectAll2"></button>
                         </div>
                     </div>
                 </div>
             `;
             offcanvasBody.appendChild(itemDiv);
-            console.log(itemDiv);
+            
             
         });
-        badge.textContent = doremon.length;
+        badge.textContent = cartlist.length;
     }
 
 
     document.addEventListener('DOMContentLoaded', () => {
+
+        
+        
+        
+        
+
         const offcanvas = document.getElementById('offcanvas-cart');
         const offcanvasBody = offcanvas.querySelector('.offcanvas-body-cart');
         const badge = document.querySelector('.cart-badge');
@@ -698,32 +678,42 @@
 
        
 
-        let wishlist =JSON.parse(localStorage.getItem('cart')) || [];;
+        let wishlist =JSON.parse(localStorage.getItem('cart')) || [];
 
-        function updateOffcanvas() {
+        function updateOffcanvas(wishlist=false) {
             // Clear the current items
+            
+            if(!wishlist){
+                wishlist=JSON.parse(localStorage.getItem('cart')) || [];
+            }
             offcanvasBody.innerHTML = '';
-
+            console.log(wishlist);
+            
             // Add each item in the wishlist to the offcanvas
             wishlist.forEach((item, index) => {
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'items d-flex';
+                itemDiv.setAttribute('data-index', index);
+                
+                let itemprice = parseFloat(item.price.replace(/[^0-9.]/g, ''));
+                
+                let price = itemprice *item.qty
                 itemDiv.innerHTML = `
                     <div class="check-item">
                         <label class="check check-secondary">
-                            <input type="checkbox" class="item-checkbox" data-index="${index}" />
+                            <input type="checkbox" class="item-checkbox" data-index="`+index+`" />
                         </label>
                     </div>
-                    <img src="${item.image}" alt="${item.title}" class="offcanvas-image" />
+                    <img src="${item.image}" alt="${item.title}" class="offcanvas-image"  data-elm ="img"/>
                     <div class="text">
-                        <p class="offcanvas-title text-ellipsis">${item.title}</p>
-                        <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;">${item.desc}</div>
+                        <p class="offcanvas-title text-ellipsis"  data-elm ="title" >${item.title}</p>
+                        <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;"  data-elm ="desc">${item.desc}</div>
                         <div class="quantity-counter">
-                            <p class="price update-price" data-price-per-item="${item.price}">${item.price}</p>
+                            <p class="price update-price" data-price-per-item="${item.price}" data-index="`+index+`" >$ ${(price).toFixed(2)}</p>
                             <div class="counter">
-                                <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement" data-index="${index}" id="selectAll2"></button>
-                                <input class="counter-value value" type="number" value="${item.qty}" min="0" data-index="${index}" />
-                                <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment" data-index="${index}" id="selectAll2" ></button>
+                                <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement" data-index="`+index+`" id="selectAll2"></button>
+                                <input class="counter-value value" type="number" value="${item.qty}" min="0" data-index="`+index+`" />
+                                <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment" data-index="`+index+`" id="selectAll2" ></button>
                             </div>
                         </div>
                     </div>
@@ -764,12 +754,6 @@
             const updated = addOrUpdateProduct(wishlist, product);
             // Update the offcanvas display
             updateOffcanvas();
-
-            if (updated) {
-                console.log('Product quantity updated:', product);
-            } else {
-                console.log('New product added:', product);
-            }
         }
 
         document.querySelectorAll('.btn-cart').forEach(button => {
@@ -792,17 +776,14 @@
                     desc: productCard.querySelector('.card-desc' + descSelector).innerText,
                     price: productCard.querySelector('.card-price').innerText, // Assuming price remains the same in both languages
                 };
-
-                // Log the selected product details for debugging
                 console.log(product);
-
+                
                 // Add product to wishlist
                 addTowishlist(product);
             });
         });
 
         deleteSelectedBtn.addEventListener('click', () => {
-            console.log("delete");
             
             const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
 
@@ -817,301 +798,347 @@
             }
             updateOffcanvas();
         });
-    });
 
+        function updateSubtotal() {
+            const checkboxes = document.querySelectorAll('.item-checkbox'); // Select all checkboxes
+            let subtotal = 0; // Initialize subtotal
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const selectAll1 = document.getElementById("selectAll1");
-        const offcanvasBody1 = document.getElementById("offcanvasBody");
-        const selectAll2 = document.getElementById("selectAll2");
-        const offcanvasBody2 = document.getElementById("offcanvasBody-cart");
-
-        const quantity1 = document.querySelector(".quantity");
-        const quantity2 = document.querySelector(".quantity-cart");
-
-        function updateQuantity(offcanvasBody, quantityElement) {
-            if (!offcanvasBody || !quantityElement) return;
-            const checkboxes = offcanvasBody.querySelectorAll(".item-checkbox");
-            const checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
-            quantityElement.textContent = checkedCount;
-        }
-
-        if (selectAll1 && offcanvasBody1) {
-            selectAll1.addEventListener('change', () => {
-                const checkboxes = offcanvasBody1.querySelectorAll(".item-checkbox");
-                checkboxes.forEach(checkbox => checkbox.checked = selectAll1.checked);
-                updateQuantity(offcanvasBody1, quantity1);
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) { // Check if the checkbox is checked
+                    const index = checkbox.getAttribute('data-index'); // Get the data-index
+                    const priceElement = document.querySelector(`.update-price[data-index="`+index+`"]`); // Select the corresponding price element
+                    
+                    if (priceElement) {
+                        const itemPrice = parseFloat(priceElement.textContent.replace('$', '').trim());
+                        subtotal += itemPrice; // Add the item's total price to the subtotal
+                    }
+                }
             });
 
-            offcanvasBody1.addEventListener('change', () => {
-                const checkboxes = offcanvasBody1.querySelectorAll(".item-checkbox");
-                selectAll1.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
-                updateQuantity(offcanvasBody1, quantity1);
-            });
-        }
-
-        if (selectAll2 && offcanvasBody2) {
-            selectAll2.addEventListener('change', () => {
-                const checkboxes = offcanvasBody2.querySelectorAll(".item-checkbox");
-                checkboxes.forEach(checkbox => checkbox.checked = selectAll2.checked);
-                updateQuantity(offcanvasBody2, quantity2);
-            });
-
-            offcanvasBody2.addEventListener('change', () => {
-                const checkboxes = offcanvasBody2.querySelectorAll(".item-checkbox");
-                selectAll2.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
-                updateQuantity(offcanvasBody2, quantity2);
-            });
+            // Update the subtotal display
+            const subtotalElement = document.getElementById('subTotal');
+            subtotalElement.textContent = `$ ${(subtotal).toFixed(2)}`; // Format and display the subtotal
         }
 
         document.addEventListener('click', (event) => {
             const target = event.target;
 
+            if (target.classList.contains('select-all-checkbox')) {
+                const checkboxes = document.querySelectorAll('.item-checkbox'); // Select all item checkboxes
+
+                // Check or uncheck all based on the "Select All" checkbox state
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = target.checked; // Set the checked state based on "Select All"
+                });
+
+                // Update the subtotal after changing the checkboxes
+                updateSubtotal();
+            }
+
+            // Check if the clicked element is an increment or decrement button
             if (target.classList.contains('counter-increment') || target.classList.contains('counter-decrement')) {
-                const counter = target.closest('.counter');
+                const index = target.getAttribute('data-index'); // Get the data-index of the clicked button
+                const inputField = document.querySelector(`.counter-value[data-index="`+index+`"]`); // Select the corresponding input field
 
-                if (!counter) {
-                    return;
-                }
-
-                const counterValue = counter.querySelector('.counter-value');
-                const priceElement = counter.closest('.quantity-counter').querySelector('.update-price');
-
-                if (!counterValue || !priceElement) {
-                    return;
-                }
-
-                // Get price per item from the data attribute
-                let priceText = priceElement.getAttribute('data-price-per-item');
-                let pricePerItem = parseFloat(priceText.replace(/[^0-9.-]/g, '')); // Remove $ and other non-numeric characters
-                if (isNaN(pricePerItem)) {
-                    console.error('Invalid price per item:', priceText);
-                    return;
-                }
-
-                // Get current total price and ensure it's a number
-                let totalPrice = parseFloat(priceElement.textContent.replace(/[^0-9.-]/g, ''));
-                if (isNaN(totalPrice)) {
-                    totalPrice = 0; // Initialize to 0 if not a valid number
-                }
-
-                // Update quantity and total price
-                let count = parseInt(counterValue.value, 10) || 0;
+                // Get the current quantity
+                let currentValue = parseInt(inputField.value);
+                let add=false
+                // Determine if we are incrementing or decrementing
                 if (target.classList.contains('counter-increment')) {
-                    count++;
-                    totalPrice += pricePerItem;
+                    currentValue++; // Increment the value
+                    add=true
                 } else if (target.classList.contains('counter-decrement')) {
-                    if (count > 0) {
-                        count--;
-                        totalPrice -= pricePerItem;
+                    if (currentValue > 0) {
+                        add=false
+                        currentValue--; // Decrement the value, but don't go below 0
                     }
                 }
 
-                // Update counter value and price
-                counterValue.value = count;
-                priceElement.textContent = `$${totalPrice.toFixed(2)}`; // Format price with $ symbol
+                inputField.value = currentValue; // Update the input field with the new quantity
+
+                // Update the displayed price
+                const priceElement = document.querySelector(`.update-price[data-index="`+index+`"]`);
+                const pricePerItem = parseFloat(priceElement.getAttribute('data-price-per-item').replace('$', '').trim());
+                const totalPrice = pricePerItem * currentValue;
+
+                // Update the price display
+                priceElement.textContent = `$ ${(totalPrice).toFixed(2)}`;
+
+                // Check if the corresponding checkbox is checked
+                const checkbox = document.querySelector(`.item-checkbox[data-index="`+index+`"]`);
+                if (checkbox && checkbox.checked) {
+                    updateSubtotal(); // Update the subtotal if the checkbox is checked
+                }
+
+                // Fetch the title, image, and description using data-elm attributes
+                // Update the cart in local storage
+                updateCartInLocalStorage(index, currentValue, add);
+            }
+
+            // Check if a checkbox was clicked
+            if (target.classList.contains('item-checkbox')) {
+                updateSubtotal(); // Call the function to update the subtotal when a checkbox is checked/unchecked
             }
         });
+
+        // Function to update the subtotal of checked items
+        
+
+        // Function to update the cart in local storage based on item properties
+        // Function to update the cart in local storage based on item quantity
+        function updateCartInLocalStorage(index, quantity, add) {
+            // Retrieve the cart from local storage or initialize an empty object
+            let cart = JSON.parse(localStorage.getItem('cart')) || {};
+            let deleted=[]
+            cart.forEach((item, index)=>{
+                cart[index]["index"] = index;
+                const checkbox = document.querySelector('.item-checkbox[data-index="'+index+'"]');
+                cart[index]["checked"] = checkbox.checked;
+            });
+                // If 'add' is true, increase the quantity
+            if (add === true) {
+                if (cart[index]) {
+                    cart[index]["qty"] = quantity; // Increment the quantity if item already exists
+                } else {
+                    // If the item doesn't exist, initialize it with the given quantity
+                    cart[index] = { qty: quantity };
+                }
+            } else {
+                // If 'add' is false, set the quantity directly (update the quantity)
+                if (cart[index]) {
+                    cart[index]["qty"] = quantity; // Update the quantity for existing item
+                } else {
+                    // If the item doesn't exist, add it to the cart with the given quantity
+                    cart[index] = { qty: quantity };
+                }
+            }
+            
+
+            // Clean up any undefined or null entries in the cart
+            
+            cart = cart.filter(item => item.qty > 0);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            // Save the updated cart back to local storage
+            updateOffcanvas2(cart);
+
+        }
+        function updateOffcanvas2(cart) {
+            // Clear the current items
+            
+            let wishlist = cart
+            offcanvasBody.innerHTML = '';
+            console.log(wishlist);
+            
+            // Add each item in the wishlist to the offcanvas
+            wishlist.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'items d-flex';
+                itemDiv.setAttribute('data-index', index);
+                
+                let itemprice = parseFloat(item.price.replace(/[^0-9.]/g, ''));
+                
+                let price = itemprice *item.qty
+                itemDiv.innerHTML = `
+                    <div class="check-item">
+                        <label class="check check-secondary">
+                            <input type="checkbox" class="item-checkbox" ${item.checked ? 'checked' : ''} data-index="`+index+`" />
+                        </label>
+                    </div>
+                    <img src="${item.image}" alt="${item.title}" class="offcanvas-image"  data-elm ="img"/>
+                    <div class="text">
+                        <p class="offcanvas-title text-ellipsis"  data-elm ="title" >${item.title}</p>
+                        <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;"  data-elm ="desc">${item.desc}</div>
+                        <div class="quantity-counter">
+                            <p class="price update-price" data-price-per-item="${item.price}" data-index="`+index+`" >$ ${(price).toFixed(2)}</p>
+                            <div class="counter">
+                                <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement" data-index="`+index+`" id="selectAll2"></button>
+                                <input class="counter-value value" type="number" value="${item.qty}" min="0" data-index="`+index+`" />
+                                <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment" data-index="`+index+`" id="selectAll2" ></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                offcanvasBody.appendChild(itemDiv);
+            });
+
+            // Update badge number
+            badge.textContent = wishlist.length;
+        }
     });
 
 
-
-
-    function updateSubtotal() {
-        let subtotal = 0;
-
-        // Function to calculate subtotal for all checked items
-        function calculateSubtotal() {
-            subtotal = 0; // Reset subtotal
-
-            // Get all checked item checkboxes within the offcanvas
-            const checkedItems = document.querySelectorAll('.offcanvas .item-checkbox:checked');
-
-            //console.log(`Number of checked items: ${checkedItems.length}`);
-
-            // Iterate over each checked item
-            checkedItems.forEach((checkbox) => {
-                // Find the closest item card from the checkbox
-                const itemCard = checkbox.closest('.items');
-
-                if (itemCard) {
-                    // Get the price element and quantity input within the item card
-                    const priceElement = itemCard.querySelector('.price.update-price');
-                    const quantityInput = itemCard.querySelector('.counter-value.value');
-
-                    if (priceElement && quantityInput) {
-                        // Extract and parse the price per item
-                        const pricePerItemText = priceElement.getAttribute('data-price-per-item');
-                        const pricePerItem = parseFloat(pricePerItemText.replace(/[^0-9.-]/g, '')); // Remove non-numeric characters
-
-                        // Get the quantity value and parse it to a number
-                        const quantity = parseInt(quantityInput.value, 10);
-
-                        //console.log(`Price per item: ${pricePerItem} (Type: ${typeof pricePerItem})`);
-                        //console.log(`Quantity: ${quantity} (Type: ${typeof quantity})`);
-
-                        if (!isNaN(pricePerItem) && !isNaN(quantity)) {
-                            // Add the subtotal for this item to the total
-                            subtotal += pricePerItem * quantity;
-                        } else {
-                            //console.log('Invalid price or quantity for item');
-                        }
-                    } else {
-                        //console.log('Price or quantity input not found for item card');
-                    }
-                } else {
-                    //console.log('Item card not found for checkbox');
-                }
-            });
-
-            // Update the final subtotal display
-            document.getElementById('subTotal').textContent = `${subtotal.toFixed(2)}`;
-        }
-
-        // Event listener for quantity changes and item checkbox changes
-        document.addEventListener('change', (event) => {
-            if (event.target.classList.contains('item-checkbox') || event.target.classList.contains('counter-value')) {
-                calculateSubtotal();
-            } else if (event.target.id === 'selectAll1') { // For wishlist select all
-                const isChecked = event.target.checked;
-                document.querySelectorAll('.offcanvas .item-checkbox').forEach((checkbox) => {
-                    checkbox.checked = isChecked;
-                });
-                calculateSubtotal();
-            } else if (event.target.id === 'selectAll2') { // For cart select all
-                const isChecked = event.target.checked;
-                document.querySelectorAll('#offcanvas-cart .item-checkbox').forEach((checkbox) => {
-                    checkbox.checked = isChecked;
-                });
-                calculateSubtotal();
-            }
-        });
-
-        // Call calculateSubtotal initially to set the correct subtotal on page load
-        document.addEventListener('DOMContentLoaded', calculateSubtotal);
-    }
-
-    // Initialize the subtotal calculation
-    updateSubtotal();
-
-    
     // document.addEventListener('DOMContentLoaded', () => {
-    //     const cartContainer = document.querySelector('.cart-container'); // Add the correct container element
-    //     const wishlistContainer = document.querySelector('.wishlist-container'); // Add the correct container element
+    //     const selectAll1 = document.getElementById("selectAll1");
+    //     const offcanvasBody1 = document.getElementById("offcanvasBody");
+    //     const selectAll2 = document.getElementById("selectAll2");
+    //     const offcanvasBody2 = document.getElementById("offcanvasBody-cart");
 
-    //     // Get cart data from localStorage
-    //     const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    //     const quantity1 = document.querySelector(".quantity");
+    //     const quantity2 = document.querySelector(".quantity-cart");
 
-    //     // Get wishlist data from localStorage
-    //     const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
+    //     function updateQuantity(offcanvasBody, quantityElement) {
+    //         if (!offcanvasBody || !quantityElement) return;
+    //         const checkboxes = offcanvasBody.querySelectorAll(".item-checkbox");
+    //         const checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+    //         quantityElement.textContent = checkedCount;
+    //     }
 
-    //     // Render Cart Items
-    //     function renderCartItems(items) {
-    //         items.forEach(item => {
-    //             const itemHTML = `
-    //         <div class="cart-card">
-    //             <div class="card-head">
-    //               <div class="checkbox">
-    //                 <label class="check check-secondary">
-    //                   <input type="checkbox"/>
-    //                 </label>
-    //               </div>
-    //               <div class="cart-conent">
-    //                 <img src="${item.image}" alt="${item.title}" class="image"/>
-    //                 <div class="card-desc">
-    //                   <p class="text-ellipsis text-ellipsis-2">${item.desc}</p>
-    //                   <span>No Brand, Color Family: White</span>
-    //                 </div>
-    //               </div>
-    //             </div>
-    //             <div class="card-body">
-    //               <div class="prices">
-    //                 <p class="price">Rs. ${item.price}</p>
-    //                 <div class="icon-group">
-    //                   <span class="wishlist"><i class="bx bx-heart"></i></span>
-    //                   <span class="wishlist"><i class="bx bx-trash"></i></span>
-    //                 </div>
-    //               </div>
-    //             </div>
-    //         </div>
-    //         `;
-    //             cartContainer.innerHTML += itemHTML;
+    //     if (selectAll1 && offcanvasBody1) {
+    //         selectAll1.addEventListener('change', () => {
+    //             const checkboxes = offcanvasBody1.querySelectorAll(".item-checkbox");
+    //             checkboxes.forEach(checkbox => checkbox.checked = selectAll1.checked);
+    //             updateQuantity(offcanvasBody1, quantity1);
+    //         });
+
+    //         offcanvasBody1.addEventListener('change', () => {
+    //             const checkboxes = offcanvasBody1.querySelectorAll(".item-checkbox");
+    //             selectAll1.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+    //             updateQuantity(offcanvasBody1, quantity1);
     //         });
     //     }
 
-    //     // Render Wishlist Items
-    //     function renderWishlistItems(items) {
-    //         items.forEach(item => {
-    //             const itemHTML = `
-    //         <div class="wishlist-card">
-    //             <div class="card-head">
-    //               <div class="checkbox">
-    //                 <label class="check check-secondary">
-    //                   <input type="checkbox"/>
-    //                 </label>
-    //               </div>
-    //               <div class="wishlist-conent">
-    //                 <img src="${item.image}" alt="${item.title}" class="image"/>
-    //                 <div class="card-desc">
-    //                   <p class="text-ellipsis text-ellipsis-2">${item.desc}</p>
-    //                   <span>${item.brand}</span>
-    //                 </div>
-    //               </div>
-    //             </div>
-    //             <div class="card-body">
-    //               <div class="prices">
-    //                 <p class="price">$. ${item.price}</p>
-    //                 <div class="icon-group">
-    //                   <span class="wishlist"><i class="bx bx-heart"></i></span>
-    //                   <span class="wishlist"><i class="bx bx-trash"></i></span>
-    //                 </div>
-    //               </div>
-    //             </div>
-    //         </div>
-    //         `;
-    //             wishlistContainer.innerHTML += itemHTML;
+    //     if (selectAll2 && offcanvasBody2) {
+    //         selectAll2.addEventListener('change', () => {
+    //             const checkboxes = offcanvasBody2.querySelectorAll(".item-checkbox");
+    //             checkboxes.forEach(checkbox => checkbox.checked = selectAll2.checked);
+    //             updateQuantity(offcanvasBody2, quantity2);
+    //         });
+
+    //         offcanvasBody2.addEventListener('change', () => {
+    //             const checkboxes = offcanvasBody2.querySelectorAll(".item-checkbox");
+    //             selectAll2.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+    //             updateQuantity(offcanvasBody2, quantity2);
     //         });
     //     }
 
-    //     // Call render functions for both cart and wishlist
-    //     renderCartItems(cartItems);
-    //     renderWishlistItems(wishlistItems);
-    // });
+    //     document.addEventListener('click', (event) => {
+    //         const target = event.target;
 
-    // document.addEventListener('DOMContentLoaded', () => {
-    //     const cartButtons = document.querySelectorAll('.btn-cart'); // Select all 'Add to Cart' buttons
+    //         if (target.classList.contains('counter-increment') || target.classList.contains('counter-decrement')) {
+    //             const counter = target.closest('.counter');
 
-    //     cartButtons.forEach(button => {
-    //         button.addEventListener('click', (e) => {
-    //             const productCard = e.target.closest('.product-card');
-    //             if (!productCard) return;
+    //             if (!counter) {
+    //                 return;
+    //             }
 
-    //             // Get product details from the product card
-    //             const product = {
-    //                 title: productCard.querySelector('.card-title').innerText,
-    //                 image: productCard.querySelector('.card-image').src,
-    //                 desc: productCard.querySelector('.card-desc').innerText,
-    //                 brand: productCard.querySelector('.card-brand').innerText,
-    //                 price: productCard.querySelector('.card-price').innerText,
-    //                 discount: productCard.querySelector('.card-discount').innerText,
-    //             };
+    //             const counterValue = counter.querySelector('.counter-value');
+    //             const priceElement = counter.closest('.quantity-counter').querySelector('.update-price');
 
-    //             // Get current cart from localStorage or initialize an empty array
-    //             let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    //             console.log(cart);
+    //             if (!counterValue || !priceElement) {
+    //                 return;
+    //             }
 
-    //             // Add the new product to the cart
-    //             cart.push(product);
+    //             // Get price per item from the data attribute
+    //             let priceText = priceElement.getAttribute('data-price-per-item');
+    //             let pricePerItem = parseFloat(priceText.replace(/[^0-9.-]/g, '')); // Remove $ and other non-numeric characters
+    //             if (isNaN(pricePerItem)) {
+    //                 console.error('Invalid price per item:', priceText);
+    //                 return;
+    //             }
 
-    //             // Save the updated cart back to localStorage
-    //             localStorage.setItem('cart', JSON.stringify(cart));
+    //             // Get current total price and ensure it's a number
+    //             let totalPrice = parseFloat(priceElement.textContent.replace(/[^0-9.-]/g, ''));
+    //             if (isNaN(totalPrice)) {
+    //                 totalPrice = 0; // Initialize to 0 if not a valid number
+    //             }
 
-    //             // Optionally show a message
-    //             // alert('Product added to cart!');
-    //         });
+    //             // Update quantity and total price
+    //             let count = parseInt(counterValue.value, 10) || 0;
+    //             if (target.classList.contains('counter-increment')) {
+    //                 count++;
+    //                 totalPrice += pricePerItem;
+    //             } else if (target.classList.contains('counter-decrement')) {
+    //                 if (count > 0) {
+    //                     count--;
+    //                     totalPrice -= pricePerItem;
+    //                 }
+    //             }
+
+    //             // Update counter value and price
+    //             counterValue.value = count;
+    //             priceElement.textContent = `$${totalPrice.toFixed(2)}`; // Format price with $ symbol
+    //         }
     //     });
     // });
 
+
+
+
+    // function updateSubtotal() {
+    //     let subtotal = 0;
+
+    //     // Function to calculate subtotal for all checked items
+    //     function calculateSubtotal() {
+    //         subtotal = 0; // Reset subtotal
+
+    //         // Get all checked item checkboxes within the offcanvas
+    //         const checkedItems = document.querySelectorAll('.offcanvas .item-checkbox:checked');
+
+
+    //         // Iterate over each checked item
+    //         checkedItems.forEach((checkbox) => {
+    //             // Find the closest item card from the checkbox
+    //             const itemCard = checkbox.closest('.items');
+
+    //             if (itemCard) {
+    //                 // Get the price element and quantity input within the item card
+    //                 const priceElement = itemCard.querySelector('.price.update-price');
+    //                 const quantityInput = itemCard.querySelector('.counter-value.value');
+
+    //                 if (priceElement && quantityInput) {
+    //                     // Extract and parse the price per item
+    //                     const pricePerItemText = priceElement.getAttribute('data-price-per-item');
+    //                     const pricePerItem = parseFloat(pricePerItemText.replace(/[^0-9.-]/g, '')); // Remove non-numeric characters
+
+    //                     // Get the quantity value and parse it to a number
+    //                     const quantity = parseInt(quantityInput.value, 10);
+
+    //                     //console.log(`Price per item: ${pricePerItem} (Type: ${typeof pricePerItem})`);
+    //                     //console.log(`Quantity: ${quantity} (Type: ${typeof quantity})`);
+
+    //                     if (!isNaN(pricePerItem) && !isNaN(quantity)) {
+    //                         // Add the subtotal for this item to the total
+    //                         subtotal += pricePerItem * quantity;
+    //                     } else {
+    //                         //console.log('Invalid price or quantity for item');
+    //                     }
+    //                 } else {
+    //                     //console.log('Price or quantity input not found for item card');
+    //                 }
+    //             } else {
+    //                 //console.log('Item card not found for checkbox');
+    //             }
+    //         });
+
+    //         // Update the final subtotal display
+    //         document.getElementById('subTotal').textContent = `${subtotal.toFixed(2)}`;
+    //     }
+
+    //     // Event listener for quantity changes and item checkbox changes
+    //     document.addEventListener('change', (event) => {
+    //         if (event.target.classList.contains('item-checkbox') || event.target.classList.contains('counter-value')) {
+    //             calculateSubtotal();
+    //         } else if (event.target.id === 'selectAll1') { // For wishlist select all
+    //             const isChecked = event.target.checked;
+    //             document.querySelectorAll('.offcanvas .item-checkbox').forEach((checkbox) => {
+    //                 checkbox.checked = isChecked;
+    //             });
+    //             calculateSubtotal();
+    //         } else if (event.target.id === 'selectAll2') { // For cart select all
+    //             const isChecked = event.target.checked;
+    //             document.querySelectorAll('#offcanvas-cart .item-checkbox').forEach((checkbox) => {
+    //                 checkbox.checked = isChecked;
+    //             });
+    //             calculateSubtotal();
+    //         }
+    //     });
+
+    //     // Call calculateSubtotal initially to set the correct subtotal on page load
+    //     document.addEventListener('DOMContentLoaded', calculateSubtotal);
+    // }
+
+    // // Initialize the subtotal calculation
+    // updateSubtotal();
 </script>
 <script>
     // arabic id

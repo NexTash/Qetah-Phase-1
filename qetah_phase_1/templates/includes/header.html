@@ -111,7 +111,7 @@
                   <div class="select-all" style="padding: 16px 16px 0px 16px;">
                     <label class="check check-secondary" >
                      <p class="m-0" id="select_All_m"> </p>
-                      <input type="checkbox" id="selectAll2"/> 
+                      <input class="select-all-checkbox" type="checkbox" id="selectAll2"/> 
                     </label>
 
                     <hr style="margin: 5px 0px;
@@ -126,16 +126,13 @@
                   </div>
                   <div class="offcanvas-foot">
                     <div class="card-title" id="cartSummary">Summary :-</div>
-                    <div class="subtotal">
-                      <p id="itemsText"> Items :</p>
-                      <b class="quantity-cart" id="qtyText">0</b>  
-                    </div>
+                    
                     <div class="subtotal">
                       <p id="subTotalText">Subtotal : </p>
                       <p style="font-weight: 600;" id="subTotal"></p>
                     </div>
                     <div class="btn-grp">
-                      <button class="btn btn-remove" id="del-cart">Delete</button>
+                      <button class="btn btn-remove d-none" id="del-cart">Delete</button>
                       <a href="/cart-items">
                         <button class="btn btn-cart" id="goToCart">Go to Cart</button>
                       </a>
@@ -173,8 +170,6 @@
     document.getElementById('select_All_h').textContent = translations['select_All_h'];
     document.getElementById('select_All_m').textContent = translations['select_All_m'];
     document.getElementById('addToCartBtnM').textContent = translations['addToCartBtnM'];
-    document.getElementById('qtyText').textContent = translations['qtyText'];
-    document.getElementById('itemsText').textContent = translations['itemsText'];
     document.getElementById('subTotalText').textContent = translations['subTotalText'];
     document.getElementById('cartSummary').textContent = translations['cartSummary'];
     document.getElementById('del-cart').textContent = translations['deleteSelectedBtn'];
@@ -192,41 +187,6 @@
     // Redirect to the cart page
     window.location.href = 'cart-items.html';  // Replace with the correct path if needed
   });
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const cartButton = document.querySelectorAll('.btn-cart'); // Select all 'Add to Cart' buttons
-
-    // cartButton.forEach(button => {
-    //   button.addEventListener('click', (e) => {
-    //     const productCard = e.target.closest('.product-card');
-    //     console.log(productCard);
-        
-    //     if (!productCard) return;
-
-    //     // Get product details
-    //     const product = {
-    //       title: productCard.querySelector('.card-title').innerText,
-    //       image: productCard.querySelector('.card-image').src,
-    //       desc: productCard.querySelector('.card-desc').innerText,
-    //       price: productCard.querySelector('.card-price').innerText,
-    //     };
-
-    //     // Get current cart from localStorage or initialize an empty array
-    //     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    //     console.log(product,cart);
-        
-    //     // Add new product to the cart
-    //     cart.push(product);
-
-    //     // Save the updated cart back to localStorage
-    //     localStorage.setItem('cart', JSON.stringify(cart));
-
-    //     // Show a message or confirmation (optional)
-    //     // alert('Product added to cart!');
-    //   });
-    // });
-  });
-
 </script>
 <script>
   // main js

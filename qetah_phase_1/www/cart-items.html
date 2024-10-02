@@ -199,7 +199,7 @@
               </span>
               <button class="btn btn-light btn-icon">
                 <i class="bx bx-trash icon-pre delete-item" ></i>
-                <span id="deleteButton" onclick="clearCart()">DELETE</span>
+                <!-- <span id="deleteButton" stayle="display:none" >DELETE</span> -->
               </button>
             </div>
           </div>
@@ -370,11 +370,11 @@
             </div>
           </div>
           <div class="card-foot">
-            <a href="/checkout" style="text-decoration: none;">
+            
               <button class="btn btn-secondary btn-sm btn-block" id="proceedCheckoutButton">
                 Proceed To Checkout
               </button>
-            </a>
+            
           </div>
         </div>
       </div>
@@ -392,8 +392,8 @@
         {% for variation in product.variations %}
         <div class="swiper-slide">
           <div class="products">
-            <div class="badge badge-primary badge-pill" data-field="en">{{ variation.title }}</div>
-            <div class="badge badge-primary badge-pill" data-field="ar">{{ variation.title_arabic }}</div>
+            <div class="badge badge-primary badge-pill" data-field="en">{{ product.title }}</div>
+            <div class="badge badge-primary badge-pill" data-field="ar">{{ product.title_arabic }}</div>
             <div class="card product-card">
               <a href="/product">
                 <div class="card-head">
@@ -401,23 +401,22 @@
                     src="{{ product.featured_image }}">
                 </div>
                 <div class="card-body">
-                  <div class="card-title" data-field="en">{{ variation.intro }}</div>
-                  <div class=" card-title" data-field="ar" id="title-ar">{{ variation.intro_arabic }}</div>
+                  <div class="card-title" data-field="en">{{ variation.title }}</div>
+                  <div class=" card-title" data-field="ar" id="title-ar">{{ variation.title_arabic }}</div>
                   <div class="card-desc text-ellipsis text-ellipsis-2" data-field="en">{{
-                    variation.description }}</div>
+                    variation.intro }}</div>
                   <div class=" card-desc text-ellipsis text-ellipsis-2" data-field="ar" id="desc-ar">{{
-                    variation.description_arabic }}</div>
+                    variation.intro_arabic }}</div>
                   <div class="card-subtitle"><del>USD {{ variation.price }}</del></div>
-                  <div class="card-title">USD {{ variation.discount }}</div>
+                  <div class="card-price" style="font-weight: bold;font-size: 25px;">USD {{ variation.discount }}</div>
                   <div class="card-rating">
                     <i class="bx bxs-star"></i>
-                    <span>{{ product.rating_count }}</span> ({{ product.sold }} Sold)
+                    <span>{{ product.rating }}</span> ({{ product.sold }} Sold)
                   </div>
                 </div>
               </a>
-              <div class="card-foot">
-                <button class="btn btn-light btn-icon btn-pill"><i class="bx bx-cart icon-pre" id="buyNowButton"></i>
-                  </button>
+              <div class="card-foot" style="display: none;">
+                <button class="btn btn-light btn-icon btn-pill btn-cart" id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy Now</button>
                 <button class="btn btn-light btn-icon btn-circle bx bx-heart" id="wishlistButton"></button>
               </div>
             </div>
@@ -437,6 +436,8 @@
   {% block scripts %}
   <script>
     function savebutton() {
+      console.log("savebuttoncalled");
+      
       const phone = document.getElementById('phone').value;
       const address = document.getElementById('address').value;
       const email = document.getElementById('email').value;
@@ -467,6 +468,7 @@
         }
       });
     }
+    
   </script>
   <!-- cart -->
   <script>
@@ -480,7 +482,6 @@
 
       function updateOffcanvas() {
         // Clear the current items
-        console.log(title_ar);
         offcanvasBody.innerHTML = '';
 
         // Add each item in the wishlist to the offcanvas
@@ -525,26 +526,27 @@
 
       document.querySelectorAll('.btn-cart').forEach(button => {
         button.addEventListener('click', (e) => {
+          // Find the product card by going up the DOM tree
           const productCard = e.target.closest('.product-card');
-          if (!productCard) return;
+          if (!productCard) {
+              console.error("No product card found");
+              return;
+          }
 
-          // Get product details from the card
+          const selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+          // Determine which data-field to fetch based on the selected language
+          const titleSelector = selectedLanguage === 'ar' ? '[data-field="ar"]' : '[data-field="en"]';
+          const descSelector = selectedLanguage === 'ar' ? '[data-field="ar"]' : '[data-field="en"]';
+          console.log(productCard);
+          // Get product details from the card based on the selected language
+
           const product = {
-            title: productCard.querySelector('.card-title').innerText,
-            title_ar: productCard.document.getElementById('title-ar').innerHTML,
-            image: productCard.querySelector('.card-image').src,
-            desc: productCard.querySelector('.card-desc').innerText,
-            // desc_ar: productCard.querySelector('.desc-ar').innerText,
-            desc_ar: productCard.document.getElementById('desc-ar').innerHTML,
-            price: productCard.querySelector('.card-price').innerText,
+              title: productCard.querySelector('.card-title' + titleSelector).innerText,
+              image: productCard.querySelector('.card-image').src,
+              desc: productCard.querySelector('.card-desc'+descSelector).innerText,
+              price: productCard.querySelector('.card-price').innerText, // Assuming price remains the same in both languages
           };
-          console.log("desc-ar");
-          console.log("title-ar");
-          console.log(product);
-          
-          
-          
-
+        
           // Add product to wishlist
           addToWishlist(product);
         });
@@ -569,6 +571,8 @@
   </script>
   <script>
     document.getElementById('saveButton').addEventListener('click', function () {
+      console.log("saveid called");
+      
       const firstname = document.getElementById('firstname').value;
       const lastname = document.getElementById('lastname').value;
       const phone = document.getElementById('phone').value;
@@ -600,30 +604,50 @@
   </script>
   <!-- Cart Items  -->
   <script>
+    document.getElementById('proceedCheckoutButton').addEventListener('click', () => {
+      // Redirect to the cart page
 
-     document.addEventListener('DOMContentLoaded', () => {
-        
+      // Get all item checkboxes
+      const checkboxes = document.querySelectorAll('.item-checkbox');
+
+      // Initialize new_cart_list before the loop
+      let new_cart_list = [];
+
+      // Get the existing cart from localStorage
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      // Loop through each checkbox
+      checkboxes.forEach(checkbox => {
+        // Check if the checkbox is checked and does not have an id attribute
+        if (checkbox.checked && !checkbox.hasAttribute('id')) {
+          
+          let index = checkbox.getAttribute('data-index');
+          // Add the corresponding item to the new_cart_list
+          new_cart_list.push(cart[index]);
+        }
+      });
+
+      // Update localStorage with the new cart list
+      localStorage.setItem('cart', JSON.stringify(new_cart_list));
+
+      // Redirect to the checkout page
+      window.location.href = '/checkout'; 
     });
-
-
-
-
-
     document.addEventListener('DOMContentLoaded', () => {
 
-      setTimeout(function() {
-        // Select all `li` elements with the classes `nav-drop-wrap` and `res-link`
-        const listItems = document.querySelectorAll('li.nav-drop-wrap.res-link');
-        
-        listItems.forEach(function(li) {
-            // Check if any child element of this `li` contains the class `bx-cart`
-            if (li.querySelector('.bx-cart')) {
-                // Hide the parent `li` by setting the display style to 'none'
-                li.style.display = 'none';
-            }
-        });
-    }, 100); 
+      setTimeout(function () {
+          // Select all `li` elements with the classes `nav-drop-wrap` and `res-link`
+          const listItems = document.querySelectorAll('li.nav-drop-wrap.res-link');
 
+          listItems.forEach(function (li) {
+          // Check if any child element of this `li` contains the class `bx-cart`
+          if (li.querySelector('.bx-cart')) {
+              // Hide the parent `li` by setting the display style to 'none'
+              li.style.display = 'none';
+          }
+          });
+      })
+      displayData();
 
       const cartContainer = document.querySelector('.cart-container');
       const subtotalElement = document.getElementById('subtotal-cart');
@@ -634,15 +658,10 @@
       // Retrieve cart items from localStorage, ensuring it's an array
       let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
       console.log(cartItems);
-      function clearCart() {
-        cartItems = [];
-        localStorage.setItem('cart', JSON.stringify(cartItems));
-        renderCartItems(cartItems);
-      }
       // Function to render cart items
       function renderCartItems(items) {
         console.log(items);
-        
+      
         let subtotal = 0;
         let itemCount = 0;
 
@@ -685,7 +704,7 @@
                             <p class="price">${(itemTotal).toFixed(2)}</p>
                           ${item.discount ? `<span>${item.discount}</span>` : ''}
                             <div class="icon-group">
-                                <span class="wishlist"><i class="bx bx-heart"></i></span>
+                                <span class="wishlist">
                                 <span class="delete-item wishlist delete-item" data-index="`+ index + `"><i class="bx bx-trash"></i></span>
                             </div>
                         </div>
@@ -763,30 +782,12 @@
         });
         console.log(subtotal);
         
-
         // Update the subtotal display
         const subtotalElement = document.querySelector('#subtotal-cart'); // Update with the correct selector for your subtotal display
         subtotalElement.textContent = `${subtotal.toFixed(2)}`; // Format subtotal for display
       }
 
-      // function updateSubtotal() {
-      //     let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-      //     let subtotal = 0;
-      //     console.log("working");
-          
-      //     // Loop through each cart item and calculate the subtotal based on the quantity and price
-      //     cartItems.forEach(item => {
-      //         // Extract the numeric part of the price from the "$ 1500.0" format
-      //         let itemPrice = parseFloat(item.price.replace('$', '').trim());
-
-      //         subtotal += item.qty * itemPrice; // Assuming each cart item has a price property
-      //     });
-      //     console.log(subtotal);
-          
-      //     // Update the subtotal display in the UI
-      //     document.querySelector('.subtotal').innerText = "$ " + subtotal.toFixed(2); // Assuming you have a .subtotal element
-      // }
-      // Function to update the quantity and price
+     
       function updateQuantity(index, change) {
         // Ensure the cart items are retrieved from localStorage and parsed
         let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
@@ -824,6 +825,7 @@
         if (event.target.classList.contains('bx-trash')) {
           const index = event.target.closest('.delete-item').getAttribute('data-index');
           deleteCartItem(index);
+          updateSubtotal();
         }
       });
 
@@ -848,6 +850,7 @@
 
         // Reload the cart after deletion
         renderCartItems(cartItems);
+        updateSubtotal();
       });
 
       // Add event listener for 'Select All' functionality
@@ -871,79 +874,16 @@
       }
 
       // Clear the cart before adding new items (use when necessary)
-      
+      function clearCart() {
+
+        cartItems = [];
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+        renderCartItems(cartItems);
+      }
     });
   </script>
   <script>
-  
-   function updateSubtotal() {
-        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-        let subtotal = 0;
 
-        // Loop through each cart item and calculate the subtotal based on the quantity and price
-        cartItems.forEach(item => {
-            // Extract the numeric part of the price from the "$ 1500.0" format
-            let itemPrice = parseFloat(item.price.replace('$', '').trim());
-
-            subtotal += item.qty * itemPrice; // Assuming each cart item has a price property
-        });
-        console.log(subtotal);
-        
-        // Update the subtotal display in the UI
-        document.querySelector('.subtotal').innerText = "$ " + subtotal.toFixed(2); // Assuming you have a .subtotal element
-    }
-
-    // Function to update quantity when + or - buttons are clicked
-    // function updateQuantity(index, change) {
-    //     let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-
-    //     // Check if the item exists at the given index
-    //     if (cartItems[index]) {
-    //         const quantityInput = document.querySelector(`.counter-value[data-index="${index}"]`);
-    //         if (quantityInput) {
-    //             let quantity = parseInt(quantityInput.value) + change;
-    //             quantity = Math.max(quantity, 1); // Ensure quantity is at least 1
-
-    //             cartItems[index].qty = quantity;
-    //             localStorage.setItem('cart', JSON.stringify(cartItems));
-
-    //             quantityInput.value = quantity;
-
-    //             // Update the subtotal after quantity change
-    //             updateSubtotal();
-    //         }
-    //     } else {
-    //         console.error('Item at the given index does not exist.');
-    //     }
-    // }
-
-    // Event listeners for increment and decrement buttons
-    document.querySelectorAll('.counter-increment').forEach(button => {
-        button.addEventListener('click', function() {
-            const index = this.getAttribute('data-index');
-            updateQuantity(index, 1);
-        });
-    });
-
-    // document.querySelectorAll('.counter-decrement').forEach(button => {
-    //     button.addEventListener('click', function() {
-    //         const index = this.getAttribute('data-index');
-    //         updateQuantity(index, -1);
-    //     });
-    // });
-
-    // Event listener for checkboxes
-    
-
-    // Initialize subtotal when the page loads
-    document.addEventListener('DOMContentLoaded', () => {
-        updateSubtotal();
-        document.querySelectorAll('.item-checkbox').forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                updateSubtotal(); // Optionally, you can update subtotal when checkboxes are selected/unselected
-            });
-        });
-    });
   
   </script>
 
@@ -1021,7 +961,7 @@
     function updatePageContent(translations) {
       //Cart Items
       document.getElementById('selectAllLabel').textContent = translations['selectAllLabel'];
-      document.getElementById('deleteButton').textContent = translations['deleteButton'];
+      // document.getElementById('deleteButton').textContent = translations['deleteButton'];
       document.getElementById('address-modal-h').textContent = translations['address-modal-h'];
       document.getElementById('addAddressTitle').textContent = translations['addAddressTitle'];
       document.getElementById('firstNameLabel').textContent = translations['firstNameLabel'];
@@ -1040,7 +980,7 @@
       document.getElementById('order_summary').textContent = translations['order_summary'];
       document.getElementById('subtotalLabel').textContent = translations['subtotalLabel'];
       document.getElementById('voucherCode').placeholder = translations['voucherCode'];
-      document.getElementById('buyNowButton').textContent = translations['buy_now_button'];
+      document.getElementById('buy_now_button').textContent = translations['buy_now_button'];
       document.getElementById('submitVoucherButton').textContent = translations['submitVoucherButton'];
       document.getElementById('proceedCheckoutButton').textContent = translations['proceedCheckoutButton'];
       document.getElementById('justForYouTitle').textContent = translations['justForYouTitle'];

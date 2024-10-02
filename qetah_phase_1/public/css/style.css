@@ -231,6 +231,7 @@
 .nxt-header .navbar-brand-lt .no-collapse ul .nav-drop-wrap .nav-icon-link i {
   color: var(--text);
   font-size: 30px;
+  
 }
 @media (max-width: 375px) {
   .nxt-header .navbar-brand-lt .no-collapse ul .nav-drop-wrap .nav-icon-link i {
@@ -875,6 +876,7 @@ footer .quote i {
   border-radius: 0px;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  display:none;
 }
 .offcanvas-right .offcanvas-foot .btn-remove:hover {
   background: var(--danger);

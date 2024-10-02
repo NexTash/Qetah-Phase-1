@@ -179,31 +179,31 @@
                 <div class="card-head">
                   <img class="card-image " src="{{ product.featured_image }}" alt="Product Image">
                 </div>
-              </a>
+              
               <div class="card-body">
                 {% if product.variations %}
-                {% for variation in product.variations %}
+                
                 <div class="variation">
-                  <div class="card-title" data-field="en">{{ variation.title }}</div>
-                  <div class="card-desc text-ellipsis text-ellipsis-2" data-field="en">{{ variation.description }}</div>
+                  <div class="card-title" data-field="en">{{ product.variations["title"] }}</div>
+                  <div class="card-desc text-ellipsis text-ellipsis-2" data-field="en">{{ product.variations["description"] }}</div>
 
-                  <div class="card-title" data-field="ar">{{ variation.title_arabic }}</div>
-                  <div class="card-desc text-ellipsis text-ellipsis-2" data-field="ar">{{ variation.description_arabic}}</div>
+                  <div class="card-title" data-field="ar">{{ product.variations["title_arabic"] }}</div>
+                  <div class="card-desc text-ellipsis text-ellipsis-2" data-field="ar">{{ product.variations["description_arabic"]}}</div>
 
-                  <div class="card-subtitle"><del>USD {{ variation.discount }}</del></div>
-                  <div class="card-title p-price">USD {{ variation.price }}</div>
+                  <div class="card-subtitle"><del>USD {{ product.variations["discount"] }}</del></div>
+                  <div class="card-title card-price">USD {{ product.variations["price"] }}</div>
                 </div>
-                {% endfor %}
+                </a>
                 {% else %}
                 <!-- <p id="badge_no_variations">No variations available</p> -->
                 {% endif %}
                 <div class="card-rating">
                   <i class="bx bxs-star"></i>
-                  <span>{{ product.rating_count }}</span> ({{ product.sold }}) <span id="card_sold"></span>
+                  <span>{{ product.rating }}</span> ({{ product.sold }}) <span id="card_sold"></span>
                 </div>
               </div>
-              <div class="card-foot">
-                <button class="btn btn-light btn-icon btn-pill btn-cart" onclick="cart()" id="btn_buy_now"><i
+              <div class="card-foot" >
+                <button class="btn btn-light btn-icon btn-pill btn-cart"  id="btn_buy_now"><i
                     class="bx bx-cart icon-pre"></i> Buy Now</button>
                 <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
               </div>
@@ -336,6 +336,24 @@
 
   {% block scripts %}
   <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+      setTimeout(function() {
+          // Select all `li` elements with the classes `nav-drop-wrap` and `res-link`
+          const listItems = document.querySelectorAll('li.nav-drop-wrap.res-link');
+          
+          listItems.forEach(function(li) {
+              // Check if any child element of this `li` contains the class `bx-cart`
+              if (li.querySelector('.bx-cart')) {
+                  // Hide the parent `li` by setting the display style to 'none'
+                  li.style.display = 'none';
+              }
+          });
+      }, 100);
+    });
+
+
     // arabic id
     function updatePageContent(translations) {
       // index

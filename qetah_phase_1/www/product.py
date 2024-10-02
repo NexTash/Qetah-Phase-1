@@ -1,4 +1,6 @@
 import frappe
+import re
+import copy
 
 def get_context(context):
     search_query = frappe.form_dict.get('q', None)
@@ -63,7 +65,23 @@ def get_context(context):
             SELECT * FROM `tabProduct Images`
             WHERE parent = %(parent)s
         """, {'parent': product_name}, as_dict=True)
+    product_list=[]
+    for product in products:
+        print(product)
+        tempdoc = product
+        doc = product
+        for variation in product.variations:
+            desc = variation.description
+            desc_arabic = variation.description_arabic
+            variation.desc = re.sub(r'<.*?>', '', desc).strip()
+            variation.desc_arabic = re.sub(r'<.*?>', '', desc_arabic).strip()
+            
+            doc["variations"]=[]
+            doc["variations"]=variation
+            product_list.append(copy.deepcopy(doc))
 
+            
+    
     context.update({
-        "products": products
+        "products": product_list
     })

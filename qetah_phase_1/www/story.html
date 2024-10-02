@@ -81,22 +81,36 @@
 {% endblock %}
 {% block scripts %}
 <script>
- // arabic id
+    // arabic id
     function updatePageContent(translations) {
-      //story 
-      // Update 'About Us' section
-      document.getElementById('about_us_title').textContent = translations['about_us_title'];
-      // Update 'Customer Importance' section
-      document.getElementById('customer_importance_heading').textContent = translations['customer_importance_heading'];
-      document.getElementById('customer_importance_text').textContent = translations['customer_importance_text'];
-      // Update 'Our Goal' section
-      document.getElementById('our_goal_heading').textContent = translations['our_goal_heading'];
-      document.getElementById('our_goal_text').textContent = translations['our_goal_text'];
+        //story 
+        // Update 'About Us' section
+        document.getElementById('about_us_title').textContent = translations['about_us_title'];
+        // Update 'Customer Importance' section
+        document.getElementById('customer_importance_heading').textContent = translations['customer_importance_heading'];
+        document.getElementById('customer_importance_text').textContent = translations['customer_importance_text'];
+        // Update 'Our Goal' section
+        document.getElementById('our_goal_heading').textContent = translations['our_goal_heading'];
+        document.getElementById('our_goal_text').textContent = translations['our_goal_text'];
 
-      // Update 'Our Vision' section
-      document.getElementById('our_vision_heading').textContent = translations['our_vision_heading'];
-      document.getElementById('our_vision_text').textContent = translations['our_vision_text'];
+        // Update 'Our Vision' section
+        document.getElementById('our_vision_heading').textContent = translations['our_vision_heading'];
+        document.getElementById('our_vision_text').textContent = translations['our_vision_text'];
     }
+    document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function () {
+            // Select all `li` elements with the classes `nav-drop-wrap` and `res-link`
+            const listItems = document.querySelectorAll('li.nav-drop-wrap.res-link');
 
+            listItems.forEach(function (li) {
+                // Check if any child element of this `li` contains the class `bx-cart`
+                if (li.querySelector('.bx-cart')) {
+                    // Hide the parent `li` by setting the display style to 'none'
+                    li.style.display = 'none';
+                }
+            });
+        })
+        displayData();
+    });
 </script>
 {% endblock %}

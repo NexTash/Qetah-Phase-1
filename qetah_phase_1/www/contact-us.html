@@ -147,5 +147,20 @@
       document.getElementById('message').setAttribute('placeholder', translations['message']);
 
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      setTimeout(function () {
+        // Select all `li` elements with the classes `nav-drop-wrap` and `res-link`
+        const listItems = document.querySelectorAll('li.nav-drop-wrap.res-link');
+
+        listItems.forEach(function (li) {
+          // Check if any child element of this `li` contains the class `bx-cart`
+          if (li.querySelector('.bx-cart')) {
+            // Hide the parent `li` by setting the display style to 'none'
+            li.style.display = 'none';
+          }
+        });
+      })
+    });
   </script>
   {% endblock %}

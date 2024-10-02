@@ -22,8 +22,10 @@
             <span class="card-badge" data-field="en">{{ blog.title }}</span>
             <span class="card-badge" data-field="ar">{{ blog.custom_title_in_arabic }}</span>
             <h3 class="card-title">
-              <a href="/blog-detail?id={{blog.name}}" class="text-ellipsis text-ellipsis-2" data-field="en">{{blog.blog_intro}}</a>
-              <a href="/blog-detail?id={{blog.name}}" class="text-ellipsis text-ellipsis-2" data-field="ar">{{blog.custom_blog_intro_in_arabic}}</a>
+              <a href="/blog-detail?id={{blog.name}}" class="text-ellipsis text-ellipsis-2"
+                data-field="en">{{blog.blog_intro}}</a>
+              <a href="/blog-detail?id={{blog.name}}" class="text-ellipsis text-ellipsis-2"
+                data-field="ar">{{blog.custom_blog_intro_in_arabic}}</a>
             </h3>
             <p class="card-subtitle">{{ blog.published_on }}</p>
           </div>
@@ -42,15 +44,31 @@
 {% block scripts %}
 
 <script>
-    // arabic id
-    function updatePageContent(translations) {
-      //blogs
-      document.getElementById("blogs_heading").textContent = translations.blogs_heading;
-      document.getElementById("breadcrumb_home").textContent = translations.breadcrumb_home;
-      document.getElementById("breadcrumb_blogs").textContent = translations.breadcrumb_blogs;
-      document.getElementById("load_more_button").textContent = translations.load_more_button;
-    }
+  // arabic id
+  function updatePageContent(translations) {
+    //blogs
+    document.getElementById("blogs_heading").textContent = translations.blogs_heading;
+    document.getElementById("breadcrumb_home").textContent = translations.breadcrumb_home;
+    document.getElementById("breadcrumb_blogs").textContent = translations.breadcrumb_blogs;
+    document.getElementById("load_more_button").textContent = translations.load_more_button;
+  }
 
+
+  document.addEventListener('DOMContentLoaded', () => {
+
+    setTimeout(function () {
+      // Select all `li` elements with the classes `nav-drop-wrap` and `res-link`
+      const listItems = document.querySelectorAll('li.nav-drop-wrap.res-link');
+
+      listItems.forEach(function (li) {
+        // Check if any child element of this `li` contains the class `bx-cart`
+        if (li.querySelector('.bx-cart')) {
+          // Hide the parent `li` by setting the display style to 'none'
+          li.style.display = 'none';
+        }
+      });
+    }, 100);
+  });
 </script>
 
 {% endblock %}

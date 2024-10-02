@@ -143,31 +143,46 @@
 
     //local storage variable 
     document.addEventListener('DOMContentLoaded', function () {
-      switchLanguage(localStorage.getItem('selectedLanguage'));
+      let lang = localStorage.getItem('selectedLanguage')
+      if(lang=='null'){
+        switchLanguage('en');
+      }else{
+        switchLanguage(localStorage.getItem('selectedLanguage'));
+      }
+      
     });
     var selectedLanguage = localStorage.getItem('selectedLanguage');
-
+    console.log(selectedLanguage)
+    var englishElements = $('[data-field="en"]');
+    var arabicElements = $('[data-field="ar"]');
     if (selectedLanguage === 'ar') {
-      $('[data-field="en"]').css("display", "none");
-      $('[data-field="ar"]').css("display", "block");
-    } else {
-      $('[data-field="ar"]').css("display", "none");  // Optionally hide Arabic content if the language is not 'ar'
-      $('[data-field="en"]').css("display", "block"); // Ensure English content is shown in case of other languages
-    }
+          // If Arabic is selected, hide English and show Arabic
+          englishElements.hide(); // Use hide() for better readability
+          arabicElements.show();   // Use show() for better readability
+      } else if(selectedLanguage === 'en') {
+          // If not Arabic, hide Arabic and show English
+          console.log("hidden");
+          
+          arabicElements.hide();    // Use hide() for better readability
+          englishElements.show();    // Use show() for better readability
+      }
 
     function noice() {
       // Check the selected language from localStorage
       var selectedLanguage = localStorage.getItem('selectedLanguage');
-      // If the selected language is 'ar', hide elements with data-field="en"
+
+      // Define selectors for elements
+      var englishElements = $('[data-field="en"]');
+      var arabicElements = $('[data-field="ar"]');
+
       if (selectedLanguage === 'ar') {
-        $('[data-field="en"]').css("display", "none");
-        $('[data-field="en"]').css({
-          "display": "none",
-        });
-        $('[data-field="ar"]').css("display", "block");  // Optionally show Arabic content
+          // If Arabic is selected, hide English and show Arabic
+          englishElements.hide(); // Use hide() for better readability
+          arabicElements.show();   // Use show() for better readability
       } else {
-        $('[data-field="ar"]').css("display", "none");  // Optionally hide Arabic content if the language is not 'ar'
-        $('[data-field="en"]').css("display", "block");  // Ensure English content is shown in case of other languages
+          // If not Arabic, hide Arabic and show English
+          arabicElements.hide();    // Use hide() for better readability
+          englishElements.show();    // Use show() for better readability
       }
     }
     console.log(sidebar_eng);
@@ -290,10 +305,10 @@
           dynamicBullets: true,
           clickable: true,
         },
-        // autoplay: {
-        //   delay: 2000,
-        //   disableOnInteraction: false,
-        // },
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+        },
       });
     });
 

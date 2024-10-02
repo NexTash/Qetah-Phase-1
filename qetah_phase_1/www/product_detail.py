@@ -24,8 +24,8 @@ def get_context(context):
             fields=['*'],
             filters={'parent': product['name']}  
         )
+    print(products)
     context.update({
         "products": products,
         "testimonils": testimonils,
-        # "bigimage" :bigimage,
     })
