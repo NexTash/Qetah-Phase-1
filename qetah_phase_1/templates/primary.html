@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <link rel="shortcut icon" type="x-icon" href="/assets/qetah_phase_1/images/qetah-browser-removebg-preview.png" />
@@ -10,7 +9,6 @@
     href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
     rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{% block title %}{% endblock %}</title>
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" k />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,8 +43,6 @@
 </head>
 
 <body>
-
-
   {% block style %} {% endblock %}
   <!-- HEAD -->
   {% include "templates/includes/header.html" %}
@@ -113,7 +109,7 @@
         }
 
       });
- 
+
     }
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -128,44 +124,34 @@
       const messageInput = document.getElementById('message');
       const proceed_to_pay = document.getElementById('proceed_to_pay_he');
       const enter_code = document.getElementById('enter_code');
-      // const code = document.getElementById('code');
-      // // const proceed_to_pay = document.getElementById('proceed_to_pay');
-      // // const placeholderTextMessage = translations['message'];
-      // // Setting placeholders
-      // // emailInput.setAttribute('placeholder', placeholderTextEmail);
-      // // fullnameInput.setAttribute('placeholder', placeholderTextFullname);
-      // // emailInput2.setAttribute('placeholder', placeholderTextEmail2);
-      // // phoneInput.setAttribute('placeholder', placeholderTextPhone);
-      // // messageInput.setAttribute('placeholder', placeholderTextMessage);
-
     });
 
 
     //local storage variable 
     document.addEventListener('DOMContentLoaded', function () {
       let lang = localStorage.getItem('selectedLanguage')
-      if(lang=='null'){
+      if (lang == 'null') {
         switchLanguage('en');
-      }else{
+      } else {
         switchLanguage(localStorage.getItem('selectedLanguage'));
       }
-      
+
     });
     var selectedLanguage = localStorage.getItem('selectedLanguage');
-    console.log(selectedLanguage)
+    // console.log(selectedLanguage)
     var englishElements = $('[data-field="en"]');
     var arabicElements = $('[data-field="ar"]');
     if (selectedLanguage === 'ar') {
-          // If Arabic is selected, hide English and show Arabic
-          englishElements.hide(); // Use hide() for better readability
-          arabicElements.show();   // Use show() for better readability
-      } else if(selectedLanguage === 'en') {
-          // If not Arabic, hide Arabic and show English
-          console.log("hidden");
-          
-          arabicElements.hide();    // Use hide() for better readability
-          englishElements.show();    // Use show() for better readability
-      }
+      // If Arabic is selected, hide English and show Arabic
+      englishElements.hide(); // Use hide() for better readability
+      arabicElements.show();   // Use show() for better readability
+    } else if (selectedLanguage === 'en') {
+      // If not Arabic, hide Arabic and show English
+      console.log("hidden");
+
+      arabicElements.hide();    // Use hide() for better readability
+      englishElements.show();    // Use show() for better readability
+    }
 
     function noice() {
       // Check the selected language from localStorage
@@ -176,20 +162,16 @@
       var arabicElements = $('[data-field="ar"]');
 
       if (selectedLanguage === 'ar') {
-          // If Arabic is selected, hide English and show Arabic
-          englishElements.hide(); // Use hide() for better readability
-          arabicElements.show();   // Use show() for better readability
+        // If Arabic is selected, hide English and show Arabic
+        englishElements.hide(); // Use hide() for better readability
+        arabicElements.show();   // Use show() for better readability
       } else {
-          // If not Arabic, hide Arabic and show English
-          arabicElements.hide();    // Use hide() for better readability
-          englishElements.show();    // Use show() for better readability
+        // If not Arabic, hide Arabic and show English
+        arabicElements.hide();    // Use hide() for better readability
+        englishElements.show();    // Use show() for better readability
       }
     }
-    console.log(sidebar_eng);
-    
-
   </script>
-
   <!-- SCRIPTS -->
   <script src="/assets/qetah_phase_1/js/sidebar.js"></script>
   <!-- Initialize Swiper -->
@@ -200,97 +182,97 @@
   <!-- SCRIPTS -->
 
   <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    function initializeSwiper(isRTL) {
+    document.addEventListener('DOMContentLoaded', function () {
+      function initializeSwiper(isRTL) {
         return new Swiper(".product-slider", {
-            slidesPerView: 6,
-            spaceBetween: 15,
-            loop: true,
-            direction: 'horizontal',
-            rtl: isRTL,
-            navigation: {
-                nextEl: ".slide-next",
-                prevEl: ".slide-prev",
+          slidesPerView: 6,
+          spaceBetween: 15,
+          loop: true,
+          direction: 'horizontal',
+          rtl: isRTL,
+          navigation: {
+            nextEl: '.slide-next',
+            prevEl: '.slide-prev',
+          },
+          autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+          },
+          breakpoints: {
+            320: {
+              slidesPerView: 1,
             },
-            autoplay: {
-                delay: 2000,
-                disableOnInteraction: false,
+            375: {
+              slidesPerView: 1,
             },
-            breakpoints: {
-                320: {
-                    slidesPerView: 1,
-                },
-                375: {
-                    slidesPerView: 1,
-                },
-                425: {
-                    slidesPerView: 1,
-                },
-                576: {
-                    slidesPerView: 1,
-                },
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                },
-                1440: {
-                    slidesPerView: 3,
-                },
-                1920: {
-                    slidesPerView: 3,
-                },
-                2560: {
-                    slidesPerView: 3,
-                },
+            425: {
+              slidesPerView: 1,
             },
+            576: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+            1440: {
+              slidesPerView: 3,
+            },
+            1920: {
+              slidesPerView: 3,
+            },
+            2560: {
+              slidesPerView: 3,
+            }
+          },
         });
-    }
+      }
 
-    var isRTL = document.body.dir === 'rtl';
-    var swiperContainer = document.querySelector('.product-slider');
-    if(swiperContainer){
-      swiperContainer.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
-    }
-    var swiper = initializeSwiper(isRTL);
-    function updateLanguage(isArabic) {
+      var isRTL = document.body.dir === 'rtl';
+      var swiperContainer = document.querySelector('.product-slider');
+      if (swiperContainer) {
+        swiperContainer.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+      }
+      var swiper = initializeSwiper(isRTL);
+      function updateLanguage(isArabic) {
         var newDirection = isArabic ? 'rtl' : 'ltr';
 
         if (newDirection !== document.body.dir) {
-            location.reload();
+          location.reload();
         } else {
-            localStorage.setItem('language', isArabic ? 'arabic' : 'english');
-            swiperContainer.setAttribute('dir', newDirection);
-            swiper.destroy();
-            swiper = initializeSwiper(isArabic);
+          localStorage.setItem('language', isArabic ? 'arabic' : 'english');
+          swiperContainer.setAttribute('dir', newDirection);
+          swiper.destroy();
+          swiper = initializeSwiper(isArabic);
         }
-    }
+      }
 
-    document.querySelector('.ar').addEventListener('click', function () {
+      document.querySelector('.ar').addEventListener('click', function () {
         var currentDirection = document.body.dir;
         if (currentDirection !== 'rtl') {
-            updateLanguage(true);
+          updateLanguage(true);
         } else {
-            localStorage.setItem('language', 'arabic');
-            swiperContainer.setAttribute('dir', 'rtl');
-            swiper.destroy();
-            swiper = initializeSwiper(true);
+          localStorage.setItem('language', 'arabic');
+          swiperContainer.setAttribute('dir', 'rtl');
+          swiper.destroy();
+          swiper = initializeSwiper(true);
         }
-    });
+      });
 
-    document.querySelector('.eng').addEventListener('click', function () {
+      document.querySelector('.eng').addEventListener('click', function () {
         var currentDirection = document.body.dir;
         if (currentDirection !== 'ltr') {
-            updateLanguage(false);
+          updateLanguage(false);
         } else {
-            localStorage.setItem('language', 'english');
-            swiperContainer.setAttribute('dir', 'ltr');
-            swiper.destroy();
-            swiper = initializeSwiper(false);
+          localStorage.setItem('language', 'english');
+          swiperContainer.setAttribute('dir', 'ltr');
+          swiper.destroy();
+          swiper = initializeSwiper(false);
         }
+      });
     });
-});
 
     document.addEventListener('DOMContentLoaded', function () {
       new Swiper(".mySwiper", {
@@ -313,134 +295,134 @@
     });
 
     document.addEventListener('DOMContentLoaded', function () {
-    function initializeSwiper(isRTL) {
+      function initializeSwiper(isRTL) {
         return new Swiper(".blog-slider", {
-            slidesPerView: 6,
-            spaceBetween: 15,
-            loop: true,
-            direction: 'horizontal',
-            rtl: isRTL,
-            navigation: {
-                nextEl: ".slide-next",
-                prevEl: ".slide-prev",
+          slidesPerView: 6,
+          spaceBetween: 15,
+          loop: true,
+          direction: 'horizontal',
+          rtl: isRTL,
+          navigation: {
+            nextEl: ".slide-next",
+            prevEl: ".slide-prev",
+          },
+          autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+          },
+          breakpoints: {
+            320: {
+              slidesPerView: 1,
             },
-            autoplay: {
-                delay: 2000,
-                disableOnInteraction: false,
+            375: {
+              slidesPerView: 1,
             },
-            breakpoints: {
-                320: {
-                    slidesPerView: 1,
-                },
-                375: {
-                    slidesPerView: 1,
-                },
-                425: {
-                    slidesPerView: 1,
-                },
-                576: {
-                    slidesPerView: 2,
-                },
-                768: {
-                    slidesPerView: 2,
-                },
-                992: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                },
-                1280: {
-                    slidesPerView: 3,
-                },
-                1440: {
-                    slidesPerView: 4,
-                },
-                1920: {
-                    slidesPerView: 4,
-                },
-                2560: {
-                    slidesPerView: 4,
-                },
+            425: {
+              slidesPerView: 1,
             },
+            576: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            992: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+            1280: {
+              slidesPerView: 3,
+            },
+            1440: {
+              slidesPerView: 4,
+            },
+            1920: {
+              slidesPerView: 4,
+            },
+            2560: {
+              slidesPerView: 4,
+            },
+          },
         });
-    }
+      }
 
-    var isRTL = document.body.dir === 'rtl';
-    var swiperContainer = document.querySelector('.blog-slider');
-    if(swiperContainer){
+      var isRTL = document.body.dir === 'rtl';
+      var swiperContainer = document.querySelector('.blog-slider');
+      if (swiperContainer) {
 
-      swiperContainer.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
-    }
-    var swiper = initializeSwiper(isRTL);
+        swiperContainer.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+      }
+      var swiper = initializeSwiper(isRTL);
 
-    function updateLanguage(isArabic) {
+      function updateLanguage(isArabic) {
         var newDirection = isArabic ? 'rtl' : 'ltr';
 
         if (newDirection !== document.body.dir) {
-            location.reload();
+          location.reload();
         } else {
-            localStorage.setItem('language', isArabic ? 'arabic' : 'english');
-            swiperContainer.setAttribute('dir', newDirection);
-            swiper.destroy();
-            swiper = initializeSwiper(isArabic);
+          localStorage.setItem('language', isArabic ? 'arabic' : 'english');
+          swiperContainer.setAttribute('dir', newDirection);
+          swiper.destroy();
+          swiper = initializeSwiper(isArabic);
         }
-    }
+      }
 
-    // document.querySelector('.eng').addEventListener('click', function () {
-    //     var currentDirection = document.body.dir;
-    //     if (currentDirection !== 'ltr') {
-    //         updateLanguage(false);
-    //     } else {
-    //         localStorage.setItem('language', 'english');
-    //         swiperContainer.setAttribute('dir', 'ltr');
-    //         swiper.destroy();
-    //         swiper = initializeSwiper(false);
-    //     }
-    // });
-});
+      // document.querySelector('.eng').addEventListener('click', function () {
+      //     var currentDirection = document.body.dir;
+      //     if (currentDirection !== 'ltr') {
+      //         updateLanguage(false);
+      //     } else {
+      //         localStorage.setItem('language', 'english');
+      //         swiperContainer.setAttribute('dir', 'ltr');
+      //         swiper.destroy();
+      //         swiper = initializeSwiper(false);
+      //     }
+      // });
+    });
 
 
 
   </script>
   <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    function initializeSwiper(isRTL) {
+    document.addEventListener('DOMContentLoaded', function () {
+      function initializeSwiper(isRTL) {
         return new Swiper(".slide-container", {
-      loop: true,
-      slidesPerView: 1, // Ensures only one slide is shown at a time
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        clickable: true,
-        el: ".swiper-pagination",
-      },
-    });
-    }
+          loop: true,
+          slidesPerView: 1, // Ensures only one slide is shown at a time
+          autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            clickable: true,
+            el: ".swiper-pagination",
+          },
+        });
+      }
 
-    var isRTL = document.body.dir === 'rtl';
-    var slideContainer = document.querySelector('.slide-container');
-    if(slideContainer){
+      var isRTL = document.body.dir === 'rtl';
+      var slideContainer = document.querySelector('.slide-container');
+      if (slideContainer) {
 
-      slideContainer.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
-    }
-    var swiper = initializeSwiper(isRTL);
+        slideContainer.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+      }
+      var swiper = initializeSwiper(isRTL);
 
-    function updateLanguage(isArabic) {
+      function updateLanguage(isArabic) {
         var newDirection = isArabic ? 'rtl' : 'ltr';
 
         if (newDirection !== document.body.dir) {
-            location.reload();
+          location.reload();
         } else {
-            localStorage.setItem('language', isArabic ? 'arabic' : 'english');
-            slideContainer.setAttribute('dir', newDirection);
-            swiper.destroy();
-            swiper = initializeSwiper(isArabic);
+          localStorage.setItem('language', isArabic ? 'arabic' : 'english');
+          slideContainer.setAttribute('dir', newDirection);
+          swiper.destroy();
+          swiper = initializeSwiper(isArabic);
         }
-    }
-  });
+      }
+    });
   </script>
   <script>
     AOS.init();

@@ -1,8 +1,6 @@
 {% extends "templates/primary.html" %}
-
-{% block title %} Blogs {% endblock %}
-
 {% block content %}
+<h1 id="page-header"></h1>
 <div class="content-area" :class="{'shifted-content': isStatic}">
   <main class="container boxed blogs">
     <h1 class="heading" id="blogs_heading">Blogs</h1>
@@ -42,6 +40,24 @@
 {% endblock %}
 
 {% block scripts %}
+<script>
+  window.onload = function () {
+    // Set the title and header for the Contact page
+    const pageTitles = {
+      ar: 'المدونات - قطة',
+      en: 'Blogs - Qetah'
+
+    };
+
+    const pageHeaders = {
+      ar: 'المدونات - قطة',
+      en: 'Blogs - Qetah'
+
+    };
+
+    setPageTitle(pageTitles, pageHeaders);
+  };
+</script>
 
 <script>
   // arabic id

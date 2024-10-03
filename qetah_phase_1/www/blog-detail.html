@@ -1,9 +1,5 @@
 {% extends "templates/primary.html" %}
-
-{% block title %} Blog Details {% endblock %}
-
 {% block content %}
-
 <div class="content-area" :class="{'shifted-content': isStatic}">
   <div class="container detailed-blogs">
     <main class="blog-detail">
@@ -24,7 +20,7 @@
           </h1>
           <div class="media">
             <a href="javascript:void(0)" class="media-image">
-              <img src="{{ blog.avatar }}" class="image" />
+              <img src="/assets/qetah_phase_1/images/avatar-user.png" class="image" />
             </a>
             <div class="media-body">
               <h6 class="media-heading" data-field="en">{{ blog.blogger }}</h6>
@@ -99,18 +95,15 @@
     </div>
   </div>
 </div>
-
+{% endblock %}
+{% block extar_scripts %}
 <script>
   document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(function () {
-      // Select all `li` elements with the classes `nav-drop-wrap` and `res-link`
       const listItems = document.querySelectorAll('li.nav-drop-wrap.res-link');
-
       listItems.forEach(function (li) {
-        // Check if any child element of this `li` contains the class `bx-cart`
         if (li.querySelector('.bx-cart')) {
-          // Hide the parent `li` by setting the display style to 'none'
           li.style.display = 'none';
         }
       });
@@ -132,12 +125,31 @@
     document.getElementById("badge_jquery").textContent = translations.badge_jquery;
     document.getElementById("badge_bootstrap5").textContent = translations.badge_bootstrap5;
     document.getElementById("badge_uikit").textContent = translations.badge_uikit;
+    document.getElementById("breadcrumb_blog_detail").textContent = translations.breadcrumb_blog_detail;
     //blogs
-    document.getElementById("blogs_heading").textContent = translations.blogs_heading;
-    document.getElementById("breadcrumb_home").textContent = translations.breadcrumb_home;
-    document.getElementById("breadcrumb_blogs").textContent = translations.breadcrumb_blogs;
-    document.getElementById("load_more_button").textContent = translations.load_more_button;
+    // document.getElementById("blogs_heading").textContent = translations.blogs_heading;
+    // document.getElementById("breadcrumb_home").textContent = translations.breadcrumb_home;
+    // document.getElementById("breadcrumb_blogs").textContent = translations.breadcrumb_blogs;
+    // document.getElementById("load_more_button").textContent = translations.load_more_button;
 
   }
+</script>
+
+<script>
+  window.onload = function () {
+    // Set the title and header for the Contact page
+    const pageTitles = {
+      ar: 'تفاصيل المدونة - قطة',
+      en: 'Blog Details - Qetah'
+    };
+
+    const pageHeaders = {
+      ar: 'تفاصيل المدونة - قطة',
+      en: 'Blog Details - Qetah'
+
+    };
+
+    setPageTitle(pageTitles, pageHeaders);
+  };
 </script>
 {% endblock %}

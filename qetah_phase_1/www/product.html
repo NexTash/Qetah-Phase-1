@@ -1,6 +1,6 @@
 {% extends "templates/primary.html" %}
-{% block title %} Product {% endblock %}
 {% block content %}
+
 <div class="content-area" :class="{'shifted-content': isStatic}">
     <div class="container section-products">
         <div class="filters">
@@ -9,25 +9,22 @@
                 <h5 id="category_title">Category</h5>
                 <hr>
                 <label class="check check-dark mt-2">
-                    <input type="checkbox" name="category" value="Men's Collection" />
-                    Men's Collection
+                    <input type="checkbox" name="category" value="Men's Collection" /><span id="category_mens_l"></span>
+                </label>
+                <label class="check check-dark">
+                    <input type="checkbox" name="category" value="Women's Collection" /><span
+                        id="category_womens_l"></span>
 
                 </label>
                 <label class="check check-dark">
-                    <input type="checkbox" name="category" value="Women's Collection" />
-                   Women's Collection
-                </label>
-                <label class="check check-dark">
-                    <input type="checkbox" name="category" value="Services" id="category_services" />
-                    Services
+                    <input type="checkbox" name="category" value="Services" /> <span id="category_services_l"></span>
                 </label>
                 <h5 id="price_range_title">Price Range</h5>
                 <hr>
                 <div class="range-slider">
                     <span class="rangeValues"></span>
-                    <input value="1000" min="1000" max="50000" step="500" id="price-range-min" name="min_price"
-                        type="range">
-                    <input value="50000" min="1000" max="50000" step="500" id="price-range-max" name="max_price"
+                    <input value="0" min="0" max="50000" step="500" id="price-range-min" name="min_price" type="range">
+                    <input value="50000" min="0" max="50000" step="500" id="price-range-max" name="max_price"
                         type="range">
                 </div>
                 <h5 class="mt-3" id="by_rating_title">By Rating</h5>
@@ -48,15 +45,15 @@
                 <hr>
                 <label class="check check-dark mt-2">
                     <input type="checkbox" name="discount" value="35" />
-                    <h6 id="discount_h_35">Sale 35% OFF</h6>
+                    <h6 id="discount_35_l">Sale 35% OFF</h6>
                 </label>
                 <label class="check check-dark">
                     <input type="checkbox" name="discount" value="50" />
-                    <h6 id="discount_h_50"> Sale 50% OFF</h6>
+                    <h6 id="discount_50_l"> Sale 50% OFF</h6>
                 </label>
                 <label class="check check-dark">
                     <input type="checkbox" name="discount" value="75" />
-                    <h6 id="discount_h_75">Sale 75% OFF</h6>
+                    <h6 id="discount_75_l">Sale 75% OFF</h6>
                 </label>
                 <button type="button" class="btn btn-secondary" onclick="applyFilters()"
                     id="apply_button">Apply</button>
@@ -70,7 +67,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content" @click.away="isOpen = false">
                             <div class="modal-head">
-                                <h3 class="modal-title" id="filter_title">Filter</h3>
+                                <h3 class="modal-title" id="filter_title_m">Filter</h3>
                                 <button x-on:click="isOpen = false"
                                     class="btn btn-danger btn-icon btn-circle btn-circle-sm bx bx-x"></button>
                             </div>
@@ -78,21 +75,22 @@
                             <div class="modal-body">
                                 <div class="filters-model-body">
                                     <div class="category-filters">
-                                        <h5 id="category_title">Category</h5>
+                                        <h5 id="category_title_m">Category</h5>
                                         <hr>
                                         <label class="check check-dark mt-2"><input type="checkbox"
                                                 value="Men's Collection" name="category" />
-                                            <h2 id="category_mens">Men's Collection</h2>
+                                            <span id="category_mens_m"></span>
                                         </label>
 
                                         <label class="check check-dark"><input type="checkbox"
-                                                value="Women's Collection" id="category_womens" name="category" />
-                                            Women's Collection
+                                                value="Women's Collection" name="category" />
+                                            <span id="category_womens_m"></span>
                                         </label>
                                         <label class="check check-dark"><input type="checkbox" value="Services"
-                                                id="category_services" name="category" />
-                                            Services </label>
-                                        <h5 id="price_range_title">Price Range</h5>
+                                                name="category" />
+                                            <span id="category_services_m"></span>
+                                        </label>
+                                        <h5 id="price_range_title_m">Price Range</h5>
                                         <hr>
                                         <div class="range-slider"></div>
                                         <span class="rangeValues"></span>
@@ -102,7 +100,7 @@
                                             name="max_price" type="range">
                                     </div>
 
-                                    <h5 class="mt-3" id="by_rating_title">By Rating</h5>
+                                    <h5 class="mt-3" id="by_rating_title_m">By Rating</h5>
                                     <hr>
                                     <div class="field-rating">
                                         <input type="radio" id="star5" name="rating" value="5">
@@ -116,27 +114,27 @@
                                         <input type="radio" id="star1" name="rating" value="1">
                                         <label for="star1" title="1 star"></label>
                                     </div>
-                                    <h5>Discounts</h5>
+                                    <h5 id="discounts_title_m">Discounts</h5>
                                     <hr>
                                     <label class="check check-dark mt-2">
-                                        <input type="checkbox" name="discount" value="35" id="discount_35" /> Sale 35%
-                                        OFF
+                                        <input type="checkbox" name="discount" value="35" /> <span
+                                            id="discount_35_m"></span>
                                     </label>
                                     <label class="check check-dark">
-                                        <input type="checkbox" name="discount" value="50" id="discount_50" /> Sale 50%
-                                        OFF
+                                        <input type="checkbox" name="discount" value="50" /> <span
+                                            id="discount_50_m"></span>
                                     </label>
                                     <label class="check check-dark">
-                                        <input type="checkbox" name="discount" value="75" id="discount_75" /> Sale 75%
-                                        OFF
+                                        <input type="checkbox" name="discount" value="75" /><span
+                                            id="discount_75_m"></span>
                                     </label>
 
                                 </div>
                             </div>
                             <div class="modal-foot">
-                                <button class="btn" x-on:click="isOpen = false" id="cancel_button">Cancel</button>
+                                <button class="btn" x-on:click="isOpen = false" id="cancel_button_m">Cancel</button>
                                 <button class="btn btn-primary" onclick="applyFilters()"
-                                    id="apply_button">Apply</button>
+                                    id="apply_button_m">Apply</button>
                             </div>
                         </div>
                     </div>
@@ -185,43 +183,53 @@
                                         </div>
 
                                         <div class="card product-card">
-                                            <a href="/product-detail?id={{product.name}}">
+                                            <a href="/product-detail?product_name={{product.name}}&&varient_name={{product.variations['name']}}">
                                                 <div class="card-head">
                                                     <img class="card-image" src="{{ product.featured_image }}"
                                                         alt="Product Image">
                                                 </div>
-                                            
+                                                    
                                                 <div class="card-body">
                                                     <div class="variation">
-                                                        <div class="card-title" data-field="en">{{ product.variations["title"] }}</div>
-                                                        <div class="card-title" data-field="ar">{{ product.variations["title_arabic"] }}
+                                                        <div class="card-unique-name" style="display: none;" >{{ product.variations['name'] }}</div>
+                                                        <div class="card-title" data-field="en">{{
+                                                            product.variations["title"]
+                                                            }}</div>
+                                                        <div class="card-title" data-field="ar">{{
+                                                            product.variations["title_arabic"]
+                                                            }}
                                                         </div>
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2" 
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
                                                             data-field="en">{{
-                                                            product.variations["desc"] }}</div>
+                                                            product.variations["desc"]
+                                                            }}</div>
                                                         <div class="card-desc text-ellipsis text-ellipsis-2"
                                                             data-field="ar">{{
-                                                            product.variations["desc_arabic"] }}</div>
-                                                        <div class="card-subtitle"><del>{{ product.variations["discount"]}}</del>
+                                                            product.variations["desc_arabic"]
+                                                            }}</div>
+                                                        <div class="card-subtitle"><del>{{
+                                                                product.variations["discount"]}}</del>
                                                         </div>
-                                                        <div class="card-title card-price">$ {{ product.variations["price"] }}</div>
+                                                        <div class="card-title card-price">$
+                                                            {{
+                                                            product.variations["price"]
+                                                            }}</div>
                                                     </div>
-                                                    
 
                                                     <div class="card-rating">
                                                         <i class="bx bxs-star"></i>
-                                                        <span>{{ product.rating }}</span> ({{product.sold}}) Sold
+                                                        <span>{{ product.rating }}</span>
+                                                        ({{product.sold}}) Sold
                                                     </div>
                                                 </div>
                                             </a>
                                             <div class="card-foot">
-                                                <button class="btn btn-light btn-icon btn-pill btn-cart"
-                                                    id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
-                                                    Now</button>
-                                                <button
-                                                    class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display: none;"></button>
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
+                                                        class="bx bx-cart icon-pre" id="buy_now_button"></i>
+                                                </button>
+                                                <!-- <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display: none;"></button> -->
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -231,7 +239,8 @@
                             <!-- Un-stitched Products Tab -->
                             <div x-show="OpenTab == 2" class="tab-pane">
                                 <div class="row">
-                                    {% for product in products if product.category == 'Un-stiched' %}
+                                    {% for product in products if product.category ==
+                                    'Un-stiched' %}
                                     <div class="products">
                                         <div class="badge badge-primary badge-pill" data-field="en">{{ product.title }}
                                         </div>
@@ -245,41 +254,49 @@
                                                     <img class="card-image" src="{{ product.featured_image }}"
                                                         alt="Product Image">
                                                 </div>
-                                            
+
                                                 <div class="card-body">
 
-                                                    
                                                     <div class="variation">
-                                                        <div class="card-title" data-field="en">{{ product.variations["title"] }}</div>
-                                                        <div class="card-title" data-field="ar">{{ product.variations["title_arabic"] }}
+                                                        <div class="card-title" data-field="en">{{
+                                                            product.variations["title"]
+                                                            }}</div>
+                                                        <div class="card-title" data-field="ar">{{
+                                                            product.variations["title_arabic"]
+                                                            }}
                                                         </div>
 
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2" 
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
                                                             data-field="en">{{
-                                                            product.variations["desc"] }}</div>
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2" 
+                                                            product.variations["desc"]
+                                                            }}</div>
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
                                                             data-field="ar">{{
-                                                            product.variations["desc_arabic"] }}</div>
-                                                        <div class="card-subtitle"><del>{{ product.variations["discount"]}}</del>
+                                                            product.variations["desc_arabic"]
+                                                            }}</div>
+                                                        <div class="card-subtitle"><del>{{
+                                                                product.variations["discount"]}}</del>
                                                         </div>
-                                                        <div class="card-title card-price">$ {{ product.variations["price"] }}</div>
+                                                        <div class="card-title card-price">$
+                                                            {{
+                                                            product.variations["price"]
+                                                            }}</div>
                                                     </div>
-                                                    
 
                                                     <div class="card-rating">
                                                         <i class="bx bxs-star"></i>
-                                                        <span>{{ product.rating }}</span> ({{product.sold}}) Sold
+                                                        <span>{{ product.rating }}</span>
+                                                        ({{product.sold}}) Sold
                                                     </div>
                                                 </div>
-                                                </a>
-                                                <div class="card-foot">
-                                                    <button class="btn btn-light btn-icon btn-pill btn-cart"
-                                                        id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
-                                                        Now</button>
-                                                    <button
-                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button>
-                                                </div>
-                                            
+                                            </a>
+                                            <div class="card-foot">
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
+                                                        class="bx bx-cart icon-pre" id="buy_now_button_a"></i>
+                                                </button>
+                                                <!-- <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button> -->
+                                            </div>
+
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -289,7 +306,8 @@
                             <!-- ReadyMade Products Tab -->
                             <div x-show="OpenTab == 3" class="tab-pane">
                                 <div class="row">
-                                    {% for product in products if product.category == 'ReadyMade' %}
+                                    {% for product in products if product.category ==
+                                    'ReadyMade' %}
                                     <div class="products">
                                         <div class="badge badge-primary badge-pill" data-field="en">{{ product.title }}
                                         </div>
@@ -306,38 +324,46 @@
 
                                                 <div class="card-body">
 
-                                                   
                                                     <div class="variation">
-                                                        <div class="card-title" data-field="en">{{ product.variations["title"] }}</div>
-                                                        <div class="card-title" data-field="ar">{{ product.variations["title_arabic"] }}
+                                                        <div class="card-title" data-field="en">{{
+                                                            product.variations["title"]
+                                                            }}</div>
+                                                        <div class="card-title" data-field="ar">{{
+                                                            product.variations["title_arabic"]
+                                                            }}
                                                         </div>
 
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2" 
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
                                                             data-field="en">{{
-                                                            product.variations["desc"] }}</div>
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2" 
+                                                            product.variations["desc"]
+                                                            }}</div>
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
                                                             data-field="ar">{{
-                                                            product.variations["desc_arabic"] }}</div>
-                                                        <div class="card-subtitle"><del>{{ product.variations["discount"]}}</del>
+                                                            product.variations["desc_arabic"]
+                                                            }}</div>
+                                                        <div class="card-subtitle"><del>{{
+                                                                product.variations["discount"]}}</del>
                                                         </div>
-                                                        <div class="card-title card-price">$ {{ product.variations["price"] }}</div>
+                                                        <div class="card-title card-price">$
+                                                            {{
+                                                            product.variations["price"]
+                                                            }}</div>
                                                     </div>
-                                                    
 
                                                     <div class="card-rating">
                                                         <i class="bx bxs-star"></i>
-                                                        <span>{{ product.rating }}</span> ({{product.sold}}) Sold
+                                                        <span>{{ product.rating }}</span>
+                                                        ({{product.sold}}) Sold
                                                     </div>
                                                 </div>
-                                                </a>
-                                                <div class="card-foot">
-                                                    <button class="btn btn-light btn-icon btn-pill btn-cart"
-                                                        id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
-                                                        Now</button>
-                                                    <button
-                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button>
-                                                </div>
-                                            
+                                            </a>
+                                            <div class="card-foot">
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
+                                                        class="bx bx-cart icon-pre" id="buy_now_button_b"></i>
+                                                </button>
+                                                <!-- <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button> -->
+                                            </div>
+
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -347,7 +373,8 @@
                             <!-- Accessories Products Tab -->
                             <div x-show="OpenTab == 4" class="tab-pane">
                                 <div class="row">
-                                    {% for product in products if product.category == 'Accessories' %}
+                                    {% for product in products if product.category ==
+                                    'Accessories' %}
                                     <div class="products">
                                         <div class="badge badge-primary badge-pill" data-field="en">{{ product.title }}
                                         </div>
@@ -363,38 +390,46 @@
                                                 </div>
                                                 <div class="card-body">
 
-                                                  
                                                     <div class="variation">
-                                                        <div class="card-title" data-field="en">{{ product.variations["title"] }}</div>
-                                                        <div class="card-title" data-field="ar">{{ product.variations["title_arabic"] }}
+                                                        <div class="card-title" data-field="en">{{
+                                                            product.variations["title"]
+                                                            }}</div>
+                                                        <div class="card-title" data-field="ar">{{
+                                                            product.variations["title_arabic"]
+                                                            }}
                                                         </div>
 
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2" 
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
                                                             data-field="en">{{
-                                                            product.variations["desc"] }}</div>
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2" 
+                                                            product.variations["desc"]
+                                                            }}</div>
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
                                                             data-field="ar">{{
-                                                            product.variations["desc_arabic"] }}</div>
-                                                        <div class="card-subtitle"><del>{{ product.variations["discount"]}}</del>
+                                                            product.variations["desc_arabic"]
+                                                            }}</div>
+                                                        <div class="card-subtitle"><del>{{
+                                                                product.variations["discount"]}}</del>
                                                         </div>
-                                                        <div class="card-title card-price">$ {{ product.variations["price"] }}</div>
+                                                        <div class="card-title card-price">$
+                                                            {{
+                                                            product.variations["price"]
+                                                            }}</div>
                                                     </div>
-                                                    
 
                                                     <div class="card-rating">
                                                         <i class="bx bxs-star"></i>
-                                                        <span>{{ product.rating }}</span> ({{product.sold}}) Sold
+                                                        <span>{{ product.rating }}</span>
+                                                        ({{product.sold}}) Sold
                                                     </div>
                                                 </div>
-                                                </a>
-                                                <div class="card-foot">
-                                                    <button class="btn btn-light btn-icon btn-pill btn-cart"
-                                                        id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
-                                                        Now</button>
-                                                    <button
-                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button>
-                                                </div>
-                                            
+                                            </a>
+                                            <div class="card-foot">
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
+                                                        class="bx bx-cart icon-pre" id="buy_now_button_c"></i>
+                                                </button>
+                                                <!-- <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button> -->
+                                            </div>
+
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -404,7 +439,8 @@
                             <!-- Perfumes Products Tab -->
                             <div x-show="OpenTab == 5" class="tab-pane">
                                 <div class="row">
-                                    {% for product in products if product.category == 'Perfumes' %}
+                                    {% for product in products if product.category ==
+                                    'Perfumes' %}
                                     <div class="products">
                                         <div class="badge badge-primary badge-pill" data-field="en">{{ product.title }}
                                         </div>
@@ -420,38 +456,46 @@
                                                 </div>
                                                 <div class="card-body">
 
-                                                   
                                                     <div class="variation">
-                                                        <div class="card-title" data-field="en">{{ product.variations["title"] }}</div>
-                                                        <div class="card-title" data-field="ar">{{ product.variations["title_arabic"] }}
+                                                        <div class="card-title" data-field="en">{{
+                                                            product.variations["title"]
+                                                            }}</div>
+                                                        <div class="card-title" data-field="ar">{{
+                                                            product.variations["title_arabic"]
+                                                            }}
                                                         </div>
 
-                                                        <div class="card-desc text-ellipsis text-ellipsis-2" 
+                                                        <div class="card-desc text-ellipsis text-ellipsis-2"
                                                             data-field="en">{{
-                                                            product.variations["desc"] }}</div>
+                                                            product.variations["desc"]
+                                                            }}</div>
                                                         <div class="card-desc text-ellipsis text-ellipsis-2"
                                                             data-field="ar">{{
-                                                            product.variations["desc_arabic"] }}</div>
-                                                        <div class="card-subtitle"><del>{{ product.variations["discount"]}}</del>
+                                                            product.variations["desc_arabic"]
+                                                            }}</div>
+                                                        <div class="card-subtitle"><del>{{
+                                                                product.variations["discount"]}}</del>
                                                         </div>
-                                                        <div class="card-title card-price">$ {{ product.variations["price"] }}</div>
+                                                        <div class="card-title card-price">$
+                                                            {{
+                                                            product.variations["price"]
+                                                            }}</div>
                                                     </div>
-                                                    
 
                                                     <div class="card-rating">
                                                         <i class="bx bxs-star"></i>
-                                                        <span>{{ product.rating }}</span> ({{product.sold}}) Sold
+                                                        <span>{{ product.rating }}</span>
+                                                        ({{product.sold}}) Sold
                                                     </div>
                                                 </div>
-                                                </a>
-                                                <div class="card-foot">
-                                                    <button class="btn btn-light btn-icon btn-pill btn-cart"
-                                                        id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
-                                                        Now</button>
-                                                    <button
-                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button>
-                                                </div>
-                                            
+                                            </a>
+                                            <div class="card-foot">
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
+                                                        class="bx bx-cart icon-pre" id="buy_now_button_d"></i>
+                                                </button>
+                                                <!-- <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button> -->
+                                            </div>
+
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -461,7 +505,8 @@
                             <!-- Cutting & Stitching Products Tab -->
                             <div x-show="OpenTab == 6" class="tab-pane">
                                 <div class="row">
-                                    {% for product in products if product.category == 'Cutting & Stitching' %}
+                                    {% for product in products if product.category ==
+                                    'Cutting & Stitching' %}
                                     <div class="products">
                                         <div class="badge badge-primary badge-pill" data-field="en">{{ product.title }}
                                         </div>
@@ -475,41 +520,49 @@
                                                     <img class="card-image" src="{{ product.featured_image }}"
                                                         alt="Product Image">
                                                 </div>
-                                            
+
                                                 <div class="card-body">
 
-                                                    
                                                     <div class="variation">
-                                                        <div class="card-title" data-field="en">{{ product.variations["title"] }}</div>
-                                                        <div class="card-title" data-field="ar">{{ product.variations["title_arabic"] }}
+                                                        <div class="card-title" data-field="en">{{
+                                                            product.variations["title"]
+                                                            }}</div>
+                                                        <div class="card-title" data-field="ar">{{
+                                                            product.variations["title_arabic"]
+                                                            }}
                                                         </div>
 
                                                         <div class="card-desc text-ellipsis text-ellipsis-2"
                                                             data-field="en">{{
-                                                            product.variations["desc"] }}</div>
+                                                            product.variations["desc"]
+                                                            }}</div>
                                                         <div class="card-desc text-ellipsis text-ellipsis-2"
                                                             data-field="ar">{{
-                                                            product.variations["description_in_arabic"] }}</div>
-                                                        <div class="card-subtitle"><del>{{ product.variations["discount"]}}</del>
+                                                            product.variations["description_in_arabic"]
+                                                            }}</div>
+                                                        <div class="card-subtitle"><del>{{
+                                                                product.variations["discount"]}}</del>
                                                         </div>
-                                                        <div class="card-title card-price">$ {{ product.variations["price"] }}</div>
+                                                        <div class="card-title card-price">$
+                                                            {{
+                                                            product.variations["price"]
+                                                            }}</div>
                                                     </div>
-                                                    
 
                                                     <div class="card-rating">
                                                         <i class="bx bxs-star"></i>
-                                                        <span>{{ product.rating }}</span> ({{product.sold}}) Sold
+                                                        <span>{{ product.rating }}</span>
+                                                        ({{product.sold}}) Sold
                                                     </div>
                                                 </div>
-                                                </a>
-                                                <div class="card-foot">
-                                                    <button class="btn btn-light btn-icon btn-pill btn-cart"
-                                                        id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy
-                                                        Now</button>
-                                                    <button
-                                                        class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button>
-                                                </div>
-                                            
+                                            </a>
+                                            <div class="card-foot">
+                                                <button class="btn btn-light btn-icon btn-pill btn-cart"><i
+                                                        class="bx bx-cart icon-pre" id="buy_now_button_e"></i>
+                                                </button>
+                                                <!-- <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button> -->
+                                            </div>
+
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -527,6 +580,22 @@
 </div>
 {% endblock %}
 {% block scripts %}
+<script>
+    window.onload = function () {
+        // Set the title and header for the Contact page
+        const pageTitles = {
+            ar: 'المنتج - قطة',
+            en: 'Product - Qetah'
+        };
+
+        const pageHeaders = {
+            ar: 'المنتج - قطة',
+            en: 'Product - Qetah'
+        };
+
+        setPageTitle(pageTitles, pageHeaders);
+    };
+</script>
 <script>
     function applyCategoryFilter(category) {
         const filters = {
@@ -551,7 +620,7 @@
 
         const queryString = new URLSearchParams(filters).toString();
         window.location.href = `/product?${queryString}`;
-        
+
     }
 
     function getVals() {
@@ -587,24 +656,21 @@
     // Check if the product already exists in the list
     function addOrUpdateProduct(productList, newProduct) {
         let cart_list = JSON.parse(localStorage.getItem('cart')) || []
-        if(cart_list){
+        if (cart_list) {
             for (let product of cart_list) {
-                if (product.desc === newProduct.desc &&
-                    product.image === newProduct.image &&
-                    product.price === newProduct.price &&
-                    product.title === newProduct.title) {
+                if (product.unique_name === newProduct.unique_name) {
                     // If exists, add or update the qty key
                     if (product.qty) {
                         product.qty += 1;
                     } else {
                         product.qty = 1;
                     }
-                    
+
                     localStorage.setItem('cart', JSON.stringify(cart_list));
                     return true; // Indicates that the product was updated
                 }
             }
-        }   
+        }
         // If the product does not exist, add it to the list
         newProduct.qty = 1;
         cart_list.push(newProduct)
@@ -612,28 +678,28 @@
         return false; // Indicates that a new product was added
     }
     function onrefreshupdateOffcanvas(offcanvasBody, badge) {
-        
+
         // Clear the current items
         offcanvasBody.innerHTML = '';
 
         // Fetch the cart from localStorage
         // localStorage.setItem('cart', JSON.stringify([]))
         let cartlist = JSON.parse(localStorage.getItem('cart')) || [];  // Default to an empty array if no cart is found
-      
-        
+
+
         // Add each item in the wishlist to the offcanvas
         cartlist.forEach((item, index) => {
             const itemDiv = document.createElement('div');
             itemDiv.className = 'items d-flex';
             itemDiv.setAttribute('data-index', index);
-            
+
             let itemprice = parseFloat(item.price.replace(/[^0-9.]/g, ''));
-            
-            let price = itemprice *item.qty
+
+            let price = itemprice * item.qty
             itemDiv.innerHTML = `
                 <div class="check-item">
                     <label class="check check-secondary">
-                        <input type="checkbox" class="item-checkbox" data-index="`+index+`" />
+                        <input type="checkbox" class="item-checkbox" data-index="`+ index + `" />
                     </label>
                 </div>
                 <img src="${item.image}" alt="${item.title}" class="offcanvas-image" data-elm ="img" />
@@ -641,67 +707,61 @@
                     <p class="offcanvas-title text-ellipsis" data-elm ="title">${item.title}</p>
                     <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;" data-elm ="desc">${item.desc}</div>
                     <div class="quantity-counter">
-                        <p class="price update-price" data-price-per-item="${item.price}" data-index="`+index+`" >$ ${(price).toFixed(2)}</p>
+                        <p class="price update-price" data-price-per-item="${item.price}" data-index="` + index + `" >$ ${(price).toFixed(2)}</p>
                         <div class="counter">
-                            <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement" data-index="`+index+`" id="selectAll2"></button>
-                            <input class="counter-value value" type="number" value="${item.qty}" min="0" data-index="`+index+`" />
-                            <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment" data-index="`+index+`" id="selectAll2"></button>
+                            <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement" data-index="`+ index + `" id="selectAll2"></button>
+                            <input class="counter-value value" type="number" value="${item.qty}" min="0" data-index="` + index + `" />
+                            <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment" data-index="`+ index + `" id="selectAll2"></button>
                         </div>
                     </div>
                 </div>
             `;
             offcanvasBody.appendChild(itemDiv);
-            
-            
+
+
         });
         badge.textContent = cartlist.length;
     }
 
 
     document.addEventListener('DOMContentLoaded', () => {
-
-        
-        
-        
-        
-
         const offcanvas = document.getElementById('offcanvas-cart');
         const offcanvasBody = offcanvas.querySelector('.offcanvas-body-cart');
         const badge = document.querySelector('.cart-badge');
         const deleteSelectedBtn = document.getElementById('del-cart');
-        setTimeout(function() {
-            onrefreshupdateOffcanvas(offcanvasBody,badge);
-        }, 1000); 
+        setTimeout(function () {
+            onrefreshupdateOffcanvas(offcanvasBody, badge);
+        }, 1000);
         // Initialize sliders after the DOM content is fully loaded
         initializeSliders('range-slider');
         initializeSliders('model-range-slider');
 
-       
 
-        let wishlist =JSON.parse(localStorage.getItem('cart')) || [];
 
-        function updateOffcanvas(wishlist=false) {
+        let wishlist = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function updateOffcanvas(wishlist = false) {
             // Clear the current items
-            
-            if(!wishlist){
-                wishlist=JSON.parse(localStorage.getItem('cart')) || [];
+
+            if (!wishlist) {
+                wishlist = JSON.parse(localStorage.getItem('cart')) || [];
             }
             offcanvasBody.innerHTML = '';
             console.log(wishlist);
-            
+
             // Add each item in the wishlist to the offcanvas
             wishlist.forEach((item, index) => {
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'items d-flex';
                 itemDiv.setAttribute('data-index', index);
-                
+
                 let itemprice = parseFloat(item.price.replace(/[^0-9.]/g, ''));
-                
-                let price = itemprice *item.qty
+
+                let price = itemprice * item.qty
                 itemDiv.innerHTML = `
                     <div class="check-item">
                         <label class="check check-secondary">
-                            <input type="checkbox" class="item-checkbox" data-index="`+index+`" />
+                            <input type="checkbox" class="item-checkbox" data-index="`+ index + `" />
                         </label>
                     </div>
                     <img src="${item.image}" alt="${item.title}" class="offcanvas-image"  data-elm ="img"/>
@@ -709,11 +769,11 @@
                         <p class="offcanvas-title text-ellipsis"  data-elm ="title" >${item.title}</p>
                         <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;"  data-elm ="desc">${item.desc}</div>
                         <div class="quantity-counter">
-                            <p class="price update-price" data-price-per-item="${item.price}" data-index="`+index+`" >$ ${(price).toFixed(2)}</p>
+                            <p class="price update-price" data-price-per-item="${item.price}" data-index="` + index + `" >$ ${(price).toFixed(2)}</p>
                             <div class="counter">
-                                <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement" data-index="`+index+`" id="selectAll2"></button>
-                                <input class="counter-value value" type="number" value="${item.qty}" min="0" data-index="`+index+`" />
-                                <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment" data-index="`+index+`" id="selectAll2" ></button>
+                                <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement" data-index="`+ index + `" id="selectAll2"></button>
+                                <input class="counter-value value" type="number" value="${item.qty}" min="0" data-index="` + index + `" />
+                                <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment" data-index="`+ index + `" id="selectAll2" ></button>
                             </div>
                         </div>
                     </div>
@@ -774,17 +834,18 @@
                     title: productCard.querySelector('.card-title' + titleSelector).innerText,
                     image: productCard.querySelector('.card-image').src,
                     desc: productCard.querySelector('.card-desc' + descSelector).innerText,
-                    price: productCard.querySelector('.card-price').innerText, // Assuming price remains the same in both languages
+                    price: productCard.querySelector('.card-price').innerText,
+                    unique_name: productCard.querySelector('.card-unique-name').innerText, // Assuming price remains the same in both languages
                 };
                 console.log(product);
-                
+
                 // Add product to wishlist
                 addTowishlist(product);
             });
         });
 
         deleteSelectedBtn.addEventListener('click', () => {
-            
+
             const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
 
             // Iterate backward to safely remove items
@@ -806,8 +867,8 @@
             checkboxes.forEach(checkbox => {
                 if (checkbox.checked) { // Check if the checkbox is checked
                     const index = checkbox.getAttribute('data-index'); // Get the data-index
-                    const priceElement = document.querySelector(`.update-price[data-index="`+index+`"]`); // Select the corresponding price element
-                    
+                    const priceElement = document.querySelector(`.update-price[data-index="` + index + `"]`); // Select the corresponding price element
+
                     if (priceElement) {
                         const itemPrice = parseFloat(priceElement.textContent.replace('$', '').trim());
                         subtotal += itemPrice; // Add the item's total price to the subtotal
@@ -838,18 +899,18 @@
             // Check if the clicked element is an increment or decrement button
             if (target.classList.contains('counter-increment') || target.classList.contains('counter-decrement')) {
                 const index = target.getAttribute('data-index'); // Get the data-index of the clicked button
-                const inputField = document.querySelector(`.counter-value[data-index="`+index+`"]`); // Select the corresponding input field
+                const inputField = document.querySelector(`.counter-value[data-index="` + index + `"]`); // Select the corresponding input field
 
                 // Get the current quantity
                 let currentValue = parseInt(inputField.value);
-                let add=false
+                let add = false
                 // Determine if we are incrementing or decrementing
                 if (target.classList.contains('counter-increment')) {
                     currentValue++; // Increment the value
-                    add=true
+                    add = true
                 } else if (target.classList.contains('counter-decrement')) {
                     if (currentValue > 0) {
-                        add=false
+                        add = false
                         currentValue--; // Decrement the value, but don't go below 0
                     }
                 }
@@ -857,7 +918,7 @@
                 inputField.value = currentValue; // Update the input field with the new quantity
 
                 // Update the displayed price
-                const priceElement = document.querySelector(`.update-price[data-index="`+index+`"]`);
+                const priceElement = document.querySelector(`.update-price[data-index="` + index + `"]`);
                 const pricePerItem = parseFloat(priceElement.getAttribute('data-price-per-item').replace('$', '').trim());
                 const totalPrice = pricePerItem * currentValue;
 
@@ -865,7 +926,7 @@
                 priceElement.textContent = `$ ${(totalPrice).toFixed(2)}`;
 
                 // Check if the corresponding checkbox is checked
-                const checkbox = document.querySelector(`.item-checkbox[data-index="`+index+`"]`);
+                const checkbox = document.querySelector(`.item-checkbox[data-index="` + index + `"]`);
                 if (checkbox && checkbox.checked) {
                     updateSubtotal(); // Update the subtotal if the checkbox is checked
                 }
@@ -882,20 +943,20 @@
         });
 
         // Function to update the subtotal of checked items
-        
+
 
         // Function to update the cart in local storage based on item properties
         // Function to update the cart in local storage based on item quantity
         function updateCartInLocalStorage(index, quantity, add) {
             // Retrieve the cart from local storage or initialize an empty object
             let cart = JSON.parse(localStorage.getItem('cart')) || {};
-            let deleted=[]
-            cart.forEach((item, index)=>{
+            let deleted = []
+            cart.forEach((item, index) => {
                 cart[index]["index"] = index;
-                const checkbox = document.querySelector('.item-checkbox[data-index="'+index+'"]');
+                const checkbox = document.querySelector('.item-checkbox[data-index="' + index + '"]');
                 cart[index]["checked"] = checkbox.checked;
             });
-                // If 'add' is true, increase the quantity
+            // If 'add' is true, increase the quantity
             if (add === true) {
                 if (cart[index]) {
                     cart[index]["qty"] = quantity; // Increment the quantity if item already exists
@@ -912,10 +973,10 @@
                     cart[index] = { qty: quantity };
                 }
             }
-            
+
 
             // Clean up any undefined or null entries in the cart
-            
+
             cart = cart.filter(item => item.qty > 0);
             localStorage.setItem('cart', JSON.stringify(cart));
             // Save the updated cart back to local storage
@@ -924,24 +985,24 @@
         }
         function updateOffcanvas2(cart) {
             // Clear the current items
-            
+
             let wishlist = cart
             offcanvasBody.innerHTML = '';
             console.log(wishlist);
-            
+
             // Add each item in the wishlist to the offcanvas
             wishlist.forEach((item, index) => {
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'items d-flex';
                 itemDiv.setAttribute('data-index', index);
-                
+
                 let itemprice = parseFloat(item.price.replace(/[^0-9.]/g, ''));
-                
-                let price = itemprice *item.qty
+
+                let price = itemprice * item.qty
                 itemDiv.innerHTML = `
                     <div class="check-item">
                         <label class="check check-secondary">
-                            <input type="checkbox" class="item-checkbox" ${item.checked ? 'checked' : ''} data-index="`+index+`" />
+                            <input type="checkbox" class="item-checkbox" ${item.checked ? 'checked' : ''} data-index="` + index + `" />
                         </label>
                     </div>
                     <img src="${item.image}" alt="${item.title}" class="offcanvas-image"  data-elm ="img"/>
@@ -949,11 +1010,11 @@
                         <p class="offcanvas-title text-ellipsis"  data-elm ="title" >${item.title}</p>
                         <div class="text-ellipsis text-ellipsis-2" style="font-size: 13px;margin-top: -10px;color: #626161;"  data-elm ="desc">${item.desc}</div>
                         <div class="quantity-counter">
-                            <p class="price update-price" data-price-per-item="${item.price}" data-index="`+index+`" >$ ${(price).toFixed(2)}</p>
+                            <p class="price update-price" data-price-per-item="${item.price}" data-index="` + index + `" >$ ${(price).toFixed(2)}</p>
                             <div class="counter">
-                                <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement" data-index="`+index+`" id="selectAll2"></button>
-                                <input class="counter-value value" type="number" value="${item.qty}" min="0" data-index="`+index+`" />
-                                <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment" data-index="`+index+`" id="selectAll2" ></button>
+                                <button class="btn btn-light btn-circle btn-circle-sm bx bx-minus counter-decrement" data-index="`+ index + `" id="selectAll2"></button>
+                                <input class="counter-value value" type="number" value="${item.qty}" min="0" data-index="` + index + `" />
+                                <button class="btn btn-light btn-circle btn-circle-sm bx bx-plus counter-increment" data-index="`+ index + `" id="selectAll2" ></button>
                             </div>
                         </div>
                     </div>
@@ -966,179 +1027,6 @@
         }
     });
 
-
-    // document.addEventListener('DOMContentLoaded', () => {
-    //     const selectAll1 = document.getElementById("selectAll1");
-    //     const offcanvasBody1 = document.getElementById("offcanvasBody");
-    //     const selectAll2 = document.getElementById("selectAll2");
-    //     const offcanvasBody2 = document.getElementById("offcanvasBody-cart");
-
-    //     const quantity1 = document.querySelector(".quantity");
-    //     const quantity2 = document.querySelector(".quantity-cart");
-
-    //     function updateQuantity(offcanvasBody, quantityElement) {
-    //         if (!offcanvasBody || !quantityElement) return;
-    //         const checkboxes = offcanvasBody.querySelectorAll(".item-checkbox");
-    //         const checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
-    //         quantityElement.textContent = checkedCount;
-    //     }
-
-    //     if (selectAll1 && offcanvasBody1) {
-    //         selectAll1.addEventListener('change', () => {
-    //             const checkboxes = offcanvasBody1.querySelectorAll(".item-checkbox");
-    //             checkboxes.forEach(checkbox => checkbox.checked = selectAll1.checked);
-    //             updateQuantity(offcanvasBody1, quantity1);
-    //         });
-
-    //         offcanvasBody1.addEventListener('change', () => {
-    //             const checkboxes = offcanvasBody1.querySelectorAll(".item-checkbox");
-    //             selectAll1.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
-    //             updateQuantity(offcanvasBody1, quantity1);
-    //         });
-    //     }
-
-    //     if (selectAll2 && offcanvasBody2) {
-    //         selectAll2.addEventListener('change', () => {
-    //             const checkboxes = offcanvasBody2.querySelectorAll(".item-checkbox");
-    //             checkboxes.forEach(checkbox => checkbox.checked = selectAll2.checked);
-    //             updateQuantity(offcanvasBody2, quantity2);
-    //         });
-
-    //         offcanvasBody2.addEventListener('change', () => {
-    //             const checkboxes = offcanvasBody2.querySelectorAll(".item-checkbox");
-    //             selectAll2.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
-    //             updateQuantity(offcanvasBody2, quantity2);
-    //         });
-    //     }
-
-    //     document.addEventListener('click', (event) => {
-    //         const target = event.target;
-
-    //         if (target.classList.contains('counter-increment') || target.classList.contains('counter-decrement')) {
-    //             const counter = target.closest('.counter');
-
-    //             if (!counter) {
-    //                 return;
-    //             }
-
-    //             const counterValue = counter.querySelector('.counter-value');
-    //             const priceElement = counter.closest('.quantity-counter').querySelector('.update-price');
-
-    //             if (!counterValue || !priceElement) {
-    //                 return;
-    //             }
-
-    //             // Get price per item from the data attribute
-    //             let priceText = priceElement.getAttribute('data-price-per-item');
-    //             let pricePerItem = parseFloat(priceText.replace(/[^0-9.-]/g, '')); // Remove $ and other non-numeric characters
-    //             if (isNaN(pricePerItem)) {
-    //                 console.error('Invalid price per item:', priceText);
-    //                 return;
-    //             }
-
-    //             // Get current total price and ensure it's a number
-    //             let totalPrice = parseFloat(priceElement.textContent.replace(/[^0-9.-]/g, ''));
-    //             if (isNaN(totalPrice)) {
-    //                 totalPrice = 0; // Initialize to 0 if not a valid number
-    //             }
-
-    //             // Update quantity and total price
-    //             let count = parseInt(counterValue.value, 10) || 0;
-    //             if (target.classList.contains('counter-increment')) {
-    //                 count++;
-    //                 totalPrice += pricePerItem;
-    //             } else if (target.classList.contains('counter-decrement')) {
-    //                 if (count > 0) {
-    //                     count--;
-    //                     totalPrice -= pricePerItem;
-    //                 }
-    //             }
-
-    //             // Update counter value and price
-    //             counterValue.value = count;
-    //             priceElement.textContent = `$${totalPrice.toFixed(2)}`; // Format price with $ symbol
-    //         }
-    //     });
-    // });
-
-
-
-
-    // function updateSubtotal() {
-    //     let subtotal = 0;
-
-    //     // Function to calculate subtotal for all checked items
-    //     function calculateSubtotal() {
-    //         subtotal = 0; // Reset subtotal
-
-    //         // Get all checked item checkboxes within the offcanvas
-    //         const checkedItems = document.querySelectorAll('.offcanvas .item-checkbox:checked');
-
-
-    //         // Iterate over each checked item
-    //         checkedItems.forEach((checkbox) => {
-    //             // Find the closest item card from the checkbox
-    //             const itemCard = checkbox.closest('.items');
-
-    //             if (itemCard) {
-    //                 // Get the price element and quantity input within the item card
-    //                 const priceElement = itemCard.querySelector('.price.update-price');
-    //                 const quantityInput = itemCard.querySelector('.counter-value.value');
-
-    //                 if (priceElement && quantityInput) {
-    //                     // Extract and parse the price per item
-    //                     const pricePerItemText = priceElement.getAttribute('data-price-per-item');
-    //                     const pricePerItem = parseFloat(pricePerItemText.replace(/[^0-9.-]/g, '')); // Remove non-numeric characters
-
-    //                     // Get the quantity value and parse it to a number
-    //                     const quantity = parseInt(quantityInput.value, 10);
-
-    //                     //console.log(`Price per item: ${pricePerItem} (Type: ${typeof pricePerItem})`);
-    //                     //console.log(`Quantity: ${quantity} (Type: ${typeof quantity})`);
-
-    //                     if (!isNaN(pricePerItem) && !isNaN(quantity)) {
-    //                         // Add the subtotal for this item to the total
-    //                         subtotal += pricePerItem * quantity;
-    //                     } else {
-    //                         //console.log('Invalid price or quantity for item');
-    //                     }
-    //                 } else {
-    //                     //console.log('Price or quantity input not found for item card');
-    //                 }
-    //             } else {
-    //                 //console.log('Item card not found for checkbox');
-    //             }
-    //         });
-
-    //         // Update the final subtotal display
-    //         document.getElementById('subTotal').textContent = `${subtotal.toFixed(2)}`;
-    //     }
-
-    //     // Event listener for quantity changes and item checkbox changes
-    //     document.addEventListener('change', (event) => {
-    //         if (event.target.classList.contains('item-checkbox') || event.target.classList.contains('counter-value')) {
-    //             calculateSubtotal();
-    //         } else if (event.target.id === 'selectAll1') { // For wishlist select all
-    //             const isChecked = event.target.checked;
-    //             document.querySelectorAll('.offcanvas .item-checkbox').forEach((checkbox) => {
-    //                 checkbox.checked = isChecked;
-    //             });
-    //             calculateSubtotal();
-    //         } else if (event.target.id === 'selectAll2') { // For cart select all
-    //             const isChecked = event.target.checked;
-    //             document.querySelectorAll('#offcanvas-cart .item-checkbox').forEach((checkbox) => {
-    //                 checkbox.checked = isChecked;
-    //             });
-    //             calculateSubtotal();
-    //         }
-    //     });
-
-    //     // Call calculateSubtotal initially to set the correct subtotal on page load
-    //     document.addEventListener('DOMContentLoaded', calculateSubtotal);
-    // }
-
-    // // Initialize the subtotal calculation
-    // updateSubtotal();
 </script>
 <script>
     // arabic id
@@ -1148,12 +1036,17 @@
         document.getElementById('category_title').textContent = translations['category_title'];
         document.getElementById('price_range_title').textContent = translations['price_range_title'];
         document.getElementById('by_rating_title').textContent = translations['by_rating_title'];
-        document.getElementById('discount_35').textContent = translations['discount_35'];
-        document.getElementById('discount_h_35').textContent = translations['discount_h_35'];
-        document.getElementById('discount_50').textContent = translations['discount_50'];
-        document.getElementById('discount_h_50').textContent = translations['discount_h_50'];
-        document.getElementById('discount_75').textContent = translations['discount_75'];
-        document.getElementById('discount_h_75').textContent = translations['discount_h_75'];
+
+        document.getElementById('filter_title_m').textContent = translations['filter_title_m'];
+        document.getElementById('category_title_m').textContent = translations['category_title_m'];
+        document.getElementById('price_range_title_m').textContent = translations['price_range_title_m'];
+        document.getElementById('by_rating_title_m').textContent = translations['by_rating_title_m'];
+        document.getElementById('discounts_title_m').textContent = translations['discounts_title_m'];
+        document.getElementById('apply_button').textContent = translations['apply_button'];
+        document.getElementById('apply_button_m').textContent = translations['apply_button_m'];
+        document.getElementById('cancel_button_m').textContent = translations['cancel_button'];
+
+
         document.getElementById('tab_all').textContent = translations['tab_all'];
         document.getElementById('discounts_title_h').textContent = translations['discounts_title_h'];
         document.getElementById('tab_unstitched').textContent = translations['tab_unstitched'];
@@ -1161,21 +1054,58 @@
         document.getElementById('tab_accessories').textContent = translations['tab_accessories'];
         document.getElementById('tab_perfumes').textContent = translations['tab_perfumes'];
         document.getElementById('tab_cutting_stitching').textContent = translations['tab_cutting_stitching'];
-        //   document.getElementById('tab_sale').textContent = translations['tab_sale'];
-        //   document.getElementById('tab_new_arrivals').textContent = translations['tab_new_arrivals'];
-        //   document.getElementById('buy_now_button').textContent = translations['buy_now_button'];
-        //   document.getElementById('no_variations_available').textContent = translations['no_variations_available'];
-        //   document.getElementById('add_to_cart_button').textContent = translations['add_to_cart_button'];
-        //   document.getElementById('save_to_wishlist_button').textContent = translations['save_to_wishlist_button'];
-        //   document.getElementById('related_products_title').textContent = translations['related_products_title'];
-        //   document.getElementById('buy_now_button').textContent = translations['buy_now_button'];
-        //   document.getElementById('customer_reviews_title').textContent = translations['customer_reviews_title'];
-        //   document.getElementById('reviewer_name').textContent = translations['reviewer_name'];
-        //   document.getElementById('review_feedback').textContent = translations['review_feedback'];
-        //   document.getElementById('review_designation').textContent = translations['review_designation'];
-        // document.getElementById('search_placeholder').textContent = translations['search_placeholder'];
-        document.getElementById('category_mens').textContent = translations['category_mens'];
-        document.getElementById('category_womens').textContent = translations['category_womens'];
+
+        document.getElementById('buy_now_button').textContent = translations['buy_now_button'];
+
+        //if our category is null then 
+        let buttonA = document.getElementById('buy_now_button_a');
+        let buttonB = document.getElementById('buy_now_button_b');
+        let buttonC = document.getElementById('buy_now_button_c');
+        let buttonD = document.getElementById('buy_now_button_d');
+        let buttonE = document.getElementById('buy_now_button_e');
+        let buy_now_button = document.getElementById('buy_now_button');
+        if (buttonA && translations['buy_now_button']) {
+            buttonA.textContent = translations['buy_now_button'];
+        }
+        if (buy_now_button && translations['buy_now_button']) {
+            buy_now_button.textContent = translations['buy_now_button'];
+        }
+
+        if (buttonB && translations['buy_now_button_b']) {
+            buttonB.textContent = translations['buy_now_button_b'];
+        }
+
+        if (buttonC && translations['buy_now_button_c']) {
+            buttonC.textContent = translations['buy_now_button_c'];
+        }
+
+        if (buttonD && translations['buy_now_button_d']) {
+            buttonD.textContent = translations['buy_now_button_d'];
+        }
+
+        if (buttonE && translations['buy_now_button_e']) {
+            buttonE.textContent = translations['buy_now_button_e'];
+        }
+
+
+
+        document.getElementById('search-query').setAttribute('placeholder', translations['search_placeholder']);
+        document.getElementById('category_mens_m').textContent = translations['category_mens_m'];
+        document.getElementById('category_womens_m').textContent = translations['category_womens_m'];
+        document.getElementById('category_services_m').textContent = translations['category_services_m'];
+        document.getElementById('discount_35_m').textContent = translations['discount_35_m'];
+        document.getElementById('discount_50_m').textContent = translations['discount_50_m'];
+        document.getElementById('discount_75_m').textContent = translations['discount_75_m'];
+
+        document.getElementById('category_mens_l').textContent = translations['category_mens_l'];
+        document.getElementById('category_womens_l').textContent = translations['category_womens_l'];
+        document.getElementById('category_services_l').textContent = translations['category_services_l'];
+        document.getElementById('discount_35_l').textContent = translations['discount_35_l'];
+        document.getElementById('discount_50_l').textContent = translations['discount_50_l'];
+        document.getElementById('discount_75_l').textContent = translations['discount_75_l'];
+
+        // document.getElementById('category_mens').textContent = translations['category_mens'];
+        // document.getElementById('category_womens').textContent = translations['category_womens'];
         // document.getElementById('category_womens_h').textContent = translations['category_womens_h'];
         // document.getElementById('category_services_h').textContent = translations['category_services_h'];
         // document.getElementById('category_services').textContent = translations['category_services'];

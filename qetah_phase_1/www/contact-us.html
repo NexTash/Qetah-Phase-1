@@ -1,9 +1,5 @@
 {% extends "templates/primary.html" %}
-
-{% block title %} Contact Us {% endblock %}
-
 {% block content %}
-
 <div class="content-area contact-section" :class="{'shifted-content': isStatic}">
   <div class="contact-us"
     style="background-image:url('/assets/qetah_phase_1/images/bg-swirl-1.webp');background-repeat: no-repeat;background-size: cover;">
@@ -120,7 +116,24 @@
   {% endblock %}
   {% block scripts %}
   <script>
+    window.onload = function () {
+      // Set the title and header for the Contact page
+      const pageTitles = {
+        ar: 'اتصل بنا - قطة',
+        en: 'Contact Us - Qetah'
 
+      };
+
+      const pageHeaders = {
+        ar: 'اتصل بنا - قطة',
+        en: 'Contact Us - Qetah'
+
+      };
+
+      setPageTitle(pageTitles, pageHeaders);
+    };
+  </script>
+  <script>
     // arabic id
     function updatePageContent(translations) {
       //contact us

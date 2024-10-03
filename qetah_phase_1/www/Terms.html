@@ -1,7 +1,4 @@
 {% extends "templates/primary.html" %}
-
-{% block title %} Terms {% endblock %}
-
 {% block content %}
 
 <div class="content-area" :class="{'shifted-content': isStatic}">
@@ -22,6 +19,23 @@
 {% endblock %}
 
 {% block scripts %}
+<script>
+    window.onload = function () {
+        // Set the title and header for the Contact page
+        const pageTitles = {
+            ar: 'الشروط - قطة',
+            en: 'Terms - Qetah'
+        };
+
+        const pageHeaders = {
+            ar: 'الشروط - قطة',
+            en: 'Terms - Qetah'
+
+        };
+
+        setPageTitle(pageTitles, pageHeaders);
+    };
+</script>
 <script>
     // arabic id
     function updatePageContent(translations) {

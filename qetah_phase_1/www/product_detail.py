@@ -2,10 +2,9 @@ import frappe
 
 def get_context(context):
     
-    id = frappe.form_dict.get("id")
-    min_price = frappe.form_dict.min_price
-    max_price = frappe.form_dict.max_price
-    ratings = frappe.form_dict.ratings
+    id = frappe.form_dict.get("product_name")
+    varient_name=frappe.form_dict.get("varient_name")
+   
     
     products = frappe.get_all('Product',filters={"name": id}, fields=['*'])
     testimonils = frappe.get_all('Testimonial',filters={}, fields=['*'])
@@ -13,19 +12,17 @@ def get_context(context):
 
     
     for product in products:
-        product['variations'] = frappe.get_all(
-            'Product Variation',  
-            fields=['*'],
-            filters={'parent': product['name']}  
-        )
-        
+        product['variation'] = frappe.get_all("Product Variation",filters={"parent": id,"name":varient_name}, fields=['*']) 
+        product['variations'] = frappe.get_all("Product Variation",filters={"parent": id}, fields=['*']) 
+
         product['images'] = frappe.get_all(
             'Product Images', 
             fields=['*'],
             filters={'parent': product['name']}  
         )
+
     print(products)
     context.update({
         "products": products,
         "testimonils": testimonils,
-    })
+    }) 

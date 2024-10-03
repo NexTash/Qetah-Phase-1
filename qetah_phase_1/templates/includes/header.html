@@ -1,3 +1,5 @@
+  <h1 id="page-header"></h1>
+
 <!-- Student Header -->
 <header id="header" class="nxt-header program-header">
   <div class="navbar-brand program-header-navbar" :class="{'shifted-navbar': isStatic}">
@@ -12,30 +14,19 @@
       <li class="breadcrumb-item active" id="current-page"></li>
     </ol>
 
-    <script>
-      // JavaScript to dynamically set the current page name in the breadcrumb
-      document.addEventListener("DOMContentLoaded", function () {
-        // Get the current page title or URL and set it as the breadcrumb's current page
-        const currentPage = document.title || window.location.pathname.split("/").pop().replace(/-/g, " ").replace(".html", "");
-
-        // Update the breadcrumb with the current page name
-        document.getElementById("current-page").textContent = currentPage;
-      });
-    </script>
-
   </div>
   <div class="navbar-brand-lt">
     <div class="bredcum-opert">
-    <button class="navbar-toggler d-xl-none navbarDropToggler" type="button" data-target="#mobileMenu"
-      aria-controls="mobileMenu" style="display: none"></button>
-    <button class="navbar-toggler sidebar-toggler d-xl-none navbarDropToggler mobile-desktop" id="toggleButton"
-      type="button" data-target="#mobileMenu" @click="sidebarOpen = !sidebarOpen" aria-controls="sidebarMenu">
-      <i class='bx bxs-grid'></i>
-    </button>
-    <ol class="breadcrumb second-breadcrumb" style="margin:0;">
-      <li class="breadcrumb-item"><a href="/index" class="breadcrumb-link" id="title_qetah_h">Qetah</a></li>
-      <li class="breadcrumb-item active" id="current-page">Home</li>
-    </ol>
+      <button class="navbar-toggler d-xl-none navbarDropToggler" type="button" data-target="#mobileMenu"
+        aria-controls="mobileMenu" style="display: none"></button>
+      <button class="navbar-toggler sidebar-toggler d-xl-none navbarDropToggler mobile-desktop" id="toggleButton"
+        type="button" data-target="#mobileMenu" @click="sidebarOpen = !sidebarOpen" aria-controls="sidebarMenu">
+        <i class='bx bxs-grid'></i>
+      </button>
+      <ol class="breadcrumb second-breadcrumb" style="margin:0;">
+        <li class="breadcrumb-item"><a href="/index" class="breadcrumb-link" id="title_qetah_h">Qetah</a></li>
+        <li class="breadcrumb-item active" id="current-page">Home</li>
+      </ol>
     </div>
     <nav class="no-collapse">
       <ul>
@@ -46,14 +37,14 @@
               <ul class="dropdown-menu" :class="{ 'show': isOpen }" style="flex-direction: column; display: none;"
                 x-show="isOpen" x-transition>
                 <li>
-                  <a onclick="switchLanguage('en');noice()">
-                    <img src="/assets/qetah_phase_1/images/eng.png" style="width: 50px; height: 25px;" alt="">
+                  <a onclick="switchLanguage('en');dynamic_translate();noice();changeLanguage()">
+                    <img src="/assets/qetah_phase_1/images/eng.png" style="width: 50px; height: 25px;" alt>
                     <a href="#" id="sidebar_eng">ENG</a>
                   </a>
                 </li>
                 <li>
-                  <a onclick="switchLanguage('ar');noice()">
-                    <img src="/assets/qetah_phase_1/images/ara.webp" style="width: 50px; height: 25px;" alt="">
+                  <a onclick="switchLanguage('ar');dynamic_translate();noice();changeLanguage()">
+                    <img src="/assets/qetah_phase_1/images/ara.webp" style="width: 50px; height: 25px;" alt>
                     <a href="#" id="sidebar_ara">ARA</a>
                   </a>
                 </li>
@@ -62,9 +53,9 @@
           </li>
           <li class="nav-drop-wrap res-link">
             <a class="nav-icon-link has-ripple drop-indicator navDropToggler" href="javascript:void(0)">
-              <span class="badge badge-secondary badge-pill noti-badge">0</span>
+              <!-- <span class="badge badge-secondary badge-pill noti-badge">0</span> -->
               <div x-data="{ isOpenRight: false }">
-                <i class="bx bx-heart" @click="isOpenRight = true"></i>
+                <!-- <i class="bx bx-heart" @click="isOpenRight = true"></i> -->
                 <div class="offcanvas offcanvas-right" :class="{ 'open': isOpenRight }" id="offcanvas">
                   <div class="offcanvas-header">
                     Add to Wishlist
@@ -72,7 +63,8 @@
                   </div>
                   <div class="select-all" style="padding: 16px 16px 0px 16px;">
                     <label class="check check-secondary">
-                      <input type="checkbox" id="selectAll1" /><p class="m-0" id="select_All_h"></p> 
+                      <input type="checkbox" id="selectAll1" />
+                      <p class="m-0" id="select_All_h"></p>
                     </label>
                     <hr style="margin: 5px 0px;
                   border: none;
@@ -109,9 +101,9 @@
                     <button class="btn-close" @click="isOpenRight = false"></button>
                   </div>
                   <div class="select-all" style="padding: 16px 16px 0px 16px;">
-                    <label class="check check-secondary" >
-                     <p class="m-0" id="select_All_m"> </p>
-                      <input class="select-all-checkbox" type="checkbox" id="selectAll2"/> 
+                    <label class="check check-secondary">
+                      <p class="m-0" id="select_All_m"> </p>
+                      <input class="select-all-checkbox" type="checkbox" id="selectAll2" />
                     </label>
 
                     <hr style="margin: 5px 0px;
@@ -126,7 +118,7 @@
                   </div>
                   <div class="offcanvas-foot">
                     <div class="card-title" id="cartSummary">Summary :-</div>
-                    
+
                     <div class="subtotal">
                       <p id="subTotalText">Subtotal : </p>
                       <p style="font-weight: 600;" id="subTotal"></p>
@@ -143,7 +135,7 @@
               </div>
             </a>
           </li>
-      
+
           <li class="nav-drop-wrap nav-drop-user" title="Account">
             <a class="has-ripple drop-indicator navDropToggler" href="javascript:void(0)">
               <div class="img-no-pp">
@@ -158,7 +150,7 @@
 </header>
 
 <!-- Student Header -->
-
+{% block extar_scripts %}
 
 <script>
   // Function to update the page content based on translations
@@ -180,15 +172,11 @@
     document.getElementById('sidebar_ara').textContent = translations['sidebar_ara'];
   }
 
-</script>
 
-<script>
   document.getElementById('goToCart').addEventListener('click', () => {
-    // Redirect to the cart page
-    window.location.href = 'cart-items.html';  // Replace with the correct path if needed
+    window.location.href = 'cart-items.html';
   });
-</script>
-<script>
+
   // main js
 
   function toggleMenu() {
@@ -270,29 +258,37 @@
         contentArea.classList.remove("sidebar-area-content");
       }
     });
+    //for title breadcrumd
+    const currentPage = document.title || window.location.pathname.split("/").pop().replace(/-/g, " ").replace(".html", "");
+    document.getElementById("current-page").textContent = currentPage;
   });
 
-  //   document.addEventListener('DOMContentLoaded', () => {
-  //   const overlay = document.getElementById('overlay');
-  //   const toggleButton = document.getElementById('toggleButton');
 
-  //   // Function to toggle overlay visibility
-  //   function toggleOverlay() {
-  //     if (overlay.classList.contains('show')) {
-  //       overlay.classList.remove('show');
-  //     } else {
-  //       overlay.classList.add('show');
-  //     }
-  //   }
+  // Function to switch language and refresh the page
+  function switchLanguage(lang) {
+    localStorage.setItem('selectedLanguage', lang);
+    dynamic_translate();
+    location.reload();
+  }
+  function dynamic_translate() {
+    const selectedLanguage = localStorage.getItem('selectedLanguage');
+    if (selectedLanguage === 'ar') {
+      document.body.classList.add('rtl');
+    } else {
+      document.body.classList.remove('rtl');
 
-  //   // Add click event listener to the toggle button
-  //   toggleButton.addEventListener('click', () => {
-  //     toggleOverlay();
-  //   });
+    }
+  }
 
-  //   // Optionally, you might want to hide the overlay when clicking on it
-  //   overlay.addEventListener('click', () => {
-  //     overlay.classList.remove('show');
-  //   });
-  // });
+  //for page titles ar to eng
+  function setPageTitle(pageTitles, pageHeaders) {
+    const selectedLanguage = localStorage.getItem('language') || 'ar';
+    document.title = pageTitles[selectedLanguage] || pageTitles['en'];
+    document.getElementById('page-header').textContent = pageHeaders[selectedLanguage] || pageHeaders['en'];
+  }
+  function changeLanguage(lang) {
+    localStorage.setItem('language', lang);
+    location.reload();
+  }
 </script>
+{% endblock %}

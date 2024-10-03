@@ -1,7 +1,4 @@
 {% extends "templates/primary.html" %}
-
-{% block title %} Home {% endblock %}
-
 {% block content %}
 <div class="content-area" :class="{'shifted-content': isStatic}">
   <div id="overlay"></div>
@@ -165,245 +162,248 @@
     </div>
     <h1 class="text-center" id="top_selling_product">Top Selling Product</h1>
     <!-- Slider main container -->
-    <div class="swiper product-slider">
-      <!-- Additional required wrapper -->
-      <div class="swiper-wrapper">
-        {% for product in products %}
-        <!-- Slides -->
-        <div class="swiper-slide">
-          <div class="products">
-            <div class="badge badge-primary badge-pill" data-field="en"> {{ product.title }}</div>
-            <!-- <div class="badge badge-primary badge-pill" data-field="ar">{{ product.title_arabic }}</div> -->
-            <div class="card product-card">
-              <a href="/product-detail?id={{ product.name }}">
-                <div class="card-head">
-                  <img class="card-image " src="{{ product.featured_image }}" alt="Product Image">
-                </div>
-              
-              <div class="card-body">
-                {% if product.variations %}
-                
-                <div class="variation">
-                  <div class="card-title" data-field="en">{{ product.variations["title"] }}</div>
-                  <div class="card-desc text-ellipsis text-ellipsis-2" data-field="en">{{ product.variations["description"] }}</div>
+     <div class="swiper product-slider">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          {% for product in products %}
 
-                  <div class="card-title" data-field="ar">{{ product.variations["title_arabic"] }}</div>
-                  <div class="card-desc text-ellipsis text-ellipsis-2" data-field="ar">{{ product.variations["description_arabic"]}}</div>
-
-                  <div class="card-subtitle"><del>USD {{ product.variations["discount"] }}</del></div>
-                  <div class="card-title card-price">USD {{ product.variations["price"] }}</div>
-                </div>
+         
+          <div class="swiper-slide">
+            <div class="products">
+              <div class="badge badge-primary badge-pill" data-field="en">{{ product.variations["title"] }}</div>
+              <div class="badge badge-primary badge-pill" data-field="ar">{{ product.variations["title"] }}</div>
+              <div class="card product-card">
+                <a href="/product-detail?product_name={{ product.name }}&varient_name={{ product.variations["name"] }}">
+                  <div class="card-head">
+                    <img class="card-image" src="{{ product.featured_image }}">
+                  </div>
+                  <div class="card-body">
+                    <div class="card-title" id="product_intro" data-field="en">{{ product.variations["title"] }}</div>
+                    <div class="card-title" id="product_intro" data-field="ar">{{ product.variations["title_arabic"] }}</div>
+                    <div class="card-desc text-ellipsis text-ellipsis-2" data-field="en">
+                      {{ product.variations["intro"] }}
+                    </div>
+                    <div class="card-desc text-ellipsis text-ellipsis-2" data-field="ar">
+                      {{ product.variations["intro_arabic"] }}
+                    </div>
+                    <div class="card-subtitle"><del>USD {{ product.variations["price"] }}</del></div>
+                    <div class="card-price">USD {{ product.variations["discount"] }}</div>
+                    <div class="card-rating">
+                      <i class="bx bxs-star"></i>
+                      <span>{{ product.rating }}</span> ({{ product.sold }} Sold)
+                    </div>
+                  </div>
                 </a>
-                {% else %}
-                <!-- <p id="badge_no_variations">No variations available</p> -->
-                {% endif %}
-                <div class="card-rating">
-                  <i class="bx bxs-star"></i>
-                  <span>{{ product.rating }}</span> ({{ product.sold }}) <span id="card_sold"></span>
+                <div class="card-foot d-none">
+                  <!-- <button class="btn btn-light btn-icon btn-pill btn-cart" id="buy_now_button"><i
+                      class="bx bx-cart icon-pre"></i> Buy Now</button> -->
+                  <!-- <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart d-none"></button> -->
                 </div>
               </div>
-              <div class="card-foot" >
-                <button class="btn btn-light btn-icon btn-pill btn-cart"  id="btn_buy_now"><i
-                    class="bx bx-cart icon-pre"></i> Buy Now</button>
-                <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart"></button>
-              </div>
+
+
             </div>
           </div>
-        </div>
-        {% endfor %}
-      </div>
-      <button class="btn btn-dark btn-pill explore">
-        <a href="/product" id="btn_explore_more">Explore More</a>
-      </button>
-      <button class="slide-next btn btn-secondary btn-sm bx bx-right-arrow-alt"></button>
-      <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
-    </div>
-  </div>
-    <div class="container Story">
-        <div class="text-center">
-          <div class="badge badge-o-dark badge-pill fw-bold" id="our_story_heading_h">Our Story</div>
-        </div>
-      <div class="container d-flex our-story">
-        <div class="images">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMVSO5_Qnbe7v-DlXEcagBf8IxIBeieQ3eyA&s"
-            width="450px" height="400px" alt="" />
-        </div>
-        <div class="story-desc">
-          <h3 class="heading" id="our_story_heading">Our Story</h3>
-          <p class="desc" id="our_story_paragraph_1">
-            At Qetah, we believe that shopping should be a delightful experience filled with inspiration and
-            convenience.
-            Our journey began with a simple idea: to bring the best products to customers around the globe, making it
-            easier
-            than ever to find exactly what they need. With a passion for quality and a commitment to customer
-            satisfaction,
-            we carefully curate each item, ensuring that it meets our high standards. Our dedicated team works
-            tirelessly to
-            create a seamless online shopping experience, allowing you to explore our extensive collection from the
-            comfort
-            of your home.
-          </p>
-          <br />
-          <p class="desc" id="our_story_paragraph_2">
-            As we continue to grow, our mission remains the same: to empower our customers with exceptional products and
-            unparalleled service. We understand the importance of trust in the online shopping world, and we strive to
-            build
-            lasting relationships with our community. From our humble beginnings to becoming a go-to destination for
-            [your
-            product type], we are grateful for your support on this journey. Together, let's redefine the way you shop
-            and
-            celebrate the joy of discovering new favorites.
-          </p>
-          <div x-data="{ createRipple: createRipple }">
-            <button x-on:click="createRipple($event)" class="btn btn-secondary ripple btn-icon">
-              <a href="/story" id="btn_read_more">Read More</a>
-              <i class="bx bx-right-arrow-alt icon-post"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container Appointment" style="background-image: url('/assets/qetah_phase_1/images/bg-swirl-1.webp')">
-      <div class="text">
-        <h1 id="appointment_heading" class="white-text">Book An Appointment</h1>
-        <p id="appointment_intro" class="white-text">Just book your appointment now and get your dress done</p>
-      </div>
-      <div class="button">
-        <button class="btn btn-pill">
-          <a href="/contact-us" id="btn_click_here">Click Here!</a>
-        </button>
-      </div>
-    </div>
-    <div class="container Blogs">
-      <div class="badge badge-o-dark badge-pill" id="sidebar_blogs_h">Blogs</div>
-      <div class="text">
-        <h2 id="related_blogs_heading">Related Blogs</h2>
-        <a href="/Blogs" id="btn_see_more_h">See more <i class="bx bx-right-arrow-alt"></i></a>
-      </div>
-      <p class="sub-title" id="get_started_intro">Get started by reading our blogs</p>
-      <div class="swiper blog-slider">
-        <section class="swiper-wrapper blog-wrap">
-          {% for blog in blogs %}
-          <div class="swiper-slide blog-section">
 
-            <article class="card card-blog" data-aos-duration="1000" data-aos="fade-up" data-aos-once="true"
-              data-aos-easing="ease-in-out">
-              <a class="card-image image-zoom" href="/blog-detail?id={{blog.name}}">
-                <img src="{{ blog.meta_image }}"  class="image" loading="lazy" alt="" />
-              </a>
-              <div class="card-body">
-                <span class="card-badge" data-field="en">{{ blog.title }}</span>
-                <span class="card-badge" data-field="ar">{{ blog.custom_title_in_arabic }}</span>
-                <h3 class="card-title">
-                  <a href="/blog-detail?id={{blog.name}}" class="text-ellipsis text-ellipsis-2"
-                    data-field="en">{{blog.blog_intro}}</a>
-                  <a href="/blog-detail?id={{blog.name}}" class="text-ellipsis text-ellipsis-2"
-                    data-field="ar">{{blog.custom_blog_intro_in_arabic}}</a>
-                </h3>
-                <p class="card-subtitle">{{ blog.published_on }}</p>
-              </div>
-            </article>
-          </div>
+          
           {% endfor %}
-        </section>
+
+        </div>
         <button class="slide-next btn btn-secondary btn-sm bx bx-right-arrow-alt"></button>
         <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
       </div>
+    <button class="btn btn-dark btn-pill explore">
+      <a href="/product" id="btn_explore_more">Explore More</a>
+    </button>
+   
+  </div>
+</div>
+<div class="container Story">
+  <div class="text-center">
+    <div class="badge badge-o-dark badge-pill fw-bold" id="our_story_heading_h">Our Story</div>
+  </div>
+  <div class="container d-flex our-story">
+    <div class="images">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMVSO5_Qnbe7v-DlXEcagBf8IxIBeieQ3eyA&s"
+        width="450px" height="400px" alt="" />
     </div>
-    <div class="container customer-reviews text-center">
-      <div class="badge badge-o-dark badge-pill" id="review_ar">Reviews</div>
-      <h1 class="text-center customer-say" id="reviews_heading">What Our Customers Say</h1>
-      <div class="border text-center"></div>
-      <div class="swiper slide-container text-center">
-        <div class="swiper-wrapper">
-          {% for testimonil in testimonials %}
-          <div class="swiper-slide review-content">
-            <p data-field="en">{{testimonil.feedback}}</p>
-            <p data-field="ar">{{testimonil.feedback_arabic}}</p>
-            <h2 class="fw-bold reviewer-name" data-field="en">{{testimonil.full_name}}</h2>
-            <h2 class="fw-bold reviewer-name" data-field="ar">{{testimonil.full_name_arabic}}</h2>
-            <i class="company-name" data-field="en">{{testimonil.designation}}</i>
-            <i class="company-name" data-field="ar">{{testimonil.designation_arabic}}</i>
-          </div>
-          {% endfor %}
-        </div>
-        <!-- pagination -->
-        <div class="swiper-pagination"></div>
+    <div class="story-desc">
+      <h3 class="heading" id="our_story_heading">Our Story</h3>
+      <p class="desc" id="our_story_paragraph_1">
+        At Qetah, we believe that shopping should be a delightful experience filled with inspiration and
+        convenience.
+        Our journey began with a simple idea: to bring the best products to customers around the globe, making it
+        easier
+        than ever to find exactly what they need. With a passion for quality and a commitment to customer
+        satisfaction,
+        we carefully curate each item, ensuring that it meets our high standards. Our dedicated team works
+        tirelessly to
+        create a seamless online shopping experience, allowing you to explore our extensive collection from the
+        comfort
+        of your home.
+      </p>
+      <br />
+      <p class="desc" id="our_story_paragraph_2">
+        As we continue to grow, our mission remains the same: to empower our customers with exceptional products and
+        unparalleled service. We understand the importance of trust in the online shopping world, and we strive to
+        build
+        lasting relationships with our community. From our humble beginnings to becoming a go-to destination for
+        [your
+        product type], we are grateful for your support on this journey. Together, let's redefine the way you shop
+        and
+        celebrate the joy of discovering new favorites.
+      </p>
+      <div x-data="{ createRipple: createRipple }">
+        <button x-on:click="createRipple($event)" class="btn btn-secondary ripple btn-icon">
+          <a href="/story" id="btn_read_more">Read More</a>
+          <i class="bx bx-right-arrow-alt icon-post"></i>
+        </button>
       </div>
     </div>
+  </div>
+</div>
+<div class="container Appointment" style="background-image: url('/assets/qetah_phase_1/images/bg-swirl-1.webp')">
+  <div class="text">
+    <h1 id="appointment_heading" class="white-text">Book An Appointment</h1>
+    <p id="appointment_intro" class="white-text">Just book your appointment now and get your dress done</p>
+  </div>
+  <div class="button">
+    <button class="btn btn-pill">
+      <a href="/contact-us" id="btn_click_here">Click Here!</a>
+    </button>
+  </div>
+</div>
+<div class="container Blogs">
+  <div class="badge badge-o-dark badge-pill" id="sidebar_blogs_h">Blogs</div>
+  <div class="text">
+    <h2 id="related_blogs_heading">Related Blogs</h2>
+    <a href="/Blogs" id="btn_see_more_h">See more <i class="bx bx-right-arrow-alt"></i></a>
+  </div>
+  <p class="sub-title" id="get_started_intro">Get started by reading our blogs</p>
+  <div class="swiper blog-slider">
+    <section class="swiper-wrapper blog-wrap">
+      {% for blog in blogs %}
+      <div class="swiper-slide blog-section">
 
-  {% endblock %}
+        <article class="card card-blog" data-aos-duration="1000" data-aos="fade-up" data-aos-once="true"
+          data-aos-easing="ease-in-out">
+          <a class="card-image image-zoom" href="/blog-detail?id={{blog.name}}">
+            <img src="{{ blog.meta_image }}" class="image" loading="lazy" alt="" />
+          </a>
+          <div class="card-body">
+            <span class="card-badge" data-field="en">{{ blog.title }}</span>
+            <span class="card-badge" data-field="ar">{{ blog.custom_title_in_arabic }}</span>
+            <h3 class="card-title">
+              <a href="/blog-detail?id={{blog.name}}" class="text-ellipsis text-ellipsis-2"
+                data-field="en">{{blog.blog_intro}}</a>
+              <a href="/blog-detail?id={{blog.name}}" class="text-ellipsis text-ellipsis-2"
+                data-field="ar">{{blog.custom_blog_intro_in_arabic}}</a>
+            </h3>
+            <p class="card-subtitle">{{ blog.published_on }}</p>
+          </div>
+        </article>
+      </div>
+      {% endfor %}
+    </section>
+    <button class="slide-next btn btn-secondary btn-sm bx bx-right-arrow-alt"></button>
+    <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
+  </div>
+</div>
+<div class="container customer-reviews text-center">
+  <div class="badge badge-o-dark badge-pill" id="review_ar">Reviews</div>
+  <h1 class="text-center customer-say" id="reviews_heading">What Our Customers Say</h1>
+  <div class="border text-center"></div>
+  <div class="swiper slide-container text-center">
+    <div class="swiper-wrapper">
+      {% for testimonil in testimonials %}
+      <div class="swiper-slide review-content">
+        <p data-field="en">{{testimonil.feedback}}</p>
+        <p data-field="ar">{{testimonil.feedback_arabic}}</p>
+        <h2 class="fw-bold reviewer-name" data-field="en">{{testimonil.full_name}}</h2>
+        <h2 class="fw-bold reviewer-name" data-field="ar">{{testimonil.full_name_arabic}}</h2>
+        <i class="company-name" data-field="en">{{testimonil.designation}}</i>
+        <i class="company-name" data-field="ar">{{testimonil.designation_arabic}}</i>
+      </div>
+      {% endfor %}
+    </div>
+    <!-- pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
 
-  {% block scripts %}
-  <script>
+{% endblock %}
 
-    document.addEventListener('DOMContentLoaded', () => {
+{% block scripts %}
+<script>
 
-      setTimeout(function() {
-          // Select all `li` elements with the classes `nav-drop-wrap` and `res-link`
-          const listItems = document.querySelectorAll('li.nav-drop-wrap.res-link');
-          
-          listItems.forEach(function(li) {
-              // Check if any child element of this `li` contains the class `bx-cart`
-              if (li.querySelector('.bx-cart')) {
-                  // Hide the parent `li` by setting the display style to 'none'
-                  li.style.display = 'none';
-              }
-          });
-      }, 100);
-    });
+  document.addEventListener('DOMContentLoaded', () => {
+
+    setTimeout(function () {
+      // Select all `li` elements with the classes `nav-drop-wrap` and `res-link`
+      const listItems = document.querySelectorAll('li.nav-drop-wrap.res-link');
+
+      listItems.forEach(function (li) {
+        // Check if any child element of this `li` contains the class `bx-cart`
+        if (li.querySelector('.bx-cart')) {
+          // Hide the parent `li` by setting the display style to 'none'
+          li.style.display = 'none';
+        }
+      });
+    }, 100);
+  });
 
 
-    // arabic id
-    function updatePageContent(translations) {
-      // index
-      document.getElementById('discover_new_arrivals_title').textContent = translations['discover_new_arrivals_title'];
-      document.getElementById('discover_new_arrivals_subtitle').textContent = translations['discover_new_arrivals_subtitle'];
-      document.getElementById('discover_new_arrivals_text').textContent = translations['discover_new_arrivals_text'];
-      document.getElementById('exclusive_discount_title').textContent = translations['exclusive_discount_title'];
-      document.getElementById('exclusive_discount_subtitle').textContent = translations['exclusive_discount_subtitle'];
-      document.getElementById('exclusive_discount_text').textContent = translations['exclusive_discount_text'];
-      document.getElementById('best_products_title').textContent = translations['best_products_title'];
-      document.getElementById('best_products_subtitle').textContent = translations['best_products_subtitle'];
-      document.getElementById('best_products_text').textContent = translations['best_products_text'];
-      document.getElementById('happy_shopping_title').textContent = translations['happy_shopping_title'];
-      document.getElementById('happy_shopping_subtitle').textContent = translations['happy_shopping_subtitle'];
-      document.getElementById('happy_shopping_text').textContent = translations['happy_shopping_text'];
-      document.getElementById('spring_sale_title').textContent = translations['spring_sale_title'];
-      document.getElementById('spring_sale_text').textContent = translations['spring_sale_text'];
-      document.getElementById('spring_sale_text_up_to_30').textContent = translations['spring_sale_text_up_to_30'];
-      document.getElementById('why_choose_us_title').textContent = translations['why_choose_us_title'];
-      console.log(translations['why_choose_us_title']);
+  // arabic id
+  function updatePageContent(translations) {
+    // index
+    document.getElementById('discover_new_arrivals_title').textContent = translations['discover_new_arrivals_title'];
+    document.getElementById('discover_new_arrivals_subtitle').textContent = translations['discover_new_arrivals_subtitle'];
+    document.getElementById('discover_new_arrivals_text').textContent = translations['discover_new_arrivals_text'];
+    document.getElementById('exclusive_discount_title').textContent = translations['exclusive_discount_title'];
+    document.getElementById('exclusive_discount_subtitle').textContent = translations['exclusive_discount_subtitle'];
+    document.getElementById('exclusive_discount_text').textContent = translations['exclusive_discount_text'];
+    document.getElementById('best_products_title').textContent = translations['best_products_title'];
+    document.getElementById('best_products_subtitle').textContent = translations['best_products_subtitle'];
+    document.getElementById('best_products_text').textContent = translations['best_products_text'];
+    document.getElementById('happy_shopping_title').textContent = translations['happy_shopping_title'];
+    document.getElementById('happy_shopping_subtitle').textContent = translations['happy_shopping_subtitle'];
+    document.getElementById('happy_shopping_text').textContent = translations['happy_shopping_text'];
+    document.getElementById('spring_sale_title').textContent = translations['spring_sale_title'];
+    document.getElementById('spring_sale_text').textContent = translations['spring_sale_text'];
+    document.getElementById('spring_sale_text_up_to_30').textContent = translations['spring_sale_text_up_to_30'];
+    document.getElementById('why_choose_us_title').textContent = translations['why_choose_us_title'];
+    console.log(translations['why_choose_us_title']);
 
-      document.getElementById('why_choose_us_text').textContent = translations['why_choose_us_text'];
-      document.getElementById('sidebar_blogs_h').textContent = translations['sidebar_blogs_h'];
-      document.getElementById('get_notified_title').textContent = translations['get_notified_title'];
-      document.getElementById('about_us_title').textContent = translations['about_us_title'];
+    document.getElementById('why_choose_us_text').textContent = translations['why_choose_us_text'];
+    document.getElementById('sidebar_blogs_h').textContent = translations['sidebar_blogs_h'];
+    document.getElementById('get_notified_title').textContent = translations['get_notified_title'];
+    document.getElementById('about_us_title').textContent = translations['about_us_title'];
 
-      document.getElementById('customer_satisfaction_message').textContent = translations['customer_satisfaction_message'];
-      document.getElementById('more_about_us_title').textContent = translations['more_about_us_title'];
-      document.getElementById('products_heading').textContent = translations['products_heading'];
-      document.getElementById('top_selling_product').textContent = translations['top_selling_product'];
-      document.getElementById('card_sold').textContent = translations['card_sold'];
-      document.getElementById('btn_buy_now').textContent = translations['btn_buy_now'];
-      document.getElementById('btn_explore_more').textContent = translations['btn_explore_more'];
-      document.getElementById('our_story_heading').textContent = translations['our_story_heading'];
-      document.getElementById('our_story_heading_h').textContent = translations['our_story_heading_h'];
-      document.getElementById('our_story_paragraph_1').textContent = translations['our_story_paragraph_1'];
-      document.getElementById('our_story_paragraph_2').textContent = translations['our_story_paragraph_2'];
-      document.getElementById('btn_read_more').textContent = translations['btn_read_more'];
-      document.getElementById('appointment_heading').textContent = translations['appointment_heading'];
-      document.getElementById('appointment_intro').textContent = translations['appointment_intro'];
-      document.getElementById('btn_click_here').textContent = translations['btn_click_here'];
-      document.getElementById('related_blogs_heading').textContent = translations['related_blogs_heading'];
-      document.getElementById('btn_see_more').textContent = translations['btn_see_more'];
-      document.getElementById('btn_see_more_h').textContent = translations['btn_see_more_h'];
-      document.getElementById('btn_see_more_1').textContent = translations['btn_see_more_1'];
-      document.getElementById('btn_see_more_2').textContent = translations['btn_see_more_2'];
-      document.getElementById('btn_see_more_3').textContent = translations['btn_see_more_3'];
-      document.getElementById('review_ar').textContent = translations['review_ar'];
-      document.getElementById('get_started_intro').textContent = translations['get_started_intro'];
-      document.getElementById('reviews_heading').textContent = translations['reviews_heading'];
-    }
-  </script>
-  {% endblock %}
+    document.getElementById('customer_satisfaction_message').textContent = translations['customer_satisfaction_message'];
+    document.getElementById('more_about_us_title').textContent = translations['more_about_us_title'];
+    document.getElementById('products_heading').textContent = translations['products_heading'];
+    document.getElementById('top_selling_product').textContent = translations['top_selling_product'];
+    // document.getElementById('card_sold').textContent = translations['card_sold'];
+    // document.getElementById('btn_buy_now').textContent = translations['btn_buy_now'];
+    document.getElementById('btn_explore_more').textContent = translations['btn_explore_more'];
+    document.getElementById('our_story_heading').textContent = translations['our_story_heading'];
+    document.getElementById('our_story_heading_h').textContent = translations['our_story_heading_h'];
+    document.getElementById('our_story_paragraph_1').textContent = translations['our_story_paragraph_1'];
+    document.getElementById('our_story_paragraph_2').textContent = translations['our_story_paragraph_2'];
+    document.getElementById('btn_read_more').textContent = translations['btn_read_more'];
+    document.getElementById('appointment_heading').textContent = translations['appointment_heading'];
+    document.getElementById('appointment_intro').textContent = translations['appointment_intro'];
+    document.getElementById('btn_click_here').textContent = translations['btn_click_here'];
+    document.getElementById('related_blogs_heading').textContent = translations['related_blogs_heading'];
+    document.getElementById('btn_see_more').textContent = translations['btn_see_more'];
+    document.getElementById('btn_see_more_h').textContent = translations['btn_see_more_h'];
+    document.getElementById('btn_see_more_1').textContent = translations['btn_see_more_1'];
+    document.getElementById('btn_see_more_2').textContent = translations['btn_see_more_2'];
+    document.getElementById('btn_see_more_3').textContent = translations['btn_see_more_3'];
+    document.getElementById('review_ar').textContent = translations['review_ar'];
+    document.getElementById('get_started_intro').textContent = translations['get_started_intro'];
+    document.getElementById('reviews_heading').textContent = translations['reviews_heading'];
+  }
+</script>
+{% endblock %}

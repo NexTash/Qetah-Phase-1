@@ -1,7 +1,4 @@
 {% extends "templates/primary.html" %}
-
-{% block title %} Privacy {% endblock %}
-
 {% block content %}
 
 <div class="content-area" :class="{'shifted-content': isStatic}">
@@ -25,6 +22,23 @@
 
     {% endblock %}
     {% block scripts %}
+    <script>
+        window.onload = function () {
+            // Set the title and header for the Contact page
+            const pageTitles = {
+                ar: 'الخصوصية - قطة',
+                en: 'Privacy - Qetah'
+
+            };
+
+            const pageHeaders = {
+                ar: 'الخصوصية - قطة',
+                en: 'Privacy - Qetah'
+            };
+
+            setPageTitle(pageTitles, pageHeaders);
+        };
+    </script>
     <script>
         let lastScrollTop = 0;
         const header = document.getElementById("header");

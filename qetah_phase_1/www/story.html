@@ -1,9 +1,5 @@
 {% extends "templates/primary.html" %}
-
-{% block title %} Story {% endblock %}
-
 {% block content %}
-
 <div class="content-area" :class="{'shifted-content': isStatic}">
     <div class="container our-story" style="max-width: 1200px;">
         <div class="row">
@@ -81,6 +77,25 @@
 {% endblock %}
 {% block scripts %}
 <script>
+    window.onload = function () {
+        // Set the title and header for the Contact page
+        const pageTitles = {
+            ar: 'قصة - قطة',
+            en: 'Story - Qetah'
+
+        };
+
+        const pageHeaders = {
+            ar: 'قصة - قطة',
+            en: 'Story - Qetah'
+
+        };
+
+        setPageTitle(pageTitles, pageHeaders);
+    };
+</script>
+
+<script>
     // arabic id
     function updatePageContent(translations) {
         //story 
@@ -110,7 +125,7 @@
                 }
             });
         })
-        displayData();
+        // displayData();
     });
 </script>
 {% endblock %}

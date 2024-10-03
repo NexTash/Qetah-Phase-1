@@ -1,7 +1,4 @@
 {% extends "templates/primary.html" %}
-
-{% block title %} Checkout {% endblock %}
-
 {% block content %}
 <style>
   .visa {
@@ -150,7 +147,8 @@
         <button id="apply-code">Apply Promo Code</button> -->
 
         <div class="taxes" id="taxes_included">Taxes included, where applicable</div>
-        <button class="btn btn-dark btn-block" data-field="proceed-checkout" onclick="on_proceed()" id="proceed_to_pay_he" > </button>
+        <button class="btn btn-dark btn-block" data-field="proceed-checkout" onclick="on_proceed()"
+          id="proceed_to_pay_he">
       </div>
       <br><br>
       <div id="messages"></div>
@@ -169,14 +167,14 @@
     function displayData() {
       const data = JSON.parse(localStorage.getItem('shippingDetails'));
       console.log(data);
-      
+
       // Log the retrieved data to the console
       //console.log('Retrieved data from localStorage:', data);
+      // <div class="badge badge-secondary m-2">Office</div>
 
       if (data) {
         const displayDiv = document.getElementById('displayData');
         displayDiv.innerHTML = `
-        <div class="badge badge-secondary m-2">Office</div>
         <div class="grp">
         <h6 class="title" id="fullname_h" >Full Name :</h6>
         <div class="subtitle" id="fullname">${data.firstname}${data.lastname}</div>
@@ -220,14 +218,14 @@
       }
     }
     document.getElementById('proceed_to_pay_he').addEventListener('click', () => {
-      console.log("called");
-      
-        on_proceed();
-      });
+      // console.log("called");
+
+      on_proceed();
+    });
     document.addEventListener('DOMContentLoaded', function () {
       displayData();
       setTimeout(function () {
-      // Select all `li` elements with the classes `nav-drop-wrap` and `res-link`
+        // Select all `li` elements with the classes `nav-drop-wrap` and `res-link`
         const listItems = document.querySelectorAll('li.nav-drop-wrap.res-link');
 
         listItems.forEach(function (li) {
@@ -238,7 +236,7 @@
           }
         });
       })
-      
+
     });
   </script>
 
@@ -331,7 +329,7 @@
         // console.log("Items length: ", items.length); // Check item count in the console
 
         items.forEach((item, index) => {
-          
+
           let price = parseFloat(item.price.replace(/[^0-9.-]/g, '')); // Convert price string to a number
           price = price * item.qty
           subtotal += price;
@@ -372,33 +370,33 @@
           `;
           cartContainer.innerHTML += itemHTML; // Append the item to the cart container
         });
-        
+
         // Update the subtotal and item count
         localStorage.setItem('subtotal', JSON.stringify(subtotal.toFixed(2)));
         document.getElementById('item-subtotal').textContent = subtotal.toFixed(2); // Display subtotal
-        
+
         localStorage.setItem('itemCount', JSON.stringify(itemCount));
         document.getElementById('item-count').textContent = itemCount; // Display item count
 
         // Calculate and display the grand total
         const grandTotal = calculateGrandTotal(subtotal);
         document.getElementById('item-count').textContent = itemCount; // Display item count
-        
+
         localStorage.setItem('grandTotal', JSON.stringify(grandTotal.toFixed(2)));
         document.getElementById('cart-grand-total').textContent = grandTotal.toFixed(2); // Display grand total
 
         // Update delivery fee and discount
         localStorage.setItem('deliveryFee', JSON.stringify(grandTotal.toFixed(2)));
         document.getElementById('delivery-fee').textContent = deliveryFee.toFixed(2);
-        
+
         localStorage.setItem('deliveryDiscount', JSON.stringify(grandTotal.toFixed(2)));
         document.getElementById('delivery-discount').textContent = deliveryDiscount.toFixed(2);
 
         // Add event listeners to all delete buttons (trash icons)
-       
+
       }
 
-      
+
 
       // Retrieve subtotal and item count from localStorage on page load
       const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -407,11 +405,11 @@
       let storedSubtotal = localStorage.getItem('subtotal') || '0.00';
       let itemCount = localStorage.getItem('itemCount') || '0.00';
       let grandTotal = localStorage.getItem('grandTotal') || '0.00';
-      
+
       storedSubtotal = parseFloat(storedSubtotal.replace(/[^0-9.-]/g, ''));
       itemCount = parseFloat(itemCount.replace(/[^0-9.-]/g, ''));
       grandTotal = parseFloat(grandTotal.replace(/[^0-9.-]/g, ''));
-      
+
       document.getElementById('item-subtotal').textContent = `${storedSubtotal.toFixed(2)}`
       document.getElementById('item-count').textContent = `${itemCount}`
       document.getElementById('cart-grand-total').textContent = `$ ${grandTotal.toFixed(2)}`
@@ -440,8 +438,7 @@
   </style>
   <script>
     function on_proceed() {
-      //console.log("working");
-
+      console.log("working");
       // Retrieve form input values
       let fullname = "";
       let state = "";
@@ -460,29 +457,29 @@
       //console.log("variables created");
 
       fullname = document.getElementById("fullname").value;
-      //console.log(fullname);
+      // console.log(fullname);
       state = document.getElementById("state").value;
-      //console.log(state);
+      // console.log(state);
 
       city = document.getElementById("city").value;
 
-      //console.log(city);
+      // console.log(city);
       phone = document.getElementById("phone").value;
-      //console.log(phone);
+      // console.log(phone);
 
       address = document.getElementById("address").value;
-      //console.log(address);
+      // console.log(address);
 
       code = document.getElementById("code").value;
-      //console.log(code);
+      // console.log(code);
 
       email = document.getElementById("email").value;
-      //console.log(email);
+      // console.log(email);
 
       stripe = document.getElementById("stripe").value;
       cod = document.getElementById("cod").value;
       // cod = document.getElementById("cod").value;
-      //console.log(stripe);
+      // console.log(stripe);
 
       item_count1 = document.getElementById("item-count");
 
@@ -490,23 +487,22 @@
       // item_count1 = item_count1.innerHTML;
 
       // console.log("item_count", item_count1);
-      console.log(item_count1);
+      // console.log(item_count1);
 
       grand_total1 = document.getElementById("cart-grand-total");
       grand_total1 = grand_total1.innerHTML;
-      //console.log(grand_total1);
+      // console.log(grand_total1);
 
-      //console.log("values added");
+      // console.log("values added");
 
       title = document.getElementById("item-title");
       title = title.innerHTML;
 
-      console.log(title);
+      // console.log(title);
 
       // Hardcoded values
       console.log("call started");
 
-    
       // Proceed with Frappe call
       frappe.call({
         method: 'qetah_phase_1.events.proceed_checkout.poceed_to_checkout',
@@ -561,6 +557,23 @@
 
   {% block scripts %}
   <script>
+    window.onload = function () {
+      // Set the title and header for the Contact page
+      const pageTitles = {
+        ar: 'الخروج - قطة',
+        en: 'Checkout - Qetah'
+      };
+
+      const pageHeaders = {
+        ar: 'الخروج - قطة',
+        en: 'Checkout - Qetah'
+
+      };
+
+      setPageTitle(pageTitles, pageHeaders);
+    };
+  </script>
+  <script>
 
     // arabic id
     function updatePageContent(translations) {
@@ -583,7 +596,7 @@
       if (qtyTextElement) {
         document.getElementById('qty-Text').textContent = translations['qtyText'];
       }
-      
+
       document.getElementById('apply_button').textContent = translations['apply_button'];
       const fulfilled_by_qetah = document.getElementById('fulfilled_by_qetah');
 
@@ -600,14 +613,14 @@
       if (pakge) {
         document.getElementById('pakge').textContent = translations['pakge_of'];
       }
-      
+
       const of = document.getElementById('of');
 
       // Check if the element exists
       if (pakge) {
         document.getElementById('of').textContent = translations['of_v'];
       }
-      
+
 
       // document.getElementById('subtotal').textContent = translations['subtotal'];
       document.getElementById('informationForm').textContent = translations['delivery_information'];
@@ -629,8 +642,8 @@
       document.getElementById('grand_total_label').textContent = translations['grand_total_label'];
       // document.getElementById('proceed_to_pay_he').setAttribute('value', translations['proceed_to_pay']);
       document.getElementById('proceed_to_pay_he').textContent = translations['proceed_to_pay'];
-      
-      
+
+
       document.getElementById('enter_code').setAttribute('value', translations['enter_code']);
 
     }

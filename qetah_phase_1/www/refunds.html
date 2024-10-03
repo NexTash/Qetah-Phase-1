@@ -1,7 +1,4 @@
 {% extends "templates/primary.html" %}
-
-{% block title %} Refunds {% endblock %}
-
 {% block content %}
 
 <div class="content-area" :class="{'shifted-content': isStatic}">
@@ -27,6 +24,25 @@
     {% endblock %}
 
     {% block scripts %}
+
+    <script>
+        window.onload = function () {
+            // Set the title and header for the Contact page
+            const pageTitles = {
+                ar: 'المبالغ المستردة - قطة',
+                en: 'Refunds - Qetah'
+
+            };
+
+            const pageHeaders = {
+                ar: 'المبالغ المستردة - قطة',
+                en: 'Refunds - Qetah'
+
+            };
+
+            setPageTitle(pageTitles, pageHeaders);
+        };
+    </script>
     <script>
         // arabic id
         function updatePageContent(translations) {
