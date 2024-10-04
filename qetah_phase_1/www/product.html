@@ -142,8 +142,8 @@
             </div>
 
             <form class="field field-inline" onsubmit="return false;">
-                <input type="text" class="field-text" id="search-query" placeholder="Search..." name="q">
-                <button type="button" class="field-icon bx bx-search" onclick="applyFilters()">Search</button>
+                <input type="text" class="field-text" id="search-query" placeholder="" name="q">
+                <button type="button" class="field-icon bx bx-search" onclick="applyFilters()"></button>
             </form>
             <div class="cards">
                 <div class="boxed">
@@ -183,12 +183,12 @@
                                         </div>
                                         {% if product.variations["qty"]|int > 0 %}
                                         <!-- Available Badge when qty is greater than 0 -->
-                                        <div class="badge badge-primary badge-pill"
+                                        <div class="badge badge-primary badge-pill available"
                                             style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
                                             Available</div>
                                         {% else %}
                                         <!-- Sold Out Badge when qty is 0 or less -->
-                                        <div class="badge badge-primary badge-pill"
+                                        <div class="badge badge-primary badge-pill soldout"
                                             style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
                                             Sold Out</div>
                                         {% endif %}
@@ -230,7 +230,7 @@
                                                             }}</div>
                                                     </div>
 
-                                                    <div class="card-rating">
+                                                    <div class="card-rating remaining">
                                                         <i class="bx bxs-star"></i>
                                                         <span>{{product.variations["rating"]}}</span>
                                                         ({{product.variations["qty"]}}) Remaining
@@ -264,12 +264,12 @@
                                         </div>
                                         {% if product.variations["qty"]|int > 0 %}
                                         <!-- Available Badge when qty is greater than 0 -->
-                                        <div class="badge badge-primary badge-pill"
+                                        <div class="badge badge-primary badge-pill available"
                                             style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
                                             Available</div>
                                         {% else %}
                                         <!-- Sold Out Badge when qty is 0 or less -->
-                                        <div class="badge badge-primary badge-pill"
+                                        <div class="badge badge-primary badge-pill soldout"
                                             style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
                                             Sold Out</div>
                                         {% endif %}
@@ -308,7 +308,7 @@
                                                             }}</div>
                                                     </div>
 
-                                                    <div class="card-rating">
+                                                    <div class="card-rating remaining">
                                                         <i class="bx bxs-star"></i>
                                                         <span>{{product.variations["rating"]}}</span>
                                                         ({{product.variations["qty"]}}) Remaining
@@ -342,12 +342,12 @@
                                         </div>
                                         {% if product.variations["qty"]|int > 0 %}
                                         <!-- Available Badge when qty is greater than 0 -->
-                                        <div class="badge badge-primary badge-pill"
+                                        <div class="badge badge-primary badge-pill available"
                                             style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
                                             Available</div>
                                         {% else %}
                                         <!-- Sold Out Badge when qty is 0 or less -->
-                                        <div class="badge badge-primary badge-pill"
+                                        <div class="badge badge-primary badge-pill soldout"
                                             style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
                                             Sold Out</div>
                                         {% endif %}
@@ -386,7 +386,7 @@
                                                             }}</div>
                                                     </div>
 
-                                                    <div class="card-rating">
+                                                    <div class="card-rating remaining">
                                                         <i class="bx bxs-star"></i>
                                                         <span>{{product.variations["rating"]}}</span>
                                                         ({{product.variations["qty"]}}) Remaining
@@ -420,12 +420,12 @@
                                         </div>
                                         {% if product.variations["qty"]|int > 0 %}
                                         <!-- Available Badge when qty is greater than 0 -->
-                                        <div class="badge badge-primary badge-pill"
+                                        <div class="badge badge-primary badge-pill available"
                                             style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
                                             Available</div>
                                         {% else %}
                                         <!-- Sold Out Badge when qty is 0 or less -->
-                                        <div class="badge badge-primary badge-pill"
+                                        <div class="badge badge-primary badge-pill soldout"
                                             style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
                                             Sold Out</div>
                                         {% endif %}
@@ -463,7 +463,7 @@
                                                             }}</div>
                                                     </div>
 
-                                                    <div class="card-rating">
+                                                    <div class="card-rating remaining">
                                                         <i class="bx bxs-star"></i>
                                                         <span>{{product.variations["rating"]}}</span>
                                                         ({{product.variations["qty"]}}) Remaining
@@ -497,12 +497,12 @@
                                         </div>
                                         {% if product.variations["qty"]|int > 0 %}
                                         <!-- Available Badge when qty is greater than 0 -->
-                                        <div class="badge badge-primary badge-pill"
+                                        <div class="badge badge-primary badge-pill available"
                                             style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
                                             Available</div>
                                         {% else %}
                                         <!-- Sold Out Badge when qty is 0 or less -->
-                                        <div class="badge badge-primary badge-pill"
+                                        <div class="badge badge-primary badge-pill soldout"
                                             style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
                                             Sold Out</div>
                                         {% endif %}
@@ -540,7 +540,7 @@
                                                             }}</div>
                                                     </div>
 
-                                                    <div class="card-rating">
+                                                    <div class="card-rating remaining">
                                                         <i class="bx bxs-star"></i>
                                                         <span>{{product.variations["rating"]}}</span>
                                                         ({{product.variations["qty"]}}) Remaining
@@ -574,12 +574,12 @@
                                         </div>
                                         {% if product.variations["qty"]|int > 0 %}
                                         <!-- Available Badge when qty is greater than 0 -->
-                                        <div class="badge badge-primary badge-pill"
+                                        <div class="badge badge-primary badge-pill available"
                                             style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
                                             Available</div>
                                         {% else %}
                                         <!-- Sold Out Badge when qty is 0 or less -->
-                                        <div class="badge badge-primary badge-pill"
+                                        <div class="badge badge-primary badge-pill soldout"
                                             style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
                                             Sold Out</div>
                                         {% endif %}
@@ -618,10 +618,10 @@
                                                             }}</div>
                                                     </div>
 
-                                                    <div class="card-rating">
+                                                    <div class="card-rating remaining">
                                                         <i class="bx bxs-star"></i>
                                                         <span>{{product.variations["rating"]}}</span>
-                                                        ({{product.variations["qty"]}}) Remaining
+                                                        ({{product.variations["qty"]}}) Remaining <div class="remaining">lorarararararrara</div>
                                                     </div>
                                                 </div>
                                             </a>
@@ -1132,6 +1132,24 @@
         if (buttons && translations['buy_now_button']) {
             buttons.forEach(button => {
                 button.innerText = translations['buy_now_button'];
+            });
+        }
+        const available = document.querySelectorAll('.available');
+        if (buttons && translations['available']) {
+            buttons.forEach(button => {
+                button.innerText = translations['available'];
+            });
+        }
+        const soldout = document.querySelectorAll('.soldout');
+        if (buttons && translations['soldout']) {
+            buttons.forEach(button => {
+                button.innerText = translations['soldout'];
+            });
+        }
+        const remaining = document.querySelectorAll('.remaining');
+        if (buttons && translations['remaining']) {
+            buttons.forEach(button => {
+                button.innerText = translations['remaining'];
             });
         }
 
