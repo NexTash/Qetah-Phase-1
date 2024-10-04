@@ -249,29 +249,29 @@
         }
       }
 
-      document.querySelector('.ar').addEventListener('click', function () {
-        var currentDirection = document.body.dir;
-        if (currentDirection !== 'rtl') {
-          updateLanguage(true);
-        } else {
-          localStorage.setItem('language', 'arabic');
-          swiperContainer.setAttribute('dir', 'rtl');
-          swiper.destroy();
-          swiper = initializeSwiper(true);
-        }
-      });
+      // document.querySelector('.ar').addEventListener('click', function () {
+      //   var currentDirection = document.body.dir;
+      //   if (currentDirection !== 'rtl') {
+      //     updateLanguage(true);
+      //   } else {
+      //     localStorage.setItem('language', 'arabic');
+      //     swiperContainer.setAttribute('dir', 'rtl');
+      //     swiper.destroy();
+      //     swiper = initializeSwiper(true);
+      //   }
+      // });
 
-      document.querySelector('.eng').addEventListener('click', function () {
-        var currentDirection = document.body.dir;
-        if (currentDirection !== 'ltr') {
-          updateLanguage(false);
-        } else {
-          localStorage.setItem('language', 'english');
-          swiperContainer.setAttribute('dir', 'ltr');
-          swiper.destroy();
-          swiper = initializeSwiper(false);
-        }
-      });
+      // document.querySelector('.eng').addEventListener('click', function () {
+      //   var currentDirection = document.body.dir;
+      //   if (currentDirection !== 'ltr') {
+      //     updateLanguage(false);
+      //   } else {
+      //     localStorage.setItem('language', 'english');
+      //     swiperContainer.setAttribute('dir', 'ltr');
+      //     swiper.destroy();
+      //     swiper = initializeSwiper(false);
+      //   }
+      // });
     });
 
     document.addEventListener('DOMContentLoaded', function () {

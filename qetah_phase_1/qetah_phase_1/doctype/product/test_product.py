@@ -1,4 +1,4 @@
-# Copyright (c) 2024, NexTash SMC-Private Limitted and Contributors
+# Copyright (c) 2024, NexTash and Contributors
 # See license.txt
 
 # import frappe

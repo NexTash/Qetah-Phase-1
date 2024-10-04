@@ -141,9 +141,9 @@
                 </div>
             </div>
 
-            <form class="field field-inline" onclick="applyFilters(event)">
-                <input type="text" class="field-text" id="search-query" placeholder="Search" name="q" />
-                <button type="button" class="field-icon bx bx-search"></button>
+            <form class="field field-inline" onsubmit="return false;">
+                <input type="text" class="field-text" id="search-query" placeholder="Search..." name="q">
+                <button type="button" class="field-icon bx bx-search" onclick="applyFilters()">Search</button>
             </form>
             <div class="cards">
                 <div class="boxed">
@@ -181,17 +181,31 @@
                                         <div class="badge badge-primary badge-pill" data-field="ar">{{
                                             product.title_arabic }}
                                         </div>
+                                        {% if product.variations["qty"]|int > 0 %}
+                                        <!-- Available Badge when qty is greater than 0 -->
+                                        <div class="badge badge-primary badge-pill"
+                                            style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
+                                            Available</div>
+                                        {% else %}
+                                        <!-- Sold Out Badge when qty is 0 or less -->
+                                        <div class="badge badge-primary badge-pill"
+                                            style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
+                                            Sold Out</div>
+                                        {% endif %}
+
 
                                         <div class="card product-card">
-                                            <a href="/product-detail?product_name={{product.name}}&&varient_name={{product.variations['name']}}">
+                                            <a
+                                                href="/product-detail?product_name={{product.name}}&&varient_name={{product.variations['name']}}">
                                                 <div class="card-head">
                                                     <img class="card-image" src="{{ product.featured_image }}"
                                                         alt="Product Image">
                                                 </div>
-                                                    
+
                                                 <div class="card-body">
                                                     <div class="variation">
-                                                        <div class="card-unique-name" style="display: none;" >{{ product.variations['name'] }}</div>
+                                                        <div class="card-unique-name" style="display: none;">{{
+                                                            product.variations['name'] }}</div>
                                                         <div class="card-title" data-field="en">{{
                                                             product.variations["title"]
                                                             }}</div>
@@ -218,14 +232,15 @@
 
                                                     <div class="card-rating">
                                                         <i class="bx bxs-star"></i>
-                                                        <span>{{ product.rating }}</span>
-                                                        ({{product.sold}}) Sold
+                                                        <span>{{product.variations["rating"]}}</span>
+                                                        ({{product.variations["qty"]}}) Remaining
                                                     </div>
                                                 </div>
                                             </a>
                                             <div class="card-foot">
                                                 <button class="btn btn-light btn-icon btn-pill btn-cart"><i
-                                                        class="bx bx-cart icon-pre" id="buy_now_button"></i>
+                                                        class="bx bx-cart icon-pre buy_now_button"
+                                                        id="buy_now_button"></i>
                                                 </button>
                                                 <!-- <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display: none;"></button> -->
                                             </div>
@@ -247,7 +262,17 @@
                                         <div class="badge badge-primary badge-pill" data-field="ar">{{
                                             product.title_arabic }}
                                         </div>
-
+                                        {% if product.variations["qty"]|int > 0 %}
+                                        <!-- Available Badge when qty is greater than 0 -->
+                                        <div class="badge badge-primary badge-pill"
+                                            style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
+                                            Available</div>
+                                        {% else %}
+                                        <!-- Sold Out Badge when qty is 0 or less -->
+                                        <div class="badge badge-primary badge-pill"
+                                            style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
+                                            Sold Out</div>
+                                        {% endif %}
                                         <div class="card product-card">
                                             <a href="/product-detail?id={{product.name}}">
                                                 <div class="card-head">
@@ -285,14 +310,15 @@
 
                                                     <div class="card-rating">
                                                         <i class="bx bxs-star"></i>
-                                                        <span>{{ product.rating }}</span>
-                                                        ({{product.sold}}) Sold
+                                                        <span>{{product.variations["rating"]}}</span>
+                                                        ({{product.variations["qty"]}}) Remaining
                                                     </div>
                                                 </div>
                                             </a>
                                             <div class="card-foot">
                                                 <button class="btn btn-light btn-icon btn-pill btn-cart"><i
-                                                        class="bx bx-cart icon-pre" id="buy_now_button_a"></i>
+                                                        class="bx bx-cart icon-pre buy_now_button"
+                                                        id="buy_now_button"></i>
                                                 </button>
                                                 <!-- <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button> -->
                                             </div>
@@ -314,7 +340,17 @@
                                         <div class="badge badge-primary badge-pill" data-field="ar">{{
                                             product.title_arabic }}
                                         </div>
-
+                                        {% if product.variations["qty"]|int > 0 %}
+                                        <!-- Available Badge when qty is greater than 0 -->
+                                        <div class="badge badge-primary badge-pill"
+                                            style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
+                                            Available</div>
+                                        {% else %}
+                                        <!-- Sold Out Badge when qty is 0 or less -->
+                                        <div class="badge badge-primary badge-pill"
+                                            style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
+                                            Sold Out</div>
+                                        {% endif %}
                                         <div class="card product-card">
                                             <a href="/product-detail?id={{product.name}}">
                                                 <div class="card-head">
@@ -352,14 +388,15 @@
 
                                                     <div class="card-rating">
                                                         <i class="bx bxs-star"></i>
-                                                        <span>{{ product.rating }}</span>
-                                                        ({{product.sold}}) Sold
+                                                        <span>{{product.variations["rating"]}}</span>
+                                                        ({{product.variations["qty"]}}) Remaining
                                                     </div>
                                                 </div>
                                             </a>
                                             <div class="card-foot">
                                                 <button class="btn btn-light btn-icon btn-pill btn-cart"><i
-                                                        class="bx bx-cart icon-pre" id="buy_now_button_b"></i>
+                                                        class="bx bx-cart icon-pre buy_now_button"
+                                                        id="buy_now_button_b"></i>
                                                 </button>
                                                 <!-- <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button> -->
                                             </div>
@@ -381,7 +418,17 @@
                                         <div class="badge badge-primary badge-pill" data-field="ar">{{
                                             product.title_arabic }}
                                         </div>
-
+                                        {% if product.variations["qty"]|int > 0 %}
+                                        <!-- Available Badge when qty is greater than 0 -->
+                                        <div class="badge badge-primary badge-pill"
+                                            style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
+                                            Available</div>
+                                        {% else %}
+                                        <!-- Sold Out Badge when qty is 0 or less -->
+                                        <div class="badge badge-primary badge-pill"
+                                            style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
+                                            Sold Out</div>
+                                        {% endif %}
                                         <div class="card product-card">
                                             <a href="/product-detail?id={{product.name}}">
                                                 <div class="card-head">
@@ -418,14 +465,15 @@
 
                                                     <div class="card-rating">
                                                         <i class="bx bxs-star"></i>
-                                                        <span>{{ product.rating }}</span>
-                                                        ({{product.sold}}) Sold
+                                                        <span>{{product.variations["rating"]}}</span>
+                                                        ({{product.variations["qty"]}}) Remaining
                                                     </div>
                                                 </div>
                                             </a>
                                             <div class="card-foot">
                                                 <button class="btn btn-light btn-icon btn-pill btn-cart"><i
-                                                        class="bx bx-cart icon-pre" id="buy_now_button_c"></i>
+                                                        class="bx bx-cart icon-pre buy_now_button"
+                                                        id="buy_now_button_c"></i>
                                                 </button>
                                                 <!-- <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button> -->
                                             </div>
@@ -447,7 +495,17 @@
                                         <div class="badge badge-primary badge-pill" data-field="ar">{{
                                             product.title_arabic }}
                                         </div>
-
+                                        {% if product.variations["qty"]|int > 0 %}
+                                        <!-- Available Badge when qty is greater than 0 -->
+                                        <div class="badge badge-primary badge-pill"
+                                            style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
+                                            Available</div>
+                                        {% else %}
+                                        <!-- Sold Out Badge when qty is 0 or less -->
+                                        <div class="badge badge-primary badge-pill"
+                                            style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
+                                            Sold Out</div>
+                                        {% endif %}
                                         <div class="card product-card">
                                             <a href="/product-detail?id={{product.name}}">
                                                 <div class="card-head">
@@ -484,14 +542,15 @@
 
                                                     <div class="card-rating">
                                                         <i class="bx bxs-star"></i>
-                                                        <span>{{ product.rating }}</span>
-                                                        ({{product.sold}}) Sold
+                                                        <span>{{product.variations["rating"]}}</span>
+                                                        ({{product.variations["qty"]}}) Remaining
                                                     </div>
                                                 </div>
                                             </a>
                                             <div class="card-foot">
                                                 <button class="btn btn-light btn-icon btn-pill btn-cart"><i
-                                                        class="bx bx-cart icon-pre" id="buy_now_button_d"></i>
+                                                        class="bx bx-cart icon-pre buy_now_button"
+                                                        id="buy_now_button_d"></i>
                                                 </button>
                                                 <!-- <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button> -->
                                             </div>
@@ -513,7 +572,17 @@
                                         <div class="badge badge-primary badge-pill" data-field="ar">{{
                                             product.title_arabic }}
                                         </div>
-
+                                        {% if product.variations["qty"]|int > 0 %}
+                                        <!-- Available Badge when qty is greater than 0 -->
+                                        <div class="badge badge-primary badge-pill"
+                                            style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
+                                            Available</div>
+                                        {% else %}
+                                        <!-- Sold Out Badge when qty is 0 or less -->
+                                        <div class="badge badge-primary badge-pill"
+                                            style="background-color: #30a6f7;border-color: #30a6f7;" data-field="en">
+                                            Sold Out</div>
+                                        {% endif %}
                                         <div class="card product-card">
                                             <a href="/product-detail?id={{product.name}}">
                                                 <div class="card-head">
@@ -551,14 +620,15 @@
 
                                                     <div class="card-rating">
                                                         <i class="bx bxs-star"></i>
-                                                        <span>{{ product.rating }}</span>
-                                                        ({{product.sold}}) Sold
+                                                        <span>{{product.variations["rating"]}}</span>
+                                                        ({{product.variations["qty"]}}) Remaining
                                                     </div>
                                                 </div>
                                             </a>
                                             <div class="card-foot">
                                                 <button class="btn btn-light btn-icon btn-pill btn-cart"><i
-                                                        class="bx bx-cart icon-pre" id="buy_now_button_e"></i>
+                                                        class="bx bx-cart icon-pre buy_now_button"
+                                                        id="buy_now_button_e"></i>
                                                 </button>
                                                 <!-- <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart" style="display:none"></button> -->
                                             </div>
@@ -1055,38 +1125,15 @@
         document.getElementById('tab_perfumes').textContent = translations['tab_perfumes'];
         document.getElementById('tab_cutting_stitching').textContent = translations['tab_cutting_stitching'];
 
-        document.getElementById('buy_now_button').textContent = translations['buy_now_button'];
+        // document.getElementById('buy_now_button').textContent = translations['buy_now_button'];
 
         //if our category is null then 
-        let buttonA = document.getElementById('buy_now_button_a');
-        let buttonB = document.getElementById('buy_now_button_b');
-        let buttonC = document.getElementById('buy_now_button_c');
-        let buttonD = document.getElementById('buy_now_button_d');
-        let buttonE = document.getElementById('buy_now_button_e');
-        let buy_now_button = document.getElementById('buy_now_button');
-        if (buttonA && translations['buy_now_button']) {
-            buttonA.textContent = translations['buy_now_button'];
+        const buttons = document.querySelectorAll('.buy_now_button');
+        if (buttons && translations['buy_now_button']) {
+            buttons.forEach(button => {
+                button.innerText = translations['buy_now_button'];
+            });
         }
-        if (buy_now_button && translations['buy_now_button']) {
-            buy_now_button.textContent = translations['buy_now_button'];
-        }
-
-        if (buttonB && translations['buy_now_button_b']) {
-            buttonB.textContent = translations['buy_now_button_b'];
-        }
-
-        if (buttonC && translations['buy_now_button_c']) {
-            buttonC.textContent = translations['buy_now_button_c'];
-        }
-
-        if (buttonD && translations['buy_now_button_d']) {
-            buttonD.textContent = translations['buy_now_button_d'];
-        }
-
-        if (buttonE && translations['buy_now_button_e']) {
-            buttonE.textContent = translations['buy_now_button_e'];
-        }
-
 
 
         document.getElementById('search-query').setAttribute('placeholder', translations['search_placeholder']);

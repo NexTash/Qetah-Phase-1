@@ -9,12 +9,20 @@
  "field_order": [
   "title",
   "title_arabic",
-  "description",
-  "description_arabic",
   "intro",
   "intro_arabic",
+  "category",
+  "category_in_arabic",
+  "column_break_pasz",
   "price",
-  "discount"
+  "discount",
+  "qty",
+  "rating",
+  "remaining_items",
+  "section_break_cpk1",
+  "description",
+  "section_break_q7oj",
+  "description_arabic"
  ],
  "fields": [
   {
@@ -42,7 +50,7 @@
    "in_list_view": 1,
    "in_preview": 1,
    "in_standard_filter": 1,
-   "label": "Price"
+   "label": "New Price "
   },
   {
    "fieldname": "discount",
@@ -51,7 +59,7 @@
    "in_list_view": 1,
    "in_preview": 1,
    "in_standard_filter": 1,
-   "label": "Discount"
+   "label": "Old Price "
   },
   {
    "fieldname": "intro",
@@ -79,12 +87,56 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Intro Arabic"
+  },
+  {
+   "fieldname": "qty",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Quantity"
+  },
+  {
+   "fieldname": "rating",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Rating"
+  },
+  {
+   "fieldname": "remaining_items",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Remaining Items"
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "Product Category"
+  },
+  {
+   "fieldname": "category_in_arabic",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Category In Arabic",
+   "options": "Category In Arabic"
+  },
+  {
+   "fieldname": "column_break_pasz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_cpk1",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_q7oj",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-09-25 14:26:17.761465",
+ "modified": "2024-10-04 19:20:21.519807",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Product Variation",

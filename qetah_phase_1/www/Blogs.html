@@ -41,6 +41,14 @@
 
 {% block scripts %}
 <script>
+  function updatePageContent(translations) {
+    //blogs
+    document.getElementById("blogs_heading").textContent = translations.blogs_heading;
+    document.getElementById("breadcrumb_home").textContent = translations.breadcrumb_home;
+    document.getElementById("breadcrumb_blogs").textContent = translations.breadcrumb_blogs;
+    document.getElementById("load_more_button").textContent = translations.load_more_button;
+  }
+
   window.onload = function () {
     // Set the title and header for the Contact page
     const pageTitles = {
@@ -61,15 +69,6 @@
 
 <script>
   // arabic id
-  function updatePageContent(translations) {
-    //blogs
-    document.getElementById("blogs_heading").textContent = translations.blogs_heading;
-    document.getElementById("breadcrumb_home").textContent = translations.breadcrumb_home;
-    document.getElementById("breadcrumb_blogs").textContent = translations.breadcrumb_blogs;
-    document.getElementById("load_more_button").textContent = translations.load_more_button;
-  }
-
-
   document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(function () {

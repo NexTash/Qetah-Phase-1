@@ -1,7 +1,7 @@
 {
  "actions": [],
  "autoname": "field:title",
- "creation": "2024-06-21 12:49:58.631997",
+ "creation": "2024-10-04 17:39:35.753383",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -14,10 +14,6 @@
   "category",
   "column_break_bnn10",
   "featured_image",
-  "rating",
-  "price",
-  "discount",
-  "sold",
   "section_break_uwzbh",
   "description",
   "description_in_arabic",
@@ -33,6 +29,12 @@
  ],
  "fields": [
   {
+   "default": "0",
+   "fieldname": "is_featured",
+   "fieldtype": "Check",
+   "label": "Is Featured"
+  },
+  {
    "fieldname": "title",
    "fieldtype": "Data",
    "in_filter": 1,
@@ -42,6 +44,19 @@
    "label": "Title",
    "reqd": 1,
    "unique": 1
+  },
+  {
+   "fieldname": "title_arabic",
+   "fieldtype": "Data",
+   "label": "Title Arabic",
+   "reqd": 1
+  },
+  {
+   "fieldname": "category_in_arabic",
+   "fieldtype": "Link",
+   "label": "Category In Arabic",
+   "options": "Category In Arabic",
+   "reqd": 1
   },
   {
    "fetch_if_empty": 1,
@@ -56,10 +71,8 @@
    "reqd": 1
   },
   {
-   "fieldname": "description",
-   "fieldtype": "Text Editor",
-   "label": "Description",
-   "reqd": 1
+   "fieldname": "column_break_bnn10",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "featured_image",
@@ -67,85 +80,13 @@
    "label": "Featured Image"
   },
   {
-   "fieldname": "variations",
-   "fieldtype": "Table",
-   "label": "Variations",
-   "options": "Product Variation"
-  },
-  {
-   "fieldname": "images",
-   "fieldtype": "Table",
-   "label": "Images",
-   "options": "Product Images"
-  },
-  {
    "fieldname": "section_break_uwzbh",
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "column_break_bnn10",
-   "fieldtype": "Column Break"
-  },
-  {
-   "default": "0",
-   "fieldname": "is_featured",
-   "fieldtype": "Check",
-   "label": "Is Featured"
-  },
-  {
-   "fieldname": "sold",
-   "fieldtype": "Float",
-   "label": "Sold"
-  },
-  {
-   "fieldname": "product_images_section",
-   "fieldtype": "Section Break",
-   "label": "Product Images"
-  },
-  {
-   "fieldname": "product_variation_section",
-   "fieldtype": "Section Break",
-   "label": "Product Variation"
-  },
-  {
-   "fieldname": "id",
-   "fieldtype": "Int",
-   "hidden": 1,
-   "label": "Id"
-  },
-  {
-   "fieldname": "rating",
-   "fieldtype": "Data",
-   "label": "Rating Count"
-  },
-  {
-   "fieldname": "price",
-   "fieldtype": "Currency",
-   "label": "Price"
-  },
-  {
-   "fieldname": "discount",
-   "fieldtype": "Data",
-   "label": "Discount"
-  },
-  {
-   "fieldname": "delivery_fee",
-   "fieldtype": "Int",
-   "label": "Delivery Fee"
-  },
-  {
-   "fieldname": "delivery_charges_section",
-   "fieldtype": "Section Break",
-   "label": "Delivery Charges"
-  },
-  {
-   "fieldname": "column_break_vyig",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "title_arabic",
-   "fieldtype": "Data",
-   "label": "Title Arabic",
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description",
    "reqd": 1
   },
   {
@@ -155,22 +96,57 @@
    "reqd": 1
   },
   {
+   "fieldname": "product_images_section",
+   "fieldtype": "Section Break",
+   "label": "Product Images"
+  },
+  {
+   "fieldname": "images",
+   "fieldtype": "Table",
+   "label": "Images",
+   "options": "Product Images"
+  },
+  {
+   "fieldname": "product_variation_section",
+   "fieldtype": "Section Break",
+   "label": "Product Variation"
+  },
+  {
+   "fieldname": "variations",
+   "fieldtype": "Table",
+   "label": "Variations",
+   "options": "Product Variation"
+  },
+  {
+   "fieldname": "id",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Id"
+  },
+  {
+   "fieldname": "delivery_charges_section",
+   "fieldtype": "Section Break",
+   "label": "Delivery Charges"
+  },
+  {
+   "fieldname": "delivery_fee",
+   "fieldtype": "Int",
+   "label": "Delivery Fee"
+  },
+  {
+   "fieldname": "column_break_vyig",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "delivery_disc",
    "fieldtype": "Int",
    "label": "Delivery Disc"
-  },
-  {
-   "fieldname": "category_in_arabic",
-   "fieldtype": "Link",
-   "label": "Category In Arabic",
-   "options": "Category In Arabic",
-   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
  "make_attachments_public": 1,
- "modified": "2024-09-24 17:40:36.917993",
+ "modified": "2024-10-04 17:40:24.711533",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Product",
