@@ -4,14 +4,14 @@
   window.onload = function () {
     // Set the title and header for the Contact page
     const pageTitles = {
-      ar: 'تفاصيل المنتج - قطة',
-      en: 'Product Details - Qetah'
+      en: 'Product Details - Qetah',
+      ar: 'تفاصيل المنتج - قطة'
 
     };
 
     const pageHeaders = {
-      ar: 'تفاصيل المنتج - قطة',
-      en: 'Product Details - Qetah'
+      en: 'Product Details - Qetah',
+      ar: 'تفاصيل المنتج - قطة'
 
     };
 
@@ -151,8 +151,8 @@
           {% for variation in product.variations %}
           <div class="swiper-slide">
             <div class="products">
-              <div class="badge badge-primary badge-pill" data-field="en">{{ product.title }}</div>
-              <div class="badge badge-primary badge-pill" data-field="ar">{{ product.title }}</div>
+              <div class="badge badge-primary badge-pill" data-field="en">{{ variation.title }}</div>
+              <div class="badge badge-primary badge-pill" data-field="ar">{{ variation.title_arabic }}</div>
               <div class="card product-card">
                 <a href="/product-detail?product_name={{ product.name }}&varient_name={{ variation.name }}">
                   <div class="card-head">
@@ -177,7 +177,7 @@
                   </div>
                 </a>
                 <div class="card-foot">
-                  <button class="btn btn-light btn-icon btn-pill btn-cart" id="buy_now_button"><i
+                  <button class="btn btn-light btn-icon btn-pill btn-cart buy_now_button"><i
                       class="bx bx-cart icon-pre"></i> Buy Now</button>
                   <!-- <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart d-none"></button> -->
                 </div>
@@ -796,9 +796,33 @@
                 element.innerText = translations['remaining'];
             });
         }
-
+        const buttons = document.querySelectorAll('.buy_now_button');
+        if (buttons && translations['buy_now_button']) {
+            buttons.forEach(button => {
+                button.innerText = translations['buy_now_button'];
+            });
+        }
 
       }
+
+        function noice() {
+    // Check the selected language from localStorage
+    var selectedLanguage = localStorage.getItem('selectedLanguage');
+
+    // Define selectors for elements
+    var englishElements = $('[data-field="en"]');
+    var arabicElements = $('[data-field="ar"]');
+
+    if (selectedLanguage === 'ar') {
+      // If Arabic is selected, hide English and show Arabic
+      englishElements.hide(); // Use hide() for better readability
+      arabicElements.show();   // Use show() for better readability
+    } else {
+      // If not Arabic, hide Arabic and show English
+      arabicElements.hide();    // Use hide() for better readability
+      englishElements.show();    // Use show() for better readability
+    }
+  }
     </script>
 
 

@@ -192,7 +192,8 @@
                   <div class="card-price">USD {{ product.variations["discount"] }}</div>
                   <div class="card-rating">
                     <i class="bx bxs-star"></i>
-                    <span>{{ product.rating }}</span> ({{ product.sold }} Sold)
+                    <span>{{ product.variations["rating"] }}</span> ({{ product.variations["qty"] }}<span
+                      class="remaining"></span>)
                   </div>
                 </div>
               </a>
@@ -354,24 +355,24 @@
     }, 100);
   });
 
-  // function noice() {
-  //   // Check the selected language from localStorage
-  //   var selectedLanguage = localStorage.getItem('selectedLanguage');
+  function noice() {
+    // Check the selected language from localStorage
+    var selectedLanguage = localStorage.getItem('selectedLanguage');
 
-  //   // Define selectors for elements
-  //   var englishElements = $('[data-field="en"]');
-  //   var arabicElements = $('[data-field="ar"]');
+    // Define selectors for elements
+    var englishElements = $('[data-field="en"]');
+    var arabicElements = $('[data-field="ar"]');
 
-  //   if (selectedLanguage === 'ar') {
-  //     // If Arabic is selected, hide English and show Arabic
-  //     englishElements.hide(); // Use hide() for better readability
-  //     arabicElements.show();   // Use show() for better readability
-  //   } else {
-  //     // If not Arabic, hide Arabic and show English
-  //     arabicElements.hide();    // Use hide() for better readability
-  //     englishElements.show();    // Use show() for better readability
-  //   }
-  // }
+    if (selectedLanguage === 'ar') {
+      // If Arabic is selected, hide English and show Arabic
+      englishElements.hide(); // Use hide() for better readability
+      arabicElements.show();   // Use show() for better readability
+    } else {
+      // If not Arabic, hide Arabic and show English
+      arabicElements.hide();    // Use hide() for better readability
+      englishElements.show();    // Use show() for better readability
+    }
+  }
   // arabic id
   function updatePageContent(translations) {
     // index
@@ -422,6 +423,20 @@
     document.getElementById('review_ar').textContent = translations['review_ar'];
     document.getElementById('get_started_intro').textContent = translations['get_started_intro'];
     document.getElementById('reviews_heading').textContent = translations['reviews_heading'];
-  }
+
+  //   const remaining = document.querySelectorAll('.remaining');
+  //   if (remaining && translations['remaining']) {
+  //     remaining.forEach(element => {
+  //       element.innerText = translations['remaining'];
+  //     });
+  //   }
+  // }
+
+  //  const buttons = document.querySelectorAll('.buy_now_button');
+  //       if (buttons && translations['buy_now_button']) {
+  //           buttons.forEach(button => {
+  //               button.innerText = translations['buy_now_button'];
+  //           });
+        }
 </script>
 {% endblock %}

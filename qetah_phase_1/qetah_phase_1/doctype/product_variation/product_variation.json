@@ -16,6 +16,7 @@
   "column_break_pasz",
   "featured_image",
   "product_collection",
+  "product_collection_ar",
   "product_images",
   "price",
   "discount",
@@ -152,12 +153,18 @@
    "fieldtype": "Link",
    "label": "Product Collection",
    "options": "Product Collection"
+  },
+  {
+   "fetch_from": "product_collection.product_collection_ar",
+   "fieldname": "product_collection_ar",
+   "fieldtype": "Data",
+   "label": "Product Collection Ar"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-07 20:36:01.545636",
+ "modified": "2024-10-08 01:01:59.662633",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Product Variation",

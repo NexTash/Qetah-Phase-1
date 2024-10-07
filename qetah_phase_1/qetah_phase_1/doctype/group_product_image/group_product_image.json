@@ -8,7 +8,6 @@
  "field_order": [
   "product",
   "column_break_ibmy",
-  "variation",
   "section_break_efgt",
   "images"
  ],
@@ -24,12 +23,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "variation",
-   "fieldtype": "Link",
-   "label": "Variation",
-   "options": "Product Variation"
-  },
-  {
    "fieldname": "section_break_efgt",
    "fieldtype": "Section Break"
   },
@@ -42,7 +35,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-07 17:30:22.087635",
+ "modified": "2024-10-07 23:37:23.924779",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Group Product Image",

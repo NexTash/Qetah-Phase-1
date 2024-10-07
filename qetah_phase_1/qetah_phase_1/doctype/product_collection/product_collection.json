@@ -6,6 +6,7 @@
  "engine": "InnoDB",
  "field_order": [
   "collection_name",
+  "product_collection_ar",
   "column_break_rtbe",
   "disable"
  ],
@@ -25,11 +26,16 @@
    "fieldname": "disable",
    "fieldtype": "Check",
    "label": "Disable"
+  },
+  {
+   "fieldname": "product_collection_ar",
+   "fieldtype": "Data",
+   "label": " Product Collection Ar"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-07 20:37:43.534953",
+ "modified": "2024-10-08 01:00:33.437279",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Product Collection",

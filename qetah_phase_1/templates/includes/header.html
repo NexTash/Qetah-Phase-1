@@ -282,10 +282,11 @@
 
   //for page titles ar to eng
   function setPageTitle(pageTitles, pageHeaders) {
-    const selectedLanguage = localStorage.getItem('language') || 'ar';
+    const selectedLanguage = localStorage.getItem('language') || 'en';
     document.title = pageTitles[selectedLanguage] || pageTitles['en'];
     document.getElementById('page-header').textContent = pageHeaders[selectedLanguage] || pageHeaders['en'];
   }
+
   function changeLanguage(lang) {
     localStorage.setItem('language', lang);
     location.reload();
