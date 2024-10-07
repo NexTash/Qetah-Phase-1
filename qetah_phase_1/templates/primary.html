@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <link rel="shortcut icon" type="x-icon" href="/assets/qetah_phase_1/images/qetah-browser-removebg-preview.png" />
@@ -84,35 +85,36 @@
   {%- block body_include %}{{ body_include or "" }}{% endblock -%}
   <script>
 
+    document.addEventListener('DOMContentLoaded', function () {
 
 
-    function switchLanguage(language) {
+      function switchLanguage(language) {
 
-      const body = document.body;
+        const body = document.body;
 
-      if (language === 'ar') {
-        body.setAttribute('dir', 'rtl');
-      } else if (language === 'en') {
-        body.removeAttribute('dir');
-      }
-
-      localStorage.setItem('selectedLanguage', language);
-      frappe.call({
-        method: 'qetah_phase_1.events.language_switcher.get_translations',
-        args: { lang: language },
-        callback: function (response) {
-          const translations = response.message;
-          updatePageContent(translations);
-          updateFooterContent(translations);
-          updateHeaderContent(translations);
-          updateSideBarContent(translations);
+        if (language === 'ar') {
+          body.setAttribute('dir', 'rtl');
+        } else if (language === 'en') {
+          body.removeAttribute('dir');
         }
 
-      });
+        localStorage.setItem('selectedLanguage', language);
+        frappe.call({
+          method: 'qetah_phase_1.events.language_switcher.get_translations',
+          args: { lang: language },
+          callback: function (response) {
+            const translations = response.message;
+            updatePageContent(translations);
+            updateFooterContent(translations);
+            updateHeaderContent(translations);
+            updateSideBarContent(translations);
+          }
 
-    }
+        });
 
-    document.addEventListener('DOMContentLoaded', function () {
+      }
+
+
       const emailInput = document.getElementById('email-address');
       // const placeholderTextEmail = translations['email-address'];
       const fullnameInput = document.getElementById('fullname');
@@ -124,11 +126,10 @@
       const messageInput = document.getElementById('message');
       const proceed_to_pay = document.getElementById('proceed_to_pay_he');
       const enter_code = document.getElementById('enter_code');
-    });
 
 
-    //local storage variable 
-    document.addEventListener('DOMContentLoaded', function () {
+
+      //local storage variable 
       let lang = localStorage.getItem('selectedLanguage')
       if (lang == 'null') {
         switchLanguage('en');
@@ -136,41 +137,43 @@
         switchLanguage(localStorage.getItem('selectedLanguage'));
       }
 
-    });
-    var selectedLanguage = localStorage.getItem('selectedLanguage');
-    // console.log(selectedLanguage)
-    var englishElements = $('[data-field="en"]');
-    var arabicElements = $('[data-field="ar"]');
-    if (selectedLanguage === 'ar') {
-      // If Arabic is selected, hide English and show Arabic
-      englishElements.hide(); // Use hide() for better readability
-      arabicElements.show();   // Use show() for better readability
-    } else if (selectedLanguage === 'en') {
-      // If not Arabic, hide Arabic and show English
-      console.log("hidden");
 
-      arabicElements.hide();    // Use hide() for better readability
-      englishElements.show();    // Use show() for better readability
-    }
-
-    function noice() {
-      // Check the selected language from localStorage
       var selectedLanguage = localStorage.getItem('selectedLanguage');
-
-      // Define selectors for elements
+      // console.log(selectedLanguage)
       var englishElements = $('[data-field="en"]');
       var arabicElements = $('[data-field="ar"]');
-
       if (selectedLanguage === 'ar') {
         // If Arabic is selected, hide English and show Arabic
         englishElements.hide(); // Use hide() for better readability
         arabicElements.show();   // Use show() for better readability
-      } else {
+      } else if (selectedLanguage === 'en') {
         // If not Arabic, hide Arabic and show English
+        console.log("hidden");
+
         arabicElements.hide();    // Use hide() for better readability
         englishElements.show();    // Use show() for better readability
       }
-    }
+
+      function noice() {
+        // Check the selected language from localStorage
+        var selectedLanguage = localStorage.getItem('selectedLanguage');
+
+        // Define selectors for elements
+        var englishElements = $('[data-field="en"]');
+        var arabicElements = $('[data-field="ar"]');
+
+        if (selectedLanguage === 'ar') {
+          // If Arabic is selected, hide English and show Arabic
+          englishElements.hide(); // Use hide() for better readability
+          arabicElements.show();   // Use show() for better readability
+        } else {
+          // If not Arabic, hide Arabic and show English
+          arabicElements.hide();    // Use hide() for better readability
+          englishElements.show();    // Use show() for better readability
+        }
+      }
+
+    });
   </script>
   <!-- SCRIPTS -->
   <script src="/assets/qetah_phase_1/js/sidebar.js"></script>

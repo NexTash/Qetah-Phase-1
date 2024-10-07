@@ -162,61 +162,62 @@
     </div>
     <h1 class="text-center" id="top_selling_product">Top Selling Product</h1>
     <!-- Slider main container -->
-     <div class="swiper product-slider">
-        <!-- Additional required wrapper -->
-        <div class="swiper-wrapper">
-          <!-- Slides -->
-          {% for product in products %}
+    <div class="swiper product-slider">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        {% for product in products %}
 
-         
-          <div class="swiper-slide">
-            <div class="products">
-              <div class="badge badge-primary badge-pill" data-field="en">{{ product.variations["title"] }}</div>
-              <div class="badge badge-primary badge-pill" data-field="ar">{{ product.variations["title"] }}</div>
-              <div class="card product-card">
-                <a href="/product-detail?product_name={{ product.name }}&varient_name={{ product.variations["name"] }}">
-                  <div class="card-head">
-                    <img class="card-image" src="{{ product.featured_image }}">
-                  </div>
-                  <div class="card-body">
-                    <div class="card-title" id="product_intro" data-field="en">{{ product.variations["title"] }}</div>
-                    <div class="card-title" id="product_intro" data-field="ar">{{ product.variations["title_arabic"] }}</div>
-                    <div class="card-desc text-ellipsis text-ellipsis-2" data-field="en">
-                      {{ product.variations["intro"] }}
-                    </div>
-                    <div class="card-desc text-ellipsis text-ellipsis-2" data-field="ar">
-                      {{ product.variations["intro_arabic"] }}
-                    </div>
-                    <div class="card-subtitle"><del>USD {{ product.variations["price"] }}</del></div>
-                    <div class="card-price">USD {{ product.variations["discount"] }}</div>
-                    <div class="card-rating">
-                      <i class="bx bxs-star"></i>
-                      <span>{{ product.rating }}</span> ({{ product.sold }} Sold)
-                    </div>
-                  </div>
-                </a>
-                <div class="card-foot d-none">
-                  <!-- <button class="btn btn-light btn-icon btn-pill btn-cart" id="buy_now_button"><i
-                      class="bx bx-cart icon-pre"></i> Buy Now</button> -->
-                  <!-- <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart d-none"></button> -->
+
+        <div class="swiper-slide">
+          <div class="products">
+            <div class="badge badge-primary badge-pill" data-field="en">{{ product.variations["title"] }}</div>
+            <div class="badge badge-primary badge-pill" data-field="ar">{{ product.variations["title"] }}</div>
+            <div class="card product-card">
+              <a href="/product-detail?product_name={{ product.name }}&varient_name={{ product.variations[" name"] }}">
+                <div class="card-head">
+                  <img class="card-image" src="{{ product.featured_image }}">
                 </div>
+                <div class="card-body">
+                  <div class="card-title" id="product_intro" data-field="en">{{ product.variations["title"] }}</div>
+                  <div class="card-title" id="product_intro" data-field="ar">{{ product.variations["title_arabic"] }}
+                  </div>
+                  <div class="card-desc text-ellipsis text-ellipsis-2" data-field="en">
+                    {{ product.variations["intro"] }}
+                  </div>
+                  <div class="card-desc text-ellipsis text-ellipsis-2" data-field="ar">
+                    {{ product.variations["intro_arabic"] }}
+                  </div>
+                  <div class="card-subtitle"><del>USD {{ product.variations["price"] }}</del></div>
+                  <div class="card-price">USD {{ product.variations["discount"] }}</div>
+                  <div class="card-rating">
+                    <i class="bx bxs-star"></i>
+                    <span>{{ product.rating }}</span> ({{ product.sold }} Sold)
+                  </div>
+                </div>
+              </a>
+              <div class="card-foot d-none">
+                <!-- <button class="btn btn-light btn-icon btn-pill btn-cart" id="buy_now_button"><i
+                      class="bx bx-cart icon-pre"></i> Buy Now</button> -->
+                <!-- <button class="btn btn-light btn-icon btn-circle bx bx-heart btn-heart d-none"></button> -->
               </div>
-
-
             </div>
+
+
           </div>
-
-          
-          {% endfor %}
-
         </div>
-        <button class="slide-next btn btn-secondary btn-sm bx bx-right-arrow-alt"></button>
-        <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
+
+
+        {% endfor %}
+
       </div>
+      <button class="slide-next btn btn-secondary btn-sm bx bx-right-arrow-alt"></button>
+      <button class="slide-prev btn btn-secondary btn-sm bx bx-left-arrow-alt"></button>
+    </div>
     <button class="btn btn-dark btn-pill explore">
       <a href="/product" id="btn_explore_more">Explore More</a>
     </button>
-   
+
   </div>
 </div>
 <div class="container Story">
@@ -353,7 +354,24 @@
     }, 100);
   });
 
+  function noice() {
+    // Check the selected language from localStorage
+    var selectedLanguage = localStorage.getItem('selectedLanguage');
 
+    // Define selectors for elements
+    var englishElements = $('[data-field="en"]');
+    var arabicElements = $('[data-field="ar"]');
+
+    if (selectedLanguage === 'ar') {
+      // If Arabic is selected, hide English and show Arabic
+      englishElements.hide(); // Use hide() for better readability
+      arabicElements.show();   // Use show() for better readability
+    } else {
+      // If not Arabic, hide Arabic and show English
+      arabicElements.hide();    // Use hide() for better readability
+      englishElements.show();    // Use show() for better readability
+    }
+  }
   // arabic id
   function updatePageContent(translations) {
     // index
