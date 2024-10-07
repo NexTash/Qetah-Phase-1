@@ -27,14 +27,18 @@
           <div class="images">
 
             <div class="product-image-group" id="thumbnails">
-              {% for image in product.images %}
+              {% set pvariation = product.variation %}
+              {% set pimages = pvariation[0]["images"] %}
+              {% for image in pimages %}
               <img src="{{ image.images }}" alt="Product Image" class="img thumbnail" data-target="img{{ loop.index }}"
                 data-full="{{ image.images }}" />
               {% endfor %}
             </div>
 
             <div class="product-image img-magnifier-container">
-              {% for image in product.images %}
+              {% set pvariation = product.variation %}
+              {% set pimages = pvariation[0]["images"] %}
+              {% for image in pimages %}
               <img id="img{{ loop.index }}" src="{{ image.images }}" alt="Main Product Image"
                 class="img main-img detail-img magnify-image"
                 style="display: {{ 'block' if loop.first else 'none' }}" />
@@ -62,7 +66,7 @@
                   <h2 class="price-head card-price" id="product_price_{{ loop.index }}">
                     <span class="p-price">$ {{ row.price }}</span>
                     <span class="hori">|</span>
-                    <img class="card-image" src="{{ product.featured_image }}" alt="Product Image" style="display: none;">
+                    <img class="card-image" src="{{ product.variations["featured_image"] }}" alt="Product Image" style="display: none;">
                     <div class="card-unique-name" style="display: none;">{{row.name}}</div>
                     <div class="badge badge-danger badge-pill" id="category_badge_en_{{ loop.index }}" data-field="en">
                       {{ row.category }}</div>
@@ -152,7 +156,7 @@
               <div class="card product-card">
                 <a href="/product-detail?product_name={{ product.name }}&varient_name={{ variation.name }}">
                   <div class="card-head">
-                    <img class="card-image" src="{{ product.featured_image }}">
+                    <img class="card-image" src="{{ variation.featured_image }}">
                     <div class="card-unique-name" style="display: none;">{{variation.name}}</div>
                   </div>
                   <div class="card-body">
@@ -168,7 +172,7 @@
                     <div class="card-price">USD {{ variation.discount }}</div>
                     <div class="card-rating">
                       <i class="bx bxs-star"></i>
-                      <span>{{ product.rating }}</span> ({{ product.sold }} Sold)
+                      <span>{{ variation.rating }}</span> ({{ variation.qty }} <span class="remaining"></span>)
                     </div>
                   </div>
                 </a>
@@ -785,6 +789,14 @@
         document.getElementById('related_products_title').textContent = translations['related_products_title'];
         document.getElementById('review_ar').textContent = translations['review_ar'];
         document.getElementById('customer_reviews_title').textContent = translations['customer_reviews_title'];
+           // Update elements with the 'remaining' class
+        const remaining = document.querySelectorAll('.remaining');
+        if (remaining && translations['remaining']) {
+            remaining.forEach(element => {
+                element.innerText = translations['remaining'];
+            });
+        }
+
 
       }
     </script>

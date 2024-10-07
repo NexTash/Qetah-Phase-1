@@ -1,0 +1,68 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format: {product}-{variation}-{###}",
+ "creation": "2024-10-07 16:38:55.456821",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "product",
+  "column_break_ibmy",
+  "variation",
+  "section_break_efgt",
+  "images"
+ ],
+ "fields": [
+  {
+   "fieldname": "product",
+   "fieldtype": "Link",
+   "label": "Product",
+   "options": "Product"
+  },
+  {
+   "fieldname": "column_break_ibmy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "variation",
+   "fieldtype": "Link",
+   "label": "Variation",
+   "options": "Product Variation"
+  },
+  {
+   "fieldname": "section_break_efgt",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "images",
+   "fieldtype": "Table",
+   "label": "images",
+   "options": "Product Images"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-07 17:30:22.087635",
+ "modified_by": "Administrator",
+ "module": "Qetah Phase 1",
+ "name": "Group Product Image",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

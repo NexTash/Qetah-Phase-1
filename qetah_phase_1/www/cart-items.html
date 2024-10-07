@@ -338,7 +338,7 @@
 
               </div>
               <div class="media-foot">
-                <label class="check check-dark"> <input type="checkbox" required /></label>
+                <label class="check check-dark"> <input type="checkbox" required  id="address-check" value="0"/></label>
               </div>
             </div>
           </div>
@@ -380,7 +380,7 @@
   </div>
   <div class="container products">
     <h1 id="justForYouTitle">Just For You</h1>
-    <!-- Slider main container -->
+    <!-- Slider main container -->`
     <div class="swiper product-slider">
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper">
@@ -393,7 +393,7 @@
             <div class="card product-card">
               <a href="/product-detail?product_name={{ product.name }}&varient_name={{ product.variations["name"] }}">
                 <div class="card-head">
-                  <img class="card-image" src="{{ product.featured_image }}">
+                  <img class="card-image" src="{{ product.variations["featured_image"] }}">
                 </div>
                 <div class="card-body">
                   <div class="card-title" data-field="en">{{ product.variations["title"] }}</div>
@@ -611,6 +611,16 @@
 
     document.addEventListener('DOMContentLoaded', function () {
       displayData();
+      document.getElementById('address-check').addEventListener('click', () => {
+        const add_val=document.getElementById('address-check').value
+        if(add_val==0){
+          document.getElementById('address-check').value=1
+        }else{
+          document.getElementById('address-check').value=0
+        }
+        console.log(document.getElementById('address-check').value);
+        
+      })
     });
   </script>
   <!-- Cart Items  -->
@@ -626,7 +636,42 @@
 
       // Get the existing cart from localStorage
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let shipping_details = JSON.parse(localStorage.getItem('shippingDetails')) 
+      let address = document.getElementById('address-check').value
+      console.log(address,shipping_details);
+      // Create a style element for the ::before pseudo-element
+      const style = document.createElement('style');
+      style.innerHTML = `
+          #openaddressModal::before {
+              border: 2px solid red;}`;
 
+      // Append the style element to the head
+      document.head.appendChild(style);
+
+
+
+
+
+      if(address==0){
+        const button = document.getElementById('address-check');
+        if (button) {
+            document.head.appendChild(style);
+            button.style.border = '2px solid red !important'; 
+            button.focus();
+            alert("You cannot proceed to checkout without address.") // Set focus on the button
+        }
+        return
+      }
+      if(!shipping_details){
+        const button = document.getElementById('openaddressModal');
+        if (button) {
+            button.style.border = '2px solid red'; 
+            button.focus(); // Set focus on the button
+        }
+        return
+
+      }
+      
       // Loop through each checkbox
       checkboxes.forEach(checkbox => {
         // Check if the checkbox is checked and does not have an id attribute
@@ -642,7 +687,9 @@
       localStorage.setItem('cart', JSON.stringify(new_cart_list));
 
       // Redirect to the checkout page
-      window.location.href = '/checkout';
+      if(address==1 && shipping_details){
+        window.location.href = '/checkout';
+      }
     });
     document.addEventListener('DOMContentLoaded', () => {
 

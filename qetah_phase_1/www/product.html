@@ -8,17 +8,18 @@
             <div class="category-filters">
                 <h5 id="category_title">Category</h5>
                 <hr>
+                {% for row in collection if collection != 'null' %}
                 <label class="check check-dark mt-2">
-                    <input type="checkbox" name="category" value="Men's Collection" /><span id="category_mens_l"></span>
+                    <input type="checkbox"  class="collection" name="item_collection[]" value="{{row.name}} Collection" /><span >{{row.name}}</span>
                 </label>
-                <label class="check check-dark">
+                <!-- <label class="check check-dark">
                     <input type="checkbox" name="category" value="Women's Collection" /><span
                         id="category_womens_l"></span>
-
                 </label>
                 <label class="check check-dark">
                     <input type="checkbox" name="category" value="Services" /> <span id="category_services_l"></span>
-                </label>
+                </label> -->
+                {% endfor%}
                 <h5 id="price_range_title">Price Range</h5>
                 <hr>
                 <div class="range-slider">
@@ -204,7 +205,7 @@
                                             <a
                                                 href="/product-detail?product_name={{product.name}}&&varient_name={{product.variations['name']}}">
                                                 <div class="card-head">
-                                                    <img class="card-image" src="{{ product.featured_image }}"
+                                                    <img class="card-image" src="{{ product.variations["featured_image"] }}"
                                                         alt="Product Image">
                                                 </div>
 
@@ -286,9 +287,9 @@
                                             Sold Out</div>
                                         {% endif %}
                                         <div class="card product-card">
-                                            <a href="/product-detail?id={{product.name}}">
+                                            <a href="/product-detail?product_name={{product.name}}&&varient_name={{product.variations['name']}}">
                                                 <div class="card-head">
-                                                    <img class="card-image" src="{{ product.featured_image }}"
+                                                    <img class="card-image" src="{{ product.variations["featured_image"] }}"
                                                         alt="Product Image">
                                                 </div>
 
@@ -370,9 +371,9 @@
                                             Sold Out</div>
                                         {% endif %}
                                         <div class="card product-card">
-                                            <a href="/product-detail?id={{product.name}}">
+                                            <a href="/product-detail?product_name={{product.name}}&&varient_name={{product.variations['name']}}">
                                                 <div class="card-head">
-                                                    <img class="card-image" src="{{ product.featured_image }}"
+                                                    <img class="card-image" src="{{ product.variations["featured_image"] }}"
                                                         alt="Product Image">
                                                 </div>
 
@@ -454,9 +455,9 @@
                                             Sold Out</div>
                                         {% endif %}
                                         <div class="card product-card">
-                                            <a href="/product-detail?id={{product.name}}">
+                                            <a href="/product-detail?product_name={{product.name}}&&varient_name={{product.variations['name']}}">
                                                 <div class="card-head">
-                                                    <img class="card-image" src="{{ product.featured_image }}"
+                                                    <img class="card-image" src="{{ product.variations["featured_image"] }}"
                                                         alt="Product Image">
                                                 </div>
                                                 <div class="card-body">
@@ -537,9 +538,9 @@
                                             Sold Out</div>
                                         {% endif %}
                                         <div class="card product-card">
-                                            <a href="/product-detail?id={{product.name}}">
+                                            <a href="/product-detail?product_name={{product.name}}&&varient_name={{product.variations['name']}}">
                                                 <div class="card-head">
-                                                    <img class="card-image" src="{{ product.featured_image }}"
+                                                    <img class="card-image" src="{{ product.variations["featured_image"] }}"
                                                         alt="Product Image">
                                                 </div>
                                                 <div class="card-body">
@@ -620,9 +621,9 @@
                                             Sold Out</div>
                                         {% endif %}
                                         <div class="card product-card">
-                                            <a href="/product-detail?id={{product.name}}">
+                                            <a href="/product-detail?product_name={{product.name}}&&varient_name={{product.variations['name']}}">
                                                 <div class="card-head">
-                                                    <img class="card-image" src="{{ product.featured_image }}"
+                                                    <img class="card-image" src="{{ product.variations["featured_image"] }}"
                                                         alt="Product Image">
                                                 </div>
                                                 <div class="card-body">
@@ -713,10 +714,10 @@
     }
     function applyFilters(event) {
         if (event) event.preventDefault(); // Prevent the form from submitting normally
-
         const filters = {
             q: document.getElementById('search-query') ? document.getElementById('search-query').value : '',  // Check if element exists
-            category: Array.from(document.querySelectorAll('input[name="category"]:checked')).map(el => el.value),
+            
+            collections: Array.from(document.querySelectorAll('input[name="item_collection[]"]:checked')).map(el => el.value),
             min_price: document.getElementById('price-range-min').value,
             max_price: document.getElementById('price-range-max').value,
             rating: document.querySelector('input[name="rating"]:checked') ? document.querySelector('input[name="rating"]:checked').value : '',
@@ -1202,9 +1203,9 @@
         document.getElementById('discount_50_m').textContent = translations['discount_50_m'];
         document.getElementById('discount_75_m').textContent = translations['discount_75_m'];
 
-        document.getElementById('category_mens_l').textContent = translations['category_mens_l'];
-        document.getElementById('category_womens_l').textContent = translations['category_womens_l'];
-        document.getElementById('category_services_l').textContent = translations['category_services_l'];
+        // document.getElementById('category_mens_l').textContent = translations['category_mens_l'];
+        // document.getElementById('category_womens_l').textContent = translations['category_womens_l'];
+        // document.getElementById('category_services_l').textContent = translations['category_services_l'];
         document.getElementById('discount_35_l').textContent = translations['discount_35_l'];
         document.getElementById('discount_50_l').textContent = translations['discount_50_l'];
         document.getElementById('discount_75_l').textContent = translations['discount_75_l'];

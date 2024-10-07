@@ -4,7 +4,9 @@ import copy
 
 def get_context(context):
     search_query = frappe.form_dict.get('q', None)
-    categories = frappe.form_dict.get('category', [])
+
+    collections = frappe.form_dict.get('collections', '').split(',')
+    collections = [collection.replace(" Collection", "") for collection in collections]
     min_price = frappe.form_dict.get('min_price', None)
     max_price = frappe.form_dict.get('max_price', None)
     rating = frappe.form_dict.get('rating', None)
@@ -17,10 +19,6 @@ def get_context(context):
     if search_query:
         filters.append("name LIKE %(search_query)s")
         values['search_query'] = f"%{search_query}%"
-
-    if categories:
-        filters.append("category IN %(categories)s")
-        values['categories'] = categories.split(",")
    
     if discounts:
         filters.append("discount IN %(discounts)s")
@@ -48,6 +46,11 @@ def get_context(context):
     #     Values: {values}
     # """)
 
+    collection = frappe.db.sql(f"""
+        SELECT * FROM `tabProduct Collection`
+        WHERE disable = 0
+        """, values, as_dict=True)
+
     products = frappe.db.sql(f"""
         SELECT * FROM `tabProduct`
         WHERE {where_clause}
@@ -66,22 +69,37 @@ def get_context(context):
             WHERE parent = %(parent)s
         """, {'parent': product_name}, as_dict=True)
     product_list=[]
-    for product in products:
-        print(product)
-        tempdoc = product
-        doc = product
-        for variation in product.variations:
-            desc = variation.description
-            desc_arabic = variation.description_arabic
-            variation.desc = re.sub(r'<.*?>', '', desc).strip()
-            variation.desc_arabic = re.sub(r'<.*?>', '', desc_arabic).strip()
-            
-            doc["variations"]=[]
-            doc["variations"]=variation
-            product_list.append(copy.deepcopy(doc))
+    if collections[0] is not "":  
+        for product in products:
+            doc = product
+            for variation in product.variations:
+                if len(collections)>0:
+                    if "product_collection" in variation:
+                        if variation.product_collection != "" and variation.product_collection in collections :   
+                            desc = variation.description
+                            desc_arabic = variation.description_arabic
+                            variation.desc = re.sub(r'<.*?>', '', desc).strip()
+                            variation.desc_arabic = re.sub(r'<.*?>', '', desc_arabic).strip()
+                            
+                            doc["variations"]=[]
+                            doc["variations"]=variation
+                            product_list.append(copy.deepcopy(doc))
+    else:
+        for product in products:
+            doc = product
+            for variation in product.variations:
+                desc = variation.description
+                desc_arabic = variation.description_arabic
+                variation.desc = re.sub(r'<.*?>', '', desc).strip()
+                variation.desc_arabic = re.sub(r'<.*?>', '', desc_arabic).strip()
+                
+                doc["variations"]=[]
+                doc["variations"]=variation
+                product_list.append(copy.deepcopy(doc))
 
             
     
     context.update({
-        "products": product_list
+        "products": product_list,
+        "collection":collection
     })

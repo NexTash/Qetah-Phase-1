@@ -174,9 +174,9 @@
             <div class="badge badge-primary badge-pill" data-field="en">{{ product.variations["title"] }}</div>
             <div class="badge badge-primary badge-pill" data-field="ar">{{ product.variations["title"] }}</div>
             <div class="card product-card">
-              <a href="/product-detail?product_name={{ product.name }}&varient_name={{ product.variations[" name"] }}">
+              <a href="/product-detail?product_name={{ product.name }}&varient_name={{ product.variations["name"] }}">
                 <div class="card-head">
-                  <img class="card-image" src="{{ product.featured_image }}">
+                  <img class="card-image" src="{{ product.variations["featured_image"] }}">
                 </div>
                 <div class="card-body">
                   <div class="card-title" id="product_intro" data-field="en">{{ product.variations["title"] }}</div>
@@ -354,24 +354,24 @@
     }, 100);
   });
 
-  function noice() {
-    // Check the selected language from localStorage
-    var selectedLanguage = localStorage.getItem('selectedLanguage');
+  // function noice() {
+  //   // Check the selected language from localStorage
+  //   var selectedLanguage = localStorage.getItem('selectedLanguage');
 
-    // Define selectors for elements
-    var englishElements = $('[data-field="en"]');
-    var arabicElements = $('[data-field="ar"]');
+  //   // Define selectors for elements
+  //   var englishElements = $('[data-field="en"]');
+  //   var arabicElements = $('[data-field="ar"]');
 
-    if (selectedLanguage === 'ar') {
-      // If Arabic is selected, hide English and show Arabic
-      englishElements.hide(); // Use hide() for better readability
-      arabicElements.show();   // Use show() for better readability
-    } else {
-      // If not Arabic, hide Arabic and show English
-      arabicElements.hide();    // Use hide() for better readability
-      englishElements.show();    // Use show() for better readability
-    }
-  }
+  //   if (selectedLanguage === 'ar') {
+  //     // If Arabic is selected, hide English and show Arabic
+  //     englishElements.hide(); // Use hide() for better readability
+  //     arabicElements.show();   // Use show() for better readability
+  //   } else {
+  //     // If not Arabic, hide Arabic and show English
+  //     arabicElements.hide();    // Use hide() for better readability
+  //     englishElements.show();    // Use show() for better readability
+  //   }
+  // }
   // arabic id
   function updatePageContent(translations) {
     // index

@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "PV:",
+ "autoname": "PV:title",
  "creation": "2024-05-20 12:27:42.933505",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -14,6 +14,9 @@
   "category",
   "category_in_arabic",
   "column_break_pasz",
+  "featured_image",
+  "product_collection",
+  "product_images",
   "price",
   "discount",
   "qty",
@@ -131,12 +134,30 @@
   {
    "fieldname": "section_break_q7oj",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "product_images",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Product Images",
+   "options": "Group Product Image"
+  },
+  {
+   "fieldname": "featured_image",
+   "fieldtype": "Attach",
+   "label": "Featured Image"
+  },
+  {
+   "fieldname": "product_collection",
+   "fieldtype": "Link",
+   "label": "Product Collection",
+   "options": "Product Collection"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-04 19:20:21.519807",
+ "modified": "2024-10-07 20:36:01.545636",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Product Variation",
