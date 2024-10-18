@@ -155,3 +155,13 @@
         margin: 0;
     }
 }
+
+.nav-drop-user .dropdown-menu{
+    width: 150px;
+}
+
+@media (max-width: 400px) {
+  .page-wrapper .page-content {
+    margin-top: 70px !important;
+  }
+}

@@ -4829,7 +4829,11 @@ html {
 }
 
 
-
+@media (max-width: 400px) {
+  .page-wrapper .page-content {
+    margin: 100px 0;
+  }
+}
 
 
 /*# sourceMappingURL=style.css.map */

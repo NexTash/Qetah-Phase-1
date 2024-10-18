@@ -1,10 +1,6 @@
 @charset "UTF-8";
 
-<<<<<<<< Updated upstream:qetah_phase_1/public/dist/css/style.bundle.X6R2YHZ6.css
-/* ../../../../../tmp/tmp-39099-1mr7OrDBoimy/qetah_phase_1/qetah_phase_1/public/scss/style.bundle.css */
-========
-/* ../../../../../tmp/tmp-26714-wQ080sWgO7Tc/qetah_phase_1/qetah_phase_1/public/scss/style.bundle.css */
->>>>>>>> Stashed changes:qetah_phase_1/public/dist/css/style.bundle.2NVGPQHF.css
+/* ../../../../../tmp/tmp-30375-ndDeStZ5aaXY/qetah_phase_1/qetah_phase_1/public/scss/style.bundle.css */
 [x-cloak] {
   display: none !important;
 }
@@ -820,6 +816,44 @@ footer .quote i {
   padding: 4px;
   height: 27px;
   text-align: center;
+}
+.dropdown-menu ul.user-menu {
+  display: block !important;
+  width: 100%;
+}
+.nav-drop-user .dropdown-menu ul.user-menu li {
+  list-style-type: none;
+  display: block;
+}
+.nav-drop-user .dropdown-menu ul.user-menu li a.user:before {
+  content: "\ec63";
+  font-family: boxicons !important;
+}
+.nav-drop-user .dropdown-menu ul.user-menu li a.log-out:before {
+  content: "\eb4f";
+  font-family: boxicons !important;
+}
+.nav-drop-user .dropdown-menu {
+  left: -70px !important;
+  top: 50px !important;
+}
+@media (max-width: 2560px) {
+  .nav-drop-user .dropdown-menu {
+    left: -103px !important;
+  }
+}
+@media (max-width: 576px) {
+  .sidebar-header .program-sidebar .sidebar-auth .auth-media .auth-intro {
+    margin: 0;
+  }
+}
+.nav-drop-user .dropdown-menu {
+  width: 150px;
+}
+@media (max-width: 400px) {
+  .page-wrapper .page-content {
+    margin-top: 70px !important;
+  }
 }
 .mySwiper {
   width: 100%;
@@ -4643,8 +4677,4 @@ body[dir=rtl] .card-summary .card-body .voucher .voucher-input-control .field {
     padding-right: 20px;
   }
 }
-<<<<<<<< Updated upstream:qetah_phase_1/public/dist/css/style.bundle.X6R2YHZ6.css
-/*# sourceMappingURL=style.bundle.X6R2YHZ6.css.map */
-========
-/*# sourceMappingURL=style.bundle.2NVGPQHF.css.map */
->>>>>>>> Stashed changes:qetah_phase_1/public/dist/css/style.bundle.2NVGPQHF.css
+/*# sourceMappingURL=style.bundle.IMF2JMMJ.css.map */
