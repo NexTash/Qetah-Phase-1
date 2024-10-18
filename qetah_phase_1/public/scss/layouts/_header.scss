@@ -120,3 +120,38 @@
         }
     }
 }
+
+/* for profile */
+.dropdown-menu ul.user-menu{
+  display: block !important;
+  width: 100%;
+}
+
+.nav-drop-user .dropdown-menu ul.user-menu li{
+  list-style-type: none;
+  display: block;
+}
+
+.nav-drop-user .dropdown-menu ul.user-menu li a.user:before{
+  content: "\ec63";
+  font-family: boxicons !important;
+}
+
+.nav-drop-user .dropdown-menu ul.user-menu li a.log-out:before{
+  content: "\eb4f";
+  font-family: boxicons !important;
+}
+
+.nav-drop-user .dropdown-menu  {
+  left: -70px !important;
+  top: 50px !important;
+  @media (max-width: 2560px) {
+    left: -103px !important;
+  }
+}
+
+@media (max-width: 576px) {
+    .sidebar-header .program-sidebar .sidebar-auth .auth-media .auth-intro {
+        margin: 0;
+    }
+}

@@ -1,4 +1,4 @@
-  <h1 id="page-header"></h1>
+<h1 id="page-header"></h1>
 
 <!-- Student Header -->
 <header id="header" class="nxt-header program-header">
@@ -137,9 +137,19 @@
           </li>
 
           <li class="nav-drop-wrap nav-drop-user" title="Account">
-            <a class="has-ripple drop-indicator navDropToggler" href="javascript:void(0)">
-              <div class="img-no-pp">
-                <img src="/assets/qetah_phase_1/images/avatar-user.png" alt="User" />
+            <a class="has-ripple drop-indicator navDropToggler">
+              <div class="icon-dropdown img-no-pp" x-data="{ openUser: false }" @click.away="openUser = false">
+                <img src="/assets/qetah_phase_1/images/avatar-user.png" width="45px" alt="user" @click="openUser = !openUser">
+                <div class="dropdown-menu" :class="{ 'show': openUser }">
+                  <ul class="user-menu">
+                    <li>
+                      <a class="user" href="/user-profile"> Profile</a>
+                    </li>
+                    <li>
+                      <a class="log-out" href="#"> Log out</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </a>
           </li>

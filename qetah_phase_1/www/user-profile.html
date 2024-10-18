@@ -32,6 +32,10 @@
     height: calc(100% - 1.5rem);
   }
 
+  .bg-danger {
+    background-color: #dc3545 !important;
+  }
+
   .thumb-md {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -52,15 +56,22 @@
     color: #6b778d;
   }
 
-  .card .card-body .list-item.active .nav-link:hover {
+  .nav-fill .nav-item .nav-link, .nav-justified .nav-item .nav-link{
+    color: #22c55e;
+  }
+
+  .card .card-body .nav-item.list-item.active .nav-link:hover {
     color: #fff;
   }
 
-  .card .card-body .list-item.active {
+  .card .card-body .nav-item.list-item.active {
     background-color: #22c55e;
-    /* Change this to your desired color */
     color: #fff;
     border-radius: 8px;
+  }
+
+  .card .card-body .nav-item.list-item.active .nav-link {
+    color: #fff;
   }
 
   .user-profile .nav-item {
@@ -69,6 +80,10 @@
 
   .user-profile {
     max-width: 85%;
+  }
+
+  ul.list-unstyled li{
+    font-size: 15px;
   }
 
   @media (max-width: 768px) {
@@ -96,6 +111,16 @@
     }
   }
 
+  @media (max-width: 480px) {
+    .card-table-content .card-body{
+      padding: 1rem 0 !important;
+    }
+    .page-wrapper .page-content {
+      padding: 0;
+    }
+  }
+  
+
   @media (max-width: 375px) {
     .user-profile .tab-content>.tab-pane .card-header .row {
       display: grid;
@@ -105,6 +130,13 @@
     .user-profile .card-body .nav {
       display: grid;
       row-gap: 20px;
+    }
+
+    .user-intro-persnol .card-header {
+      padding-right: 0px;
+    }
+    body[dir="rtl"] .user-intro-persnol .card-header {
+      padding-left: 0px;
     }
   }
 </style>
@@ -147,16 +179,15 @@
               </div>
               <!--end col-->
               <div class="col-md-12 col-lg-6 col-xl-12">
-                <div class="card">
+                <div class="card user-intro-persnol">
                   <div class="card-header">
-                    <div class="row align-items-center">
+                    <div class="row align-items-center gap-2">
                       <div class="col">
                         <h4 class="card-title">Personal Information</h4>
                       </div>
                       <!--end col-->
                       <div class="col-auto">
-                        <a href="#" class="float-end text-muted d-inline-flex text-decoration-underline"><i
-                            class="iconoir-edit-pencil fs-18 me-1"></i>Edit</a>
+                        <a href="#" class="float-end text-muted d-flex align-items-center text-decoration-underline"><i class='bx bx-edit-alt mr-1'></i>Edit</a>
                       </div>
                       <!--end col-->
                     </div>
@@ -169,33 +200,21 @@
                       distracted by the readable content of a page when
                       looking at its layout.
                     </p>
-                    <div class="mb-3">
-                      <span
-                        class="badge bg-transparent border border-light text-black-700 fs-12 fw-medium mb-1">Un-stitched</span>
-                      <span
-                        class="badge bg-transparent border border-light text-black-700 fs-12 fw-medium mb-1">ReadyMade</span>
-                      <span
-                        class="badge bg-transparent border border-light text-black-700 fs-12 fw-medium mb-1">Accessories</span>
-                      <span
-                        class="badge bg-transparent border border-light text-black-700 fs-12 fw-medium mb-1">Perfumes</span>
-                      <span class="badge bg-transparent border border-light text-black-700 fs-12 fw-medium mb-1">Cutting
-                        & Stitching</span>
-                    </div>
                     <ul class="list-unstyled mb-0">
                       <li class="">
-                        <i class="las la-birthday-cake me-2 text-secondary fs-22 align-middle"></i>
+                        <i class="bx bxs-baby-carriage me-2 text-secondary fs-22 align-middle"></i>
                         <b> Birth Date </b> : 06 June 1989
                       </li>
                       <li class="mt-2">
-                        <i class="las la-language me-2 text-secondary fs-22 align-middle"></i>
+                        <i class="bx bx-universal-access me-2 text-secondary fs-22 align-middle"></i>
                         <b> Languages </b> : English, French, Spanish
                       </li>
                       <li class="mt-2">
-                        <i class="las la-phone me-2 text-secondary fs-22 align-middle"></i>
+                        <i class="bx bx-phone me-2 text-secondary fs-22 align-middle"></i>
                         <b> Phone </b> : +91 23456 78910
                       </li>
                       <li class="mt-2">
-                        <i class="las la-envelope text-secondary fs-22 align-middle me-2"></i>
+                        <i class="bx bx-envelope text-secondary fs-22 align-middle me-2"></i>
                         <b> Email </b> : mannat.theme@gmail.com
                       </li>
                     </ul>
@@ -212,7 +231,7 @@
           </div>
           <!--end col-->
           <div class="col-md-12 col-lg-12 col-xl-8">
-            <div class="card">
+            <div class="card card-table-content">
               <div class="card-body">
                 <ul class="nav nav-pills nav-justified">
                   <li class="nav-item list-item waves-effect waves-light active" data-target="current-1">
@@ -265,7 +284,7 @@
                                     class="me-3 align-self-center rounded" alt="..." />
                                   <div class="flex-grow-1 text-truncate">
                                     <h6 class="m-0">History Book</h6>
-                                    <a href="#" class="fs-12 text-primary">ID:
+                                    <a href="#" class="fs-12 text-black">ID:
                                       A3652</a>
                                   </div>
                                   <!--end media body-->
@@ -278,7 +297,7 @@
                                 450 <small class="text-muted">(550)</small>
                               </td>
                               <td>
-                                <span class="badge bg-primary-subtle text-primary px-2">Stock</span>
+                                <span class="badge text-white badge-pill">Stock</span>
                               </td>
                             </tr>
                             <!--end tr-->
@@ -289,7 +308,7 @@
                                     class="me-3 align-self-center rounded" alt="..." />
                                   <div class="flex-grow-1 text-truncate">
                                     <h6 class="m-0">Colorful Pots</h6>
-                                    <a href="#" class="fs-12 text-primary">ID:
+                                    <a href="#" class="fs-12 text-black">ID:
                                       A5002</a>
                                   </div>
                                   <!--end media body-->
@@ -302,7 +321,7 @@
                                 750 <small class="text-muted">(00)</small>
                               </td>
                               <td>
-                                <span class="badge bg-danger-subtle text-danger px-2">Out
+                                <span class="badge bg-danger text-white px-2 border-none">Out
                                   of
                                   Stock</span>
                               </td>
@@ -315,7 +334,7 @@
                                     class="me-3 align-self-center rounded" alt="..." />
                                   <div class="flex-grow-1 text-truncate">
                                     <h6 class="m-0">Pearl Bracelet</h6>
-                                    <a href="#" class="fs-12 text-primary">ID:
+                                    <a href="#" class="fs-12 text-black">ID:
                                       A6598</a>
                                   </div>
                                   <!--end media body-->
@@ -328,7 +347,7 @@
                                 280 <small class="text-muted">(220)</small>
                               </td>
                               <td>
-                                <span class="badge bg-primary-subtle text-primary px-2">Stock</span>
+                                <span class="badge badge-primary text-white px-2 border-none">Stock</span>
                               </td>
                             </tr>
                             <!--end tr-->
@@ -339,7 +358,7 @@
                                     class="me-3 align-self-center rounded" alt="..." />
                                   <div class="flex-grow-1 text-truncate">
                                     <h6 class="m-0">Dancing Man</h6>
-                                    <a href="#" class="fs-12 text-primary">ID:
+                                    <a href="#" class="fs-12 text-black">ID:
                                       A9547</a>
                                   </div>
                                   <!--end media body-->
@@ -352,7 +371,7 @@
                                 500 <small class="text-muted">(1000)</small>
                               </td>
                               <td>
-                                <span class="badge bg-danger-subtle text-danger px-2">Out
+                                <span class="badge bg-danger text-white border-none px-2">Out
                                   of
                                   Stock</span>
                               </td>
@@ -365,7 +384,7 @@
                                     class="me-3 align-self-center rounded" alt="..." />
                                   <div class="flex-grow-1 text-truncate">
                                     <h6 class="m-0">Fire Lamp</h6>
-                                    <a href="#" class="fs-12 text-primary">ID:
+                                    <a href="#" class="fs-12 text-black">ID:
                                       A2047</a>
                                   </div>
                                   <!--end media body-->
@@ -378,7 +397,7 @@
                                 800 <small class="text-muted">(2000)</small>
                               </td>
                               <td>
-                                <span class="badge bg-danger-subtle text-danger px-2">Out
+                                <span class="badge bg-danger text-white border-none px-2">Out
                                   of
                                   Stock</span>
                               </td>
@@ -432,7 +451,7 @@
                                     class="me-3 align-self-center rounded" alt="..." />
                                   <div class="flex-grow-1 text-truncate">
                                     <h6 class="m-0">History Book</h6>
-                                    <a href="#" class="fs-12 text-primary">ID:
+                                    <a href="#" class="fs-12 text-black">ID:
                                       A3652</a>
                                   </div>
                                   <!--end media body-->
@@ -445,7 +464,7 @@
                                 450 <small class="text-muted">(550)</small>
                               </td>
                               <td>
-                                <span class="badge bg-primary-subtle text-primary px-2">Stock</span>
+                                <span class="badge text-white border-none px-2">Stock</span>
                               </td>
                             </tr>
                             <!--end tr-->
@@ -456,7 +475,7 @@
                                     class="me-3 align-self-center rounded" alt="..." />
                                   <div class="flex-grow-1 text-truncate">
                                     <h6 class="m-0">Colorful Pots</h6>
-                                    <a href="#" class="fs-12 text-primary">ID:
+                                    <a href="#" class="fs-12 text-black">ID:
                                       A5002</a>
                                   </div>
                                   <!--end media body-->
@@ -469,7 +488,7 @@
                                 750 <small class="text-muted">(00)</small>
                               </td>
                               <td>
-                                <span class="badge bg-danger-subtle text-danger px-2">Out
+                                <span class="badge bg-danger text-white border-none px-2">Out
                                   of
                                   Stock</span>
                               </td>
@@ -482,7 +501,7 @@
                                     class="me-3 align-self-center rounded" alt="..." />
                                   <div class="flex-grow-1 text-truncate">
                                     <h6 class="m-0">Pearl Bracelet</h6>
-                                    <a href="#" class="fs-12 text-primary">ID:
+                                    <a href="#" class="fs-12 text-black">ID:
                                       A6598</a>
                                   </div>
                                   <!--end media body-->
@@ -495,7 +514,7 @@
                                 280 <small class="text-muted">(220)</small>
                               </td>
                               <td>
-                                <span class="badge bg-primary-subtle text-primary px-2">Stock</span>
+                                <span class="badge text-white border-none px-2">Stock</span>
                               </td>
                             </tr>
                             <!--end tr-->
@@ -506,7 +525,7 @@
                                     class="me-3 align-self-center rounded" alt="..." />
                                   <div class="flex-grow-1 text-truncate">
                                     <h6 class="m-0">Dancing Man</h6>
-                                    <a href="#" class="fs-12 text-primary">ID:
+                                    <a href="#" class="fs-12 text-black">ID:
                                       A9547</a>
                                   </div>
                                   <!--end media body-->
@@ -519,7 +538,7 @@
                                 500 <small class="text-muted">(1000)</small>
                               </td>
                               <td>
-                                <span class="badge bg-danger-subtle text-danger px-2">Out
+                                <span class="badge bg-danger text-white border-none px-2">Out
                                   of
                                   Stock</span>
                               </td>
@@ -532,7 +551,7 @@
                                     class="me-3 align-self-center rounded" alt="..." />
                                   <div class="flex-grow-1 text-truncate">
                                     <h6 class="m-0">Fire Lamp</h6>
-                                    <a href="#" class="fs-12 text-primary">ID:
+                                    <a href="#" class="fs-12 text-black">ID:
                                       A2047</a>
                                   </div>
                                   <!--end media body-->
@@ -545,7 +564,7 @@
                                 800 <small class="text-muted">(2000)</small>
                               </td>
                               <td>
-                                <span class="badge bg-danger-subtle text-danger px-2">Out
+                                <span class="badge bg-danger text-white border-none px-2">Out
                                   of
                                   Stock</span>
                               </td>
