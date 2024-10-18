@@ -7,21 +7,23 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "item_code",
   "title",
   "title_arabic",
   "intro",
   "intro_arabic",
   "category",
   "category_in_arabic",
+  "rating",
+  "warehouse",
   "column_break_pasz",
   "featured_image",
   "product_collection",
-  "product_collection_ar",
+  "product_collection_arabic",
   "product_images",
-  "price",
+  "new_price",
   "discount",
-  "qty",
-  "rating",
+  "current_quantity",
   "remaining_items",
   "section_break_cpk1",
   "description",
@@ -30,6 +32,7 @@
  ],
  "fields": [
   {
+   "fetch_from": "item_code.item_name",
    "fieldname": "title",
    "fieldtype": "Data",
    "in_filter": 1,
@@ -48,15 +51,7 @@
    "label": "Description"
   },
   {
-   "fieldname": "price",
-   "fieldtype": "Float",
-   "in_filter": 1,
-   "in_list_view": 1,
-   "in_preview": 1,
-   "in_standard_filter": 1,
-   "label": "New Price "
-  },
-  {
+   "fetch_from": "item_code.standard_rate",
    "fieldname": "discount",
    "fieldtype": "Float",
    "in_filter": 1,
@@ -75,6 +70,7 @@
    "label": "Intro"
   },
   {
+   "fetch_from": "item_code.custom_item_name_in_arabic",
    "fieldname": "title_arabic",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -93,22 +89,17 @@
    "label": "Intro Arabic"
   },
   {
-   "fieldname": "qty",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Quantity"
-  },
-  {
    "fieldname": "rating",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Rating"
+   "label": "Rating",
+   "options": "\n1\n2\n3\n4\n5"
   },
   {
    "fieldname": "remaining_items",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Remaining Items"
+   "label": "Remaining Quantity"
   },
   {
    "fieldname": "category",
@@ -118,11 +109,11 @@
    "options": "Product Category"
   },
   {
+   "fetch_from": "category.title_in_arabic",
    "fieldname": "category_in_arabic",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Category In Arabic",
-   "options": "Category In Arabic"
+   "label": "Category In Arabic"
   },
   {
    "fieldname": "column_break_pasz",
@@ -144,6 +135,7 @@
    "options": "Group Product Image"
   },
   {
+   "fetch_from": "item_code.image",
    "fieldname": "featured_image",
    "fieldtype": "Attach",
    "label": "Featured Image"
@@ -155,16 +147,43 @@
    "options": "Product Collection"
   },
   {
-   "fetch_from": "product_collection.product_collection_ar",
-   "fieldname": "product_collection_ar",
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "item Code",
+   "options": "Item"
+  },
+  {
+   "fieldname": "current_quantity",
    "fieldtype": "Data",
-   "label": "Product Collection Ar"
+   "in_list_view": 1,
+   "label": "Current Quantity"
+  },
+  {
+   "fetch_from": "product_collection.product_collection_ar",
+   "fieldname": "product_collection_arabic",
+   "fieldtype": "Data",
+   "label": "Product Collection Arabic"
+  },
+  {
+   "fieldname": "new_price",
+   "fieldtype": "Float",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "New Price "
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "label": "WareHouse",
+   "options": "Warehouse"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-08 01:01:59.662633",
+ "modified": "2024-10-17 15:20:01.445797",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Product Variation",

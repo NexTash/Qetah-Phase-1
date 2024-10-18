@@ -8,7 +8,9 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "title"
+  "title",
+  "column_break_tiuv",
+  "title_in_arabic"
  ],
  "fields": [
   {
@@ -17,11 +19,20 @@
    "in_list_view": 1,
    "label": "Title",
    "unique": 1
+  },
+  {
+   "fieldname": "title_in_arabic",
+   "fieldtype": "Data",
+   "label": "Title In Arabic"
+  },
+  {
+   "fieldname": "column_break_tiuv",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-24 17:35:52.709068",
+ "modified": "2024-10-17 13:30:42.496240",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Product Category",
