@@ -56,7 +56,8 @@
     color: #6b778d;
   }
 
-  .nav-fill .nav-item .nav-link, .nav-justified .nav-item .nav-link{
+  .nav-fill .nav-item .nav-link,
+  .nav-justified .nav-item .nav-link {
     color: #22c55e;
   }
 
@@ -82,7 +83,7 @@
     max-width: 85%;
   }
 
-  ul.list-unstyled li{
+  ul.list-unstyled li {
     font-size: 15px;
   }
 
@@ -112,14 +113,15 @@
   }
 
   @media (max-width: 480px) {
-    .card-table-content .card-body{
+    .card-table-content .card-body {
       padding: 1rem 0 !important;
     }
+
     .page-wrapper .page-content {
       padding: 0;
     }
   }
-  
+
 
   @media (max-width: 375px) {
     .user-profile .tab-content>.tab-pane .card-header .row {
@@ -135,6 +137,7 @@
     .user-intro-persnol .card-header {
       padding-right: 0px;
     }
+
     body[dir="rtl"] .user-intro-persnol .card-header {
       padding-left: 0px;
     }
@@ -145,8 +148,6 @@
   }
 </style>
 
-
-<body>
   <div class="page-wrapper">
     <!-- Page Content-->
     <div class="page-content">
@@ -191,7 +192,8 @@
                       </div>
                       <!--end col-->
                       <div class="col-auto">
-                        <a href="#" class="float-end text-muted d-flex align-items-center text-decoration-underline"><i class='bx bx-edit-alt mr-1'></i>Edit</a>
+                        <a href="#" class="float-end text-muted d-flex align-items-center text-decoration-underline"><i
+                            class='bx bx-edit-alt mr-1'></i>Edit</a>
                       </div>
                       <!--end col-->
                     </div>
@@ -451,7 +453,7 @@
                             <tr>
                               <td>
                                 <div class="d-flex align-items-center">
-                                  <img src="/assets/qetah_phase_1/images/products/01.png" height="40"
+                                  <img src="/assets/qetah_phase_1/images/avatar-user.png" height="40"
                                     class="me-3 align-self-center rounded" alt="..." />
                                   <div class="flex-grow-1 text-truncate">
                                     <h6 class="m-0">History Book</h6>
@@ -475,7 +477,7 @@
                             <tr>
                               <td>
                                 <div class="d-flex align-items-center">
-                                  <img src="/assets/qetah_phase_1/images/products/02.png" height="40"
+                                  <img src="/assets/qetah_phase_1/images/avatar-user.png" height="40"
                                     class="me-3 align-self-center rounded" alt="..." />
                                   <div class="flex-grow-1 text-truncate">
                                     <h6 class="m-0">Colorful Pots</h6>
@@ -501,7 +503,7 @@
                             <tr>
                               <td>
                                 <div class="d-flex align-items-center">
-                                  <img src="/assets/qetah_phase_1/images/products/04.png" height="40"
+                                  <img src="/assets/qetah_phase_1/images/avatar-user.png" height="40"
                                     class="me-3 align-self-center rounded" alt="..." />
                                   <div class="flex-grow-1 text-truncate">
                                     <h6 class="m-0">Pearl Bracelet</h6>
@@ -525,7 +527,7 @@
                             <tr>
                               <td>
                                 <div class="d-flex align-items-center">
-                                  <img src="/assets/qetah_phase_1/images/products/06.png" height="40"
+                                  <img src="/assets/qetah_phase_1/images/avatar-user.png" height="40"
                                     class="me-3 align-self-center rounded" alt="..." />
                                   <div class="flex-grow-1 text-truncate">
                                     <h6 class="m-0">Dancing Man</h6>
@@ -551,7 +553,7 @@
                             <tr>
                               <td>
                                 <div class="d-flex align-items-center">
-                                  <img src="/assets/qetah_phase_1/images/products/05.png" height="40"
+                                  <img src="/assets/qetah_phase_1/images/avatar-user.png" height="40"
                                     class="me-3 align-self-center rounded" alt="..." />
                                   <div class="flex-grow-1 text-truncate">
                                     <h6 class="m-0">Fire Lamp</h6>
@@ -617,5 +619,22 @@
       });
     });
 
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      setTimeout(function () {
+        // Select all `li` elements with the classes `nav-drop-wrap` and `res-link`
+        const listItems = document.querySelectorAll('li.nav-drop-wrap.res-link');
+
+        listItems.forEach(function (li) {
+          // Check if any child element of this `li` contains the class `bx-cart`
+          if (li.querySelector('.bx-cart')) {
+            // Hide the parent `li` by setting the display style to 'none'
+            li.style.display = 'none';
+          }
+        });
+      })
+      // displayData();
+    });
   </script>
   {% endblock %}
