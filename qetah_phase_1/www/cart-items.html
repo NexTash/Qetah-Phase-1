@@ -429,9 +429,9 @@
 
 
   {% block scripts %}
+  
   <script>
     window.onload = function () {
-      // Set the title and header for the Contact page
       const pageTitles = {
         ar: 'عناصر سلة التسوق - قطة',
         en: 'Cart Items - Qetah'
@@ -448,39 +448,45 @@
     };
   </script>
   <script>
-    function savebutton() {
-      console.log("savebuttoncalled");
-
+      function savebutton() {
+      // console.log("savebuttoncalled");
+      // const data = JSON.parse(localStorage.getItem('shippingDetails'));
+      const firstname = document.getElementById('firstname').value;
+      const lastname = document.getElementById('lastname').value;
       const phone = document.getElementById('phone').value;
       const address = document.getElementById('address').value;
       const email = document.getElementById('email').value;
       const state = document.getElementById('state').value;
       const city = document.getElementById('city').value;
       const postalcode = document.getElementById('postalcode').value;
+      
+      console.log('Cart items:', data);
 
       frappe.call({
-        method: 'qetah_phase_1.events.cart.carts',
-        args: {
-          address: address,
-          email: email,
-          phone: phone,
-          state: state,
-          city: city,
-          postalcode: postalcode,
-        },
-        callback(r) {
-          // //console.log(r.message)
-          document.getElementById("messages").innerHTML = r.message;
-
-          document.getElementById('phone').value = ""
-          document.getElementById("email").value = ""
-          document.getElementById('address').value = ""
-          document.getElementById('state').value = ""
-          document.getElementById('city').value = ""
-          document.getElementById('postalcode').value = ""
-        }
+          method: 'qetah_phase_1.events.cart.carts',
+          args: {
+              firstname: firstname,
+              lastname: lastname,
+              address: address,
+              email: email,
+              phone: phone,
+              state: state,
+              city: city,
+              postalcode: postalcode,
+              // cartItems: data // Add the cart items to the arguments
+          },
+          callback(r) {
+              document.getElementById("messages").innerHTML = r.message;
+              // Clear the input fields
+              document.getElementById('phone').value = "";
+              document.getElementById("email").value = "";
+              document.getElementById('address').value = "";
+              document.getElementById('state').value = "";
+              document.getElementById('city').value = "";
+              document.getElementById('postalcode').value = "";
+          }
       });
-    }
+  }
 
   </script>
   <!-- cart -->
@@ -550,7 +556,7 @@
           // Determine which data-field to fetch based on the selected language
           const titleSelector = selectedLanguage === 'ar' ? '[data-field="ar"]' : '[data-field="en"]';
           const descSelector = selectedLanguage === 'ar' ? '[data-field="ar"]' : '[data-field="en"]';
-          console.log(productCard);
+          // console.log(productCard);
           // Get product details from the card based on the selected language
 
           const product = {
@@ -581,8 +587,9 @@
     });
   </script>
   <script>
+    
     document.getElementById('saveButton').addEventListener('click', function () {
-      console.log("saveid called");
+      // console.log("saveid called");
 
       const firstname = document.getElementById('firstname').value;
       const lastname = document.getElementById('lastname').value;
@@ -604,8 +611,6 @@
       };
 
       localStorage.setItem('shippingDetails', JSON.stringify(shippingDetails));
-
-      //console.log('Data saved to localStorage:', shippingDetails);
       displayData();
     });
 
@@ -618,108 +623,13 @@
         }else{
           document.getElementById('address-check').value=0
         }
-        console.log(document.getElementById('address-check').value);
+        // console.log(document.getElementById('address-check').value);
         
       })
     });
   </script>
   <!-- Cart Items  -->
   <script>
-    document.getElementById('proceedCheckoutButton').addEventListener('click', () => {
-      // Redirect to the cart page
-
-      // Get all item checkboxes
-      const checkboxes = document.querySelectorAll('.item-checkbox');
-
-      // Initialize new_cart_list before the loop
-      let new_cart_list = [];
-
-      // Get the existing cart from localStorage
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      let shipping_details = JSON.parse(localStorage.getItem('shippingDetails')) 
-      let address = document.getElementById('address-check').value
-      console.log(address,shipping_details);
-      // Create a style element for the ::before pseudo-element
-      const style = document.createElement('style');
-      style.innerHTML = `
-          #openaddressModal::before {
-              border: 2px solid red;}`;
-
-      // Append the style element to the head
-      document.head.appendChild(style);
-
-
-
-
-
-      if(address==0){
-        const button = document.getElementById('address-check');
-        if (button) {
-            document.head.appendChild(style);
-            button.style.border = '2px solid red !important'; 
-            button.focus();
-            alert("You cannot proceed to checkout without address.") // Set focus on the button
-        }
-        return
-      }
-      if(!shipping_details){
-        const button = document.getElementById('openaddressModal');
-        if (button) {
-            button.style.border = '2px solid red'; 
-            button.focus(); // Set focus on the button
-        }
-        return
-
-      }
-      
-      // Loop through each checkbox
-      checkboxes.forEach(checkbox => {
-        // Check if the checkbox is checked and does not have an id attribute
-        if (checkbox.checked && !checkbox.hasAttribute('id')) {
-
-          let index = checkbox.getAttribute('data-index');
-          // Add the corresponding item to the new_cart_list
-          new_cart_list.push(cart[index]);
-        }
-      });
-
-      // Update localStorage with the new cart list
-      localStorage.setItem('cart', JSON.stringify(new_cart_list));
-
-      // Redirect to the checkout page
-      if(address==1 && shipping_details){
-        window.location.href = '/checkout';
-      }
-    });
-    document.addEventListener('DOMContentLoaded', () => {
-
-      setTimeout(function () {
-        // Select all `li` elements with the classes `nav-drop-wrap` and `res-link`
-        const listItems = document.querySelectorAll('li.nav-drop-wrap.res-link');
-
-        listItems.forEach(function (li) {
-          // Check if any child element of this `li` contains the class `bx-cart`
-          if (li.querySelector('.bx-cart')) {
-            // Hide the parent `li` by setting the display style to 'none'
-            li.style.display = 'none';
-          }
-        });
-      })
-      displayData();
-
-      const cartContainer = document.querySelector('.cart-container');
-      const subtotalElement = document.getElementById('subtotal-cart');
-      const itemCountElement = document.getElementById('item-count');
-      const selectAllCheckbox = document.getElementById('selectAllLabel');
-      const deleteSelectedButton = document.querySelector('.select-items .btn');
-
-      // Retrieve cart items from localStorage, ensuring it's an array
-      let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-      console.log(cartItems);
-      // Function to render cart items
-      function renderCartItems(items) {
-        console.log(items);
-
         let subtotal = 0;
         let itemCount = 0;
 
@@ -796,7 +706,7 @@
       cartContainer.addEventListener('click', function (event) {
         const target = event.target;
         const index = target.getAttribute('data-index');
-        console.log("working");
+        // console.log("working");
 
         if (index !== null && !isNaN(index)) {
           updateSubtotal();
@@ -1003,9 +913,6 @@
     }
   </script>
   <script>
-
-  </script>
-  <script>
     // arabic id
     function updatePageContent(translations) {
       //Cart Items
@@ -1033,8 +940,6 @@
       document.getElementById('submitVoucherButton').textContent = translations['submitVoucherButton'];
       document.getElementById('proceedCheckoutButton').textContent = translations['proceedCheckoutButton'];
       document.getElementById('justForYouTitle').textContent = translations['justForYouTitle'];
-      //document.getElementById('slideNextButton').textContent = translations['slideNextButton'];
-      // document.getElementById('slidePrevButton').textContent = translations['slidePrevButton'];
     }    
   </script>
   {% endblock %}

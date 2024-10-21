@@ -1,38 +1,34 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:title_in_arabic",
- "creation": "2024-10-21 19:42:49.722818",
+ "creation": "2024-10-21 10:45:24.721476",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "title_in_arabic"
+  "customer_support_email"
  ],
  "fields": [
   {
-   "fieldname": "title_in_arabic",
+   "fieldname": "customer_support_email",
    "fieldtype": "Data",
-   "label": "Title In Arabic",
-   "unique": 1
+   "label": "Customer Support Email"
   }
  ],
  "index_web_pages_for_search": 1,
+ "issingle": 1,
  "links": [],
- "modified": "2024-10-21 19:42:49.722818",
+ "modified": "2024-10-21 10:46:18.821914",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
- "name": "Category In Arabic",
- "naming_rule": "By fieldname",
+ "name": "Qetah Setting",
  "owner": "Administrator",
  "permissions": [
   {
    "create": 1,
    "delete": 1,
    "email": 1,
-   "export": 1,
    "print": 1,
    "read": 1,
-   "report": 1,
    "role": "System Manager",
    "share": 1,
    "write": 1

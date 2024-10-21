@@ -7,23 +7,21 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "item_code",
   "title",
   "title_arabic",
   "intro",
   "intro_arabic",
   "category",
   "category_in_arabic",
-  "rating",
-  "warehouse",
-  "column_break_pasz",
-  "featured_image",
   "product_collection",
-  "product_collection_arabic",
+  "featured_image",
+  "column_break_pasz",
+  "product_collection_ar",
   "product_images",
-  "new_price",
+  "price",
   "discount",
-  "current_quantity",
+  "qty",
+  "rating",
   "remaining_items",
   "section_break_cpk1",
   "description",
@@ -32,7 +30,6 @@
  ],
  "fields": [
   {
-   "fetch_from": "item_code.item_name",
    "fieldname": "title",
    "fieldtype": "Data",
    "in_filter": 1,
@@ -51,7 +48,6 @@
    "label": "Description"
   },
   {
-   "fetch_from": "item_code.standard_rate",
    "fieldname": "discount",
    "fieldtype": "Float",
    "in_filter": 1,
@@ -70,7 +66,6 @@
    "label": "Intro"
   },
   {
-   "fetch_from": "item_code.custom_item_name_in_arabic",
    "fieldname": "title_arabic",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -90,30 +85,15 @@
   },
   {
    "fieldname": "rating",
-   "fieldtype": "Select",
+   "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Rating",
-   "options": "\n1\n2\n3\n4\n5"
+   "label": "Rating"
   },
   {
    "fieldname": "remaining_items",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Remaining Quantity"
-  },
-  {
-   "fieldname": "category",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Category",
-   "options": "Product Category"
-  },
-  {
-   "fetch_from": "category.title_in_arabic",
-   "fieldname": "category_in_arabic",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Category In Arabic"
+   "label": "Remaining Items"
   },
   {
    "fieldname": "column_break_pasz",
@@ -135,7 +115,6 @@
    "options": "Group Product Image"
   },
   {
-   "fetch_from": "item_code.image",
    "fieldname": "featured_image",
    "fieldtype": "Attach",
    "label": "Featured Image"
@@ -147,25 +126,27 @@
    "options": "Product Collection"
   },
   {
-   "fieldname": "item_code",
+   "fieldname": "category",
    "fieldtype": "Link",
-   "label": "item Code",
-   "options": "Item"
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "Product Category"
   },
   {
-   "fieldname": "current_quantity",
-   "fieldtype": "Data",
+   "fieldname": "category_in_arabic",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Current Quantity"
+   "label": "Category In Arabic",
+   "options": "Category In Arabic"
   },
   {
    "fetch_from": "product_collection.product_collection_ar",
-   "fieldname": "product_collection_arabic",
+   "fieldname": "product_collection_ar",
    "fieldtype": "Data",
-   "label": "Product Collection Arabic"
+   "label": "Product Collection Ar"
   },
   {
-   "fieldname": "new_price",
+   "fieldname": "price",
    "fieldtype": "Float",
    "in_filter": 1,
    "in_list_view": 1,
@@ -174,16 +155,16 @@
    "label": "New Price "
   },
   {
-   "fieldname": "warehouse",
-   "fieldtype": "Link",
-   "label": "WareHouse",
-   "options": "Warehouse"
+   "fieldname": "qty",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Quantity"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-17 15:20:01.445797",
+ "modified": "2024-10-21 15:38:10.443965",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Product Variation",

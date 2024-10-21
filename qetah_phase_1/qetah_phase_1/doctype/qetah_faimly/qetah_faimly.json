@@ -1,28 +1,37 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:title_in_arabic",
- "creation": "2024-10-21 19:42:49.722818",
+ "creation": "2024-10-20 17:32:10.191460",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "title_in_arabic"
+  "customer_name",
+  "column_break_aumk",
+  "email"
  ],
  "fields": [
   {
-   "fieldname": "title_in_arabic",
+   "fieldname": "customer_name",
+   "fieldtype": "Link",
+   "label": "Customer Name",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "column_break_aumk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "email",
    "fieldtype": "Data",
-   "label": "Title In Arabic",
-   "unique": 1
+   "label": "Email"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-21 19:42:49.722818",
+ "modified": "2024-10-20 17:33:11.706236",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
- "name": "Category In Arabic",
- "naming_rule": "By fieldname",
+ "name": "Qetah Faimly",
  "owner": "Administrator",
  "permissions": [
   {

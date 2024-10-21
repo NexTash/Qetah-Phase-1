@@ -10,6 +10,8 @@
   "title",
   "title_arabic",
   "column_break_bnn10",
+  "category",
+  "category_in_arabic",
   "is_featured",
   "section_break_uwzbh",
   "description",
@@ -101,12 +103,24 @@
    "fieldname": "delivery_disc",
    "fieldtype": "Int",
    "label": "Delivery Disc"
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "label": "Category",
+   "options": "Product Category"
+  },
+  {
+   "fetch_from": "category.title_in_arabic",
+   "fieldname": "category_in_arabic",
+   "fieldtype": "Data",
+   "label": "Category In Arabic"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
  "make_attachments_public": 1,
- "modified": "2024-10-07 23:35:38.304041",
+ "modified": "2024-10-21 10:41:44.350268",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Product",

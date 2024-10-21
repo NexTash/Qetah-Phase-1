@@ -99,7 +99,11 @@ def get_context(context):
 
             
     
+
+    categories = frappe.get_all('Product Category', fields=['name'])
     context.update({
         "products": product_list,
-        "collection":collection
+        "collection":collection,
+        "categories":categories
+
     })

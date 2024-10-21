@@ -1,0 +1,70 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:SPA-{####}",
+ "creation": "2024-10-21 20:49:40.082153",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "sale_person",
+  "column_break_vois",
+  "product",
+  "section_break_idt8",
+  "sale_product"
+ ],
+ "fields": [
+  {
+   "fieldname": "sale_person",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sale Person",
+   "options": "Sales Person"
+  },
+  {
+   "fieldname": "product",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Product",
+   "options": "Product"
+  },
+  {
+   "fieldname": "column_break_vois",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_idt8",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "sale_product",
+   "fieldtype": "Table",
+   "label": "Sale Product",
+   "options": "Sale Person Product"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-21 21:21:08.918620",
+ "modified_by": "Administrator",
+ "module": "Qetah Phase 1",
+ "name": "Sale Person Assignment",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
