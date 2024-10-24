@@ -155,7 +155,14 @@
                             <!-- Tab Buttons -->
                             <button id="tab_all" class="tab-item" :class="OpenTab == 1 ? 'active' : 'inactive'"
                                 @click="OpenTab = 1">All</button>
-                            <button id="tab_unstitched" class="tab-item" :class="OpenTab == 2 ? 'active' : 'inactive'"
+                            {% for category in categories %}
+                            <button id="tab_{{ category.name | lower }}" class="tab-item" 
+                                    :class="OpenTab == {{ loop.index + 1 }} ? 'active' : 'inactive'" 
+                                    @click="OpenTab = {{ loop.index + 1 }}">
+                                {{ category.name }}
+                            </button>
+                            {% endfor %}
+                            <!-- <button id="tab_unstitched" class="tab-item" :class="OpenTab == 2 ? 'active' : 'inactive'"
                                 @click="OpenTab = 2">Un-stitched</button>
                             <button id="tab_readymade" class="tab-item" :class="OpenTab == 3 ? 'active' : 'inactive'"
                                 @click="OpenTab = 3">ReadyMade</button>
@@ -165,7 +172,7 @@
                                 @click="OpenTab = 5">Perfumes</button>
                             <button id="tab_cutting_stitching" class="tab-item"
                                 :class="OpenTab == 6 ? 'active' : 'inactive'" @click="OpenTab = 6">Cutting &
-                                Stitching</button>
+                                Stitching</button> -->
 
                         </div>
 

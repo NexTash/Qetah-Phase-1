@@ -2,14 +2,14 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "field:title",
- "creation": "2024-05-20 09:59:23.046632",
+ "creation": "2024-10-23 17:37:09.332393",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "title",
-  "column_break_tiuv",
+  "column_break_klsz",
   "title_in_arabic"
  ],
  "fields": [
@@ -26,13 +26,13 @@
    "label": "Title In Arabic"
   },
   {
-   "fieldname": "column_break_tiuv",
+   "fieldname": "column_break_klsz",
    "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-17 13:30:42.496240",
+ "modified": "2024-10-23 18:42:00.993578",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Product Category",
@@ -55,6 +55,7 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
+ "title_field": "title_in_arabic",
  "track_changes": 1,
  "track_seen": 1,
  "track_views": 1

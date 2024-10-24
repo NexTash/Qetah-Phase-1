@@ -1,18 +1,16 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "PV:title",
- "creation": "2024-05-20 12:27:42.933505",
+ "creation": "2024-10-24 03:49:21.350599",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "item_code",
   "title",
   "title_arabic",
   "intro",
   "intro_arabic",
-  "category",
-  "category_in_arabic",
   "product_collection",
   "featured_image",
   "column_break_pasz",
@@ -30,31 +28,26 @@
  ],
  "fields": [
   {
-   "fieldname": "title",
-   "fieldtype": "Data",
+   "fieldname": "item_code",
+   "fieldtype": "Link",
    "in_filter": 1,
    "in_list_view": 1,
-   "in_preview": 1,
    "in_standard_filter": 1,
+   "label": "item code",
+   "options": "Item"
+  },
+  {
+   "fetch_from": "item_code.item_name",
+   "fieldname": "title",
+   "fieldtype": "Data",
    "label": "Title"
   },
   {
-   "fieldname": "description",
-   "fieldtype": "Text Editor",
-   "in_filter": 1,
+   "fetch_from": "item_code.custom_name_arabic",
+   "fieldname": "title_arabic",
+   "fieldtype": "Data",
    "in_list_view": 1,
-   "in_preview": 1,
-   "in_standard_filter": 1,
-   "label": "Description"
-  },
-  {
-   "fieldname": "discount",
-   "fieldtype": "Float",
-   "in_filter": 1,
-   "in_list_view": 1,
-   "in_preview": 1,
-   "in_standard_filter": 1,
-   "label": "Old Price "
+   "label": "Title Arabic"
   },
   {
    "fieldname": "intro",
@@ -63,87 +56,49 @@
    "in_list_view": 1,
    "in_preview": 1,
    "in_standard_filter": 1,
-   "label": "Intro"
-  },
-  {
-   "fieldname": "title_arabic",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Title Arabic"
-  },
-  {
-   "fieldname": "description_arabic",
-   "fieldtype": "Text Editor",
-   "in_list_view": 1,
-   "label": "Description Arabic"
+   "label": "Intro",
+   "reqd": 1
   },
   {
    "fieldname": "intro_arabic",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Intro Arabic"
+   "label": "Intro Arabic",
+   "reqd": 1
   },
   {
-   "fieldname": "rating",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Rating"
+   "fetch_from": "item_code.custom_product_collection",
+   "fieldname": "product_collection",
+   "fieldtype": "Link",
+   "label": "Product Collection",
+   "options": "Product Collection",
+   "read_only": 1,
+   "reqd": 1
   },
   {
-   "fieldname": "remaining_items",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Remaining Items"
+   "fieldname": "featured_image",
+   "fieldtype": "Attach",
+   "label": "Featured Image",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_pasz",
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "section_break_cpk1",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "section_break_q7oj",
-   "fieldtype": "Section Break"
+   "fetch_from": "product_collection.product_collection_ar",
+   "fieldname": "product_collection_ar",
+   "fieldtype": "Data",
+   "label": "Product Collection Ar",
+   "read_only": 1
   },
   {
    "fieldname": "product_images",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Product Images",
-   "options": "Group Product Image"
-  },
-  {
-   "fieldname": "featured_image",
-   "fieldtype": "Attach",
-   "label": "Featured Image"
-  },
-  {
-   "fieldname": "product_collection",
-   "fieldtype": "Link",
-   "label": "Product Collection",
-   "options": "Product Collection"
-  },
-  {
-   "fieldname": "category",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Category",
-   "options": "Product Category"
-  },
-  {
-   "fieldname": "category_in_arabic",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Category In Arabic",
-   "options": "Category In Arabic"
-  },
-  {
-   "fetch_from": "product_collection.product_collection_ar",
-   "fieldname": "product_collection_ar",
-   "fieldtype": "Data",
-   "label": "Product Collection Ar"
+   "options": "Group Product Image",
+   "reqd": 1
   },
   {
    "fieldname": "price",
@@ -152,23 +107,73 @@
    "in_list_view": 1,
    "in_preview": 1,
    "in_standard_filter": 1,
-   "label": "New Price "
+   "label": "New Price ",
+   "reqd": 1
   },
   {
+   "fetch_from": "item_code.standard_rate",
+   "fieldname": "discount",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Old Price "
+  },
+  {
+   "fetch_from": "title.opening_stock",
    "fieldname": "qty",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Quantity"
+  },
+  {
+   "fieldname": "rating",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Rating",
+   "reqd": 1
+  },
+  {
+   "fieldname": "remaining_items",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Remaining Items"
+  },
+  {
+   "fieldname": "section_break_cpk1",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "item_code.description",
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_q7oj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "description_arabic",
+   "fieldtype": "Text Editor",
+   "in_list_view": 1,
+   "label": "Description Arabic",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-21 15:38:10.443965",
+ "modified": "2024-10-24 03:49:21.350599",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Product Variation",
- "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",

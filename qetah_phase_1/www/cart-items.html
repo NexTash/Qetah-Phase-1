@@ -1,6 +1,10 @@
 {% extends "templates/primary.html" %}
-{% block content %}
 
+{% block title %} Cart Items {% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="/assets/qetah_phase_1/css/bootstrap.min.css" />
+<script src="/assets/qetah_phase_1/js/bootstrap.min.js"></script>
 <style>
   /* Modal container */
   .address-modal {
@@ -43,6 +47,8 @@
           float: right;
           font-size: 28px;
           font-weight: bold;
+          position: absolute;
+          right: 30px;
 
           &:hover,
           &:focus {
@@ -191,13 +197,12 @@
           <div class="card card-webinar">
             <div class="card-head select-items">
               <span>
-                <label class="check check-secondary">
-                  <input type="checkbox" class="item-checkbox" data-title="Cloths" id="selectAllLabel"><span
-                    id="selectAllLabel_all">Select All (Items)</span>
-                </label>
+                      <label class="check check-secondary" >
+                          <input type="checkbox" class="item-checkbox" data-title="Cloths" id="selectAllLabel"><span>Select All (Items)</span> 
+                      </label>
               </span>
               <button class="btn btn-light btn-icon">
-                <i class="bx bx-trash icon-pre delete-item"></i>
+                <i class="bx bx-trash icon-pre delete-item" ></i>
                 <!-- <span id="deleteButton" stayle="display:none" >DELETE</span> -->
               </button>
             </div>
@@ -227,76 +232,67 @@
                 </div>
                 <!-- Modal Body -->
                 <div class="modal-body">
-                  <div class="grp d-flex">
-                    <div class="form-field">
-                      <label class="field-label" id="firstNameLabel">First Name</label>
-                      <div class="field">
-                        <input type="text" class="field-text" placeholder="" id="firstname" />
+                  <form class="row g-4 needs-validation pt-1" novalidate>
+                    <div class="col-md-6">
+                      <label for="validationCustom01" class="form-label">First Name</label>
+                      <input type="text" class="form-control" id="firstname" required>
+                      <div class="valid-feedback">
+                        Please write your firstname in the field
                       </div>
                     </div>
-                    <div class="form-field">
-                      <label class="field-label" id="lastNameLabel">Last Name</label>
-                      <div class="field">
-                        <input type="text" class="field-text" placeholder="" id="lastname" />
+                    <div class="col-md-6">
+                      <label for="validationCustom01" class="form-label">Last name</label>
+                      <input type="text" class="form-control" id="lastname" required>
+                      <div class="valid-feedback">
+                        Please write your lastname in the field
                       </div>
                     </div>
-                  </div>
-                  <div class="grp d-flex">
-                    <div class="form-field">
-                      <label class="field-label" id="phoneLabel">Phone No</label>
-                      <div class="field">
-                        <input type="text" class="field-text" placeholder="" id="phone" />
+                    <div class="col-md-6">
+                      <label for="validationCustom02" class="form-label">Phone No.</label>
+                      <input type="number" class="form-control" id="phone" required>
+                      <div class="invalid-feedback">
+                        Please provide a valid number.
                       </div>
                     </div>
-                    <div class="form-field">
-                      <label class="field-label" id="addressLabel">Address</label>
-                      <div class="field">
-                        <input type="text" class="field-text" placeholder="" id="address" />
+                    <div class="col-md-6">
+                      <label for="validationCustom03" class="form-label">Address</label>
+                      <input type="text" class="form-control" id="address" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="validationCustom03">Email</label>
+                      <input type="email" class="form-control" required>
+                      <div class="invalid-feedback">
+                        Please provide a valid email.
                       </div>
                     </div>
-
-                  </div>
-                  <div class="grp d-flex">
-                    <div class="form-field">
-                      <label class="field-label" id="emailLabel">Email</label>
-                      <div class="field">
-                        <input type="email" class="field-text" placeholder="" id="email" />
-                      </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="validationCustom03">State</label>
+                      <input type="text" class="form-control" required>
                     </div>
-                    <div class="form-field">
-                      <label class="field-label" id="stateLabel">State</label>
-                      <div class="field">
-                        <input type="text" class="field-text" placeholder="" id="state" />
-                      </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="validationCustom03">City</label>
+                      <input type="text" class="form-control" required>
                     </div>
-                  </div>
-                  <div class="grp d-flex">
-                    <div class="form-field">
-                      <label class="field-label" id="cityLabel">City</label>
-                      <div class="field">
-                        <input type="text" class="field-text" placeholder="" id="city" />
-                      </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="validationCustom03">Zip / Postal code</label>
+                      <input type="number" class="form-control" required>
                     </div>
-                    <div class="form-field">
-                      <label class="field-label" id="postalCodeLabel">Zip / Postal code</label>
-                      <div class="field">
-                        <input type="text" class="field-text" placeholder="" id="postalcode" />
-                      </div>
-                    </div>
-                  </div>
                 </div>
                 <!-- Modal Footer -->
                 <div class="modal-footer">
-                  <button id="closeModal" class="btn btn-light">
-                    <h6 id="closeModalButton_h"> Close </h6>
-                  </button>
+                  <button id="closeModal" class="btn btn-light" > <h6 id="closeModalButton_h"> Close </h6> </button>
                   <button class="btn btn-secondary" id="saveButton" onclick="savebutton()">Submit</button>
                 </div>
+                  </form>
+
               </div>
             </div>
             <div id="toast" class="noti"><i class='bx bx-check-circle bx-tada' style="color: var(--success);"></i>
               <h2 id="toastMessage">Address Added Succesfully</h2>
             </div>
+
+
+
             <script>
               function displayData() {
                 const data = JSON.parse(localStorage.getItem('shippingDetails'));
@@ -307,9 +303,9 @@
                 if (data) {
                   const displayDiv = document.getElementById('displayData');
                   displayDiv.innerHTML = `
-                <p class="badge badge-sm badge-secondary badge-pill badge-sm">Home</p>
                 <!-- Target div where the data will be displayed -->
                 <div id="displayData"></div>
+                <p class="badge badge-sm badge-secondary badge-pill badge-sm">Home</p>
                 <p class="media-title">${data.firstname} ${data.lastname}</p>
                 <p class="media-subtitle txt-sm fw-500">${data.phone}</p>
 
@@ -338,7 +334,7 @@
 
               </div>
               <div class="media-foot">
-                <label class="check check-dark"> <input type="checkbox" required  id="address-check" value="0"/></label>
+                <label class="check check-dark"> <input type="checkbox" required /></label>
               </div>
             </div>
           </div>
@@ -368,11 +364,11 @@
             </div>
           </div>
           <div class="card-foot">
-
-            <button class="btn btn-secondary btn-sm btn-block" id="proceedCheckoutButton">
-              Proceed To Checkout
-            </button>
-
+            
+              <button class="btn btn-secondary btn-sm btn-block" id="proceedCheckoutButton">
+                Proceed To Checkout
+              </button>
+            
           </div>
         </div>
       </div>
@@ -380,30 +376,33 @@
   </div>
   <div class="container products">
     <h1 id="justForYouTitle">Just For You</h1>
-    <!-- Slider main container -->`
+    <!-- Slider main container -->
     <div class="swiper product-slider">
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper">
         <!-- Slides -->
         {% for product in products %}
+
+        {% for variation in product.variations %}
         <div class="swiper-slide">
           <div class="products">
             <div class="badge badge-primary badge-pill" data-field="en">{{ product.title }}</div>
             <div class="badge badge-primary badge-pill" data-field="ar">{{ product.title_arabic }}</div>
             <div class="card product-card">
-              <a href="/product-detail?product_name={{ product.name }}&varient_name={{ product.variations["name"] }}">
+              <a href="/product">
                 <div class="card-head">
-                  <img class="card-image" src="{{ product.variations["featured_image"] }}">
+                  <img class="card-image"
+                    src="{{ product.featured_image }}">
                 </div>
                 <div class="card-body">
-                  <div class="card-title" data-field="en">{{ product.variations["title"] }}</div>
-                  <div class=" card-title" data-field="ar" id="title-ar">{{ product.variations["title_arabic"] }}</div>
+                  <div class="card-title" data-field="en">{{ variation.title }}</div>
+                  <div class=" card-title" data-field="ar" id="title-ar">{{ variation.title_arabic }}</div>
                   <div class="card-desc text-ellipsis text-ellipsis-2" data-field="en">{{
-                    product.variations["intro"] }}</div>
+                    variation.intro }}</div>
                   <div class=" card-desc text-ellipsis text-ellipsis-2" data-field="ar" id="desc-ar">{{
-                    product.variations["intro_arabic"] }}</div>
-                  <div class="card-subtitle"><del>USD {{ product.variations["price"] }}</del></div>
-                  <div class="card-price" style="font-weight: bold;font-size: 25px;">USD {{ product.variations["discount"] }}</div>
+                    variation.intro_arabic }}</div>
+                  <div class="card-subtitle"><del>USD {{ variation.price }}</del></div>
+                  <div class="card-price" style="font-weight: bold;font-size: 25px;">USD {{ variation.discount }}</div>
                   <div class="card-rating">
                     <i class="bx bxs-star"></i>
                     <span>{{ product.rating }}</span> ({{ product.sold }} Sold)
@@ -411,13 +410,13 @@
                 </div>
               </a>
               <div class="card-foot" style="display: none;">
-                <button class="btn btn-light btn-icon btn-pill btn-cart" id="buy_now_button"><i
-                    class="bx bx-cart icon-pre"></i> Buy Now</button>
-                <!-- <button class="btn btn-light btn-icon btn-circle bx bx-heart" id="wishlistButton"></button> -->
+                <button class="btn btn-light btn-icon btn-pill btn-cart" id="buy_now_button"><i class="bx bx-cart icon-pre"></i> Buy Now</button>
+                <button class="btn btn-light btn-icon btn-circle bx bx-heart" id="wishlistButton"></button>
               </div>
             </div>
           </div>
         </div>
+        {% endfor %}
         {% endfor %}
       </div>
       <button class="slide-next btn btn-secondary btn-sm bx bx-right-arrow-alt" id="slideNextButton"></button>
@@ -429,65 +428,45 @@
 
 
   {% block scripts %}
-  
   <script>
-    window.onload = function () {
-      const pageTitles = {
-        ar: 'عناصر سلة التسوق - قطة',
-        en: 'Cart Items - Qetah'
-
-      };
-
-      const pageHeaders = {
-        ar: 'عناصر سلة التسوق - قطة',
-        en: 'Cart Items - Qetah'
-
-      };
-
-      setPageTitle(pageTitles, pageHeaders);
-    };
-  </script>
-  <script>
-      function savebutton() {
-      // console.log("savebuttoncalled");
-      // const data = JSON.parse(localStorage.getItem('shippingDetails'));
-      const firstname = document.getElementById('firstname').value;
-      const lastname = document.getElementById('lastname').value;
-      const phone = document.getElementById('phone').value;
-      const address = document.getElementById('address').value;
-      const email = document.getElementById('email').value;
-      const state = document.getElementById('state').value;
-      const city = document.getElementById('city').value;
-      const postalcode = document.getElementById('postalcode').value;
+    // function savebutton() {
+    //   console.log("savebuttoncalled");
       
-      console.log('Cart items:', data);
+    //   const firstname = document.getElementById('firstname').value;
+    //   const lastname = document.getElementById('lastname').value;
+    //   const phone = document.getElementById('phone').value;
+    //   const address = document.getElementById('address').value;
+    //   const email = document.getElementById('email').value;
+    //   const state = document.getElementById('state').value;
+    //   const city = document.getElementById('city').value;
+    //   const postalcode = document.getElementById('postalcode').value;
 
-      frappe.call({
-          method: 'qetah_phase_1.events.cart.carts',
-          args: {
-              firstname: firstname,
-              lastname: lastname,
-              address: address,
-              email: email,
-              phone: phone,
-              state: state,
-              city: city,
-              postalcode: postalcode,
-              // cartItems: data // Add the cart items to the arguments
-          },
-          callback(r) {
-              document.getElementById("messages").innerHTML = r.message;
-              // Clear the input fields
-              document.getElementById('phone').value = "";
-              document.getElementById("email").value = "";
-              document.getElementById('address').value = "";
-              document.getElementById('state').value = "";
-              document.getElementById('city').value = "";
-              document.getElementById('postalcode').value = "";
-          }
-      });
-  }
+    //   frappe.call({
+    //     method: 'qetah_phase_1.events.cart.carts',
+    //     args: {
+    //       firstname : firstname,
+    //       lastname : lastname,
+    //       address: address,
+    //       email: email,
+    //       phone: phone,
+    //       state: state,
+    //       city: city,
+    //       postalcode: postalcode,
+    //     },
+    //     callback(r) {
+    //       // //console.log(r.message)
+    //       document.getElementById("messages").innerHTML = r.message;
 
+    //       document.getElementById('phone').value = ""
+    //       document.getElementById("email").value = ""
+    //       document.getElementById('address').value = ""
+    //       document.getElementById('state').value = ""
+    //       document.getElementById('city').value = ""
+    //       document.getElementById('postalcode').value = ""
+    //     }
+    //   });
+    // }
+    
   </script>
   <!-- cart -->
   <script>
@@ -548,24 +527,24 @@
           // Find the product card by going up the DOM tree
           const productCard = e.target.closest('.product-card');
           if (!productCard) {
-            console.error("No product card found");
-            return;
+              console.error("No product card found");
+              return;
           }
 
           const selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
           // Determine which data-field to fetch based on the selected language
           const titleSelector = selectedLanguage === 'ar' ? '[data-field="ar"]' : '[data-field="en"]';
           const descSelector = selectedLanguage === 'ar' ? '[data-field="ar"]' : '[data-field="en"]';
-          // console.log(productCard);
+          console.log(productCard);
           // Get product details from the card based on the selected language
 
           const product = {
-            title: productCard.querySelector('.card-title' + titleSelector).innerText,
-            image: productCard.querySelector('.card-image').src,
-            desc: productCard.querySelector('.card-desc' + descSelector).innerText,
-            price: productCard.querySelector('.card-price').innerText, // Assuming price remains the same in both languages
+              title: productCard.querySelector('.card-title' + titleSelector).innerText,
+              image: productCard.querySelector('.card-image').src,
+              desc: productCard.querySelector('.card-desc'+descSelector).innerText,
+              price: productCard.querySelector('.card-price').innerText, // Assuming price remains the same in both languages
           };
-
+        
           // Add product to wishlist
           addToWishlist(product);
         });
@@ -573,6 +552,7 @@
 
       deleteSelectedBtn.addEventListener('click', () => {
         const checkboxes = offcanvasBody.querySelectorAll('.item-checkbox');
+
         // Iterate backward to safely remove items
         for (let i = checkboxes.length - 1; i >= 0; i--) {
           const checkbox = checkboxes[i];
@@ -582,15 +562,14 @@
             checkbox.closest('.items').remove();
           }
         }
+
         updateOffcanvas();
       });
-    });
   </script>
   <script>
-    
-    document.getElementById('saveButton').addEventListener('click', function () {
-      // console.log("saveid called");
-
+  document.getElementById('saveButton').addEventListener('click', function () {
+      console.log("saved called");
+      
       const firstname = document.getElementById('firstname').value;
       const lastname = document.getElementById('lastname').value;
       const phone = document.getElementById('phone').value;
@@ -599,6 +578,7 @@
       const state = document.getElementById('state').value;
       const city = document.getElementById('city').value;
       const postalcode = document.getElementById('postalcode').value;
+      
       const shippingDetails = {
         firstname,
         lastname,
@@ -616,20 +596,75 @@
 
     document.addEventListener('DOMContentLoaded', function () {
       displayData();
-      document.getElementById('address-check').addEventListener('click', () => {
-        const add_val=document.getElementById('address-check').value
-        if(add_val==0){
-          document.getElementById('address-check').value=1
-        }else{
-          document.getElementById('address-check').value=0
-        }
-        // console.log(document.getElementById('address-check').value);
-        
-      })
     });
   </script>
   <!-- Cart Items  -->
   <script>
+    document.getElementById('proceedCheckoutButton').addEventListener('click', () => {
+      // Get all item checkboxes
+      const shippingDetails = JSON.parse(localStorage.getItem('shippingDetails')) || {};
+      const checkboxes = document.querySelectorAll('.item-checkbox');
+      // Initialize new_cart_list before the loop
+      let new_cart_list = [];
+      // Get the existing cart from localStorage
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      // Loop through each checkbox
+      checkboxes.forEach(checkbox => {
+        // Check if the checkbox is checked and does not have an id attribute
+        if (checkbox.checked && !checkbox.hasAttribute('id')) {
+          let index = checkbox.getAttribute('data-index');
+          // Add the corresponding item to the new_cart_list
+          new_cart_list.push(cart[index]);
+        }
+      });
+      console.log(shippingDetails);
+      console.log(new_cart_list);
+      localStorage.setItem('checkout_items', JSON.stringify(new_cart_list));
+
+      frappe.call({
+        method: 'qetah_phase_1.events.cart.create_invoice',
+        args: {
+          cart: new_cart_list,
+          address: shippingDetails,
+        },
+        callback(r) {
+          console.log(r.message)
+        }
+      });
+      
+      // Update localStorage with the new cart list
+      // localStorage.setItem('cart', JSON.stringify(new_cart_list));
+      // Redirect to the checkout page
+      // window.location.href = '/checkout'; 
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(function () {
+          // Select all `li` elements with the classes `nav-drop-wrap` and `res-link`
+          const listItems = document.querySelectorAll('li.nav-drop-wrap.res-link');
+
+          listItems.forEach(function (li) {
+          // Check if any child element of this `li` contains the class `bx-cart`
+          if (li.querySelector('.bx-cart')) {
+              // Hide the parent `li` by setting the display style to 'none'
+              li.style.display = 'none';
+          }
+          });
+      })
+      displayData();
+
+      const cartContainer = document.querySelector('.cart-container');
+      const subtotalElement = document.getElementById('subtotal-cart');
+      const itemCountElement = document.getElementById('item-count');
+      const selectAllCheckbox = document.getElementById('selectAllLabel');
+      const deleteSelectedButton = document.querySelector('.select-items .btn');
+
+      // Retrieve cart items from localStorage, ensuring it's an array
+      let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+      console.log(cartItems);
+      // Function to render cart items
+      function renderCartItems(items) {
+        console.log(items);
+      
         let subtotal = 0;
         let itemCount = 0;
 
@@ -642,16 +677,16 @@
           const itemTotal = price * (item.qty || 1);
           subtotal += itemTotal;
           itemCount += item.qty || 1; // Increase itemCount by item quantity
-          const isChecked = (selectAllCheckbox.checked) ? 1 : 0;
-
-
+          const isChecked = (selectAllCheckbox.checked)?1:0;
+          
+          
           // Create HTML for the cart item
-          const itemHTML =
-            `<div class="card card-webinar cart-product-card" data-index="` + index + `">
+          const itemHTML = 
+          `<div class="card card-webinar cart-product-card" data-index="`+index+`">
                 <div class="card-head">
                     <span>
                         <label class="check check-secondary">
-                            <input type="checkbox" class="item-checkbox" data-title="${item.title}" ${isChecked ? 'checked' : ''}  data-index="` + index + `"  value="` + isChecked + `"/>${item.title}
+                            <input type="checkbox" class="item-checkbox" data-title="${item.title}" ${isChecked ? 'checked' : ''}  data-index="`+ index + `"  value="`+isChecked+`"/>${item.title}
                         </label>
                     </span>
                 </div>
@@ -701,23 +736,23 @@
 
       // Call the function to render cart items initially
       renderCartItems(cartItems);
-
+      
       // Add event listener for the quantity increment and decrement
       cartContainer.addEventListener('click', function (event) {
         const target = event.target;
         const index = target.getAttribute('data-index');
-        // console.log("working");
-
+        console.log("working");
+        
         if (index !== null && !isNaN(index)) {
           updateSubtotal();
           if (target.classList.contains('increment')) {
             console.log("inc");
-
+            
             updateQuantity(index, 1);
             updateSubtotal();
           } else if (target.classList.contains('decrement')) {
             console.log("dec");
-
+            
             updateQuantity(index, -1);
             updateSubtotal();
           }
@@ -729,64 +764,64 @@
 
         // Get all item checkboxes
         const checkboxes = document.querySelectorAll('.item-checkbox');
-
+        
         checkboxes.forEach(checkbox => {
-          if (checkbox.checked) {
-            // Get the parent card of the checkbox to find its price and quantity
-            const card = checkbox.closest('.cart-product-card');
-            if (card) {
-              const priceElement = card.querySelector('.price'); // Get the price element
-              console.log(priceElement);
+            if (checkbox.checked) {
+                // Get the parent card of the checkbox to find its price and quantity
+                const card = checkbox.closest('.cart-product-card');
+                if (card){
+                  const priceElement = card.querySelector('.price'); // Get the price element
+                  console.log(priceElement);
+                  
+                  const quantityInput = card.querySelector('.counter-value'); // Get the quantity input
 
-              const quantityInput = card.querySelector('.counter-value'); // Get the quantity input
+                  // Extract price and quantity
+                  const price = parseFloat(priceElement.textContent.replace(/[^0-9.-]+/g, '')); // Extract and convert price
+                  const quantity = parseInt(quantityInput.value, 10) || 1; // Extract quantity, default to 1 if empty
 
-              // Extract price and quantity
-              const price = parseFloat(priceElement.textContent.replace(/[^0-9.-]+/g, '')); // Extract and convert price
-              const quantity = parseInt(quantityInput.value, 10) || 1; // Extract quantity, default to 1 if empty
-
-              subtotal += price; // Multiply price by quantity and add to subtotal
+                  subtotal += price; // Multiply price by quantity and add to subtotal
+                }
             }
-          }
         });
         console.log(subtotal);
-
+        
         // Update the subtotal display
         const subtotalElement = document.querySelector('#subtotal-cart'); // Update with the correct selector for your subtotal display
         subtotalElement.textContent = `${subtotal.toFixed(2)}`; // Format subtotal for display
       }
 
-
+     
       function updateQuantity(index, change) {
         // Ensure the cart items are retrieved from localStorage and parsed
         let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
         // Check if the item exists at the given index
         if (cartItems[index]) {
-          // Find the corresponding input element for the quantity
-          const quantityInput = document.querySelector(`.counter-value[data-index="` + index + `"]`);
+            // Find the corresponding input element for the quantity
+            const quantityInput = document.querySelector(`.counter-value[data-index="`+index+`"]`);
 
-          // If the input exists and we can change the quantity
-          if (quantityInput) {
-            let quantity = parseInt(quantityInput.value) + change;
+            // If the input exists and we can change the quantity
+            if (quantityInput) {
+                let quantity = parseInt(quantityInput.value) + change;
 
-            // Ensure the quantity is at least 1
-            quantity = Math.max(quantity, 1);
+                // Ensure the quantity is at least 1
+                quantity = Math.max(quantity, 1);
 
-            // Update the cart item's quantity
-            cartItems[index].qty = quantity;
+                // Update the cart item's quantity
+                cartItems[index].qty = quantity;
 
-            // Update localStorage with the modified cart
-            localStorage.setItem('cart', JSON.stringify(cartItems));
+                // Update localStorage with the modified cart
+                localStorage.setItem('cart', JSON.stringify(cartItems));
 
-            // Update the input field with the new quantity value
-            quantityInput.value = quantity;
+                // Update the input field with the new quantity value
+                quantityInput.value = quantity;
 
-            // Re-render cart items (optional)
-            renderCartItems(cartItems); // This ensures the UI reflects the changes
-          }
+                // Re-render cart items (optional)
+                renderCartItems(cartItems); // This ensures the UI reflects the changes
+            }
         } else {
-          console.error('Item at the given index does not exist.');
+            console.error('Item at the given index does not exist.');
         }
-      }
+    }
 
       // Delete individual items
       cartContainer.addEventListener('click', function (event) {
@@ -802,7 +837,7 @@
         cartItems.splice(index, 1); // Remove item from array using index
         localStorage.setItem('cart', JSON.stringify(cartItems)); // Save the updated cart to localStorage
         renderCartItems(cartItems); // Re-render the updated cart
-
+        
       }
 
       // Delete selected items
@@ -850,74 +885,131 @@
       }
     });
   </script>
+  <script>
+
+  
+  </script>
+
+
   <!-- address model script -->
   <script>
-    // Get modal and relevant buttons/elements
-    var modal = document.getElementById("myModal");
-    var btn = document.getElementById("openaddressModal");
-    var span = document.getElementsByClassName("close")[0];
-    var closeButton = document.getElementById("closeModal");
-    var applyButton = document.getElementById("saveButton");
-    var toast = document.getElementById("toast");
+    (() => {
+    'use strict'
 
-    // Open modal when the "Open Address Modal" button is clicked
-    btn.addEventListener("click", function () {
-      if (modal) {
-        modal.style.display = "block";
-      }
+    const forms = document.querySelectorAll('.needs-validation');
+   Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+          form.classList.add('was-validated');
+          
+        } else {
+          form.classList.add('was-validated'); 
+
+          
+        }
+      }, false);
     });
+  })();
 
-    // Close modal when the close (X) button is clicked
-    if (span) {
-      span.addEventListener("click", function () {
-        if (modal) {
-          modal.style.display = "none";
-        }
-      });
+  function saveToLocalStorage(form) {
+      // Create an object to store form data
+      let shippingDetails = {};
+
+      // Collect form input values and ensure field names match
+      shippingDetails.firstname = form.querySelector('[name="firstname"]').value;
+      shippingDetails.lastname = form.querySelector('[name="lastname"]').value;
+      shippingDetails.phone = form.querySelector('[name="phone"]').value;
+      shippingDetails.address = form.querySelector('[name="address"]').value;
+
+      // Save data to localStorage
+      localStorage.setItem('shippingDetails', JSON.stringify(shippingDetails));
+
+      // Show toast after saving to localStorage
+      showToast();
     }
 
-    // Close modal when the "Close" button is clicked
-    if (closeButton) {
-      closeButton.addEventListener("click", function () {
-        if (modal) {
-          modal.style.display = "none";
-        }
-      });
-    }
+  // Get modal and relevant buttons/elements
+  var modal = document.getElementById("myModal");
+  var btn = document.getElementById("openaddressModal");
+  var span = document.getElementsByClassName("close")[0];
+  var closeButton = document.getElementById("closeModal");
+  var toast = document.getElementById("toast");
 
-    // Close modal when clicking outside the modal content
-    window.addEventListener("click", function (event) {
-      if (event.target == modal) {
+  // Open modal when the "Open Address Modal" button is clicked
+  btn.addEventListener("click", function () {
+    if (modal) {
+      modal.style.display = "block";
+    }
+  });
+
+  // Close modal when the close (X) button is clicked
+  if (span) {
+    span.addEventListener("click", function () {
+      if (modal) {
         modal.style.display = "none";
       }
     });
+  }
 
-    // Function to show toast
-    function showToast() {
-      if (toast) {
-        toast.classList.add("show"); // Show the toast
-        setTimeout(function () {
-          toast.classList.remove("show"); // Hide the toast after 3 seconds
-        }, 3000);
+  // Close modal when the "Close" button is clicked
+  if (closeButton) {
+    closeButton.addEventListener("click", function () {
+      if (modal) {
+        modal.style.display = "none";
+      }
+    });
+  }
+
+  // Close modal when clicking outside the modal content
+  window.addEventListener("click", function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  });
+
+  // Function to show toast
+  function showToast() {
+    if (toast) {
+      toast.classList.add("show"); // Show the toast
+      setTimeout(function () {
+        toast.classList.remove("show"); // Hide the toast after 3 seconds
+      }, 3000);
+    }
+    return
+  }
+
+   // Function to display data from localStorage
+   function displayData() {
+      const data = JSON.parse(localStorage.getItem('shippingDetails'));
+
+      if (data) {
+        const displayDiv = document.getElementById('displayData');
+        displayDiv.innerHTML = `
+          <p class="badge badge-sm badge-secondary badge-pill badge-sm">Home</p>
+          <p class="media-title">${data.firstname} ${data.lastname}</p>
+          <p class="media-subtitle txt-sm fw-500">${data.phone}</p>
+          <h6 class="text-ellipsis text-ellipsis-2 txt-sm">${data.address}</h6>`;
+      } else {
+        console.log('No data found in localStorage');
       }
     }
 
-    // Apply button click - close modal and show toast
-    if (applyButton) {
-      applyButton.addEventListener("click", function () {
-        if (modal) {
-          modal.style.display = "none"; // Close the modal
-        }
-        showToast(); // Show the toast
-      });
-    }
+    // Call displayData function on page load
+    document.addEventListener('DOMContentLoaded', function () {
+      displayData();
+    });
+    
   </script>
+
+  
   <script>
     // arabic id
     function updatePageContent(translations) {
       //Cart Items
-      document.getElementById('selectAllLabel_all').textContent = translations['selectAllLabel_all'];
-      // document.getElementById('deleteButton').textContent = translations['deleteButton'];
+      document.getElementById('selectAllLabel').textContent = translations['selectAllLabel'];
+       document.getElementById('deleteButton').textContent = translations['deleteButton'];
       document.getElementById('address-modal-h').textContent = translations['address-modal-h'];
       document.getElementById('addAddressTitle').textContent = translations['addAddressTitle'];
       document.getElementById('firstNameLabel').textContent = translations['firstNameLabel'];
@@ -939,7 +1031,10 @@
       document.getElementById('buy_now_button').textContent = translations['buy_now_button'];
       document.getElementById('submitVoucherButton').textContent = translations['submitVoucherButton'];
       document.getElementById('proceedCheckoutButton').textContent = translations['proceedCheckoutButton'];
+      document.getElementById('slidePrevButton').textContent = translations['slidePrevButton'];
+      //document.getElementById('slideNextButton').textContent = translations['slideNextButton'];
       document.getElementById('justForYouTitle').textContent = translations['justForYouTitle'];
+
     }    
   </script>
   {% endblock %}

@@ -1,7 +1,13 @@
 import frappe
 
 @frappe.whitelist(allow_guest=True)
-def poceed_to_checkout(fullname, phone, address, city, state, code, email, stripe, cod, item_count1, grand_total1,title):
+def poceed_to_checkout(fullname, phone, address, city, state, code, email, stripe, cod, item_count1, grand_total1,title,cart_items,shipping_details):
+    if not frappe.db.exists("Customer", {"customer_name": fullname}):
+        customer = frappe.new_doc("Customer")
+        customer.customer_name = fullname
+        customer.insert()
+        frappe.db.commit()
+
 
     doc = frappe.new_doc("Proceed Checkout")
     doc.full_name = fullname

@@ -2,7 +2,7 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "field:title_in_arabic",
- "creation": "2024-10-21 19:42:49.722818",
+ "creation": "2024-10-23 17:56:58.423860",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -18,7 +18,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-21 19:42:49.722818",
+ "modified": "2024-10-23 17:56:58.423860",
  "modified_by": "Administrator",
  "module": "Qetah Phase 1",
  "name": "Category In Arabic",

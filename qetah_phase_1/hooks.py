@@ -122,13 +122,12 @@ home_page = "index"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Sales Invoice": {
+		"validate": "qetah_phase_1.events.sale.sale_person"
+	}
+}
+
 
 # Scheduled Tasks
 # ---------------
@@ -224,4 +223,30 @@ home_page = "index"
 #         "from_route": "/blog-post/<path:slug>",
 #         "to_route": "blog-post",
 #     }
+
 # ]
+fixtures=[
+    {
+        "dt" : "Role",
+        "filters": [
+            [
+                "name","in",
+                [
+                    "Sale Person",
+                    "Blogger",
+                ]
+            ]
+        ]
+    },
+     {
+        "dt" : "Module Profile",
+        "filters": [
+            [
+                "name","in",
+                [
+                    "Sale Person"
+                ]
+            ]
+        ]
+    },  
+]
