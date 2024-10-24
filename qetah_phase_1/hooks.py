@@ -16,7 +16,7 @@ website_context = {
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/qetah_phase_1/css/qetah_phase_1.css"
-# app_include_js = "/assets/qetah_phase_1/js/qetah_phase_1.js"
+# app_include_js = "/assets/qetah_phase_1/js/sale.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/qetah_phase_1/css/qetah_phase_1.css"
@@ -33,7 +33,7 @@ website_context = {
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+# doctype_js = {"Sales Person" : "public/js/sale.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -101,6 +101,9 @@ home_page = "index"
 # Permissions
 # -----------
 # Permissions evaluated in scripted ways
+permission_query_conditions = {
+    "Sales Invoice": "qetah_phase_1.permission.sales_invoice_query",
+    }
 
 # permission_query_conditions = {
 # 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
