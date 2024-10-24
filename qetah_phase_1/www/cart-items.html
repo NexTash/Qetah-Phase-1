@@ -429,43 +429,60 @@
 
   {% block scripts %}
   <script>
-    // function savebutton() {
-    //   console.log("savebuttoncalled");
+    window.onload = function () {
+      const pageTitles = {
+        ar: 'عناصر سلة التسوق - قطة',
+        en: 'Cart Items - Qetah'
+
+      };
+
+      const pageHeaders = {
+        ar: 'عناصر سلة التسوق - قطة',
+        en: 'Cart Items - Qetah'
+
+      };
+
+      setPageTitle(pageTitles, pageHeaders);
+    };
+  </script>
+  <script>
+    function savebutton() {
+      console.log("savebuttoncalled");
       
-    //   const firstname = document.getElementById('firstname').value;
-    //   const lastname = document.getElementById('lastname').value;
-    //   const phone = document.getElementById('phone').value;
-    //   const address = document.getElementById('address').value;
-    //   const email = document.getElementById('email').value;
-    //   const state = document.getElementById('state').value;
-    //   const city = document.getElementById('city').value;
-    //   const postalcode = document.getElementById('postalcode').value;
+      const firstname = document.getElementById('firstname').value;
+      const lastname = document.getElementById('lastname').value;
+      const phone = document.getElementById('phone').value;
+      const address = document.getElementById('address').value;
+      const email = document.getElementById('email').value;
+      const state = document.getElementById('state').value;
+      const city = document.getElementById('city').value;
+      const postalcode = document.getElementById('postalcode').value;
 
-    //   frappe.call({
-    //     method: 'qetah_phase_1.events.cart.carts',
-    //     args: {
-    //       firstname : firstname,
-    //       lastname : lastname,
-    //       address: address,
-    //       email: email,
-    //       phone: phone,
-    //       state: state,
-    //       city: city,
-    //       postalcode: postalcode,
-    //     },
-    //     callback(r) {
-    //       // //console.log(r.message)
-    //       document.getElementById("messages").innerHTML = r.message;
+      frappe.call({
+        method: 'qetah_phase_1.events.cart.carts',
+        args: {
+          firstname : firstname,
+          lastname : lastname,
+          address: address,
+          email: email,
+          phone: phone,
+          state: state,
+          city: city,
+          postalcode: postalcode,
+        },
+        callback(r) {
+          // //console.log(r.message)
+          document.getElementById("messages").innerHTML = r.message;
 
-    //       document.getElementById('phone').value = ""
-    //       document.getElementById("email").value = ""
-    //       document.getElementById('address').value = ""
-    //       document.getElementById('state').value = ""
-    //       document.getElementById('city').value = ""
-    //       document.getElementById('postalcode').value = ""
-    //     }
-    //   });
-    // }
+          document.getElementById('phone').value = ""
+          document.getElementById("email").value = ""
+          document.getElementById('address').value = ""
+          document.getElementById('state').value = ""
+          document.getElementById('city').value = ""
+          document.getElementById('postalcode').value = ""
+        }
+      });
+    }
     
   </script>
   <!-- cart -->
@@ -596,6 +613,20 @@
 
     document.addEventListener('DOMContentLoaded', function () {
       displayData();
+
+    document.addEventListener('DOMContentLoaded', function () {
+      displayData();
+      document.getElementById('address-check').addEventListener('click', () => {
+        const add_val=document.getElementById('address-check').value
+        if(add_val==0){
+          document.getElementById('address-check').value=1
+        }else{
+          document.getElementById('address-check').value=0
+        }
+        // console.log(document.getElementById('address-check').value);
+        
+      })
+    });
     });
   </script>
   <!-- Cart Items  -->
